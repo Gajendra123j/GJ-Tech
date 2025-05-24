@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>GJ Tech (company)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Root Custom Properties for consistent styling */
+        :root {
+            --card-radius: 10px;
+            --shadow-elevation: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --text-gray: #4a5568;
+            --light-blue: rgb(19, 16, 16);
+            --dark-blue: rgb(25, 46, 46);
+            --link-blue:rgb(15, 14, 14);
+            --star-gold: #FFD700;
+            --primary-color: #151511; /* Standard primary blue */
+            --footer-bg:rgb(29, 25, 23); /* Darker gray footer */
+            --footer-text: #f4f2ee;
+            --footer-link: #b8a32b;
+            --footer-link-hover: #e8e4e4;
+            /* Updated Color Scheme Variables */
+            --main-bg-light: #f8f9f9; /* Very light gray background */
+            --card-bg-light: #f7eee8; /* White card background */
+            --text-dark: #0b0b0b; /* Dark gray text */
+            --primary-blue:rgb(179, 22, 22); /* A standard blue */
+            --secondary-blue:rgb(52, 6, 6); /* A lighter blue */
+        }
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Basic body styling - Using the new light background color */
+        body {
+            font-family: 'Inter', sans-serif; /* Use Inter font */
+            background-color: var(--main-bg-light); /* New light background */
+            color: var(--text-dark); /* New dark text color */
+        }
+        /* ========== Announcement Marquee Styles ========== */
+        .announcement-marquee {
+             background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue)); /* Blue gradient */
+             color: #faf9f8; /* White text */
+             padding: 0.5rem 0;
+             font-weight: 500;
+             overflow: hidden;
+             white-space: nowrap;
+             direction: ltr;
+        }
+        .marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+        .announcement-marquee a {
+            color: #ddecec; /* White link color */
+            text-decoration: underline;
+            margin: 0 1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .announcement-marquee a:hover {
+            color: #bb7418; /* Slightly lighter white on hover */
+        }
+        /* Marquee animation keyframes */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        /* ========== Footer Styles ========== */
+        .footer {
+            background-color: var(--footer-bg);
+            padding: 2.5rem 1.25rem;
+            color: var(--footer-text);
+            font-size: 0.9rem;
+        }
+        .footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+        .footer a {
+            color: var(--footer-link);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: var(--footer-link-hover);
+            text-decoration: underline;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            flex-grow: 1;
+        }
+        @media (min-width: 768px) {
+            .footer-links {
+                justify-content: flex-start;
+            }
+        }
+        .footer-links > div {
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .footer-links > div {
+                width: auto;
+            }
+        }
+        .footer-links h4 {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+            color: #b36e1a;
+        }
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-bottom {
+            margin-top: 2rem;
+            text-align: center;
+            border-top: 1px solid #4a5568;
+            padding-top: 1.5rem;
+            width: 100%;
+        }
+        .footer-bottom p {
+            font-size: 0.875rem;
+            color: #e2a31c;
+            margin-bottom: 0.5rem;
+        }
+        .footer-bottom .legal-links a {
+            color: rgb(192, 91, 29);
+            margin: 0 0.625rem;
+        }
+        /* ========== Profile Section (Updated colors) ========== */
+        .profile-section {
+            background-color: var(--card-bg-light); /* Light card background */
+            color: var(--text-dark); /* Dark text */
+            padding: 2rem;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-elevation);
+            margin-bottom: 1.25rem;
+            text-align: center;
+            border: 2px solid var(--primary-blue); /* Blue highlight border */
+        }
+        .profile-section img {
+            border-radius: 50%;
+            width: 9.375rem;
+            height: 9.375rem;
+            object-fit: cover;
+            margin-bottom: 1.25rem;
+            border: 4px solid var(--primary-blue); /* Blue border around image */
+            box-shadow: var(--shadow-elevation);
+        }
+        .profile-section p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: var(--text-gray); /* Standard gray text */
+        }
+        .profile-section .profile-link {
+            color: var(--primary-blue); /* Primary blue color for links */
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1rem;
+            display: inline-block;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+        .profile-section .profile-link:hover {
+            color: var(--dark-blue); /* Darker blue on hover */
+            text-decoration: underline;
+        }
+        /* ========== Multimedia Cards (Updated colors) ========== */
+        .multimedia-card {
+            background-color: var(--card-bg-light); /* Light card background */
+            color: var(--text-dark); /* Dark text */
+            border-radius: var(--card-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+            margin: 0.625rem;
+            padding: 0.9375rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            width: 100%;
+            border: 1px solid var(--secondary-blue); /* Subtle blue border */
+        }
+        @media (min-width: 640px) {
+            .multimedia-card { width: calc(50% - 1.25rem); }
+        }
+        @media (min-width: 768px) {
+            .multimedia-card { width: calc(33.333% - 1.25rem); }
+        }
+        @media (min-width: 1024px) {
+            .multimedia-card { width: calc(20% - 1.25rem); }
+        }
+        .multimedia-card img {
+            width: 100%;
+            height: 7.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.625rem;
+            object-fit: cover;
+        }
+        .multimedia-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+        }
+        .multimedia-card p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: var(--text-gray); /* Standard gray text */
+            flex-grow: 1;
+        }
+        /* ========== Icons ========== */
+        .app-links img,
+        .social-icons img {
+            transition: transform 0.3s ease;
+        }
+        .app-links img:hover,
+        .social-icons img:hover {
+            transform: scale(1.1);
+        }
+        /* ========== Rating Section (Updated colors) ========== */
+        .rating-section {
+            background-color: var(--card-bg-light); /* Light card background */
+            color: var(--text-dark); /* Dark text */
+            padding: 2rem;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-elevation);
+            margin-bottom: 1.25rem;
+            text-align: center;
+            border: 1px solid var(--secondary-blue); /* Subtle blue border */
+        }
+        .rating-stars {
+            display: inline-block;
+            unicode-bidi: bidi-override;
+            direction: rtl;
+            text-align: left;
+        }
+        .rating-stars input {
+            display: none;
+        }
+        .rating-stars label {
+            float: right;
+            font-size: 2.5rem;
+            color: var(--secondary-blue); /* Secondary blue star color */
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .rating-stars input:checked ~ label {
+            color: var(--star-gold); /* Gold color for selected stars */
+        }
+        .rating-stars label:hover,
+        .rating-stars label:hover ~ label {
+            color: var(--star-gold);
+            transform: scale(1.1);
+        }
+        /* ========== Utility Styles (Updated colors) ========== */
+         /* Section titles with primary blue color */
+        .section-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary-blue); /* Primary blue color */
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--card-radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border: none;
+            text-decoration: none;
+        }
+        /* Primary button with primary blue styling */
+        .btn-primary {
+            background-color: var(--primary-blue); /* Primary blue color */
+            color: #161515; /* White text */
+        }
+        .btn-primary:hover {
+            background-color: var(--dark-blue); /* Darker blue on hover */
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background-color: #16181b;
+            color: var(--text-gray);
+        }
+        .btn-secondary:hover {
+            background-color: #202122;
+            color: #daad18;
+            transform: translateY(-2px);
+        }
+        .icon {
+            margin-left: 0.5rem;
+            height: 1em;
+            width: 1em;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .card {
+            background-color: var(--card-bg-light); /* Light card background */
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-elevation);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        /* ========== Focus Accessibility (Updated color) ========== */
+        a:focus-visible,
+        .btn:focus-visible,
+        input:focus-visible,
+        .profile-link:focus-visible {
+            outline: 2px solid var(--primary-blue); /* Primary blue outline */
+            outline-offset: 2px;
+        }
+        /* Responsive adjustments for header content */
+        @media (max-width: 767px) {
+            header .relative.z-10 {
+                padding-top: 4rem;
+            }
+            header .absolute.top-4.left-4,
+            header .absolute.top-4.right-4 {
+                position: static;
+                display: flex;
+                justify-content: center;
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+            }
+             header .absolute.top-4.left-4 {
+                 justify-content: center;
+                 width: 100%;
+                 margin-bottom: 0.5rem;
+             }
+             header .absolute.top-4.right-4 {
+                 justify-content: center;
+                 width: 100%;
+                 margin-top: 0.5rem;
+             }
+            header .absolute.top-4.left-4 input {
+                width: 80%;
+            }
+        }
+        /* Responsive adjustments for navigation */
+        .main-nav .container {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .main-nav a {
+            padding: 0.5rem 0;
+        }
+        @media (min-width: 768px) {
+            .main-nav .container {
+                flex-direction: row;
+                gap: 1.5rem;
+            }
+             .main-nav a {
+                 padding: 0;
+             }
+        }
+        /* Styling for the VIP Events section (Updated colors) */
+        .vip-event-card {
+            background-color: var(--card-bg-light); /* Light card background */
+            color: var(--text-dark); /* Dark text */
+            border-radius: var(--card-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--secondary-blue); /* Subtle blue border */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .vip-event-card:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .vip-event-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--primary-blue); /* Primary blue color for event titles */
+        }
+        .vip-event-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-gray); /* Standard gray text */
+        }
+        .vip-event-card .event-details {
+            font-size: 0.85rem;
+            color: #e09f26; /* Darker gray for details */
+            margin-top: 1rem;
+        }
+        .vip-event-card .event-details span {
+            margin-right: 1rem;
+        }
+        /* Styling for the VIP Benefits cards (Updated colors) */
+        .vip-benefit-card {
+            background-color: var(--card-bg-light); /* Light card background */
+            color: var(--text-dark); /* Dark text */
+            border-radius: var(--card-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--secondary-blue); /* Subtle blue border */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .vip-benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .vip-benefit-card .icon {
+            font-size: 2rem; /* Larger icon size */
+            margin-bottom: 1rem;
+            color: var(--primary-blue); /* Primary blue color for icons */
+        }
+         .vip-benefit-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--primary-blue); /* Primary blue color for titles */
+        }
+        .vip-benefit-card p {
+            font-size: 0.95rem;
+            color: var(--text-gray); /* Standard gray text */
+        }
+        /* Styling for the direct download link (Updated color) */
+        .direct-download-link {
+            display: block; /* Make it a block element to appear below the button */
+            margin-top: 0.5rem; /* Space above the link */
+            font-size: 0.8rem; /* Smaller font size */
+            color: var(--primary-blue); /* Primary blue color */
+            text-decoration: underline; /* Underline the link */
+            transition: color 0.2s ease; /* Smooth color transition */
+        }
+        .direct-download-link:hover {
+            color: var(--dark-blue); /* Darker color on hover */
+        }
+         /* Styling for the Technologies section cards (Updated colors and backgrounds) */
+        .tech-card {
+            background-color: var(--card-bg-light); /* Light card background */
+            color: var(--text-dark); /* Dark text */
+            border-radius: var(--card-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--secondary-blue); /* Subtle blue border */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; /* Needed for absolute positioning of background */
+            overflow: hidden; /* Hide overflowing background */
+        }
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+       /* Individual tech card backgrounds - Placeholder images for demonstration */
+       /* Replace with actual image paths if you have them */
+       .tech-card:nth-child(1) { /* Python */
+           background-image: url('https://via.placeholder.com/150/FFD43B/000000?text=Python');
+           background-size: cover;
+           background-position: center;
+       }
+       .tech-card:nth-child(2) { /* CSS */
+           background-image: url('https://via.placeholder.com/150/264DE4/FFFFFF?text=CSS');
+           background-size: cover;
+           background-position: center;
+       }
+       .tech-card:nth-child(3) { /* HTML */
+           background-image: url('https://via.placeholder.com/150/E44D26/FFFFFF?text=HTML');
+           background-size: cover;
+           background-position: center;
+       }
+       .tech-card:nth-child(4) { /* JavaScript */
+           background-image: url('https://via.placeholder.com/150/F7DF1E/000000?text=JS');
+           background-size: cover;
+           background-position: center;
+       }
+       .tech-card:nth-child(5) { /* AI & ML */
+           background-image: url('https://via.placeholder.com/150/6A0DAD/FFFFFF?text=AI/ML');
+           background-size: cover;
+           background-position: center;
+       }
+        /* Overlay to ensure text readability */
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(247, 240, 240, 0.85); /* Semi-transparent white overlay */
+            z-index: 1; /* Place above background image */
+            border-radius: var(--card-radius);
+        }
+        /* Ensure content is above the overlay */
+        .tech-card > * {
+            position: relative;
+            z-index: 2;
+        }
+        .tech-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--primary-blue); /* Primary blue color for titles */
+        }
+        .tech-card p {
+            font-size: 0.95rem;
+            color: var(--text-gray); /* Standard gray text */
+        }
+    </style>
+</head>
+<body class="bg-blue-100 font-sans">
+    <div class="announcement-marquee">
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+        🚀 Welcome to GJ Tech! New projects coming soon!
+        <a href="blogs.html">Check out our latest blog posts</a> |
+        <a href="contact.html">Join our tech community</a> |
+        <a href="about.html">Learn more about our mission</a> |
+        <a href="CoursesinManagement.html" class="hover:underline">Courses in Management</a> |
+        <a href="careergoals.html" class="hover:underline">Career Goals and Opportunities </a>
+    </marquee>
+    </div>
+    <header class="bg-slate-900 text-white text-center py-6 shadow-md relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-700 to-teal-700 opacity-30"></div>
+        <div class="relative z-10">
+            <div class="absolute top-4 left-4 flex items-center space-x-4">
+                <input type="text" id="pageSearch" placeholder="Search GJ content..." class="p-2 rounded text-black text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+            </div>
+            <div class="absolute top-4 right-4 flex space-x-4">
+                <a href="settings.html" class="hover:underline text-sm transition duration-300 ease-in-out">Settings ⚙️</a>
+                <a href="Livemeet.html" class="hover:underline text-sm transition duration-300 ease-in-out">Live Meet 📹</a>
+            </div>
+            <h1 class="text-3xl font-bold mt-16 md:mt-10 text-yellow-400">GJ Tech </h1>
+            <p class="text-sm mt-2 text-gray-300">Building the Future of Technology Together 👩‍💻</p>
+            <div class="flex justify-center items-center mt-4">
+                <img src="Education.jpg" alt="GJ Tech" class="w-52 h-36 object-contain rounded-lg shadow transform hover:scale-105 transition-transform duration-300">
+            </div>
+            </div>
+        </div>
+    </header>
+    <nav class="bg-slate-800 text-white text-center py-3 text-sm md:text-lg sticky top-0 z-50 shadow main-nav">
+        <div class="container mx-auto flex flex-wrap justify-center gap-x-3 md:gap-x-6">
+            <nav class="bg-blue-700 text-white text-center py-3 space-x-6 text-lg">
+                <a href="index.html" class="hover:underline">Home 🏡</a>
+                <a href="blogs.html" class="hover:underline">Blogs 👩‍💻</a>
+                <a href="about.html" class="hover:underline">About 🎓</a>
+                <a href="contact.html" class="hover:underline">Contact 📶/Explore Our Courses</a>
+                <a href="careergoals.html" class="hover:underline">Career Goals and Opportunities </a>
+                <a href="CoursesinManagement.html" class="hover:underline">Courses in Management</a>
+                <a href="Registration.html" class="hover:underline">Registration-in</a>
+                <a href="login.html" class="hover:underline">login-in</a>
+            </nav>
+        </div>
+    </nav>
+    <main class="container mx-auto px-4 py-8">
+        <section id="get-started-cta" class="card text-center mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Ready to Elevate Your Tech Journey?</h2>
+            <p class="text-lg text-gray-700 mb-6">Join GJ Tech Pvt. Ltd. today and unlock exclusive content, community access, and powerful tools!</p>
+            <a href="Registration.html" class="btn btn-primary bg-teal-600 hover:bg-teal-700 text-white text-xl">
+                Get Started Now <i class="fas fa-hand-point-right icon"></i>
+            </a>
+        </section>
+
+        <section id="profile" class="profile-section card">
+            <h2 class="section-title">My Profile</h2>
+            <div class="flex flex-col items-center">
+                <img src="jg.jpg" alt="Gajendra Singh Profile" class="rounded-full w-32 h-32 mb-4 shadow-lg object-cover border-4 border-blue-400">
+                <p class="text-lg font-semibold text-gray-800"> 👋Gajendra Singh</p>
+                <div class="bg-white p-6 rounded-xl shadow-md max-w-3xl mx-auto">
+                    <h1 class="text-3xl font-bold text-gray-800 mb-4">👋Gajendra Singh</h1>
+                <p class="text-gray-600 mb-4 text-center"> Founder(CEO) || Tech Enthusiast || AI & Future Technologies Learner MIT Moradabad || 2023–2027 || AKTU Affiliated
+                </p>
+                <p class="text-sm mb-6 text-gray-700 text-justify max-w-prose mx-auto"> Hello everyone! I’m Gajendra Singh a passionate Computer Science Engineering student (Batch 2023–2027) at MIT Moradabad, affiliated with AKTU. I’m deeply interested in Artificial Intelligence, Machine Learning, and Full-Stack Development, and I love building smart applications that solve real-world problems.
+                    I'm also the Founder of GJ Tech Pvt. Ltd., a platform created to share valuable knowledge through tech blogs, videos, podcasts, and hands-on projects. At GJ Tech, we focus on delivering insightful content on Information Technology, programming languages, and advanced tech concepts to learners of all backgrounds.</p>
+                <a href="https://www.linkedin.com/in/gajendra-singh-9ba6a5306" target="_blank" rel="noopener noreferrer" class="profile-link text-blue-600 hover:underline">View Your Profile</a>
+                </div>
+            </div>
+        </section>
+        <section id="rate-us" class="rating-section card">
+            <h2 class="section-title">GJ Tech Pvt. Ltd. 👩‍💻 Experience</h2>
+            <p class="mb-4 text-gray-600">Help us improve by rating your experience:</p>
+            <div class="rating-stars mb-4">
+                <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5 stars">★</label>
+                <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars">★</label>
+                <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars">★</label>
+                <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars">★</label>
+                <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star">★</label>
+            </div>
+            <button id="submitRating" class="btn btn-primary bg-blue-600 hover:bg-blue-700">Submit Rating</button>
+            <p id="ratingMessage" class="mt-4 text-sm"></p>
+        </section>
+        <section id="vip-content" class="mb-8">
+            <h2 class="section-title">Exclusive Benefits</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="vip-benefit-card card">
+                    <i class="fas fa-star icon text-blue-600"></i>
+                    <h3>Premium Content Library</h3>
+                    <p class="text-gray-700">Built for serious learners. Powered by **GJ Tech Pvt. Ltd.**, our platform offers a vast collection of in-depth tutorials, courses, and resources to accelerate your growth.</p>
+                </div>
+                <div class="vip-benefit-card card">
+                    <i class="fas fa-users icon text-blue-600"></i>
+                    <h3>Private Community Access</h3>
+                    <p class="text-gray-700">Join our private tech community – connect, collaborate, and grow together. Get exclusive access to a members-only space for discussions, support, and networking with fellow developers. Share your projects, ask questions, and stay updated with the latest tech trends. This active, supportive network is built for passionate tech minds like you, where everything from doubts to breakthroughs happens. Enjoy private forums, live sessions, project collaborations, and more, all under one dedicated **GJ Tech** hub. Level up your learning by being part of an active, supportive, and private developer network.</p>
+                </div>
+                <div class="vip-benefit-card card">
+                    <i class="fas fa-life-ring icon text-blue-600"></i>
+                    <h3>Priority Support</h3>
+                    <p class="text-gray-700">Stuck somewhere? Get fast, dedicated support from the **GJ Tech** team. Enjoy priority support for premium members, meaning faster replies and better solutions. Get your questions answered first, whether it's coding help, account issues, or project guidance. We’re here for you. Enjoy direct access to expert help when you need it most. Less waiting, more building – priority support means quick resolutions and expert guidance. Email, chat, or community — your issues get top priority, always. You build. We back you up.</p>
+                </div>
+                <div class="vip-benefit-card card">
+                    <i class="fas fa-clock icon text-blue-600"></i>
+                    <h3>Early Access</h3>
+                    <p class="text-gray-700">Be the first to explore new tutorials, tools, and tech content before anyone else. Early Access members unlock content days before public release. Test features early, learn first, and stay ahead. Get priority access to beta projects, upcoming features, and private releases. This is your head start in the tech race — only for **GJ Tech** insiders. Enjoy the early bird advantage: get hands-on with our latest innovations before launch. Learning fast starts with early access – sign up and stay ahead of the curve.</p>
+                </div>
+                <div class="vip-benefit-card card">
+                    <i class="fas fa-tags icon text-blue-600"></i>
+                    <h3>Exclusive Discounts</h3>
+                    <p class="text-gray-700">Enjoy special discounts on **GJ Tech** products, services, and partner offerings, exclusively for our members.</p>
+                </div>
+            </div>
+        </section>
+        <section id="exclusive-resources" class="mb-8">
+             <h2 class="section-title">Exclusive Resources</h2>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                 <div class="card bg-gray-200 text-gray-800 border border-blue-500 p-6 rounded-xl shadow-lg">
+                     <h3 class="text-xl font-semibold mb-3 text-blue-700">🚀 Advanced Frontend Toolkit v1.0</h3>
+                     <p class="mb-4 text-gray-700"> Supercharge your web development workflow with the <strong>GJ Tech Advanced Frontend Toolkit v1.0</strong> —
+                                             a powerful collection of pre-built tools and components tailored for modern frontend engineers.
+                                         </p>
+                                         <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+                                             <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition duration-300"> Download Toolkit
+                                             </a>
+                                             <a href="link_to_toolkit_v1.zip" download class="text-blue-600 hover:underline text-sm"> Or click here for direct ZIP download
+                                             </a>
+                                             <a href="/mnt/data/html.p.pdf" download class="text-green-600 hover:underline text-sm"> 📄 Download HTML History PDF
+                                             </a>
+                                         </div>
+                 </div>
+             </div>
+        </section>
+        <section id="vip-events" class="mb-8">
+            <h2 class="section-title">Upcoming GJ Events</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="vip-event-card card">
+                    <h3 class="text-blue-700">Exclusive Webinar: Future of Web</h3>
+                    <p class="text-gray-700">Join our expert panel for a deep dive into the future of Web3 technologies and their impact on the digital landscape.</p>
+                    <div class="event-details text-gray-600">
+                        <span><i class="far fa-calendar-alt"></i> Date: July 15, 2025</span>
+                        <span><i class="far fa-clock"></i> Time: 2:00 PM IST</span>
+                        <span><i class="fas fa-video"></i> Format: Online Webinar</span>
+                    </div>
+                    <a href="Registration.html" class="btn btn-primary btn-sm mt-4 bg-blue-600 hover:bg-blue-700">Register Now</a>
+                </div>
+                <div class="vip-event-card card">
+                    <h3 class="text-blue-700">Hands-on Workshop: Building AI Apps</h3>
+                    <p class="text-gray-700">Learn to build practical AI applications from scratch with Python and popular machine learning frameworks in this interactive workshop.</p>
+                    <div class="event-details text-gray-600">
+                        <span><i class="far fa-calendar-alt"></i> Date: August 10, 2025</span>
+                        <span><i class="far fa-clock"></i> Time: 10:00 AM IST</span>
+                        <span><i class="fas fa-desktop"></i> Format: Hybrid (Online & In-person)</span>
+                    </div>
+                    <a href="Registration.html" class="btn btn-primary btn-sm mt-4 bg-blue-600 hover:bg-blue-700">Register Now</a>
+                </div>
+            </div>
+        </section>
+        <section id="technologies" class="mb-8">
+            <h2 class="section-title">Our Core Technologies</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                <div class="tech-card card">
+                    <i class="fab fa-python icon text-blue-600"></i>
+                    <h3>Python Development</h3>
+                    <p class="text-gray-700">Python is a versatile programming language used for a wide range of applications, including web development, data science, software development, automation, and more. It's known for its readability and ease of use, making it a popular choice for beginners and experienced developers alike. 
+                </div>
+                <div class="tech-card card">
+                    <i class="fab fa-css3-alt icon text-blue-600"></i>
+                    <h3>CSS Styling</h3>
+                    <p class="text-gray-700">Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML (including XML dialects such as SVG, MathML or XHTML). CSS describes how elements should be rendered on screen, on paper, in speech, or on other media.</p>
+                </div>
+                <div class="tech-card card">
+                    <i class="fab fa-html5 icon text-blue-600"></i>
+                    <h3>HTML5 Markup</h3>
+                    <p class="text-gray-700">HTML, or HyperText Markup Language, is the foundational language used to structure and organize content for display on web pages. It acts as the skeleton of a website, defining the elements like headings, paragraphs, images, and links, using tags that tell a web browser how to display them. </p>
+                </div>
+                <div class="tech-card card">
+                    <i class="fab fa-js-square icon text-blue-600"></i>
+                    <h3>JavaScript Mastery</h3>
+                    <p class="text-gray-700">JavaScript is a versatile programming language primarily used to add interactivity and dynamic content to web pages. It's the dominant client-side scripting language, meaning it runs directly in the user's browser to create engaging user experiences. Beyond web development, JavaScript is also used for back-end development, mobile app development, and even game development. </p>
+                </div>
+                <div class="tech-card card">
+                    <i class="fas fa-brain icon text-blue-600"></i>
+                    <h3>AI & Machine Learning</h3>
+                    <p class="text-gray-700">Machine learning (ML) is a field within artificial intelligence (AI) that focuses on enabling computers to learn from data without being explicitly programmed. It involves algorithms that can analyze data, identify patterns, and make predictions or decisions. These algorithms improve their performance over time as they are exposed to more data. </p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-about">
+                <h4 class="text-white">About GJ Tech</h4>
+                <p>If you are looking for information related to "Empowering the next generation of tech professionals through quality education and community," I can definitely help you with that! Please tell me:</p>
+                <div class="social-icons mt-4 flex space-x-4">
+                    <a href="https://www.linkedin.com/in/gajendra-singh-9ba6a5306" target="_blank" rel="noopener noreferrer">
+                        <img src="linkdin.jpg" alt="LinkedIn" class="w-6 h-6"/>
+                    </a>
+                    <a href="https://github.com/Gajendra123j" target="_blank" rel="noopener noreferrer">
+                        <img src="github.jpg" alt="GitHub" class="w-6 h-6"/>
+                    </a>
+                    <a href="https://www.instagram.com/gajendra_katariya_015" target="_blank" rel="noopener noreferrer">
+                        <img src="in.jpg" alt="Instagram" class="w-6 h-6"/>
+                    </a>
+                    <a href="mailto:gajendras0438@gmail.com">
+                        <img src="https://img.icons8.com/ios-filled/24/ffffff/mail.png" alt="Email" class="w-6 h-6"/>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div>
+                    <h4 class="text-white">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white">Courses</h4>
+                    <ul>
+                        <li><a href="CoursesinManagement.html">Management Courses</a></li>
+                        <li><a href="careergoals.html">Career Opportunities</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white">Support</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 GJ Tech Pvt. Ltd. All rights reserved.</p>
+            <div class="legal-links">
+                <a href="privacypolicy.html">Privacy Policy</a> |
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Star rating functionality
+        document.getElementById('submitRating').addEventListener('click', function() {
+            const selectedRating = document.querySelector('input[name="rating"]:checked');
+            const ratingMessage = document.getElementById('ratingMessage');
+            if (selectedRating) {
+                ratingMessage.textContent = `Thank you for rating us ${selectedRating.value} stars! Your feedback is valuable.`;
+                ratingMessage.style.color = 'green';
+            } else {
+                ratingMessage.textContent = 'Please select a star rating before submitting.';
+                ratingMessage.style.color = 'red';
+            }
+        });
+
+        // Page search functionality
+        document.getElementById('pageSearch').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                const searchTerm = this.value.toLowerCase();
+                const sections = document.querySelectorAll('main section');
+                let found = false;
+                for (let section of sections) {
+                    const sectionText = section.textContent.toLowerCase();
+                    if (sectionText.includes(searchTerm)) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                        // Optional: Highlight the section or content
+                        section.style.border = '2px solid yellow'; // Simple highlight
+                        setTimeout(() => section.style.border = '', 3000); // Remove highlight after 3 seconds
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    alert('No matching content found on this page.');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

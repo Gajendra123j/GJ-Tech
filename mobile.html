@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GJ Tech - Mobile Computing & Android Overview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Specific styles for the mobile-frame mock-up to try and contain it */
+        .mobile-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* This might make the container quite tall if not within a smaller div */
+            background-color: #d8e2ef; /* Background for the mobile-frame section */
+            padding: 20px 0; /* Add some padding */
+        }
+        .mobile-frame {
+            width: 100%;
+            max-width: 320px;
+            height: 100vh; /* This height can be problematic in a flowing document */
+            max-height: 700px; /* Constrain height */
+            background-color: #000;
+            border-radius: 2.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative; /* Ensure background absolute positioning works */
+        }
+        .home-screen-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://placehold.co/400x800/2a69d8/ffffff?text=Mobile+Wallpaper');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.8);
+            z-index: 0;
+        }
+        .icon-svg {
+            width: 24px;
+            height: 24px;
+        }
+        .app-icon-nav svg, .app-icon-nav img {
+            width: 24px;
+            height: 24px;
+        }
+        .app-icon-grid svg, .app-icon-grid img {
+            width: 28px;
+            height: 28px;
+        }
+        /* General body font from the mobile home screen snippet */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Styles for mobile generation images */
+        .mobile-generation-img {
+            max-width: 150px;
+            height: auto;
+            margin: 10px auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        /* Common styles for new sections to match existing design */
+        .section-card {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1D4ED8; /* A darker blue for section titles */
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #BFDBFE; /* Light blue underline */
+            padding-bottom: 0.5rem;
+        }
+        .subsection-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #2563EB; /* Slightly lighter blue for subsections */
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .step-img {
+            max-width: 80%;
+            height: auto;
+            margin: 1rem auto;
+            display: block;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .step-list {
+            list-style: decimal;
+            padding-left: 20px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .step-list li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        /* Styles for fixed navigation/paging */
+        .fixed-nav {
+            position: sticky;
+            top: 0;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 10px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            overflow-x: auto; /* Enable horizontal scrolling on small screens */
+            white-space: nowrap; /* Prevent items from wrapping */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            scroll-behavior: smooth;
+        }
+        .fixed-nav a {
+            display: inline-block; /* For horizontal layout */
+            padding: 8px 15px;
+            color: #1D4ED8;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+        .fixed-nav a:hover, .fixed-nav a.active-link {
+            background-color: #E0E7FF;
+            color: #3B82F6;
+        }
+        .fixed-nav .nav-container {
+            display: flex;
+            justify-content: center;
+            max-width: 1200px; /* Limit width of nav links */
+            margin: auto;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="max-w-5xl mx-auto p-6">
+        <h1 class="text-4xl font-extrabold text-blue-800 mb-2 text-center">GJ Tech</h1>
+        <h1 class="text-3xl font-bold text-blue-700 mb-6 text-center">UNIT - I: Mobile Computing & Android Overview</h1>
+
+        <nav class="fixed-nav">
+            <div class="nav-container">
+                <a href="#overview-section">Overview</a>
+                <a href="#history-section">History</a>
+                <a href="#networks-section">Networks</a>
+                <a href="#ecosystem-section">Ecosystem</a>
+                <a href="#apps-section">Apps</a>
+                <a href="#ia-section">IA</a>
+                <a href="#versions-section">Versions</a>
+                <a href="#features-section">Features</a>
+                <a href="#architecture-section">Architecture</a>
+                <a href="#sdk-install-section">SDK Install</a>
+                <a href="#avd-create-section">AVD Create</a>
+            </div>
+        </nav>
+
+        <div class="bg-white shadow-lg rounded-lg p-6 space-y-6 mb-8 mt-4">
+            <section id="overview-section">
+                <h2 class="text-xl font-semibold text-blue-600">Lecture Topics (10 Lectures)</h2>
+                <ul class="list-disc list-inside pl-4 space-y-1">
+                    <li><a href="#history-section" class="text-blue-600 hover:underline">A brief history of Mobile</a></li>
+                    <li><a href="#networks-section" class="text-blue-600 hover:underline">Types of Mobile Phone Generations</a></li>
+                    <li><a href="#ecosystem-section" class="text-blue-600 hover:underline">The Mobile Ecosystem</a></li>
+                    <li><a href="#apps-section" class="text-blue-600 hover:underline">Types of Mobile Applications</a></li>
+                    <li><a href="#ia-section" class="text-blue-600 hover:underline">Mobile Information Architecture</a></li>
+                    <li><a href="#versions-section" class="text-blue-600 hover:underline">Android Versions</a></li>
+                    <li><a href="#features-section" class="text-blue-600 hover:underline">Features of Android</a></li>
+                    <li><a href="#architecture-section" class="text-blue-600 hover:underline">Android Architecture</a></li>
+                    <li><a href="#sdk-install-section" class="text-blue-600 hover:underline">Installing Android SDK Tools</a></li>
+                    <li><a href="#sdk-install-section" class="text-blue-600 hover:underline">Configuring Android in Android Studio IDE</a></li>
+                    <li><a href="#sdk-install-section" class="text-blue-600 hover:underline">Android Development Tools (ADT) - <em class="text-gray-500">Covered within Android Studio setup</em></a></li>
+                    <li><a href="#avd-create-section" class="text-blue-600 hover:underline">Creating Android Virtual Devices (AVD)</a></li>
+                </ul>
+            </section>
+
+            <section id="history-section" class="section-card">
+                <h2 class="section-title">A Brief History of Mobile</h2>
+                <p>
+                    Mobile devices have evolved far beyond simple voice communication tools. They now allow for creation and sharing of voice, music, video, text, and images. Users can access the internet, stream media, use GPS, play games, and interact with augmented reality.
+                </p>
+                <p>
+                    Their power depends on both the mobile network infrastructure and device capability. A mobile phone is a portable device that connects to a telephone network via radio frequency. Modern mobile phones use cellular architecture and are commonly known as cell phones.
+                </p>
+                <p>
+                    Since the early 2000s, mobile phones have included features like SMS, MMS, email, internet access, Bluetooth, business apps, gaming, and photography. Devices offering such capabilities are termed smartphones.
+                </p>
+                <p>
+                    The first handheld mobile phone was demonstrated in 1973 by Martin Cooper and John F. Mitchell at Motorola, weighing about 2kg. The first commercial mobile phone, the DynaTAC 8000x, was released in 1983.
+                </p>
+            </section>
+        </div>
+
+        <header class="mb-6" id="networks-section">
+            <h1 class="text-3xl font-bold text-indigo-700 text-center">Mobile Technology Networks & Infrastructure</h1>
+        </header>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Platform SDKs & App Ecosystem</h2>
+            <p class="mb-4">Each mobile operating system—such as Android, iOS, Blackberry OS, Bada OS, and Symbian OS—provides its own Software Development Kit (SDK). These SDKs enable developers to build applications specific to each platform. Developers also get access to a marketplace (like Google Play or the App Store) to distribute and monetize their applications globally.</p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Historical Milestones</h2>
+            <ul class="list-disc pl-6 space-y-2">
+                <li><strong>April 4, 1973:</strong> Martin Cooper of Motorola made the first public handheld mobile phone call using a prototype DynaTAC.</li>
+                <li><strong>1917:</strong> Finnish inventor Eric Tigerstedt filed a patent for a pocket-size folding telephone.</li>
+                <li>Early mobile communication used analog radio signals for ships and trains.</li>
+                <li><strong>1984:</strong> Motorola launched the first commercial handheld mobile phone—DynaTAC 8000X.</li>
+                <li><strong>1979:</strong> Japan’s NTT launched the first commercial automated cellular network.</li>
+            </ul>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Generations of Mobile Technology</h2>
+            <div class="space-y-4">
+                <div>
+                    <h3 class="text-lg font-semibold">1G – First Generation (1980s)</h3>
+                    <p>Used analog technology. Enabled basic voice calls. MTS and IMTS systems were used in North America.</p>
+                    <img src="https://placehold.co/150x250/E0E7FF/000000?text=1G+Phone" alt="1G Mobile Phone" class="mobile-generation-img"/>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">2G – Second Generation (1991)</h3>
+                    <p>Introduced digital cellular technology with GSM in Finland. Enhanced call quality and added SMS support.</p>
+                    <img src="https://placehold.co/150x250/C7D2FE/000000?text=2G+Phone" alt="2G Mobile Phone" class="mobile-generation-img"/>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">3G – Third Generation (2001)</h3>
+                    <p>Introduced in Japan by NTT DoCoMo using WCDMA. Improved internet and multimedia capabilities.</p>
+                    <img src="https://placehold.co/150x250/A5B4FC/000000?text=3G+Phone" alt="3G Mobile Phone" class="mobile-generation-img"/>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">3.5G – HSPA Enhancements</h3>
+                    <p>Improved 3G networks with higher speeds using High Speed Packet Access technologies.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">4G – Fourth Generation (2009)</h3>
+                    <p>Introduced faster data-focused technologies like WiMAX (Sprint, US) and LTE (TeliaSonera, Scandinavia).</p>
+                    <img src="https://placehold.co/150x250/818CF8/000000?text=4G+Phone" alt="4G Mobile Phone" class="mobile-generation-img"/>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Evolution of Dialing & Analog Cellular (1G)</h2>
+
+            <div class="space-y-4">
+                <div>
+                    <h3 class="text-lg font-semibold">User Dialing & Automated Systems</h3>
+                    <p>In the early mobile systems, calls had to be manually forwarded by operators. The introduction of user dialing eliminated this need, allowing callers to directly place calls. Additional radio channels increased capacity and coverage. In 1960, Sweden introduced the world’s first fully automated mobile telephone system (MTA), which allowed rotary-dial calls from car-mounted phones, although operator assistance was still needed. This system was upgraded to MTB in 1962.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold">First Handheld Mobile Call</h3>
+                    <p>On April 3, 1973, Dr. Martin Cooper of Motorola made the first phone call using a handheld mobile device, marking a major milestone in mobile communication history.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold">1G – Analog Cellular Networks</h3>
+                    <p>The first-generation (1G) networks introduced analog cellular communication. They used multiple interconnected cell towers, enabling users to maintain calls while traveling between cells. The first network was built in Chicago in 1977, and this technology laid the foundation for modern mobile telephony.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Mobile Network Generations: AMPS to 3G</h2>
+
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Analog Mobile Phone System (AMPS) – 1G</h3>
+                    <p class="text-gray-700">Developed by AT&T, AMPS was the first standardized analog cellular network in the U.S., approved by the FCC after 11 years in 1982. It operated on the 824-894 MHz frequency range and marked a key milestone in mobile communication history.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Digital Cellular Networks – 2G</h3>
+                    <p class="text-gray-700">The 1990s introduced digital mobile technology with GSM in Europe and CDMA in North America. These systems brought better call quality, improved security, and greater network capacity. Smaller phones became possible due to advancements in components and batteries.</p>
+                    <p class="text-gray-700 mt-2">Key innovations of 2G included:</p>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>First SMS sent in 1992 (UK)</li>
+                        <li>First person-to-person SMS (Finland, 1993)</li>
+                        <li>Emergence of pre-paid mobile plans</li>
+                        <li>Basic content downloads like ringtones</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Mobile Broadband – 3G</h3>
+                    <p class="text-gray-700">NTT DoCoMo launched the world’s first 3G network in Japan (2001), after pioneering early mobile internet services on 2G. 3G brought fast mobile broadband, supporting services like video calling, mobile web Browse, and media streaming.</p>
+                    <p class="text-gray-700 mt-2">Before full 3G rollout, “2.5G” technologies emerged, offering limited data features with slower speeds.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-gray-50 rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Evolving Networks: 2.5G to 4G</h2>
+
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">2.5G – GPRS & EDGE</h3>
+                    <p class="text-gray-700">To bridge the gap between 2G and 3G, mobile providers introduced GPRS (General Packet Radio Service) and EDGE (Enhanced Data for GSM Evolution). While these offered packet-switched data transmission and modest speed increases, they couldn’t match the performance of full 3G networks.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">3G Enhancements – 3.5G and Beyond</h3>
+                    <p class="text-gray-700">Around 2005, 3G began to evolve with technologies like HSDPA (High-Speed Downlink Packet Access), HSPA, and HSPA+. These were often labeled as “3.5G” or “Turbo 3G.” They offered significantly faster mobile Internet, enabling better media streaming, video calling, and rich mobile applications.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">4G – Native IP Networks</h3>
+                    <p class="text-gray-700">The leap to 4G introduced all-IP packet-switched networks, aligning mobile networks with broadband Internet standards. The first 4G technologies were:</p>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li><strong>WiMAX</strong>: First deployed by Sprint in the U.S.</li>
+                        <li><strong>LTE (Long-Term Evolution)</strong>: Widely adopted across North America, Europe, and Asia.</li>
+                    </ul>
+                    <p class="text-gray-700 mt-2">4G enabled ultra-fast downloads, HD video streaming, and seamless mobile Browse experiences.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card" id="ecosystem-section">
+            <h2 class="section-title">The Mobile Ecosystem Overview</h2>
+            <p class="mb-4">The mobile ecosystem is a dynamic network of operators, device makers, software platforms, developers, and users. It's driven by innovation in connectivity, device capabilities, and evolving user demands.</p>
+
+            <h3 class="subsection-title">Key Components</h3>
+            <ul class="list-disc pl-6 space-y-1">
+                <li><strong>Mobile Network Operators:</strong> Airtel, Jio, AT&T (Provide network infrastructure and services)</li>
+                <li><strong>Device Manufacturers:</strong> Samsung, Apple, Xiaomi (Produce mobile hardware)</li>
+                <li><strong>Operating Systems:</strong> Android, iOS (Software platforms that run devices)</li>
+                <li><strong>Application Developers:</strong> Individual devs to companies like Meta (Create software applications)</li>
+                <li><strong>App Stores:</strong> Google Play Store, Apple App Store (Platforms for app distribution)</li>
+                <li><strong>Content Providers:</strong> Netflix, Spotify, Amazon (Deliver digital content)</li>
+                <li><strong>Infrastructure Providers:</strong> Ericsson, Huawei, AWS (Supply underlying technology and services)</li>
+                <li><strong>Users:</strong> End consumers driving demand and usage</li>
+            </ul>
+
+            <h3 class="subsection-title">Business Models</h3>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Device Sales</li>
+                <li>Subscription Fees</li>
+                <li>App Sales & In-App Purchases</li>
+                <li>Advertising</li>
+                <li>Data Monetization</li>
+                <li>Licensing</li>
+                <li>Commission</li>
+                <li>Freemium</li>
+                <li>Transaction Fees</li>
+            </ul>
+
+            <h3 class="subsection-title">Major Players (India + Global)</h3>
+            <ul class="list-disc pl-6 space-y-1">
+                <li><strong>OS:</strong> Google, Apple</li>
+                <li><strong>Devices:</strong> Xiaomi, Samsung, Apple</li>
+                <li><strong>Operators:</strong> Reliance Jio, Airtel, Vi</li>
+                <li><strong>App Stores:</strong> Google Play, Apple App Store</li>
+                <li><strong>Chipsets:</strong> Qualcomm, MediaTek</li>
+                <li><strong>Others:</strong> Meta, ByteDance, Amazon, Flipkart</li>
+            </ul>
+
+            <h3 class="subsection-title">Trends in Mobile Technology</h3>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>5G Connectivity</li>
+                <li>AI & ML Integration</li>
+                <li>Foldable Displays</li>
+                <li>IoT Integration</li>
+                <li>Mobile Payments (e.g., UPI)</li>
+                <li>Mobile Security</li>
+                <li>AR/VR Adoption</li>
+                <li>Cloud-Based Apps</li>
+                <li>Sustainability Initiatives</li>
+            </ul>
+        </section>
+
+        <section class="section-card" id="apps-section">
+            <h2 class="section-title">Types of Mobile Applications</h2>
+            <p class="mb-4">Mobile applications can be categorized based on their underlying technology and their primary purpose.</p>
+
+            <h3 class="subsection-title">Based on Technology</h3>
+            <ul class="list-disc pl-6 space-y-2">
+                <li>
+                    <strong>Native Apps:</strong> Platform-specific (e.g., iOS or Android), built with native SDKs.
+                    <ul class="list-circle list-inside pl-4 text-gray-600">
+                        <li><strong>Pros:</strong> High performance, full device feature access, optimal UX.</li>
+                        <li><strong>Cons:</strong> Higher development cost/time (separate codebase per platform).</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Web Apps:</strong> Browser-based, responsive websites optimized for mobile.
+                    <ul class="list-circle list-inside pl-4 text-gray-600">
+                        <li><strong>Pros:</strong> Cross-platform (single codebase), lower cost, no app store needed.</li>
+                        <li><strong>Cons:</strong> Requires internet, limited hardware access, slower performance.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Hybrid Apps:</strong> Built with web technologies (HTML, CSS, JS) wrapped in a native container.
+                    <ul class="list-circle list-inside pl-4 text-gray-600">
+                        <li><strong>Pros:</strong> Cross-platform, faster development than native, some device access.</li>
+                        <li><strong>Cons:</strong> Performance may be less smooth, limited advanced hardware access.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Progressive Web Apps (PWAs):</strong> Web apps with app-like features (offline, home screen icon, push notifications).
+                    <ul class="list-circle list-inside pl-4 text-gray-600">
+                        <li><strong>Pros:</strong> Discoverable, installable on home screen, offline capability, no app store.</li>
+                        <li><strong>Cons:</strong> Limited hardware access, relies on browser, may not be as performant as native.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3 class="subsection-title">Based on Purpose</h3>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Social Media Apps</li>
+                <li>Gaming Apps</li>
+                <li>E-commerce Apps</li>
+                <li>Utility Apps</li>
+                <li>Productivity Apps</li>
+                <li>Educational Apps</li>
+                <li>Health & Fitness Apps</li>
+                <li>Finance Apps</li>
+                <li>Media & Entertainment Apps</li>
+            </ul>
+        </section>
+
+        <section class="section-card" id="ia-section">
+            <h2 class="section-title">Mobile Information Architecture (IA)</h2>
+            <p class="mb-4">Mobile Information Architecture focuses on organizing, structuring, and labeling content and navigation in a way that allows users to find information and complete tasks effectively within a mobile application. It's about designing clear navigation paths and logical content grouping for a seamless user experience on smaller screens.</p>
+
+            <h3 class="subsection-title">Key Elements of Mobile IA</h3>
+            <ul class="list-disc pl-6 space-y-1">
+                <li><strong>Navigation Systems:</strong> How users move through the app (e.g., Tab Bars, Hamburger Menus, Gesture Navigation).</li>
+                <li><strong>Labeling Systems:</strong> The naming and wording of navigation items, categories, and content.</li>
+                <li><strong>Organization Systems:</strong> How content is grouped and structured (e.g., by topic, by task, alphabetically).</li>
+                <li><strong>Search Systems:</strong> Allowing users to find specific information quickly.</li>
+            </ul>
+
+            <h3 class="subsection-title">Example: Common Mobile Navigation Pattern (Bottom Tab Bar)</h3>
+            <p class="mb-4">A common pattern for mobile IA is the use of a bottom navigation bar, which provides quick access to core sections of an app. This structure allows users to easily switch between primary functionalities without getting lost, crucial for mobile's limited screen real estate.</p>
+            <div class="flex justify-center items-center p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <div class="mobile-frame">
+                    <header class="bg-blue-600 text-white text-center py-3 text-lg font-semibold z-10">My Mobile App</header>
+                    <main class="flex-1 overflow-y-auto p-4 relative z-10">
+                        <div class="home-screen-background"></div>
+                        <section id="ia-home" class="active-content">
+                            <h3 class="text-white text-xl font-bold mb-2">Home</h3>
+                            <p class="text-white">Welcome to the home screen! Here you can find the latest updates and featured content.</p>
+                        </section>
+                        <section id="ia-search" style="display:none;">
+                            <h3 class="text-white text-xl font-bold mb-2">Search</h3>
+                            <p class="text-white">Use this section to search for content, products, or anything else within the app.</p>
+                        </section>
+                        <section id="ia-notifications" style="display:none;">
+                            <h3 class="text-white text-xl font-bold mb-2">Notifications</h3>
+                            <p class="text-white">Here you will see alerts and notifications related to your account and activities.</p>
+                        </section>
+                        <section id="ia-profile" style="display:none;">
+                            <h3 class="text-white text-xl font-bold mb-2">Profile</h3>
+                            <p class="text-white">Manage your account settings, view your profile, and update preferences here.</p>
+                        </section>
+                    </main>
+                    <nav class="bg-white border-t border-gray-200 flex justify-around py-2 z-10">
+                        <button class="flex flex-col items-center text-blue-700 font-bold px-2 py-1 rounded-md" data-target="ia-home">
+                            <span class="text-xl">🏠</span>
+                            <span class="text-xs">Home</span>
+                        </button>
+                        <button class="flex flex-col items-center text-gray-600 px-2 py-1 rounded-md" data-target="ia-search">
+                            <span class="text-xl">🔍</span>
+                            <span class="text-xs">Search</span>
+                        </button>
+                        <button class="flex flex-col items-center text-gray-600 px-2 py-1 rounded-md" data-target="ia-notifications">
+                            <span class="text-xl">🔔</span>
+                            <span class="text-xs">Alerts</span>
+                        </button>
+                        <button class="flex flex-col items-center text-gray-600 px-2 py-1 rounded-md" data-target="ia-profile">
+                            <span class="text-xl">👤</span>
+                            <span class="text-xs">Profile</span>
+                        </button>
+                    </nav>
+                </div>
+            </div>
+            <script>
+                // JavaScript to switch between content sections for the IA example
+                const iaButtons = document.querySelectorAll('.mobile-frame nav button');
+                const iaSections = document.querySelectorAll('.mobile-frame main section');
+
+                iaButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        // Remove active styling from all buttons
+                        iaButtons.forEach(btn => {
+                            btn.classList.remove('text-blue-700', 'font-bold');
+                            btn.classList.add('text-gray-600');
+                        });
+                        // Hide all content sections
+                        iaSections.forEach(section => section.style.display = 'none');
+
+                        // Add active styling to the clicked button
+                        button.classList.add('text-blue-700', 'font-bold');
+                        button.classList.remove('text-gray-600');
+
+                        // Show the target section
+                        const targetId = button.getAttribute('data-target');
+                        document.getElementById(targetId).style.display = 'block';
+                    });
+                });
+
+                // Initialize the first section as active on load
+                document.addEventListener('DOMContentLoaded', () => {
+                    const initialButton = document.querySelector('.mobile-frame nav button[data-target="ia-home"]');
+                    const initialSection = document.getElementById('ia-home');
+                    if (initialButton && initialSection) {
+                        initialButton.classList.add('text-blue-700', 'font-bold');
+                        initialButton.classList.remove('text-gray-600');
+                        initialSection.style.display = 'block';
+                    }
+                });
+            </script>
+        </section>
+
+        <section class="section-card" id="versions-section">
+            <h2 class="section-title">Android Versions Overview</h2>
+            <p class="mb-4">Android versions are historically named after desserts, though this practice changed with Android 10. Each version introduces new features, performance improvements, and security enhancements.</p>
+
+            <div class="search-container text-center mb-4">
+                <input type="text" id="searchInput" placeholder="Search Android Version or Codename..." onkeyup="filterTable()" class="p-2 border-2 border-green-500 rounded-md w-2/3 focus:outline-none focus:border-green-700" />
+            </div>
+
+            <table id="androidTable" class="min-w-full bg-white rounded-lg shadow-sm overflow-hidden">
+                <thead>
+                    <tr class="bg-green-500 text-white">
+                        <th class="py-3 px-4 text-left">Version</th>
+                        <th class="py-3 px-4 text-left">Codename</th>
+                        <th class="py-3 px-4 text-left">Release Year</th>
+                        <th class="py-3 px-4 text-left">Key Features</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1.0</td><td>No Codename</td><td>2008</td><td>Initial release; basic apps like Gmail, Maps, Camera</td></tr>
+                    <tr><td>1.5</td><td>Cupcake</td><td>2009</td><td>On-screen keyboard, widgets, video recording</td></tr>
+                    <tr><td>1.6</td><td>Donut</td><td>2009</td><td>Support for different screen sizes, battery indicator</td></tr>
+                    <tr><td>2.0 - 2.1</td><td>Eclair</td><td>2009-2010</td><td>Google Maps navigation, Bluetooth 2.1, Exchange support</td></tr>
+                    <tr><td>2.2</td><td>Froyo</td><td>2010</td><td>Wi-Fi hotspot, USB tethering, performance improvements</td></tr>
+                    <tr><td>2.3</td><td>Gingerbread</td><td>2010</td><td>Redesigned UI, improved gaming, NFC support</td></tr>
+                    <tr><td>3.0 - 3.2</td><td>Honeycomb</td><td>2011</td><td>Tablet-focused UI, system bar, multi-core processor support</td></tr>
+                    <tr><td>4.0</td><td>Ice Cream Sandwich</td><td>2011</td><td>Unified phone/tablet UI, face unlock, data usage control</td></tr>
+                    <tr><td>4.1 - 4.3</td><td>Jelly Bean</td><td>2012-2013</td><td>Google Now, smooth UI, expandable notifications</td></tr>
+                    <tr><td>4.4</td><td>KitKat</td><td>2013</td><td>Improved memory management, immersive mode</td></tr>
+                    <tr><td>5.0 - 5.1</td><td>Lollipop</td><td>2014-2015</td><td>Material Design UI, improved notifications, ART runtime</td></tr>
+                    <tr><td>6.0</td><td>Marshmallow</td><td>2015</td><td>Runtime permissions, Doze power saving, fingerprint support</td></tr>
+                    <tr><td>7.0 - 7.1</td><td>Nougat</td><td>2016-2017</td><td>Split-screen multitasking, quick settings customization</td></tr>
+                    <tr><td>8.0 - 8.1</td><td>Oreo</td><td>2017-2018</td><td>Picture-in-picture, notification dots, autofill API</td></tr>
+                    <tr><td>9.0</td><td>Pie</td><td>2018</td><td>Gesture navigation, adaptive battery, digital wellbeing</td></tr>
+                    <tr><td>10</td><td>Android 10</td><td>2019</td><td>Dark mode, privacy enhancements, foldable support</td></tr>
+                    <tr><td>11</td><td>Android 11</td><td>2020</td><td>Conversation notifications, screen recording, better privacy</td></tr>
+                    <tr><td>12</td><td>Android 12</td><td>2021</td><td>Material You design, improved privacy dashboard</td></tr>
+                    <tr><td>13</td><td>Android 13</td><td>2022</td><td>Theming options, privacy, multilingual support</td></tr>
+                </tbody>
+            </table>
+            <script>
+                function filterTable() {
+                    const input = document.getElementById('searchInput');
+                    const filter = input.value.toLowerCase();
+                    const table = document.getElementById('androidTable');
+                    const tr = table.getElementsByTagName('tr');
+
+                    for (let i = 1; i < tr.length; i++) { // Start from 1 to skip header row
+                        let tdVersion = tr[i].getElementsByTagName('td')[0];
+                        let tdCodename = tr[i].getElementsByTagName('td')[1];
+                        let tdFeatures = tr[i].getElementsByTagName('td')[3]; // Also search in features
+                        if (tdVersion || tdCodename || tdFeatures) {
+                            let versionText = tdVersion.textContent || tdVersion.innerText;
+                            let codenameText = tdCodename.textContent || tdCodename.innerText;
+                            let featuresText = tdFeatures.textContent || tdFeatures.innerText;
+
+                            if (versionText.toLowerCase().indexOf(filter) > -1 || 
+                                codenameText.toLowerCase().indexOf(filter) > -1 ||
+                                featuresText.toLowerCase().indexOf(filter) > -1) {
+                                tr[i].style.display = '';
+                            } else {
+                                tr[i].style.display = 'none';
+                            }
+                        }
+                    }
+                }
+            </script>
+        </section>
+
+        <section class="section-card" id="features-section">
+            <h2 class="section-title">Features of Android</h2>
+            <p>Android boasts a rich set of features that make it a versatile and popular operating system. Key features include:</p>
+            <ul class="list-disc pl-6 space-y-1">
+                <li><strong>Open Source:</strong> Android is an open-source platform, allowing developers and manufacturers flexibility.</li>
+                <li><strong>Multitasking:</strong> Efficient handling of multiple applications simultaneously.</li>
+                <li><strong>Customizable UI:</strong> Widgets, launchers, and themes provide extensive personalization options.</li>
+                <li><strong>Connectivity:</strong> Supports various connectivity options like Wi-Fi, Bluetooth, NFC, 5G, GPS.</li>
+                <li><strong>Notifications:</strong> Robust notification system for timely alerts and interactions.</li>
+                <li><strong>Google Services Integration:</strong> Seamless integration with Google services like Gmail, Maps, YouTube, Play Store.</li>
+                <li><strong>Hardware Support:</strong> Wide range of hardware support, from smartphones to tablets, smartwatches, and TVs.</li>
+                <li><strong>App Ecosystem:</strong> A vast and diverse ecosystem of applications available through the Google Play Store.</li>
+                <li><strong>Security Features:</strong> Regular security updates, app permissions, Google Play Protect.</li>
+                <li><strong>Accessibility:</strong> Features like TalkBack, captions, and magnification for users with disabilities.</li>
+            </ul>
+        </section>
+
+        <section class="section-card" id="architecture-section">
+            <h2 class="section-title">Android Architecture</h2>
+            <p class="mb-4">The Android architecture is a software stack that consists of Linux Kernel, Hardware Abstraction Layer (HAL), Android Runtime (ART), Native C/C++ Libraries, Java API Framework, and Applications. This layered architecture provides a robust foundation for mobile development.</p>
+
+            <h3 class="subsection-title">Key Layers:</h3>
+            <ul class="list-disc pl-6 space-y-2">
+                <li>
+                    <strong>Linux Kernel:</strong> The foundation of the Android OS, handling core system services like security, memory management, process management, network stack, and driver model.
+                </li>
+                <li>
+                    <strong>Hardware Abstraction Layer (HAL):</strong> Provides a standard interface for hardware vendors to implement drivers, ensuring that the Android framework can interact with hardware devices regardless of their specific implementation.
+                </li>
+                <li>
+                    <strong>Android Runtime (ART):</strong> The primary runtime used by Android. It compiles application bytecode into native machine code upon installation, offering improved performance and battery life compared to the older Dalvik VM.
+                </li>
+                <li>
+                    <strong>Native C/C++ Libraries:</strong> A set of libraries written in C/C++ that provide core functionalities like OpenGL ES for 3D graphics, SQLite for database, WebKit for web Browse, and Media Framework for media playback.
+                </li>
+                <li>
+                    <strong>Java API Framework:</strong> This layer provides all the high-level services that developers use to create Android applications. It includes components like Activity Manager, Package Manager, Resource Manager, Notification Manager, and Content Providers.
+                </li>
+                <li>
+                    <strong>Applications:</strong> This is the top layer, comprising both system applications (like Home, Contacts, Phone, Browser) and third-party applications installed by the user.
+                </li>
+            </ul>
+            <img src="ark.jpg" alt="Android Architecture Diagram" class="step-img"/>
+        </section>
+
+        <section class="section-card" id="sdk-install-section">
+            <h2 class="section-title">Installing Android SDK Tools & Configuring Android Studio IDE</h2>
+            <p class="mb-4">Android Studio is the official integrated development environment (IDE) for Android app development, bundling the Android SDK. This section outlines the general steps for setup.</p>
+
+            <h3 class="subsection-title">Prerequisites:</h3>
+            <ul class="list-disc pl-6 space-y-1">
+                <li>Java Development Kit (JDK) installed and configured.</li>
+                <li>Sufficient disk space and RAM on your machine.</li>
+            </ul>
+
+            <h3 class="subsection-title">Steps to Install Android Studio & SDK:</h3>
+            <ol class="step-list">
+                <li><strong>Download Android Studio:</strong> Go to the official Android Developers website (<a href="https://developer.android.com/studio" target="_blank" class="text-blue-600 hover:underline">developer.android.com/studio</a>) and download the latest version of Android Studio for your operating system.</li>
+                <li><strong>Run the Installer:</strong>
+                    <ul class="list-circle list-inside pl-4 text-gray-600">
+                        <li><strong>Windows/macOS:</strong> Follow the prompts in the installer.</li>
+                        <li><strong>Linux:</strong> Extract the downloaded archive and run the `studio.sh` script.</li>
+                    </ul>
+                </li>
+                <li><strong>Initial Setup Wizard:</strong> Upon first launch, Android Studio will guide you through a setup wizard.
+                    <ul class="list-circle list-inside pl-4 text-gray-600">
+                        <li>Choose "Standard" setup for typical installation.</li>
+                        <li>The wizard will download necessary components, including the latest Android SDK Platform, SDK Build-Tools, and SDK Platform-Tools.</li>
+                        <li>Accept all license agreements.</li>
+                    </ul>
+                    <img src="sdk.jpg" alt="Android Studio Setup Wizard" class="step-img"/>
+                </li>
+                <li><strong>Verify SDK Components:</strong> After installation, you can verify or manage SDK components:
+                    <ul class="list-circle list-inside pl-4 text-gray-600">
+                        <li>Open Android Studio.</li>
+                        <li>Go to `File > Settings` (Windows/Linux) or `Android Studio > Settings` (macOS).</li>
+                        <li>Navigate to `Appearance & Behavior > System Settings > Android SDK`.</li>
+                        <li>Here you can see the SDK Platforms and SDK Tools installed. You can install additional Android versions or tools as needed.</li>
+                    </ul>
+                    <img src="sdkv.jpg" alt="Android SDK Manager" class="step-img"/>
+                </li>
+                <li><strong>Configure Environment Variables (Optional but Recommended):</strong> Add the SDK platform-tools directory to your system's PATH variable for command-line access to tools like `adb`.
+                    <ul class="list-circle list-inside pl-4 text-gray-600">
+                        <li><strong>Windows:</strong> Environment Variables -> System Variables -> Path -> Add `%ANDROID_HOME%\platform-tools` (where ANDROID_HOME points to your SDK location).</li>
+                        <li><strong>Linux/macOS:</strong> Add `export PATH=$PATH:$ANDROID_HOME/platform-tools` to your `.bashrc` or `.zshrc` file.</li>
+                    </ul>
+                </li>
+            </ol>
+            <p class="mb-4">The Android Development Tools (ADT) plugin for Eclipse is deprecated. Android Studio is now the primary and recommended IDE, and it comes with all necessary tools integrated.</p>
+        </section>
+
+        <section class="section-card" id="avd-create-section">
+            <h2 class="section-title">Creating Android Virtual Devices (AVD)</h2>
+            <p class="mb-4">An Android Virtual Device (AVD) is an emulator configuration that allows you to model an actual Android device. You can use AVDs to test your Android applications on various devices and API levels without needing physical hardware.</p>
+
+            <h3 class="subsection-title">Steps to Create an AVD in Android Studio:</h3>
+            <ol class="step-list">
+                <li><strong>Open AVD Manager:</strong>
+                    <ul class="list-circle list-inside pl-4 text-gray-600">
+                        <li>In Android Studio, go to `Tools > Device Manager` (or `AVD Manager` in older versions).</li>
+                        <li>Alternatively, click the Device Manager icon <span class="text-xl">📱</span> in the toolbar.</li>
+                    </ul>
+                    <img src="avm.jpg" alt="AVD Manager Icon" class="step-img"/>
+                </li>
+                <li><strong>Create New Virtual Device:</strong>
+                    <ul class="list-circle list-inside pl-4 text-gray-600">
+                        <li>Click the "Create device" button.</li>
+                    </ul>
+                    <img src="ckv.jpg" alt="Create Virtual Device Button" class="step-img"/>
+                </li>
+                <li><strong>Select Hardware Profile:</strong>
+                    <ul class="list-circle list-inside pl-4 text-gray-600">
+                        <li>Choose a pre-configured hardware profile (e.g., Pixel 7, Nexus 5, Tablet). You can also create a new hardware profile.</li>
+                        <li>Click "Next".</li>
+                    </ul>
+                    <img src="wp.jpg" alt="Select Hardware Profile" class="step-img"/>
+                </li>
+                <li><strong>Select System Image:</strong>
+                    <ul class="list-circle list-inside pl-4 text-gray-600">
+                        <li>Choose a system image (Android version) for your AVD. You'll typically want to download an image if you don't have it already. Look for images with "Google APIs" if you need Google services (like Google Play Store) or "x86 Images" for better emulator performance.</li>
+                        <li>Click "Next".</li>
+                    </ul>
+                    <img src="https://placehold.co/500x300/E0E7FF/000000?text=Select+System+Image" alt="Select System Image" class="step-img"/>
+                </li>
+                <li><strong>Verify Configuration:</strong>
+                    <ul class="list-circle list-inside pl-4 text-gray-600">
+                        <li>Review the AVD configuration (name, orientation, advanced settings). You can customize the AVD name, change startup orientation, and configure advanced settings like RAM, internal storage, SD card, and performance (Graphics: Hardware - GLES 2.0 recommended).</li>
+                        <li>Click "Finish" to create the AVD.</li>
+                    </ul>
+                    <img src="https://placehold.co/500x300/E0E7FF/000000?text=Verify+AVD+Configuration" alt="Verify AVD Configuration" class="step-img"/>
+                </li>
+                <li><strong>Launch AVD:</strong>
+                    <ul class="list-circle list-inside pl-4 text-gray-600">
+                        <li>Once created, the AVD will appear in the Device Manager list. Click the play button (▶) next to its name to launch the emulator.</li>
+                    </ul>
+                    <img src="https://placehold.co/500x200/E0E7FF/000000?text=Launch+AVD" alt="Launch AVD" class="step-img"/>
+                </li>
+            </ol>
+            <p>You can now run your Android applications on this virtual device for testing and development.</p>
+        </section>
+        </div>
+
+    <script>
+        // JavaScript for fixed navigation active link highlighting
+        document.addEventListener("DOMContentLoaded", function() {
+            const navLinks = document.querySelectorAll('.fixed-nav a');
+            const sections = document.querySelectorAll('section[id]');
+
+            function highlightNavLink() {
+                let currentActive = null;
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - document.querySelector('.fixed-nav').offsetHeight - 20; // Adjust for sticky nav height and padding
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                        currentActive = section.id;
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active-link');
+                    if (link.getAttribute('href').includes(currentActive)) {
+                        link.classList.add('active-link');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', highlightNavLink);
+            highlightNavLink(); // Call on load to set initial active link
+
+            // Smooth scroll for nav links (optional, for better UX)
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        const offsetTop = targetSection.offsetTop - document.querySelector('.fixed-nav').offsetHeight;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

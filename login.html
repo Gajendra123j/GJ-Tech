@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/a81368914c.js" crossorigin="anonymous"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg, #74EBD5, #ACB6E5);
+    }
+    .announcement-marquee {
+      background: #222;
+      color: #fff;
+      padding: 10px;
+      font-size: 0.95rem;
+    }
+    .announcement-marquee a {
+      color: #90cdf4;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    nav {
+      background-color: #334155;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+      font-size: 1rem;
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: white;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .login-card {
+      background: #fff;
+      border-radius: 12px;
+      width: 360px;
+      padding: 30px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      margin: auto;
+    }
+    .login-card h1 {
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #333;
+    }
+    .input-group {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 10px 12px;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      outline: none;
+      font-size: 1rem;
+    }
+    .input-group input:focus {
+      border-bottom-color: #667eea;
+    }
+    .forgot {
+      display: block;
+      text-align: right;
+      margin-top: 6px;
+      font-size: 0.85rem;
+    }
+    .forgot a {
+      text-decoration: none;
+      color: #667eea;
+    }
+    .btn-login {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    .btn-login:hover {
+      opacity: 0.9;
+    }
+    .social-login {
+      margin: 20px 0;
+    }
+    .social-login p {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 12px;
+    }
+    .social-login a {
+      text-decoration: none;
+      margin: 0 8px;
+      font-size: 1.2rem;
+      color: #555;
+    }
+    .signup {
+      font-size: 0.9rem;
+      color: #777;
+    }
+    .signup a {
+      text-decoration: none;
+      color: #667eea;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <!-- Marquee -->
+  <div class="announcement-marquee">
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+      🚀 Welcome to GJ Tech! New projects coming soon!
+      <a href="blogs.html">Check out our latest blog posts</a> |
+      <a href="contact.html">Join our tech community</a> |
+      <a href="about.html">Learn more about our mission</a> |
+      <a href="careergoals.html">Career Goals and Opportunities</a>
+    </marquee>
+  </div>
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Home 🏡</a>
+    <a href="blogs.html">Blogs 👩‍💻</a>
+    <a href="about.html">About 🎓</a>
+    <a href="contact.html">Contact 📶/Explore Our Courses</a>
+    <a href="careergoals.html">Career Goals</a>
+    <a href="CoursesinManagement.html">Courses in Management</a>
+    <a href="Registration.html">Registration-in</a>
+    <a href="login.html">Login-in</a>
+  </nav>
+  <!-- Login Card -->
+  <div class="login-card">
+    <h1>Login</h1>
+    <form action="#" method="post">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" placeholder="Type your username" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="Type your password" required>
+        <span class="forgot"><a href="#">Forgot password?</a></span>
+      </div>
+      <button type="submit" class="btn-login">LOGIN</button>
+    </form>
+    <div class="social-login">
+      <p>Or Sign In Using</p>
+      <a href="#" aria-label="Login with Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="Login with Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" aria-label="Login with Google"><i class="fab fa-google"></i></a>
+    </div>
+
+    <div class="signup">
+      <p>Don't have an account? <a href="Registration.html">SIGN UP</a></p>
+    </div>
+  </div>
+</body>
+</html>

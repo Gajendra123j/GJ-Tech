@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GJ Tech Company Pvt Ltd. HTML Test Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding-bottom: 40px; /* Space for download message */
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+            text-align: center;
+            margin-top: 20px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        /* Main Layout */
+        #main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            flex-wrap: wrap;
+            display: none; /* Hidden by default, shown by JS */
+            width: 100%;
+            max-width: 1200px; /* Max width for the main content area */
+        }
+        /* Containers */
+        #video-container,
+        #quiz-container,
+        #test-info-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px; /* Limit max width */
+            margin: 20px auto; /* Center block elements when not in flex */
+        }
+        #test-info-container {
+            margin-bottom: 20px;
+            max-width: 800px; /* Align with other containers */
+        }
+        /* User Details Input Styling */
+        #user-details-input {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f0f7ff; /* Light blue background */
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #0056b3; /* Blue color */
+        }
+        .input-group input[type="text"] {
+            width: calc(100% - 22px); /* Adjust for padding and border */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .input-error {
+            color: #d9534f; /* Red color for errors */
+            font-size: 12px;
+            margin-top: 5px;
+            display: none; /* Hidden by default */
+        }
+        /* Quiz Header */
+        #quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 20px;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+        }
+        #quiz-header #question-area,
+        #quiz-header #quiz-timer {
+            flex: 1;
+            min-width: 200px; /* Ensure elements don't become too small */
+        }
+        /* Question Area */
+        #question-area {
+            font-size: 25px;
+            font-weight: bold;
+        }
+        /* Timer */
+        #quiz-timer {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff0000;
+            text-align: right;
+            display: none; /* Hidden initially */
+        }
+        /* Answer Options */
+        #options-area {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        #options-area button {
+            width: 100%; /* Make option buttons take full width */
+            text-align: left; /* Align option text to the left */
+        }
+        /* Feedback for answer options */
+        button.correct {
+            background-color: #28a745; /* Green */
+            color: white;
+        }
+        button.wrong {
+            background-color: #dc3545; /* Red */
+            color: white;
+        }
+        /* Buttons */
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
+        }
+        button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        /* Specific Buttons */
+        #start-button {
+            display: block; /* Display initially */
+            margin: 20px auto; /* Center the button */
+        }
+        #next-button,
+        #submit-button, /* Not used in JS, but good to have style */
+        .download-button {
+            background-color: #28a745; /* Green */
+        }
+        #next-button:hover:not(:disabled),
+        #submit-button:hover:not(:disabled),
+        .download-button:hover:not(:disabled) {
+            background-color: #218838; /* Darker green */
+        }
+        #cancel-button {
+            background-color: #dc3545; /* Red */
+        }
+        #cancel-button:hover:not(:disabled) {
+            background-color: #c82333; /* Darker red */
+        }
+        /* Quiz Result */
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        /* Cheating Detection Message */
+        #cheating-detection {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8d7da; /* Light red background */
+            color: #721c24; /* Dark red text */
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            display: none; /* Hidden by default */
+        }
+        #cheating-detection button {
+            margin-top: 10px;
+        }
+        /* Webcam Container */
+        #video-container {
+            text-align: center; /* Center the video element */
+            margin-top: 5px;
+        }
+        #camera-feed {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            display: block;
+            margin: auto;
+            background-color: #000; /* Black background for video area */
+        }
+        #certificate-container {
+            text-align: center;
+            margin-top: 30px;
+            display: none; /* Hidden initially */
+            padding: 30px;
+            background-color: #e9f7ef;
+            max-width: 800px;
+            margin: 30px auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        #certificate-container h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 40px;
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+        #certificate-container p {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        #certificate-container .bold {
+            font-size: 22px;
+            color: #333;
+        }
+        #certificate-container #signature {
+            margin-top: 20px;
+            font-style: italic;
+            color: #555;
+        }
+        /* Small Certificate for PDF */
+        .small-certificate {
+            font-family: sans-serif;
+            padding: 20mm; /* Use mm for better print sizing */
+            border: 2mm solid #0056b3;
+            width: 180mm; /* A bit less than A4 width to fit margins */
+            margin: 20mm auto; /* Center on page with margins */
+            background: linear-gradient(to bottom, #ffffff, #f0f7ff); /* Subtle gradient */
+            box-shadow: 0 0 10mm rgba(0, 0, 0, 0.2);
+            position: absolute !important; /* Position off-screen for html2pdf */
+            left: -9999px !important; /* Move off-screen */
+            opacity: 0 !important; /* Ensure it's not visible */
+            display: block !important; /* Ensure it's block for html2pdf */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            color: #333; /* Default text color for the certificate */
+        }
+        /* Ensure elements within small certificate have sizes relative to mm */
+        .small-certificate * {
+            box-sizing: border-box;
+        }
+        .small-certificate .header {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center header content */
+            margin-bottom: 15mm;
+            border-bottom: 1mm solid #eee;
+            padding-bottom: 10mm;
+        }
+
+        .small-certificate .header img {
+            width: 15mm; /* Use mm for image size in certificate */
+            height: 15mm; /* Use mm for image size in certificate */
+            margin-right: 5mm;
+            object-fit: contain; /* Ensure logo fits without distortion */
+        }
+
+        .small-certificate .header h3 {
+            font-size: 10pt; /* Use pt for print size */
+            margin: 0;
+            color: #0056b3;
+        }
+
+        .small-certificate .certificate-title {
+            font-size: 20pt; /* Use pt for print size */
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15mm;
+            color: #333;
+            text-transform: uppercase;
+        }
+        .small-certificate .content p {
+            font-size: 12pt; /* Use pt for print size */
+            line-height: 1.5;
+            margin-bottom: 5mm;
+            text-align: justify;
+        }
+        .small-certificate .content .details {
+            font-weight: bold;
+            color: #0056b3;
+            /* text-decoration: underline; */ /* Optional: underline details */
+        }
+        .small-certificate .score-details {
+            font-size: 14pt; /* Use pt for print size */
+            font-weight: bold;
+            text-align: center;
+            margin-top: 15mm;
+            color: #28a745; /* Green */
+        }
+        .small-certificate .badge {
+            position: absolute; /* Position relative to certificate container */
+            top: 20mm;
+            right: 20mm;
+            width: 20mm; /* Use mm for badge size */
+            height: 20mm; /* Use mm for badge size */
+        }
+        .small-certificate .badge img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .small-certificate .footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20mm;
+            padding-top: 10mm;
+            border-top: 1mm solid #eee;
+            font-size: 10pt; /* Use pt for print size */
+            color: #555;
+        }
+        .small-certificate .signature {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20mm;
+            text-align: center;
+        }
+        .small-certificate .signature-block {
+            flex: 1;
+            margin: 0 10mm;
+            text-align: center; /* Center content including signature image */
+        }
+        .small-certificate .signature-block img { /* Style for the digital signature image */
+            width: 50mm; /* Adjust size as needed */
+            height: auto;
+            display: block;
+            margin: 0 auto 5mm; /* Center image and add space below */
+        }
+        .small-certificate .signature-block .signature-name {
+            font-weight: bold;
+            font-size: 12pt; /* Use pt for print size */
+            margin-bottom: 2mm;
+            border-bottom: 1mm solid #000; /* Line for signature, if desired */
+            display: inline-block; /* Shrink line to text width */
+            padding-bottom: 2mm;
+        }
+        /* Adjust for Gajendra Singh's signature if using an image */
+        .small-certificate .signature-block.gajendra-signature .signature-name {
+            border-bottom: none; /* Remove line if image acts as the signature */
+        }
+        .small-certificate .signature-block .signature-title {
+            font-size: 10pt; /* Use pt for print size */
+            color: #555;
+        }
+        .small-certificate .photo {
+            position: absolute; /* Position relative to certificate container */
+            bottom: 20mm;
+            right: 20mm;
+            width: 30mm; /* Photo size */
+            height: 40mm; /* Photo size */
+            border: 1mm solid #ccc;
+            background-color: #eee; /* Placeholder background */
+            display: flex; /* Use flexbox to center content */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            overflow: hidden; /* Hide overflow if image is too large */
+        }
+        .small-certificate .photo img {
+            width: 100%; /* Make image fill the div */
+            height: 100%; /* Make image fill the div */
+            object-fit: cover; /* Cover the area without distorting aspect ratio */
+        }
+        /* Hidden canvas used for photo capture */
+        #photo-canvas {
+            display: none;
+        }
+        /* Google Form Link Container */
+        #google-form-link-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff3cd; /* Light yellow */
+            border: 1px solid #ffecb5;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 800px;
+            margin: 30px auto;
+            display: none; /* Hidden by default */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #google-form-link-container p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #664d03; /* Dark yellow text */
+        }
+        #google-form-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ffc107; /* Yellow */
+            color: #212529; /* Dark text */
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        #google-form-link:hover {
+            background-color: #e0a800; /* Darker yellow */
+        }
+        #download-message {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+            display: none;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #main-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            #video-container,
+            #quiz-container,
+            #test-info-container {
+                width: 95%; /* Adjust width for smaller screens */
+                max-width: none;
+                margin: 10px auto; /* Adjust margin */
+            }
+            #quiz-header {
+                flex-direction: column;
+                gap: 15px; /* Adjust gap */
+                align-items: flex-start; /* Align items to the start in column layout */
+            }
+            #quiz-header #question-area,
+            #quiz-header #quiz-timer {
+                width: 100%; /* Take full width */
+                text-align: left; /* Align text to the left */
+            }
+            #quiz-timer {
+                text-align: right; /* Keep timer right-aligned */
+            }
+            /* Small Certificate (PDF) responsive adjustments might not be strictly necessary as it's for print layout,
+                but keeping some general adjustments for display before printing is good practice */
+            .small-certificate {
+                padding: 10mm; /* Reduce padding */
+                width: 95%; /* Use percentage for width in case it's briefly shown */
+                margin: 10mm auto; /* Adjust margin */
+                border: 1mm solid #0056b3; /* Adjust border */
+                box-shadow: 0 0 5mm rgba(0, 0, 0, 0.1); /* Adjust shadow */
+                /* Keep absolute positioning for html2pdf but maybe adjust top/left slightly if needed for debugging */
+                position: absolute !important;
+                left: -9999px !important;
+                opacity: 0 !important;
+                display: block !important;
+            }
+            .small-certificate .header {
+                flex-direction: column; /* Stack header items */
+                align-items: center; /* Center items */
+                margin-bottom: 10mm; /* Adjust margin */
+                padding-bottom: 5mm; /* Adjust padding */
+            }
+            .small-certificate .header img {
+                width: 10mm; /* Adjust logo size */
+                height: 10mm; /* Adjust logo size */
+                margin-right: 0; /* Remove margin */
+                margin-bottom: 5mm; /* Add bottom margin */
+                }
+            .small-certificate .header h3 {
+                font-size: 10pt; /* Adjust font size */
+                text-align: center; /* Center title */
+            }
+            .small-certificate .certificate-title {
+                font-size: 16pt; /* Adjust font size */
+                margin-bottom: 10mm; /* Adjust margin */
+            }
+            .small-certificate .content p {
+                font-size: 10pt; /* Reduce font size */
+                margin-bottom: 3mm; /* Adjust margin */
+                text-align: left; /* Adjust alignment */
+            }
+            .small-certificate .score-details {
+                font-size: 12pt;
+                margin-top: 10mm;
+            }
+            .small-certificate .badge {
+                position: static !important; /* Remove absolute positioning for display */
+                margin: 5mm auto !important; /* Center badge */
+                display: block !important;
+                width: 15mm !important; /* Adjust badge size */
+                height: 15mm !important; /* Adjust badge size */
+            }
+            .small-certificate .badge img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+            .small-certificate .footer {
+                flex-direction: column; /* Stack footer items */
+                align-items: center; /* Center items */
+                margin-top: 10mm; /* Adjust margin */
+                padding-top: 5mm; /* Adjust padding */
+            }
+            .small-certificate .footer p {
+                margin: 2mm 0; /* Add margin between footer items */
+            }
+            .small-certificate .signature {
+                flex-direction: column; /* Stack signatures */
+                gap: 10mm; /* Add gap between signatures */
+                margin-top: 15mm; /* Adjust margin */
+            }
+
+            .small-certificate .signature-block {
+                margin: 0; /* Remove horizontal margin */
+            }
+
+            .small-certificate .signature-block .signature-name {
+                font-size: 10pt; /* Reduce font size */
+                border-bottom: 0.5mm solid #000; /* Adjust border thickness */
+            }
+
+            .small-certificate .signature-block.gajendra-signature .signature-name {
+                border-bottom: none; /* Keep border-bottom none for image signature */
+            }
+
+            .small-certificate .signature-block .signature-title {
+                font-size: 8pt; /* Reduce font size */
+            }
+
+            .small-certificate .photo {
+                position: static !important; /* Remove absolute positioning for display */
+                width: 20mm !important; /* Adjust size */
+                height: 25mm !important; /* Adjust size */
+                margin: 10mm auto 0 !important; /* Center photo with top margin */
+                display: flex !important; /* Maintain flex for centering content */
+            }
+            .small-certificate .photo img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML Online Test</h1>
+
+    <div id="test-info-container">
+        <h2>Welcome to the HTML Online Test</h2>
+        <p>Please read the following instructions carefully before starting the test:</p>
+        <ul>
+            <li>This test consists of <span id="total-questions"></span> multiple-choice questions.</li>
+            <li>You have <span id="test-duration-minutes"></span> minutes to complete the test.</li>
+            <li>Your camera feed will be active during the test for proctoring purposes. Ensure your face is clearly visible.</li>
+            <li>Do not navigate away from the test window or open other applications during the test.</li>
+            <li>Potential cheating activity may result in the cancellation of your test.</li>
+            <li>A passing score of <span id="passing-score-percentage"></span>% is required to receive a certificate.</li>
+        </ul>
+
+        <div id="user-details-input">
+            <div class="input-group">
+                <label for="name-input">Full Name:</label>
+                <input type="text" id="name-input" placeholder="Your Full Name">
+                <div id="name-input-error" class="input-error">Please enter your name.</div>
+            </div>
+            <div class="input-group">
+                <label for="father-name-input">Father's Name:</label>
+                <input type="text" id="father-name-input" placeholder="Your Father's Name">
+                <div id="father-name-input-error" class="input-error">Please enter your father's name.</div>
+            </div>
+            <div class="input-group">
+                <label for="district-input">District:</label>
+                <input type="text" id="district-input" placeholder="Your District">
+                <div id="district-input-error" class="input-error">Please enter your district.</div>
+            </div>
+            <div class="input-group">
+                <label for="state-input">State:</label>
+                <input type="text" id="state-input" placeholder="Your State">
+                <div id="state-input-error" class="input-error">Please enter your state.</div>
+            </div>
+        </div>
+        <p>Click the button below to start the test.</p>
+    </div>
+    <button id="start-button">Start Test</button>
+    <div id="main-container">
+        <div id="video-container">
+            <h3>Your Camera Feed</h3>
+            <video id="camera-feed" autoplay playsinline></video>
+        </div>
+        <div id="quiz-container">
+            <div id="quiz-header">
+                <div id="question-area" class="question"></div>
+                <div id="quiz-timer"></div>
+            </div>
+            <div id="options-area" class="options"></div>
+            <div id="result"></div>
+            <button id="next-button" style="display: none;">Next Question</button>
+            <div id="cheating-detection">
+                Potential cheating detected! The quiz will be cancelled.
+                <button id="cancel-button">Acknowledge & End Quiz</button>
+            </div>
+        </div>
+    </div>
+    <div id="certificate-container">
+        <h2>Certificate of Completion</h2>
+        <p>This certificate is awarded to</p>
+        <p class="bold" id="certificate-user-name">Participant</p>
+        <p>for successfully completing the HTML online test.</p>
+        <p>Awarded on: <span class="bold" id="certificate-completion-date">[Date of Completion]</span></p>
+        <p>Score Achieved: <span class="bold" id="certificate-score-large">[Score]%</span></p>
+        <div id="signature">
+            (Gajendra Singh)
+        </div>
+    </div>
+    <div class="certificate small-certificate" id="small-certificate">
+        <div class="header">
+            <img src="https://via.placeholder.com/60x60/cccccc/333333?text=Logo" alt="Company Logo">
+            <h3>GJ Tech Company Pvt Ltd.</h3>
+        </div>
+        <div class="certificate-title">Certificate of Completion</div>
+        <div class="content">
+            <p>This is to certify that Mr./Ms. <span class="details" id="small-certificate-user-name"></span>,</p>
+            <p>Son/Daughter of Shri <span class="details" id="small-certificate-father-name"></span>,</p>
+            <p>Resident of District <span class="details" id="small-certificate-district"></span>, State <span class="details" id="small-certificate-state"></span>,</p>
+            <p>has successfully completed the <strong>GJ Tech Company (GJC) Certification Program</strong> offered by GJ Tech Company Pvt Ltd.</p>
+            <p class="score-details">Score Achieved: <span class="details" id="small-certificate-score"></span></p>
+        </div>
+        <div class="badge">
+            <img src="https://via.placeholder.com/50x50/cccccc/333333?text=Badge" alt="Achievement Badge">
+        </div>
+        <div class="footer">
+            <p id="small-certificate-date"></p>
+            <p>Place: Moradabad</p>
+        </div>
+        <div class="signature">
+            <div class="signature-block">
+                <div class="signature-name">Narendra Hindwar</div>
+                <div class="signature-title">Authorized Signatory</div>
+            </div>
+            <div class="signature-block gajendra-signature">
+                <img src="https://i.ibb.co/your-signature-image.png" alt="Gajendra Singh Digital Signature">
+                <div class="signature-name">Gajendra Singh</div>
+                <div class="signature-title">Secretary<br>GJ Tech Company Pvt Ltd.</div>
+            </div>
+        </div>
+        <div class="photo"></div>
+    </div>
+
+    <button id="download-small-certificate-button" class="download-button" style="display: none; margin: 20px auto;">Download Certificate (Official)</button>
+    <p id="download-message" style="display: none; text-align: center;">Your certificate will be downloaded to your browser's default download folder or you will be prompted to save it.</p>
+    <canvas id="photo-canvas"></canvas>
+
+    <div id="google-form-link-container">
+        <p>You did not achieve the passing score for a certificate. Please use the button below to provide details if you'd like to explore other options or re-attempt the test (if available).</p>
+        <a href="https://forms.gle/YOUR_ACTUAL_GOOGLE_FORM_LINK" id="google-form-link" target="_blank">Provide Details / Explore Options</a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        // Get references to HTML elements
+        const cameraFeed = document.getElementById('camera-feed');
+        const startButton = document.getElementById('start-button');
+        const quizContainer = document.getElementById('quiz-container');
+        const questionArea = document.getElementById('question-area');
+        const optionsArea = document.getElementById('options-area');
+        const resultDisplay = document.getElementById('result');
+        const nextButton = document.getElementById('next-button');
+        const mainContainer = document.getElementById('main-container');
+        const cheatingDetectionDiv = document.getElementById('cheating-detection');
+        const cancelButton = document.getElementById('cancel-button');
+
+        // Certificate elements (Large)
+        const certificateDiv = document.getElementById('certificate-container');
+        const certificateUserName = document.getElementById('certificate-user-name');
+        const certificateCompletionDate = document.getElementById('certificate-completion-date');
+        const certificateScoreLarge = document.getElementById('certificate-score-large');
+
+        // Certificate elements (Small - for PDF)
+        const smallCertificateDiv = document.getElementById('small-certificate');
+        const smallCertificateUserName = document.getElementById('small-certificate-user-name');
+        const smallCertificateFatherName = document.getElementById('small-certificate-father-name');
+        const smallCertificateDistrict = document.getElementById('small-certificate-district');
+        const smallCertificateState = document.getElementById('small-certificate-state');
+        const smallCertificatePhotoDiv = document.querySelector('#small-certificate .photo');
+        const smallCertificateDate = document.getElementById('small-certificate-date');
+        const smallCertificateScore = document.getElementById('small-certificate-score');
+        const downloadSmallCertificateButton = document.getElementById('download-small-certificate-button');
+        const downloadMessage = document.getElementById('download-message');
+
+        const quizTimerDisplay = document.getElementById('quiz-timer');
+        const testInfoContainer = document.getElementById('test-info-container');
+        const totalQuestionsSpan = document.getElementById('total-questions');
+        const testDurationMinutesSpan = document.getElementById('test-duration-minutes');
+        const passingScorePercentageSpan = document.getElementById('passing-score-percentage');
+
+        // Google Form elements
+        const googleFormLinkContainer = document.getElementById('google-form-link-container');
+        // IMPORTANT: Replace "https://forms.gle/YOUR_ACTUAL_GOOGLE_FORM_LINK" with your actual Google Form link.
+
+        // User Details Input elements
+        const userDetailsInput = document.getElementById('user-details-input');
+        const nameInput = document.getElementById('name-input');
+        const fatherNameInput = document.getElementById('father-name-input');
+        const districtInput = document.getElementById('district-input');
+        const stateInput = document.getElementById('state-input');
+
+        // Input Error elements
+        const nameInputError = document.getElementById('name-input-error');
+        const fatherNameInputError = document.getElementById('father-name-input-error');
+        const districtInputError = document.getElementById('district-input-error');
+        const stateInputError = document.getElementById('state-input-error');
+
+        // Photo Capture elements
+        const photoCanvas = document.getElementById('photo-canvas');
+        const photoCanvasCtx = photoCanvas.getContext('2d');
+
+        // Variables to store user details and photo
+        let userName = "";
+        let fatherName = "";
+        let district = "";
+        let state = "";
+        let capturedPhotoDataUrl = null; // To store the captured photo Data URL
+
+        let stream; // To hold the camera stream
+        let currentQuestionIndex = 0; // Index of the current question
+        let score = 0; // User's score
+        let answerSelected = false; // Flag to prevent multiple answers per question
+        let cheatingDetected = false; // Flag for cheating detection
+        let quizActive = false; // Flag to indicate if the quiz is running
+        let completionDate; // To store the quiz completion date
+        let quizCancelledByCheat = false; // To track if quiz ended due to cheating
+        let periodicPhotoInterval; // Variable to hold the interval for periodic photo capture
+        let cheatDetectionInterval; // Variable to hold the interval for background cheat detection
+
+        // Quiz duration and timer variables
+        const quizDurationMinutes = 20; // Set test duration in minutes
+        const quizDurationSeconds = quizDurationMinutes * 60; // Total quiz duration in seconds
+        let timeRemaining = quizDurationSeconds;
+        let quizTimerInterval; // Variable to hold the timer interval ID
+        const passingScorePercentage = 70; // Required percentage to pass
+
+        // Quiz questions array
+        const quizzes = [
+            {
+                question: "HTML stands for -",
+                options: ["HyperText Markup Language", "HyperText Main Language", "HyperTool Markup Language", "HyperLink Markup Language"],
+                correctAnswer: "HyperText Markup Language"
+            },
+            {
+                question: "Which of the following tag is used to make the text bold?",
+                options: ["<bold>", "<bb>", "<b>", "<bdo>"],
+                correctAnswer: "<b>"
+            },
+            {
+                question: "How can we create an ordered list in HTML?",
+                options: ["<ul>", "<ol>", "<href>", "<b>"],
+                correctAnswer: "<ol>"
+            },
+            {
+                question: "How can we create an unordered list in HTML?",
+                options: ["<ol>", "<ul>", "<li>", "<href>"],
+                correctAnswer: "<ul>"
+            },
+            {
+                question: "Which of the following HTML attribute is used to define inline styles?",
+                options: ["style", "type", "class", "styles"],
+                correctAnswer: "style"
+            },
+            {
+                question: "Which of the following is the correct way to add a background color in HTML?",
+                options: ["<body bg-color='yellow'>", "<background>yellow</background>", "<body style='background-color:yellow;'>", "<body color='yellow'>"],
+                correctAnswer: "<body style='background-color:yellow;'>"
+            },
+            {
+                question: "Which of the following HTML element is used for making a hyperlink?",
+                options: ["<a>", "<link>", "<href>", "<hyperlink>"],
+                correctAnswer: "<a>"
+            },
+            {
+                question: "What is the correct HTML element for inserting a line break?",
+                options: ["<break>", "<lb>", "<br>", "<newline>"],
+                correctAnswer: "<br>"
+            },
+            {
+                question: "Which HTML tag is used to define an internal style sheet?",
+                options: ["<script>", "<css>", "<style>", "<link>"],
+                correctAnswer: "<style>"
+            },
+            {
+                question: "Which of the following is the correct HTML for referring to an external style sheet?",
+                options: ["<stylesheet>mystyle.css</stylesheet>", "<link rel='stylesheet' type='text/css' href='mystyle.css'>", "<style src='mystyle.css'>", "<css>mystyle.css</css>"],
+                correctAnswer: "<link rel='stylesheet' type='text/css' href='mystyle.css'>"
+            }
+        ];
+
+        // Initialize test info display
+        totalQuestionsSpan.textContent = quizzes.length;
+        testDurationMinutesSpan.textContent = quizDurationMinutes;
+        passingScorePercentageSpan.textContent = passingScorePercentage;
+
+        // Function to start camera feed
+        async function startCamera() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                cameraFeed.srcObject = stream;
+                console.log("Camera started.");
+            } catch (err) {
+                console.error("Error accessing camera: ", err);
+                alert("Could not access camera. Please ensure your camera is connected and allow access to proceed with the test.");
+                // Disable start button or provide clear instructions
+                startButton.disabled = true;
+            }
+        }
+
+        // Function to stop camera feed
+        function stopCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                console.log("Camera stopped.");
+            }
+        }
+
+        // Function to capture a photo from the camera feed
+        function capturePhoto() {
+            if (!cameraFeed.srcObject || cameraFeed.videoWidth === 0) {
+                console.warn("Camera feed not active or video dimensions are zero. Cannot capture photo.");
+                return;
+            }
+
+            photoCanvas.width = cameraFeed.videoWidth;
+            photoCanvas.height = cameraFeed.videoHeight;
+            photoCanvasCtx.drawImage(cameraFeed, 0, 0, photoCanvas.width, photoCanvas.height);
+            capturedPhotoDataUrl = photoCanvas.toDataURL('image/png');
+            console.log("Photo captured.");
+            return capturedPhotoDataUrl;
+        }
+
+        // Function to display current question and options
+        function displayQuestion() {
+            resultDisplay.textContent = "";
+            optionsArea.innerHTML = "";
+            nextButton.style.display = 'none'; // Hide next button until answer is selected
+            answerSelected = false; // Reset answer selected flag
+
+            if (currentQuestionIndex < quizzes.length) {
+                const currentQuiz = quizzes[currentQuestionIndex];
+                questionArea.textContent = `Q${currentQuestionIndex + 1}: ${currentQuiz.question}`;
+
+                currentQuiz.options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.textContent = option;
+                    button.classList.add('option-button');
+                    button.addEventListener('click', () => selectAnswer(option, currentQuiz.correctAnswer));
+                    optionsArea.appendChild(button);
+                });
+            } else {
+                endQuiz();
+            }
+        }
+
+        // Function to handle answer selection
+        function selectAnswer(selectedOption, correctAnswer) {
+            if (answerSelected) return; // Prevent multiple selections
+
+            answerSelected = true;
+            const optionButtons = optionsArea.querySelectorAll('.option-button');
+
+            optionButtons.forEach(button => {
+                button.disabled = true; // Disable all options after selection
+                if (button.textContent === correctAnswer) {
+                    button.classList.add('correct');
+                } else if (button.textContent === selectedOption) {
+                    button.classList.add('wrong');
+                }
+            });
+
+            if (selectedOption === correctAnswer) {
+                score++;
+                resultDisplay.textContent = "Correct!";
+                resultDisplay.style.color = "#28a745"; // Green
+            } else {
+                resultDisplay.textContent = `Wrong! The correct answer was: ${correctAnswer}`;
+                resultDisplay.style.color = "#dc3545"; // Red
+            }
+            nextButton.style.display = 'block'; // Show next button
+        }
+
+        // Function to move to the next question
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizzes.length) {
+                displayQuestion();
+            } else {
+                endQuiz();
+            }
+        }
+
+        // Function to start the quiz timer
+        function startTimer() {
+            quizTimerDisplay.style.display = 'block'; // Show timer
+            quizTimerInterval = setInterval(() => {
+                timeRemaining--;
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                quizTimerDisplay.textContent = `Time: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                if (timeRemaining <= 0) {
+                    clearInterval(quizTimerInterval);
+                    endQuiz(true); // End quiz due to time out
+                }
+            }, 1000);
+        }
+
+        // Function to handle cheating detection (simulated)
+        function setupCheatingDetection() {
+            let initialHiddenCount = 0;
+            let currentHiddenCount = 0;
+            const maxHiddenCount = 3; // Number of times allowed to leave or blur
+
+            // Detect when the window loses focus or becomes hidden
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    currentHiddenCount++;
+                    console.warn(`Window hidden. Count: ${currentHiddenCount}`);
+                    if (currentHiddenCount >= maxHiddenCount) {
+                        detectCheating();
+                    }
+                }
+            });
+
+            // Detect when the window loses focus (e.g., clicking on another app)
+            window.addEventListener('blur', () => {
+                if (!document.hidden) { // Only count if window is not already completely hidden
+                    currentHiddenCount++;
+                    console.warn(`Window blurred. Count: ${currentHiddenCount}`);
+                    if (currentHiddenCount >= maxHiddenCount) {
+                        detectCheating();
+                    }
+                }
+            });
+
+            // Periodically check if the user is still visible and focused
+            periodicPhotoInterval = setInterval(() => {
+                if (quizActive && !cheatingDetected && cameraFeed.srcObject && cameraFeed.videoWidth > 0) {
+                    // In a real proctoring system, you'd send this to a server for analysis
+                    // For this simulation, we'll just capture a photo to confirm camera is working
+                    capturePhoto();
+                }
+            }, 10000); // Capture photo every 10 seconds for proctoring evidence
+
+             // This interval can be used for more advanced checks if implemented
+             cheatDetectionInterval = setInterval(() => {
+                // For example, if you were integrating with a face detection API, you'd call it here
+                // and increment currentHiddenCount or call detectCheating if no face is detected
+                // or if multiple faces are detected, etc.
+             }, 5000); // Every 5 seconds, perform a background check (placeholder)
+        }
+
+        function detectCheating() {
+            if (cheatingDetected) return; // Prevent multiple detections
+
+            cheatingDetected = true;
+            quizCancelledByCheat = true;
+            quizActive = false; // Stop the quiz immediately
+
+            clearInterval(quizTimerInterval);
+            clearInterval(periodicPhotoInterval);
+            clearInterval(cheatDetectionInterval);
+            stopCamera(); // Stop camera on cheating detection
+
+            mainContainer.style.display = 'none'; // Hide quiz and camera
+            testInfoContainer.style.display = 'none'; // Hide test info
+            certificateDiv.style.display = 'none'; // Hide certificate
+            googleFormLinkContainer.style.display = 'none'; // Hide Google form
+
+            cheatingDetectionDiv.style.display = 'block';
+            console.error("CHEATING DETECTED! Quiz cancelled.");
+
+            // Optionally, automatically submit the result as 0 or incomplete
+            score = 0; // Set score to 0 on cheating
+        }
+
+        // Function to end the quiz
+        function endQuiz(timedOut = false) {
+            if (quizActive === false && !timedOut && !cheatingDetected) { // If quiz is already inactive due to cheating, don't re-run end logic
+                return;
+            }
+            quizActive = false;
+            clearInterval(quizTimerInterval);
+            clearInterval(periodicPhotoInterval);
+            clearInterval(cheatDetectionInterval);
+            stopCamera();
+            mainContainer.style.display = 'none'; // Hide quiz and camera
+            testInfoContainer.style.display = 'none'; // Hide test info
+            cheatingDetectionDiv.style.display = 'none'; // Hide cheating message
+            completionDate = new Date(); // Set completion date
+            const percentageScore = (score / quizzes.length) * 100;
+            console.log(`Quiz ended. Final Score: ${score}/${quizzes.length} (${percentageScore.toFixed(2)}%)`);
+            if (cheatingDetected || timedOut) {
+                 // If cheated or timed out, do not show certificate, show Google form
+                certificateDiv.style.display = 'none';
+                downloadSmallCertificateButton.style.display = 'none';
+                downloadMessage.style.display = 'none';
+                googleFormLinkContainer.style.display = 'block';
+            } else if (percentageScore >= passingScorePercentage) {
+                // Display certificate
+                certificateDiv.style.display = 'block';
+                certificateUserName.textContent = userName;
+                certificateCompletionDate.textContent = completionDate.toLocaleDateString();
+                certificateScoreLarge.textContent = `${percentageScore.toFixed(0)}%`; // Display score without decimals
+                // Prepare small certificate for PDF download
+                smallCertificateUserName.textContent = userName;
+                smallCertificateFatherName.textContent = fatherName;
+                smallCertificateDistrict.textContent = district;
+                smallCertificateState.textContent = state;
+                smallCertificateDate.textContent = `Date: ${completionDate.toLocaleDateString()}`;
+                smallCertificateScore.textContent = `${percentageScore.toFixed(0)}%`;
+
+                if (capturedPhotoDataUrl) {
+                    const img = document.createElement('img');
+                    img.src = capturedPhotoDataUrl;
+                    smallCertificatePhotoDiv.innerHTML = ''; // Clear existing content
+                    smallCertificatePhotoDiv.appendChild(img);
+                }
+                downloadSmallCertificateButton.style.display = 'block';
+                downloadMessage.style.display = 'block';
+                googleFormLinkContainer.style.display = 'none'; // Hide Google form
+            } else {
+                // Display message about not passing and show Google form
+                certificateDiv.style.display = 'none';
+                downloadSmallCertificateButton.style.display = 'none';
+                downloadMessage.style.display = 'none';
+                googleFormLinkContainer.style.display = 'block';
+            }
+        }
+        // Event listener for Start Test button
+        startButton.addEventListener('click', async () => {
+            // Validate user input fields
+            let isValid = true;
+            if (nameInput.value.trim() === "") {
+                nameInputError.style.display = 'block';
+                isValid = false;
+            } else {
+                nameInputError.style.display = 'none';
+                userName = nameInput.value.trim();
+            }
+
+            if (fatherNameInput.value.trim() === "") {
+                fatherNameInputError.style.display = 'block';
+                isValid = false;
+            } else {
+                fatherName = fatherNameInput.value.trim();
+                fatherNameInputError.style.display = 'none';
+            }
+
+            if (districtInput.value.trim() === "") {
+                districtInputError.style.display = 'block';
+                isValid = false;
+            } else {
+                district = districtInput.value.trim();
+                districtInputError.style.display = 'none';
+            }
+
+            if (stateInput.value.trim() === "") {
+                stateInputError.style.display = 'block';
+                isValid = false;
+            } else {
+                state = stateInput.value.trim();
+                stateInputError.style.display = 'none';
+            }
+
+            if (!isValid) {
+                alert("Please fill in all required personal details to start the test.");
+                return;
+            }
+
+            // Attempt to start camera first
+            await startCamera();
+            if (!stream) { // If camera didn't start, prevent quiz from starting
+                alert("Cannot start the test without camera access. Please allow camera permissions.");
+                return;
+            }
+
+            // Capture initial photo when quiz starts
+            capturePhoto();
+
+
+            // Hide initial info and show main quiz area
+            testInfoContainer.style.display = 'none';
+            startButton.style.display = 'none';
+            mainContainer.style.display = 'flex';
+            quizActive = true;
+
+            // Start timer and display first question
+            startTimer();
+            setupCheatingDetection(); // Start monitoring for cheating
+            displayQuestion(); // Display the first question after setup
+        });
+
+        // Event listener for Next Question button
+        nextButton.addEventListener('click', nextQuestion);
+
+        // Event listener for Cancel button in cheating detection
+        cancelButton.addEventListener('click', () => {
+            endQuiz(); // End quiz immediately if user acknowledges cheating
+        });
+
+        // Event listener for Download Certificate button
+        downloadSmallCertificateButton.addEventListener('click', () => {
+            downloadMessage.textContent = "Generating PDF, please wait...";
+            downloadMessage.style.color = '#0056b3'; // Blue for pending message
+
+            const element = document.getElementById('small-certificate');
+            const opt = {
+                margin: 10,
+                filename: `${userName.replace(/\s/g, '_')}_HTML_Certificate.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true, useCORS: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                downloadMessage.textContent = "Your certificate has been downloaded!";
+                downloadMessage.style.color = '#28a745'; // Green for success
+            }).catch(error => {
+                console.error("Error generating PDF:", error);
+                downloadMessage.textContent = "Error downloading certificate. Please try again.";
+                downloadMessage.style.color = '#dc3545'; // Red for error
+            });
+        });
+        // Prevent context menu (right-click) which might allow inspect element
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        // Disable F12 and Ctrl+Shift+I (developer tools)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+                e.preventDefault();
+                detectCheating(); // Trigger cheating detection
+            }
+        });
+    </script>
+</body>
+</html>

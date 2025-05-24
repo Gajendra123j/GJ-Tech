@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Structure</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Basic styling for the body */
+        body {
+            font-family: "Inter", sans-serif; /* Use Inter font */
+            margin: 0; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+            background-color: #f7f7f7; /* Light grey background */
+            color: #333; /* Default text color */
+        }
+
+        /* Styling for the navigation bar */
+        nav {
+            background-color: #ffffff; /* White background for nav */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            padding: 1rem; /* Padding inside the nav */
+        }
+        /* Styling for the unordered list within the nav */
+        nav ul {
+            list-style: none; /* Remove bullet points */
+            padding: 0; /* Remove default list padding */
+            margin: 0; /* Remove default list margin */
+            display: flex; /* Arrange list items horizontally */
+            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+            justify-content: center; /* Center the navigation items */
+            gap: 1.5rem; /* Space between navigation items */
+        }
+        /* Styling for each list item */
+        nav ul li {
+            display: inline-block; /* Ensure items are inline blocks */
+        }
+        /* Styling for the links within the list items */
+        nav ul li a {
+            text-decoration: none; /* Remove underline from links */
+            color: #4a5568; /* Grey text color */
+            font-weight: 500; /* Medium font weight */
+            padding: 0.5rem 1rem; /* Padding around the link text */
+            border-radius: 0.375rem; /* Rounded corners for links */
+            transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out; /* Smooth transition */
+        }
+        /* Hover effect for links */
+        nav ul li a:hover {
+            color: #2b6cb0; /* Darker blue on hover */
+            background-color: #ebf8ff; /* Light blue background on hover */
+        }
+        /* Styling for the main content area */
+        .content {
+            padding: 2rem; /* Padding around the content */
+            text-align: center; /* Center the content text */
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-slate-800 text-white text-center py-3 text-sm md:text-lg sticky top-0 z-50 shadow main-nav">
+        <div class="container mx-auto flex flex-wrap justify-center gap-x-3 md:gap-x-6">
+            <a href="index.html" class="hover:underline">Home 🏡</a>
+            <a href="blogs.html" class="hover:underline">Blogs 👩‍💻</a>
+            <a href="about.html" class="hover:underline">About 🎓</a>
+            <a href="contact.html" class="hover:underline">Contact 📶</a>
+            <a href="careergoals.html" class="hover:underline">Career Goals and Opportunities</a>
+            <a href="CoursesinManagement.html" class="hover:underline">Courses in Management</a>
+            <a href="Registration.html" class="hover:underline">Registration-in</a>
+            <a href="login.html" class="hover:underline">Login-in</a>
+        </div>
+    </header>
+    <div class="content">
+        <h1 class="text-3xl font-bold mb-4">Gj Tech</h1>
+        <p>2025 GJ Tech Pvt. Ltd. 👩‍💻...</p>
+    </div>
+</body>
+</html>

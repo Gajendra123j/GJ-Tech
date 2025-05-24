@@ -1,0 +1,247 @@
+/* Global Styles */
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #7c3aed;
+  --success-color: #059669;
+  --text-color: #1f2937;
+  --bg-light: #f3f4f6;
+}
+
+body {
+  scroll-behavior: smooth;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #2ea0bf;
+}
+
+/* Header Animation */
+.header-animation {
+  animation: gradientFlow 15s ease infinite;
+  background-size: 400% 400%;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Navigation Hover Effects */
+nav a {
+  position: relative;
+  transition: color 0.3s ease;
+  color: rgb(200, 101, 30);
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Card Hover Effects */
+.multimedia-card, section {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.multimedia-card:hover, section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Social Icons Animation */
+.social-icon {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2) rotate(5deg);
+}
+
+/* Contact Links */
+.contact-link {
+  position: relative;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.contact-link:hover {
+  color: var(--primary-color);
+}
+
+.contact-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.contact-link:hover::after {
+  width: 100%;
+}
+
+/* Course Cards */
+.course-card {
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.course-card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+/* Enroll Button Animation */
+.enroll-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.enroll-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.enroll-btn:hover::before {
+  left: 100%;
+}
+
+/* Profile Image Animation */
+.profile-image {
+  transition: transform 0.3s ease;
+}
+
+.profile-image:hover {
+  transform: scale(1.05);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+  .multimedia-card:hover, section:hover {
+    transform: translateY(-3px);
+  }
+  
+  nav a::after {
+    height: 1px;
+  }
+}
+
+/* Announcement Marquee */
+.announcement-marquee {
+  position: relative;
+  overflow: hidden;
+}
+
+.announcement-marquee::before,
+.announcement-marquee::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  z-index: 2;
+}
+
+.announcement-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(135, 190, 6, 1), transparent);
+}
+
+.announcement-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(214, 221, 8, 1), transparent);
+}
+
+/* Video Container */
+.video-container {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.video-container:hover {
+  transform: scale(1.02);
+}
+
+/* Course Status Badges */
+.status-badge {
+  transition: all 0.3s ease;
+}
+
+.status-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer Animation */
+footer {
+  position: relative;
+  overflow: hidden;
+  background-color: #22c5db;
+  color: rgb(5, 28, 26);
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+  animation: footerLine 3s linear infinite;
+}
+
+@keyframes footerLine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
