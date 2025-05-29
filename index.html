@@ -18,11 +18,11 @@
             --light-blue: rgb(19, 16, 16);
             --dark-blue: rgb(25, 46, 46);
             --link-blue:rgb(15, 14, 14);
-            --star-gold: #FFD700;
+            --star-gold: #1e1a09;
             --primary-color: #151511; /* Standard primary blue */
             --footer-bg:rgb(29, 25, 23); /* Darker gray footer */
             --footer-text: #f4f2ee;
-            --footer-link: #b8a32b;
+            --footer-link: #429cdd;
             --footer-link-hover: #e8e4e4;
             /* Updated Color Scheme Variables */
             --main-bg-light: #f8f9f9; /* Very light gray background */
@@ -528,13 +528,14 @@
 </head>
 <body class="bg-blue-100 font-sans">
     <div class="announcement-marquee">
-    <marquee behavior="scroll" direction="left" scrollamount="5">
-        🚀 Welcome to GJ Tech! New projects coming soon!
-        <a href="blogs.html">Check out our latest blog posts</a> |
-        <a href="contact.html">Join our tech community</a> |
-        <a href="about.html">Learn more about our mission</a> |
-        <a href="CoursesinManagement.html" class="hover:underline">Courses in Management</a> |
-        <a href="careergoals.html" class="hover:underline">Career Goals and Opportunities </a>
+        <marquee behavior="scroll" direction="left" scrollamount="5">
+            <img src="ck.jpg" alt="Company Logo" style="height: 24px; vertical-align: middle;">
+            🚀 Welcome to GJ Tech! New projects coming soon! |
+            <a href="blogs.html">Check out our latest blog posts</a> |
+            <a href="contact.html">Join our tech community</a> |
+            <a href="about.html">Learn more about our mission</a> |
+            <a href="CoursesinManagement.html" class="hover:underline">Courses in Management</a> |
+            <a href="careergoals.html" class="hover:underline">Career Goals and Opportunities </a> |>
     </marquee>
     </div>
     <header class="bg-slate-900 text-white text-center py-6 shadow-md relative overflow-hidden">
@@ -548,7 +549,7 @@
                 <a href="Livemeet.html" class="hover:underline text-sm transition duration-300 ease-in-out">Live Meet 📹</a>
             </div>
             <h1 class="text-3xl font-bold mt-16 md:mt-10 text-yellow-400">GJ Tech </h1>
-            <p class="text-sm mt-2 text-gray-300">Building the Future of Technology Together 👩‍💻</p>
+            <p class="text-sm mt-2 text-gray-250">Building the Future of Technology Together 👩‍💻</p>
             <div class="flex justify-center items-center mt-4">
                 <img src="Education.jpg" alt="GJ Tech" class="w-52 h-36 object-contain rounded-lg shadow transform hover:scale-105 transition-transform duration-300">
             </div>
@@ -577,7 +578,6 @@
                 Get Started Now <i class="fas fa-hand-point-right icon"></i>
             </a>
         </section>
-
         <section id="profile" class="profile-section card">
             <h2 class="section-title">My Profile</h2>
             <div class="flex flex-col items-center">
@@ -766,7 +766,6 @@
             </div>
         </div>
     </footer>
-
     <script>
         // Star rating functionality
         document.getElementById('submitRating').addEventListener('click', function() {
@@ -780,7 +779,6 @@
                 ratingMessage.style.color = 'red';
             }
         });
-
         // Page search functionality
         document.getElementById('pageSearch').addEventListener('keyup', function(event) {
             if (event.key === 'Enter') {

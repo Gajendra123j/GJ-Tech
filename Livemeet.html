@@ -9,15 +9,43 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         /* Custom styles for the video container and controls */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* Align content to the start of the flex container */
+            min-height: 100vh;
+            padding: 20px; /* Add some padding to the body */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+        }
+
+        main {
+            width: 100%;
+            max-width: 1000px; /* Max width for the main content area */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
         .video-container {
             position: relative;
             width: 100%;
             max-width: 800px; /* Limit max width */
             margin: 20px auto; /* Center the container */
             background-color: #000; /* Black background for video area */
-            border-radius: 8px;
+            border-radius: 12px; /* Slightly more rounded */
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Stronger shadow */
             transition: max-width 0.3s ease, margin 0.3s ease, border-radius 0.3s ease;
         }
         .video-container:fullscreen {
@@ -43,30 +71,32 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
-            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly darker, more opaque */
+            padding: 15px; /* More padding */
             display: flex;
             flex-wrap: wrap; /* Allow controls to wrap */
             justify-content: center;
-            gap: 10px; /* Consistent space between buttons */
+            gap: 15px; /* Consistent space between buttons */
             align-items: center;
             transition: opacity 0.3s ease;
             opacity: 1; /* Controls are visible by default */
             z-index: 10; /* Ensure controls are above video */
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         .controls button {
-            background-color: rgba(164, 185, 28, 0.957); /* Adjusted button color */
+            background-color: #5cb85c; /* A nice green for general actions */
             color: white;
             border: none;
             border-radius: 50%; /* Makes the button circular */
-            width: 50px;
-            height: 50px;
+            width: 55px; /* Slightly larger buttons */
+            height: 55px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 22px; /* Larger icons */
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.1s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
         /* Specific style for the End Call button */
         #endCall {
@@ -74,24 +104,36 @@
         }
         #endCall:hover {
             background-color: #dc2626; /* Tailwind red-600 */
+            transform: scale(1.05);
         }
         .controls button:hover {
-            background-color: rgba(20, 160, 137, 0.9); /* Adjusted hover color */
+            background-color: #4cae4c; /* Darker green on hover */
             transform: scale(1.05);
         }
         .controls button:active {
             transform: scale(0.95);
         }
         .controls button i {
-            font-size: 18px;
+            font-size: 20px;
         }
         .controls select {
-            padding: 8px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            background-color: white;
-            color: #333;
-            font-size: 14px;
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid #777;
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            outline: none; /* Remove outline on focus */
+            appearance: none; /* Remove default select arrow */
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.3%203.2-16.1%208.1-3.9%204.9-4.8%2011.5-2.5%2017.4l137.2%20165.6c4.6%205.5%2011.4%208.6%2018.4%208.6s13.8-3.1%2018.4-8.6L289.4%2085.6c2.3-5.9%201.4-12.5-2.5-17.4z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 10px top 50%;
+            background-size: 12px auto;
+        }
+        .controls select option {
+            background-color: #333; /* Dark background for options */
+            color: white;
         }
         .controls select:disabled {
             opacity: 0.7;
@@ -100,98 +142,132 @@
         #remoteVideos {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 20px; /* More space between videos */
+            margin-top: 30px; /* More margin */
             justify-content: center; /* Centers the videos horizontally */
         }
         #remoteVideos video {
-            width: 320px; /* Slightly larger default size */
-            height: 240px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            background-color: #000;
+            width: 360px; /* Larger default size */
+            height: 270px;
+            border: 3px solid #5cb85c; /* Match button color */
+            border-radius: 12px;
+            background-color: #111;
             object-fit: cover; /* Use cover for remote videos */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         /* Styles for the chat box */
         .chat-container {
-            margin-top: 20px;
+            margin-top: 30px;
             width: 100%;
             max-width: 800px; /* Match video container width */
-            border: 1px solid #ccc;
-            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             display: none; /* Hidden by default, toggled by button */
         }
         #chatBox {
             flex-grow: 1; /* Allows chat box to take up available space */
-            height: 200px; /* Fixed height for chat display area */
+            height: 250px; /* Fixed height for chat display area */
             overflow-y: auto; /* Add scroll if content exceeds height */
-            padding: 10px;
+            padding: 15px;
             border-bottom: 1px solid #eee;
-            font-size: 0.9rem;
-            color: #333;
+            font-size: 0.95rem; /* Slightly larger font */
+            color: #444;
             white-space: pre-wrap; /* Preserve formatting like newlines */
             word-wrap: break-word; /* Break long words */
+            line-height: 1.5;
         }
         .chat-input-area {
             display: flex;
-            padding: 10px;
+            padding: 15px;
             gap: 10px;
+            background-color: #f9f9f9;
+            border-top: 1px solid #eee;
         }
         #chatInput {
             flex-grow: 1; /* Allows input to take up space */
-            padding: 8px;
+            padding: 10px;
             border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 0.9rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        #chatInput:focus {
+            border-color: #5cb85c;
         }
         #sendButton {
-            padding: 8px 15px;
-            background-color: #ecae12; /* Green button */
+            padding: 10px 20px;
+            background-color: #5cb85c; /* Green button */
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.1s ease;
         }
         #sendButton:hover {
-            background-color: #d08316;
+            background-color: #4cae4c;
+            transform: translateY(-1px);
         }
+        #sendButton:active {
+            transform: translateY(0);
+        }
+
         /* Styles for File Sharing Area */
         .file-share-container {
-            margin-top: 20px;
+            margin-top: 30px;
             width: 100%;
             max-width: 800px; /* Match video container width */
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 15px;
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
+            display: none; /* Hidden by default, toggled by button */
         }
         #receivedFiles {
-            margin-top: 10px;
+            margin-top: 15px;
             text-align: left;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #555;
+            max-height: 150px; /* Limit height */
+            overflow-y: auto; /* Scroll if content exceeds height */
+            border-top: 1px solid #eee;
+            padding-top: 10px;
         }
         #receivedFiles h4 {
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            color: #333;
         }
         #receivedFiles ul {
             list-style: none;
             padding: 0;
         }
         #receivedFiles li {
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            background-color: #f9f9f9;
+            padding: 8px 12px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        #receivedFiles li i {
+            color: #5cb85c;
+            font-size: 1.2rem;
         }
         #receivedFiles a {
             color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        #receivedFiles a:hover {
             text-decoration: underline;
         }
         /* Hide the actual file input */
@@ -199,9 +275,84 @@
             display: none;
         }
         .status-message {
-            margin-top: 10px;
+            margin-top: 15px;
             font-size: 0.9rem;
-            color: #555;
+            color: #666;
+            background-color: #e6f7ff;
+            border-left: 4px solid #2196f3;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .notification {
+            background-color: #4CAF50; /* Green for success */
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            animation: fadeInOut 3s forwards;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .controls {
+                padding: 10px;
+                gap: 10px;
+            }
+            .controls button {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+            .controls select {
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+            #remoteVideos video {
+                width: 280px;
+                height: 210px;
+            }
+            .chat-container, .file-share-container {
+                margin-top: 20px;
+                padding: 15px;
+            }
+            #chatBox {
+                height: 180px;
+                padding: 10px;
+            }
+            .chat-input-area {
+                padding: 10px;
+            }
+            #chatInput {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+            #sendButton {
+                padding: 8px 15px;
+            }
+            #receivedFiles li {
+                padding: 6px 10px;
+            }
         }
     </style>
 </head>
@@ -235,7 +386,7 @@
                 <button id="shareFileButton" title="Share File" aria-label="Share File">
                     <i class="fas fa-paperclip"></i>
                 </button>
-                 <button id="toggleFullscreen" title="Toggle Fullscreen" aria-label="Toggle Fullscreen">
+                <button id="toggleFullscreen" title="Toggle Fullscreen" aria-label="Toggle Fullscreen">
                     <i class="fas fa-expand"></i>
                 </button>
                 <button id="endCall" title="End Call" aria-label="End Call">
@@ -244,7 +395,7 @@
             </div>
         </div>
         <div id="remoteVideos">
-            </div>
+        </div>
         <div class="chat-container">
             <div id="chatBox">
                 <p>Welcome to the chat!</p>
@@ -260,11 +411,13 @@
             <div id="receivedFiles">
                 <h4>Received Files:</h4>
                 <ul>
-                    </ul>
+                </ul>
             </div>
             <div id="fileStatus" class="mt-2 text-sm text-gray-600 status-message"></div>
         </div>
     </main>
+    <div id="notifications" class="notification-container">
+    </div>
     <script>
         // Get references to key HTML elements
         const localVideo = document.getElementById('localVideo');
@@ -281,14 +434,18 @@
         const cameraSelect = document.getElementById('cameraSelect');
         const resolutionSelect = document.getElementById('resolutionSelect');
         // Chat specific elements
+        const chatContainer = document.querySelector('.chat-container');
         const chatBox = document.getElementById('chatBox');
         const chatInput = document.getElementById('chatInput');
         const sendButton = document.getElementById('sendButton');
         // File sharing elements
+        const fileShareContainer = document.querySelector('.file-share-container');
         const selectFileButton = document.getElementById('selectFileButton'); // Button to trigger file input
         const fileInput = document.getElementById('fileInput'); // Hidden file input
         const receivedFilesList = document.querySelector('#receivedFiles ul'); // List for received files
         const fileStatusDiv = document.getElementById('fileStatus'); // Status area
+        const notificationsContainer = document.getElementById('notifications'); // Container for notifications
+
         // State variables
         let localStream = null;
         let micEnabled = true;
@@ -296,8 +453,12 @@
         let sharingEnabled = false; // State for screen sharing
         let peerConnections = {}; // Store RTCPeerConnections, key is peer ID
         let currentCameraDeviceId = null; // Track currently active camera
-        // Socket.IO instance (initialized later)
-        let socket;
+        let currentRoom = 'defaultRoom'; // A simple room name, could be dynamic
+
+        // Socket.IO instance
+        // Connect to the same origin as the HTML is served from
+        const socket = io(); 
+
         // STUN servers help peers discover their public IP and port
         const servers = {
             iceServers: [
@@ -305,8 +466,14 @@
                     urls: ['stun:stun.l.google.com:19302', 'stun:stun1.l.google.com:19302']
                 },
                 // You might add TURN servers here for more complex network scenarios
+                // {
+                //     urls: 'turn:YOUR_TURN_SERVER_IP:PORT',
+                //     username: 'YOUR_USERNAME',
+                //     credential: 'YOUR_PASSWORD'
+                // }
             ]
         };
+
         // --- UI Feedback & State Update Functions ---
         function updateMicrophoneIcon() {
             toggleMicButton.querySelector('i').classList.toggle('fa-microphone', micEnabled);
@@ -318,24 +485,59 @@
         }
         function updateScreenShareIcon() {
             startShareButton.querySelector('i').classList.toggle('fa-desktop', !sharingEnabled);
-            startShareButton.querySelector('i').classList.toggle('fa-desktop-slash', sharingEnabled);
+            startShareButton.querySelector('i').classList.toggle('fa-stop-circle', sharingEnabled); // Use stop icon when sharing
+            startShareButton.title = sharingEnabled ? "Stop Sharing" : "Share Screen";
+            startShareButton.style.backgroundColor = sharingEnabled ? '#fd7e14' : '#5cb85c'; // Orange when sharing
+            startShareButton.style.boxShadow = sharingEnabled ? '0 2px 5px rgba(253, 126, 20, 0.5)' : '0 2px 5px rgba(0, 0, 0, 0.3)';
         }
-        function updateMediaControlsState(isCameraOn) {
-            // Disable camera/mic toggles if no local stream is active
-            toggleMicButton.disabled = !isCameraOn;
-            toggleCameraButton.disabled = !isCameraOn;
-            cameraSelect.disabled = !isCameraOn;
-            resolutionSelect.disabled = !isCameraOn;
-            startShareButton.disabled = !isCameraOn && !sharingEnabled; // Allow starting share even if camera is off
-            endCallButton.disabled = !isCameraOn && Object.keys(peerConnections).length === 0; // Disable if no stream and no active peers
+
+        function updateMediaControlsState(hasActiveStream) {
+            // Disable camera/mic toggles if no local stream is active AND not sharing screen
+            toggleMicButton.disabled = !hasActiveStream;
+            toggleCameraButton.disabled = !hasActiveStream && !sharingEnabled; // Keep camera toggle enabled if only mic is active, but disable if sharing screen
+            cameraSelect.disabled = !hasActiveStream || sharingEnabled; // Disable camera select if no stream or screen sharing
+            resolutionSelect.disabled = !hasActiveStream || sharingEnabled; // Disable resolution select if no stream or screen sharing
+            startShareButton.disabled = false; // Always allow starting/stopping screen share
+            endCallButton.disabled = !hasActiveStream && Object.keys(peerConnections).length === 0; // Disable if no stream and no active peers
         }
+
+        function showNotification(message, type = 'success', duration = 3000) {
+            const notificationDiv = document.createElement('div');
+            notificationDiv.classList.add('notification');
+            if (type === 'error') {
+                notificationDiv.style.backgroundColor = '#f44336'; // Red for error
+            } else if (type === 'info') {
+                notificationDiv.style.backgroundColor = '#2196f3'; // Blue for info
+            }
+            notificationDiv.textContent = message;
+            notificationsContainer.prepend(notificationDiv); // Add to top
+
+            setTimeout(() => {
+                notificationDiv.remove();
+            }, duration); // Remove after specified duration
+        }
+
+        function addChatMessage(message, sender = 'You') {
+            const p = document.createElement('p');
+            p.textContent = `${sender}: ${message}`;
+            chatBox.appendChild(p);
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+        }
+
         // --- CORE WEBRTC/MEDIADEVICE FUNCTIONS ---
+
         // Function to get/update the local media stream (camera, mic, or screen)
         async function getAndUpdateLocalStream(type = 'camera', deviceId = null, resolution = 'default') {
             console.log(`Attempting to get local stream: Type=${type}, DeviceId=${deviceId}, Resolution=${resolution}`);
             let newStream = null;
             const videoConstraints = {};
             const audioConstraints = true; // Always try to get audio initially
+
+            // Stop existing tracks from the current local stream before requesting new one
+            if (localStream) {
+                localStream.getTracks().forEach(track => track.stop());
+            }
+
             if (type === 'camera') {
                 if (deviceId) {
                     videoConstraints.deviceId = { exact: deviceId };
@@ -345,7 +547,7 @@
                     videoConstraints.width = { ideal: width };
                     videoConstraints.height = { ideal: height };
                 } else {
-                    videoConstraints.width = { ideal: 1280 };
+                    videoConstraints.width = { ideal: 1280 }; // Default HD
                     videoConstraints.height = { ideal: 720 };
                 }
                 cameraEnabled = true; // Assume camera is enabled when requesting camera stream
@@ -361,44 +563,64 @@
                 console.error("Invalid stream type specified.");
                 return;
             }
+
             try {
-                // Stop all tracks in the current local stream before getting a new one
-                if (localStream) {
-                    localStream.getTracks().forEach(track => track.stop());
-                }
                 if (type === 'camera') {
                     newStream = await navigator.mediaDevices.getUserMedia({ video: videoConstraints, audio: audioConstraints });
                 } else if (type === 'screen') {
-                    newStream = await navigator.mediaDevices.getDisplayMedia({ video: videoConstraints, audio: audioConstraints }); // audio: true for system audio
+                    // Request screen and optionally system audio
+                    newStream = await navigator.mediaDevices.getDisplayMedia({ video: videoConstraints, audio: audioConstraints });
                     const screenVideoTrack = newStream.getVideoTracks()[0];
                     if (screenVideoTrack) {
                         screenVideoTrack.onended = () => {
                             console.log('Screen sharing ended by user/browser.');
                             // Automatically switch back to camera when sharing stops
                             if (sharingEnabled) { // Only trigger if we were actively sharing
-                                getAndUpdateLocalStream('camera', currentCameraDeviceId, resolutionSelect.value);
+                                getAndUpdateLocalStream('camera', currentCameraDeviceId || cameraSelect.value, resolutionSelect.value);
+                                sharingEnabled = false; // Reset state
                                 updateScreenShareIcon(); // Ensure icon updates
+                                showNotification('Screen sharing stopped.', 'info');
                             }
                         };
                     }
                 }
+
                 localStream = newStream;
                 localVideo.srcObject = localStream;
+
                 // Update current camera device ID only if it's a camera stream
                 if (type === 'camera') {
                     currentCameraDeviceId = localStream.getVideoTracks()[0]?.getSettings().deviceId || null;
                     cameraSelect.value = currentCameraDeviceId; // Update select dropdown
-                    updateCameraList(); // Re-enumerate devices if permissions granted now
                 }
-                // Update UI buttons based on active stream
+
+                // Initial mute state should be applied to the new stream
+                if (localStream.getAudioTracks().length > 0) {
+                    localStream.getAudioTracks()[0].enabled = micEnabled;
+                }
+                if (localStream.getVideoTracks().length > 0) {
+                    localStream.getVideoTracks()[0].enabled = cameraEnabled;
+                }
+
+                updateCameraList(); // Re-enumerate devices if permissions granted now
                 updateMediaControlsState(true);
                 updateMicrophoneIcon();
                 updateCameraIcon();
                 updateScreenShareIcon();
+
                 // Important: Replace tracks in all active peer connections
                 for (let peerId in peerConnections) {
                     const pc = peerConnections[peerId];
                     if (pc && pc.connectionState !== 'closed') {
+                        // Remove existing tracks from the peer connection that are no longer in the localStream
+                        pc.getSenders().forEach(sender => {
+                            if (sender.track && !localStream.getTracks().includes(sender.track)) {
+                                pc.removeTrack(sender);
+                                console.log(`Removed old ${sender.track.kind} track from peer ${peerId}`);
+                            }
+                        });
+
+                        // Add or replace tracks
                         localStream.getTracks().forEach(newTrack => {
                             let sender = pc.getSenders().find(s => s.track && s.track.kind === newTrack.kind);
                             if (sender) {
@@ -411,18 +633,16 @@
                                 console.log(`Added new ${newTrack.kind} track to peer ${peerId}`);
                             }
                         });
-                        // Also, remove tracks that are no longer in the localStream
-                        pc.getSenders().forEach(sender => {
-                            if (sender.track && !localStream.getTracks().includes(sender.track)) {
-                                pc.removeTrack(sender);
-                                console.log(`Removed old ${sender.track.kind} track from peer ${peerId}`);
-                            }
-                        });
-                        // Renegotiate after track changes if needed (or rely on perfect negotiation if signaling allows)
+
+                        // Renegotiate after track changes
                         negotiateConnection(pc, peerId);
                     }
                 }
                 console.log('Local stream updated and tracks replaced in peer connections.');
+                // Emit event for camera status change
+                socket.emit('camera-status', { userId: socket.id, isCameraOn: cameraEnabled, isScreenSharing: sharingEnabled });
+                showNotification(`Switched to ${type === 'camera' ? 'camera' : 'screen share'} stream.`, 'info');
+
             } catch (error) {
                 console.error('Error accessing media devices:', error);
                 let errorMessage = 'Could not access media devices. Please check permissions.';
@@ -435,12 +655,13 @@
                 } else if (error.name === 'AbortError') {
                     errorMessage = 'Device selection was cancelled.';
                 }
-                alert(errorMessage + ' Please check browser permissions and try again.');
+                showNotification(errorMessage, 'error', 5000);
                 updateMediaControlsState(false);
                 localVideo.srcObject = null;
                 localStream = null; // Ensure stream is null on failure
             }
         }
+
         async function updateCameraList() {
             cameraSelect.innerHTML = '<option value="">Select Camera</option>'; // Clear existing options
             const videoInputDevices = await navigator.mediaDevices.enumerateDevices().then(devices =>
@@ -449,6 +670,7 @@
                 console.error('Error enumerating devices:', err);
                 return [];
             });
+
             if (videoInputDevices.length === 0) {
                 const option = document.createElement('option');
                 option.value = '';
@@ -459,19 +681,19 @@
                 videoInputDevices.forEach(device => {
                     const option = document.createElement('option');
                     option.value = device.deviceId;
-                    option.textContent = device.label || `Camera ${cameraSelect.options.length}`;
+                    option.textContent = device.label || `Camera ${cameraSelect.options.length + 1}`; // +1 for user-friendly numbering
                     cameraSelect.appendChild(option);
                 });
                 cameraSelect.disabled = false; // Enable if cameras are found
+
                 // Select the currently active camera if available
                 if (currentCameraDeviceId && Array.from(cameraSelect.options).some(opt => opt.value === currentCameraDeviceId)) {
                     cameraSelect.value = currentCameraDeviceId;
                 } else if (localStream && localStream.getVideoTracks().length > 0) {
-                     // If localStream exists and has video track, but currentCameraDeviceId is not set or not in list
-                     currentCameraDeviceId = localStream.getVideoTracks()[0].getSettings().deviceId;
-                     if (Array.from(cameraSelect.options).some(opt => opt.value === currentCameraDeviceId)) {
+                    currentCameraDeviceId = localStream.getVideoTracks()[0].getSettings().deviceId;
+                    if (Array.from(cameraSelect.options).some(opt => opt.value === currentCameraDeviceId)) {
                         cameraSelect.value = currentCameraDeviceId;
-                     }
+                    }
                 } else if (videoInputDevices.length > 0) {
                     // Fallback: select the first camera if no current one is set
                     cameraSelect.value = videoInputDevices[0].deviceId;
@@ -479,506 +701,596 @@
                 }
             }
         }
+
         // Helper function to create or get a peer connection for a specific peer
         function createPeerConnection(peerId) {
-            console.log(`Creating peer connection for ${peerId}`);
+            console.log(`Creating peer connection for ${peerId.substring(0,5)}...`);
             const pc = new RTCPeerConnection(servers);
 
             // --- DATA CHANNEL SETUP for File Sharing ---
-            // Data channels should ideally be created BEFORE createOffer/createAnswer by the initiating peer
-            // and listened for via pc.ondatachannel by the receiving peer.
-
-            // Example of creating a data channel (often done by the peer initiating the connection)
-            // This channel can be created only once for each peer connection and reused.
-            const fileShareDataChannel = pc.createDataChannel("fileTransferChannel", { ordered: true }); // ordered ensures delivery order
+            // Using negotiated: true and id: 0 means both peers create their own channel
+            // with the same ID, and they will connect to each other.
+            // This avoids the need for ondatachannel event for the initiating peer.
+            const fileShareDataChannel = pc.createDataChannel("fileTransferChannel", { ordered: true, negotiated: true, id: 0 });
             fileShareDataChannel.binaryType = 'arraybuffer'; // Crucial for sending binary data
+
             fileShareDataChannel.onopen = (event) => {
-                console.log(`File Transfer Data Channel to ${peerId} opened:`, event);
-                // Can notify UI that file transfer is ready
+                console.log(`File Transfer Data Channel to ${peerId.substring(0,5)}... opened:`, event);
+                showNotification(`File transfer channel opened with ${peerId.substring(0, 5)}...`);
             };
             fileShareDataChannel.onmessage = (event) => {
                 // This is the receiving logic for file chunks/metadata
-                console.log(`Received Data Channel Message from ${peerId}:`, event.data);
+                console.log(`Received Data Channel Message from ${peerId.substring(0,5)}...:`, event.data);
                 handleIncomingFileMessage(event.data, peerId);
             };
-            fileShareDataChannel.onclose = (event) => console.log(`File Transfer Data Channel to ${peerId} closed:`, event);
-            fileShareDataChannel.onerror = (event) => console.error(`File Transfer Data Channel to ${peerId} error:`, event);
+            fileShareDataChannel.onclose = (event) => {
+                console.log(`File Transfer Data Channel to ${peerId.substring(0,5)}... closed:`, event);
+                showNotification(`File transfer channel closed with ${peerId.substring(0, 5)}...`, 'info');
+            };
+            fileShareDataChannel.onerror = (event) => console.error(`File Transfer Data Channel to ${peerId.substring(0,5)}... error:`, event);
+
             // Store the data channel reference
             pc.fileShareDataChannel = fileShareDataChannel;
-            // Event handler for receiving a data channel from the remote peer (the other side will call createDataChannel)
-            pc.ondatachannel = (event) => {
-                console.log(`Incoming Data channel from ${peerId}:`, event.channel);
-                const receiveChannel = event.channel;
-                receiveChannel.binaryType = 'arraybuffer'; // Crucial for receiving binary data
-                let receivedBuffers = [];
-                let receivedFileInfo = null;
-                let receivedBytes = 0;
-                receiveChannel.onopen = () => console.log('Received Data Channel opened.');
-                receiveChannel.onmessage = async (event) => {
-                    if (typeof event.data === 'string') {
-                        try {
-                            const message = JSON.parse(event.data);
-                            if (message.type === 'file-metadata') {
-                                receivedFileInfo = {
-                                    name: message.name,
-                                    size: message.size,
-                                    type: message.fileType // Use fileType for MIME type
-                                };
-                                receivedBuffers = []; // Reset for a new file
-                                receivedBytes = 0;
-                                fileStatusDiv.textContent = `Receiving file: ${receivedFileInfo.name} (0%)`;
-                                console.log('Received file metadata:', receivedFileInfo);
-                            } else if (message.type === 'file-end') {
-                                console.log('File transfer complete for:', message.name);
-                                if (receivedFileInfo && receivedFileInfo.name === message.name) {
-                                    const receivedBlob = new Blob(receivedBuffers, { type: receivedFileInfo.type });
-                                    const downloadUrl = URL.createObjectURL(receivedBlob);
 
-                                    const listItem = document.createElement('li');
-                                    const downloadLink = document.createElement('a');
-                                    downloadLink.href = downloadUrl;
-                                    downloadLink.textContent = `${receivedFileInfo.name} (${(receivedFileInfo.size / (1024 * 1024)).toFixed(2)} MB) - Click to Download`;
-                                    downloadLink.download = receivedFileInfo.name; // Suggest filename for download
-                                    listItem.appendChild(downloadLink);
-                                    receivedFilesList.appendChild(listItem);
-                                    fileStatusDiv.textContent = `File "${receivedFileInfo.name}" received successfully!`;
-                                    receivedFileInfo = null; // Clear info for next transfer
-                                    receivedBuffers = [];
-                                    receivedBytes = 0;
-                                } else {
-                                    console.warn('Received file-end for unknown or mismatched file.');
-                                }
-                            }
-                        } catch (e) {
-                            console.warn('Received non-metadata string or malformed JSON on data channel:', event.data);
-                            // If not JSON, it could be a chat message sent over data channel
-                            // For this app, we'll keep chat via Socket.IO, but this is where it would be handled.
-                        }
-                    } else if (event.data instanceof ArrayBuffer || event.data instanceof Blob) {
-                        // This is a file chunk
-                        if (receivedFileInfo) {
-                            receivedBuffers.push(event.data);
-                            receivedBytes += event.data.byteLength || event.data.size;
-                            const progress = ((receivedBytes / receivedFileInfo.size) * 100).toFixed(1);
-                            fileStatusDiv.textContent = `Receiving file: ${receivedFileInfo.name} (${progress}%)`;
-                        } else {
-                            console.warn('Received file chunk without prior metadata. Discarding.');
-                        }
-                    }
-                };
-                receiveChannel.onclose = () => console.log('Received Data Channel closed.');
-                receiveChannel.onerror = (error) => console.error('Received Data Channel error:', error);
+            // Event handler for receiving a data channel from the remote peer
+            // (This is primarily for non-negotiated data channels or if the remote peer creates a different one)
+            pc.ondatachannel = (event) => {
+                console.log(`Incoming Data channel from ${peerId.substring(0,5)}...:`, event.channel);
+                const receiveChannel = event.channel;
+                if (receiveChannel.label === "fileTransferChannel" && receiveChannel.negotiated === false) {
+                    // This block would handle if the remote peer created a non-negotiated channel
+                    // For this app, we use negotiated channels, so this might not fire for file transfer.
+                    receiveChannel.binaryType = 'arraybuffer';
+                    let receivedBuffers = [];
+                    let receivedFileInfo = null;
+                    let receivedBytes = 0;
+
+                    receiveChannel.onopen = () => console.log('Received File Transfer Data Channel opened (non-negotiated).');
+                    receiveChannel.onmessage = async (event) => {
+                        // Re-use handleIncomingFileMessage
+                        handleIncomingFileMessage(event.data, peerId);
+                    };
+                    receiveChannel.onclose = () => console.log('Received File Transfer Data Channel closed (non-negotiated).');
+                    receiveChannel.onerror = (error) => console.error('Received File Transfer Data Channel error (non-negotiated):', error);
+                }
             };
             // --- END DATA CHANNEL SETUP ---
 
             // Event handler for discovering ICE candidates (network information)
             pc.onicecandidate = (event) => {
                 if (event.candidate) {
-                    console.log(`Sending ICE candidate to ${peerId}:`, event.candidate);
+                    console.log(`Sending ICE candidate to ${peerId.substring(0,5)}...:`, event.candidate);
                     // Send the candidate to the other peer via the signaling server
                     socket.emit('ice-candidate', {
                         candidate: event.candidate,
                         receiverId: peerId,
-                        senderId: socket.id // Explicitly include sender ID
+                        senderId: socket.id
                     });
                 }
             };
+
             // Event handler for receiving remote tracks from a peer
             pc.ontrack = (event) => {
-                console.log(`Received remote track from ${peerId}:`, event.track);
+                console.log(`Received remote track from ${peerId.substring(0,5)}...:`, event.track);
                 let remoteVideo = document.getElementById(`remoteVideo-${peerId}`);
+                let stream = event.streams[0]; // Get the stream the track belongs to
+
                 if (!remoteVideo) {
                     remoteVideo = document.createElement('video');
                     remoteVideo.id = `remoteVideo-${peerId}`;
                     remoteVideo.autoplay = true;
                     remoteVideo.playsinline = true;
                     remoteVideo.controls = false; // Hide default controls
+                    remoteVideo.muted = false; // Don't mute remote videos by default
                     remoteVideosContainer.appendChild(remoteVideo);
-                    console.log(`Added remote video element for ${peerId}`);
+                    console.log(`Created new video element for remote peer ${peerId.substring(0,5)}...`);
                 }
-                remoteVideo.srcObject = event.streams[0];
+
+                // Attach the stream to the video element.
+                // If stream is already set, don't reassign unless it's a new stream.
+                if (remoteVideo.srcObject !== stream) {
+                    remoteVideo.srcObject = stream;
+                    console.log(`Assigned new stream to remote video for ${peerId.substring(0,5)}...`);
+                }
             };
-            // Event handler for connection state changes (connecting, connected, disconnected, etc.)
+
+            // Log connection state changes for debugging
             pc.onconnectionstatechange = (event) => {
-                console.log(`Connection state change for ${peerId}: ${pc.connectionState}`);
+                console.log(`Peer connection state for ${peerId.substring(0,5)}...: ${pc.connectionState}`);
                 if (pc.connectionState === 'disconnected' || pc.connectionState === 'failed' || pc.connectionState === 'closed') {
-                    console.log(`Peer ${peerId} connection closed or failed.`);
-                    if (peerConnections[peerId]) {
-                        // Close any associated data channels for this peer (if not already closed)
-                        if(peerConnections[peerId].fileShareDataChannel && peerConnections[peerId].fileShareDataChannel.readyState !== 'closed') {
-                            peerConnections[peerId].fileShareDataChannel.close();
-                        }
-                        peerConnections[peerId].close();
-                        delete peerConnections[peerId];
-                    }
+                    // Remove remote video if connection drops
                     const remoteVideo = document.getElementById(`remoteVideo-${peerId}`);
                     if (remoteVideo) {
-                        remoteVideo.parentNode.removeChild(remoteVideo);
+                        remoteVideo.remove();
+                        console.log(`Removed remote video for ${peerId.substring(0,5)}...`);
+                        showNotification(`Peer ${peerId.substring(0, 5)}... disconnected.`, 'info');
                     }
-                    appendMessage(`User ${peerId.substring(0, 4)}... has left.`, 'System');
+                    delete peerConnections[peerId];
+                    updateMediaControlsState(localStream !== null && (localStream.getAudioTracks().length > 0 || localStream.getVideoTracks().length > 0)); // Update controls if local stream exists
                 }
             };
-            // Add local stream tracks to the peer connection
+
+            pc.oniceconnectionstatechange = () => {
+                console.log(`ICE connection state for ${peerId.substring(0,5)}...: ${pc.iceConnectionState}`);
+            };
+
+            // Add local stream tracks to the peer connection if available
             if (localStream) {
                 localStream.getTracks().forEach(track => {
-                    console.log(`Adding local track (${track.kind}) to peer ${peerId}`);
                     pc.addTrack(track, localStream);
+                    console.log(`Added local ${track.kind} track to peer connection for ${peerId.substring(0,5)}...`);
                 });
+            } else {
+                console.warn('No local stream available to add to new peer connection.');
             }
+
             return pc;
         }
-        // Helper function to initiate negotiation (create and send offer)
+
+        // Handles sending SDP offers for connection initiation or renegotiation
         async function negotiateConnection(pc, peerId) {
+            console.log(`Attempting to negotiate with ${peerId.substring(0,5)}...`);
             try {
-                console.log(`Initiating negotiation with ${peerId}`);
-                if (pc.signalingState !== 'stable') {
-                    console.log(`Skipping negotiation for ${peerId} as signaling state is ${pc.signalingState}`);
-                    return;
-                }
                 const offer = await pc.createOffer();
                 await pc.setLocalDescription(offer);
-                console.log(`Sending offer to ${peerId}:`, offer);
-                socket.emit('offer', { sdp: pc.localDescription, receiverId: peerId, senderId: socket.id });
-            } catch (error) {
-                console.error("Error creating or sending offer: ", error);
-            }
-        }
-        // --- CHAT FUNCTIONS ---
-        function appendMessage(message, sender) {
-            const messageElement = document.createElement('p');
-            messageElement.textContent = `${sender}: ${message}`;
-            chatBox.appendChild(messageElement);
-            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
-        }
-        // --- FILE SHARING FUNCTIONS (Basic Implementation) ---
-        async function sendFile(file, targetPeerId = null) {
-            if (!file) {
-                fileStatusDiv.textContent = 'No file selected.';
-                return;
-            }
-            // You can target a specific peer or broadcast to all
-            const peersToSendTo = targetPeerId ? [peerConnections[targetPeerId]] : Object.values(peerConnections);
-            if (peersToSendTo.length === 0) {
-                fileStatusDiv.textContent = 'No connected peers to send file to.';
-                return;
-            }
-            const chunkSize = 16 * 1024; // 16KB chunks
-            const fileReader = new FileReader();
-            let offset = 0;
-            fileReader.addEventListener('error', error => console.error('Error reading file:', error));
-            fileReader.addEventListener('abort', event => console.log('File reading aborted:', event));
-            fileReader.addEventListener('load', e => {
-                const chunk = e.target.result;
-                peersToSendTo.forEach(pc => {
-                    if (pc.fileShareDataChannel && pc.fileShareDataChannel.readyState === 'open') {
-                        pc.fileShareDataChannel.send(chunk);
-                    } else {
-                        console.warn(`Data channel to peer ${pc.peerId || 'unknown'} not open. Cannot send chunk.`);
-                    }
+                socket.emit('offer', {
+                    offer: pc.localDescription,
+                    receiverId: peerId,
+                    senderId: socket.id
                 });
-                offset += chunk.byteLength;
-                const progress = ((offset / file.size) * 100).toFixed(1);
-                fileStatusDiv.textContent = `Sending "${file.name}" (${progress}%)`;
-                if (offset < file.size) {
-                    readNextChunk();
-                } else {
-                    // Send end message
-                    peersToSendTo.forEach(pc => {
-                        if (pc.fileShareDataChannel && pc.fileShareDataChannel.readyState === 'open') {
-                            pc.fileShareDataChannel.send(JSON.stringify({
-                                type: 'file-end',
-                                name: file.name,
-                                size: file.size
-                            }));
-                        }
-                    });
-                    fileStatusDiv.textContent = `File "${file.name}" sent successfully!`;
-                    console.log('File sent successfully.');
-                }
-            });
-            function readNextChunk() {
-                const slice = file.slice(offset, offset + chunkSize);
-                fileReader.readAsArrayBuffer(slice);
+                console.log(`Sent offer to ${peerId.substring(0,5)}...`);
+            } catch (error) {
+                console.error(`Error creating or sending offer to ${peerId.substring(0,5)}...:`, error);
             }
-            // Send file metadata first
-            const metadata = {
-                type: 'file-metadata',
-                name: file.name,
-                size: file.size,
-                fileType: file.type // Send MIME type
-            };
-            peersToSendTo.forEach(pc => {
-                if (pc.fileShareDataChannel && pc.fileShareDataChannel.readyState === 'open') {
-                    pc.fileShareDataChannel.send(JSON.stringify(metadata));
-                } else {
-                    console.warn(`Data channel to peer ${pc.peerId || 'unknown'} not open. Cannot send metadata.`);
-                }
-            });
-            readNextChunk(); // Start reading the first chunk
         }
-        // Placeholder: handle incoming file messages (already in createPeerConnection)
-        // This function needs to be a separate handler or integrated carefully
-        // into the ondatachannel.onmessage event listener.
-        // For simplicity, it's mostly handled inline now within ondatachannel.
-        // --- UI CONTROL EVENT LISTENERS ---
-        // Toggle Microphone
-        toggleMicButton.addEventListener('click', () => {
-            if (localStream) {
-                const audioTrack = localStream.getAudioTracks()[0];
-                if (audioTrack) {
-                    micEnabled = !micEnabled;
-                    audioTrack.enabled = micEnabled;
-                    updateMicrophoneIcon();
-                    console.log('Microphone enabled:', micEnabled);
-                }
-            }
-        });
-        // Toggle Camera
-        toggleCameraButton.addEventListener('click', () => {
-            if (localStream) {
-                const videoTrack = localStream.getVideoTracks()[0];
-                if (videoTrack) {
-                    cameraEnabled = !cameraEnabled;
-                    videoTrack.enabled = cameraEnabled;
-                    updateCameraIcon();
-                    console.log('Camera enabled:', cameraEnabled);
-                }
-            }
-        });
-        // End Call
-        endCallButton.addEventListener('click', () => {
+
+        // Function to handle ending the call
+        function endCall() {
             console.log('Ending call...');
+            // Stop all local media tracks
             if (localStream) {
                 localStream.getTracks().forEach(track => track.stop());
                 localVideo.srcObject = null;
                 localStream = null;
-                console.log('Local stream stopped.');
+                micEnabled = true; // Reset state
+                cameraEnabled = true; // Reset state
+                sharingEnabled = false; // Reset state
+                updateMicrophoneIcon();
+                updateCameraIcon();
+                updateScreenShareIcon();
+                updateMediaControlsState(false);
             }
+
+            // Close all peer connections
             for (let peerId in peerConnections) {
-                if (peerConnections[peerId]) {
-                    if(peerConnections[peerId].fileShareDataChannel && peerConnections[peerId].fileShareDataChannel.readyState !== 'closed') {
-                        peerConnections[peerId].fileShareDataChannel.close();
-                    }
+                if (peerConnections[peerId] && peerConnections[peerId].connectionState !== 'closed') {
                     peerConnections[peerId].close();
-                    delete peerConnections[peerId];
-                    const remoteVideo = document.getElementById(`remoteVideo-${peerId}`);
-                    if (remoteVideo) {
-                        remoteVideo.parentNode.removeChild(remoteVideo);
-                    }
+                    console.log(`Closed peer connection with ${peerId.substring(0,5)}...`);
                 }
             }
-            peerConnections = {}; // Clear the peer connections object
-            console.log('All peer connections closed.');
-            if (socket && socket.connected) {
-                socket.disconnect();
-                console.log('Disconnected from signaling server.');
+            peerConnections = {}; // Clear the object
+
+            // Remove all remote videos
+            remoteVideosContainer.innerHTML = '';
+            showNotification('Call ended.', 'info');
+            socket.emit('end-call'); // Notify server to disconnect from room or other peers
+        }
+
+
+        // --- FILE SHARING LOGIC ---
+        const CHUNK_SIZE = 16 * 1024; // 16KB chunks
+
+        async function sendFile(file, peerId) {
+            const dataChannel = peerConnections[peerId]?.fileShareDataChannel;
+            if (!dataChannel || dataChannel.readyState !== 'open') {
+                showNotification(`File transfer channel not open with ${peerId.substring(0, 5)}...`, 'error');
+                console.error(`Data channel for ${peerId.substring(0,5)}... is not open.`);
+                return;
             }
-            alert('Call ended.');
-            updateMediaControlsState(false); // Update button states
-            currentCameraDeviceId = null; // Reset camera device
-            updateCameraList(); // Clear camera list
+
+            fileStatusDiv.textContent = `Sending file: ${file.name} (0%)`;
+            showNotification(`Sending file: ${file.name} to ${peerId.substring(0, 5)}...`, 'info');
+
+            // Send metadata first
+            const metadata = {
+                type: 'file-metadata',
+                name: file.name,
+                size: file.size,
+                fileType: file.type
+            };
+            dataChannel.send(JSON.stringify(metadata));
+            console.log(`Sent file metadata to ${peerId.substring(0,5)}...:`, metadata);
+
+            let offset = 0;
+            const fileReader = new FileReader();
+
+            fileReader.onabort = () => console.log('File reading aborted');
+            fileReader.onerror = (error) => console.error('File reading error:', error);
+            fileReader.onload = (event) => {
+                const chunk = event.target.result;
+                dataChannel.send(chunk);
+                offset += chunk.byteLength;
+
+                const progress = ((offset / file.size) * 100).toFixed(1);
+                fileStatusDiv.textContent = `Sending file: ${file.name} (${progress}%)`;
+
+                if (offset < file.size) {
+                    readNextChunk();
+                } else {
+                    // All chunks sent, send end message
+                    dataChannel.send(JSON.stringify({ type: 'file-end', name: file.name }));
+                    fileStatusDiv.textContent = `File "${file.name}" sent successfully to ${peerId.substring(0, 5)}!`;
+                    showNotification(`File "${file.name}" sent!`, 'success');
+                    console.log(`File "${file.name}" sent to ${peerId.substring(0,5)}...`);
+                }
+            };
+
+            const readNextChunk = () => {
+                const slice = file.slice(offset, offset + CHUNK_SIZE);
+                fileReader.readAsArrayBuffer(slice);
+            };
+
+            readNextChunk(); // Start reading the first chunk
+        }
+
+        let receivedFileBuffers = new Map(); // Store buffers per peer for concurrent transfers
+        let receivedFileInfos = new Map(); // Store file info per peer
+
+        function handleIncomingFileMessage(data, senderId) {
+            if (typeof data === 'string') {
+                try {
+                    const message = JSON.parse(data);
+                    if (message.type === 'file-metadata') {
+                        receivedFileInfos.set(senderId, {
+                            name: message.name,
+                            size: message.size,
+                            type: message.fileType
+                        });
+                        receivedFileBuffers.set(senderId, []);
+                        fileStatusDiv.textContent = `Receiving file: ${message.name} (0%) from ${senderId.substring(0, 5)}...`;
+                        showNotification(`Receiving file: ${message.name} from ${senderId.substring(0, 5)}...`, 'info', 5000);
+                        console.log(`Received file metadata from ${senderId.substring(0,5)}...:`, message);
+                    } else if (message.type === 'file-end') {
+                        const fileInfo = receivedFileInfos.get(senderId);
+                        const fileBuffers = receivedFileBuffers.get(senderId);
+
+                        if (fileInfo && fileInfo.name === message.name) {
+                            const receivedBlob = new Blob(fileBuffers, { type: fileInfo.type });
+                            const downloadUrl = URL.createObjectURL(receivedBlob);
+
+                            const listItem = document.createElement('li');
+                            const downloadLink = document.createElement('a');
+                            const fileIcon = document.createElement('i');
+                            fileIcon.classList.add('fas', 'fa-file-download'); // Download icon
+
+                            downloadLink.href = downloadUrl;
+                            downloadLink.textContent = `${fileInfo.name} (${(fileInfo.size / (1024 * 1024)).toFixed(2)} MB)`;
+                            downloadLink.download = fileInfo.name; // Suggest filename for download
+
+                            listItem.appendChild(fileIcon);
+                            listItem.appendChild(downloadLink);
+                            receivedFilesList.appendChild(listItem);
+
+                            fileStatusDiv.textContent = `File "${fileInfo.name}" received successfully from ${senderId.substring(0, 5)}!`;
+                            showNotification(`File "${fileInfo.name}" received from ${senderId.substring(0, 5)}!`, 'success', 5000);
+
+                            // Clear for next transfer from this sender
+                            receivedFileInfos.delete(senderId);
+                            receivedFileBuffers.delete(senderId);
+                        } else {
+                            console.warn('Received file-end for unknown or mismatched file from', senderId);
+                        }
+                    }
+                } catch (e) {
+                    console.warn('Received non-metadata string or malformed JSON on data channel from', senderId, ':', data);
+                }
+            } else if (data instanceof ArrayBuffer || data instanceof Blob) {
+                // This is a file chunk
+                let fileInfo = receivedFileInfos.get(senderId);
+                let fileBuffers = receivedFileBuffers.get(senderId);
+
+                if (fileInfo && fileBuffers) {
+                    fileBuffers.push(data);
+                    const receivedBytes = fileBuffers.reduce((sum, buffer) => sum + (buffer.byteLength || buffer.size), 0);
+                    const progress = ((receivedBytes / fileInfo.size) * 100).toFixed(1);
+                    fileStatusDiv.textContent = `Receiving file: ${fileInfo.name} (${progress}%) from ${senderId.substring(0, 5)}...`;
+                } else {
+                    console.warn('Received file chunk without prior metadata from', senderId, '. Discarding.');
+                }
+            }
+        }
+
+
+        // --- Event Listeners for UI Controls ---
+
+        toggleMicButton.addEventListener('click', () => {
+            if (localStream && localStream.getAudioTracks().length > 0) {
+                micEnabled = !micEnabled;
+                localStream.getAudioTracks()[0].enabled = micEnabled;
+                updateMicrophoneIcon();
+                showNotification(`Microphone ${micEnabled ? 'on' : 'off'}.`, 'info');
+                // Notify peers about mic status if needed for their UI
+                socket.emit('mic-status', { userId: socket.id, isMicOn: micEnabled });
+            } else {
+                showNotification('No active audio stream to toggle.', 'error');
+            }
         });
-        // Toggle Screen Sharing
+
+        toggleCameraButton.addEventListener('click', () => {
+            if (localStream && localStream.getVideoTracks().length > 0) {
+                cameraEnabled = !cameraEnabled;
+                localStream.getVideoTracks()[0].enabled = cameraEnabled;
+                updateCameraIcon();
+                showNotification(`Camera ${cameraEnabled ? 'on' : 'off'}.`, 'info');
+                // Notify peers about camera status for their UI
+                socket.emit('camera-status', { userId: socket.id, isCameraOn: cameraEnabled, isScreenSharing: sharingEnabled });
+            } else {
+                showNotification('No active video stream to toggle.', 'error');
+            }
+        });
+
+        cameraSelect.addEventListener('change', async () => {
+            const selectedDeviceId = cameraSelect.value;
+            if (selectedDeviceId) {
+                await getAndUpdateLocalStream('camera', selectedDeviceId, resolutionSelect.value);
+            } else {
+                showNotification('Please select a camera.', 'info');
+            }
+        });
+
+        resolutionSelect.addEventListener('change', async () => {
+            const selectedResolution = resolutionSelect.value;
+            if (localStream && !sharingEnabled) { // Only change resolution if camera is active and not screen sharing
+                await getAndUpdateLocalStream('camera', currentCameraDeviceId, selectedResolution);
+            } else if (sharingEnabled) {
+                showNotification('Cannot change resolution while screen sharing.', 'info');
+            } else {
+                showNotification('Start your camera first to change resolution.', 'info');
+            }
+        });
+
         startShareButton.addEventListener('click', async () => {
             if (sharingEnabled) {
-                // Stop screen sharing and switch back to camera
-                console.log('Stopping screen sharing, switching to camera.');
-                await getAndUpdateLocalStream('camera', currentCameraDeviceId, resolutionSelect.value);
+                // If currently sharing, stop sharing and switch back to camera
+                await getAndUpdateLocalStream('camera', currentCameraDeviceId || cameraSelect.value, resolutionSelect.value);
                 sharingEnabled = false;
             } else {
                 // Start screen sharing
-                console.log('Starting screen sharing.');
                 await getAndUpdateLocalStream('screen');
                 sharingEnabled = true;
             }
-            updateScreenShareIcon(); // Ensure icon is correct
+            updateScreenShareIcon(); // Ensure icon is updated after stream change
         });
-        // Toggle Chat Visibility
+
+        endCallButton.addEventListener('click', endCall);
+
         toggleChatButton.addEventListener('click', () => {
-            const chatContainer = document.querySelector('.chat-container');
-            chatContainer.style.display = chatContainer.style.display === 'flex' ? 'none' : 'flex';
-        });
-        // Toggle Fullscreen
-        toggleFullscreenButton.addEventListener('click', () => {
-            if (!document.fullscreenElement) {
-                videoContainer.requestFullscreen().catch(err => {
-                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-                });
-            } else {
-                document.exitFullscreen();
+            chatContainer.style.display = chatContainer.style.display === 'none' ? 'flex' : 'none';
+            if (chatContainer.style.display === 'flex') {
+                chatInput.focus();
+                chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom when opening
             }
         });
-        // Send Chat Message
+
         sendButton.addEventListener('click', () => {
             const message = chatInput.value.trim();
             if (message) {
-                appendMessage(message, 'You');
-                socket.emit('chat-message', message); // Send message via Socket.IO
-                chatInput.value = '';
+                addChatMessage(message); // Add to local chatbox
+                socket.emit('chat-message', { message, senderId: socket.id }); // Send to server
+                chatInput.value = ''; // Clear input
             }
         });
-        chatInput.addEventListener('keypress', (event) => {
-            if (event.key === 'Enter') {
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
                 sendButton.click();
             }
         });
-        // Camera Selection Change
-        cameraSelect.addEventListener('change', () => {
-            const selectedDeviceId = cameraSelect.value;
-            if (selectedDeviceId && localStream) {
-                // If a stream is active, try to apply constraints to switch camera
-                getAndUpdateLocalStream('camera', selectedDeviceId, resolutionSelect.value);
-            } else if (selectedDeviceId && !localStream) {
-                // If no stream is active, just set the device ID and wait for 'start camera'
-                currentCameraDeviceId = selectedDeviceId;
-            }
-        });
-        // Resolution Selection Change
-        resolutionSelect.addEventListener('change', () => {
-            const selectedResolution = resolutionSelect.value;
-            if (localStream && localStream.getVideoTracks().length > 0) {
-                const videoTrack = localStream.getVideoTracks()[0];
-                const [width, height] = selectedResolution.split('x').map(Number);
-                const newConstraints = (selectedResolution === 'default') ?
-                    { width: { ideal: 1280 }, height: { ideal: 720 } } :
-                    { width: { ideal: width }, height: { ideal: height } };
-                videoTrack.applyConstraints(newConstraints)
-                    .then(() => {
-                        console.log('Resolution applied:', videoTrack.getSettings());
-                    })
-                    .catch(e => {
-                        console.error('Failed to apply resolution constraints, restarting stream:', e);
-                        // Fallback: if applyConstraints fails, restart the stream with new settings
-                        getAndUpdateLocalStream('camera', currentCameraDeviceId, selectedResolution);
-                    });
-            } else if (!localStream) {
-                 // If no stream, remember the selected resolution for when camera starts
-                 // No action needed here, it will be used by getAndUpdateLocalStream when called.
-            }
-        });
-        // File Sharing button click
+
         shareFileButton.addEventListener('click', () => {
-            selectFileButton.click(); // Trigger the hidden file input click
+            fileShareContainer.style.display = fileShareContainer.style.display === 'none' ? 'block' : 'none';
         });
-        // Handle file selection
+
+        selectFileButton.addEventListener('click', () => {
+            fileInput.click(); // Programmatically click the hidden file input
+        });
+
         fileInput.addEventListener('change', (event) => {
             const file = event.target.files[0];
             if (file) {
-                console.log('File selected:', file.name, file.size);
-                sendFile(file); // Send the selected file
+                // Filter for connected peers with open data channels
+                const activePeerIds = Object.keys(peerConnections).filter(id =>
+                    peerConnections[id].connectionState === 'connected' &&
+                    peerConnections[id].fileShareDataChannel &&
+                    peerConnections[id].fileShareDataChannel.readyState === 'open'
+                );
+
+                if (activePeerIds.length === 0) {
+                    showNotification('No connected peers with open data channels to send file.', 'error', 4000);
+                    fileInput.value = ''; // Clear selected file
+                    return;
+                }
+
+                if (activePeerIds.length === 1) {
+                    sendFile(file, activePeerIds[0]);
+                } else {
+                    // For simplicity, if multiple peers, send to all with open data channels
+                    // In a real app, you'd add a UI to select recipient(s)
+                    showNotification('Sending file to all connected peers...', 'info');
+                    activePeerIds.forEach(peerId => {
+                        sendFile(file, peerId);
+                    });
+                }
+                fileInput.value = ''; // Clear selected file after initiation
             }
-            fileInput.value = ''; // Clear the input so same file can be selected again
         });
-        // --- SOCKET.IO SIGNALING ---
-        // Connect to Socket.IO server (assuming it's on the same host/port)
-        // In a real app, you'd use a specific server URL: const socket = io('https://your-signaling-server.com');
-        socket = io();
-        socket.on('connect', () => {
+
+        toggleFullscreenButton.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                if (videoContainer.requestFullscreen) {
+                    videoContainer.requestFullscreen();
+                } else if (videoContainer.mozRequestFullScreen) { /* Firefox */
+                    videoContainer.mozRequestFullScreen();
+                } else if (videoContainer.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                    videoContainer.webkitRequestFullscreen();
+                } else if (videoContainer.msRequestFullscreen) { /* IE/Edge */
+                    videoContainer.msRequestFullscreen();
+                }
+                toggleFullscreenButton.querySelector('i').classList.replace('fa-expand', 'fa-compress');
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) { /* Firefox */
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { /* IE/Edge */
+                    document.msExitFullscreen();
+                }
+                toggleFullscreenButton.querySelector('i').classList.replace('fa-compress', 'fa-expand');
+            }
+        });
+
+        // Update fullscreen button icon if user exits fullscreen with ESC key
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                toggleFullscreenButton.querySelector('i').classList.replace('fa-compress', 'fa-expand');
+            }
+        });
+
+        // --- Socket.IO Event Handlers ---
+        socket.on('connect', async () => {
             console.log('Connected to signaling server with ID:', socket.id);
-            // After connecting, try to start local stream and join a room
-            getAndUpdateLocalStream('camera'); // Start camera on connect
-            socket.emit('join-room', 'default-room'); // Join a default room or prompt user for room ID
-            appendMessage(`You joined the meeting. Your ID: ${socket.id.substring(0,4)}...`, 'System');
+            // Request initial media stream once connected
+            await getAndUpdateLocalStream('camera'); // Start with camera stream by default
+            socket.emit('join-room', currentRoom);
+            updateCameraList(); // Populate camera list once permissions are likely granted
         });
-        socket.on('user-joined', async (peerId) => {
-            console.log(`User ${peerId} joined. Creating peer connection...`);
-            appendMessage(`User ${peerId.substring(0, 4)}... joined.`, 'System');
+
+        socket.on('user-connected', async (peerId, peerStatus) => {
+            console.log(`User connected: ${peerId.substring(0,5)}...`);
+            showNotification(`User ${peerId.substring(0, 5)}... joined the call.`, 'info');
+
+            // Create a new peer connection for the newly connected user
             const pc = createPeerConnection(peerId);
             peerConnections[peerId] = pc;
-            // For new users, we send an offer
-            await negotiateConnection(pc, peerId);
-        });
-        socket.on('user-left', (peerId) => {
-            console.log(`User ${peerId} left.`);
-            appendMessage(`User ${peerId.substring(0, 4)}... left.`, 'System');
-            if (peerConnections[peerId]) {
-                // Ensure data channels are closed before PC
-                if(peerConnections[peerId].fileShareDataChannel && peerConnections[peerId].fileShareDataChannel.readyState !== 'closed') {
-                    peerConnections[peerId].fileShareDataChannel.close();
-                }
-                peerConnections[peerId].close();
-                delete peerConnections[peerId];
+
+            // Immediately send an offer to the new peer if we have a local stream
+            if (localStream) {
+                // Tracks are added in createPeerConnection, no need to re-add here
+                await negotiateConnection(pc, peerId);
+            }
+
+            // Update remote video status if initial status is provided
+            if (peerStatus) {
                 const remoteVideo = document.getElementById(`remoteVideo-${peerId}`);
                 if (remoteVideo) {
-                    remoteVideo.parentNode.removeChild(remoteVideo);
+                    remoteVideo.title = `Camera: ${peerStatus.isCameraOn ? 'on' : 'off'}, Screen: ${peerStatus.isScreenSharing ? 'sharing' : 'not sharing'}`;
                 }
             }
         });
-        socket.on('offer', async (data) => {
-            console.log(`Received offer from ${data.senderId}:`, data.sdp);
-            let pc = peerConnections[data.senderId];
-            if (!pc) {
-                pc = createPeerConnection(data.senderId);
-                peerConnections[data.senderId] = pc;
+
+        socket.on('user-disconnected', (peerId) => {
+            console.log(`User disconnected: ${peerId.substring(0,5)}...`);
+            showNotification(`User ${peerId.substring(0, 5)}... left the call.`, 'info');
+            if (peerConnections[peerId]) {
+                peerConnections[peerId].close();
+                delete peerConnections[peerId];
             }
+            const remoteVideo = document.getElementById(`remoteVideo-${peerId}`);
+            if (remoteVideo) {
+                remoteVideo.remove();
+            }
+            updateMediaControlsState(localStream !== null && (localStream.getAudioTracks().length > 0 || localStream.getVideoTracks().length > 0)); // Update controls if local stream exists
+        });
+
+        socket.on('offer', async (data) => {
+            console.log('Received offer from:', data.senderId.substring(0,5), '...');
+            const peerId = data.senderId;
+            let pc = peerConnections[peerId];
+
+            if (!pc) {
+                pc = createPeerConnection(peerId);
+                peerConnections[peerId] = pc;
+                // Tracks are added in createPeerConnection, no need to re-add here
+            }
+
             try {
-                await pc.setRemoteDescription(new RTCSessionDescription(data.sdp));
+                await pc.setRemoteDescription(new RTCSessionDescription(data.offer));
                 const answer = await pc.createAnswer();
                 await pc.setLocalDescription(answer);
-                console.log(`Sending answer to ${data.senderId}:`, answer);
-                socket.emit('answer', { sdp: pc.localDescription, receiverId: data.senderId, senderId: socket.id });
+                socket.emit('answer', {
+                    answer: pc.localDescription,
+                    receiverId: peerId,
+                    senderId: socket.id
+                });
+                console.log(`Sent answer to ${peerId.substring(0,5)}...`);
             } catch (error) {
-                console.error("Error handling offer: ", error);
+                console.error(`Error setting remote description or creating answer for ${peerId.substring(0,5)}...:`, error);
             }
         });
+
         socket.on('answer', async (data) => {
-            console.log(`Received answer from ${data.senderId}:`, data.sdp);
+            console.log('Received answer from:', data.senderId.substring(0,5), '...');
             const pc = peerConnections[data.senderId];
-            if (!pc) {
-                console.warn(`No peer connection for ${data.senderId} to set remote description.`);
-                return;
-            }
-            try {
-                await pc.setRemoteDescription(new RTCSessionDescription(data.sdp));
-            } catch (error) {
-                console.error("Error handling answer: ", error);
+            if (pc) {
+                try {
+                    await pc.setRemoteDescription(new RTCSessionDescription(data.answer));
+                    console.log(`Set remote description for ${data.senderId.substring(0,5)}...`);
+                } catch (error) {
+                    console.error(`Error setting remote description for ${data.senderId.substring(0,5)}...:`, error);
+                }
             }
         });
 
         socket.on('ice-candidate', async (data) => {
-            console.log(`Received ICE candidate from ${data.senderId}:`, data.candidate);
+            console.log('Received ICE candidate from:', data.senderId.substring(0,5), '...');
             const pc = peerConnections[data.senderId];
-            if (!pc) {
-                console.warn(`No peer connection for ${data.senderId} to add ICE candidate.`);
-                return;
-            }
-            try {
-                await pc.addIceCandidate(new RTCIceCandidate(data.candidate));
-            } catch (error) {
-                console.error("Error adding received ICE candidate: ", error);
-                // This error can happen if the candidate is already added or invalid
+            if (pc) {
+                try {
+                    await pc.addIceCandidate(new RTCIceCandidate(data.candidate));
+                    console.log(`Added ICE candidate for ${data.senderId.substring(0,5)}...`);
+                } catch (error) {
+                    console.error(`Error adding ICE candidate for ${data.senderId.substring(0,5)}...:`, error);
+                }
             }
         });
+
         socket.on('chat-message', (data) => {
-            appendMessage(data.message, `Peer ${data.senderId.substring(0, 4)}...`);
-        });
-        socket.on('disconnect', () => {
-            console.log('Disconnected from signaling server.');
-            alert('Disconnected from the meeting.');
-            // Clean up all resources when disconnected from the server
-            endCallButton.click(); // Simulate ending the call to clean up
-        });
-        // Initial setup on page load
-        (async function init() {
-            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-                alert('Your browser does not support WebRTC media devices API.');
-                updateMediaControlsState(false);
-                return;
-            }
-            // Initially populate camera list (labels might be empty until permissions are granted)
-            await updateCameraList();
-            updateMediaControlsState(false); // Initially disable controls until stream starts
-        })();
-        // Listen for device changes (e.g., USB camera plugged in/out)
-        navigator.mediaDevices.addEventListener('devicechange', async () => {
-            console.log('Media device changed. Updating camera list.');
-            await updateCameraList();
-            // If the active camera was removed, try to re-acquire the stream
-            if (localStream && !localStream.active) {
-                console.log('Active stream stopped due to device change. Re-acquiring...');
-                await getAndUpdateLocalStream('camera', currentCameraDeviceId || undefined, resolutionSelect.value);
+            const senderDisplayName = data.senderId === socket.id ? 'You' : `Peer ${data.senderId.substring(0, 5)}...`;
+            addChatMessage(data.message, senderDisplayName);
+            // Optionally, show a small notification if chat box is hidden
+            if (chatContainer.style.display === 'none') {
+                showNotification(`New message from ${data.senderId.substring(0, 5)}...`, 'info', 2000);
             }
         });
+
+        socket.on('camera-status-update', (data) => {
+            // Update UI for remote peer's camera status
+            console.log(`Peer ${data.userId.substring(0, 5)}... camera status: ${data.isCameraOn}, screen sharing: ${data.isScreenSharing}`);
+            const remoteVideo = document.getElementById(`remoteVideo-${data.userId}`);
+            if (remoteVideo) {
+                remoteVideo.title = `Camera: ${data.isCameraOn ? 'on' : 'off'}, Screen: ${data.isScreenSharing ? 'sharing' : 'not sharing'}`;
+                // You could also add a visual indicator overlay on the video element
+            }
+        });
+
+        socket.on('mic-status-update', (data) => {
+            // Update UI for remote peer's mic status
+            console.log(`Peer ${data.userId.substring(0, 5)}... mic status: ${data.isMicOn}`);
+            const remoteVideo = document.getElementById(`remoteVideo-${data.userId}`);
+            if (remoteVideo) {
+                // You could add a visual indicator overlay on the video element
+            }
+        });
+
+
+        // Initialize media stream and event listeners on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateMediaControlsState(false); // Initial state, nothing active
+            // The socket.on('connect') handler will call getAndUpdateLocalStream
+        });
+
     </script>
 </body>
 </html>

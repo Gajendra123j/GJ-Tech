@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulated Backend Interaction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f4f8;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #greetButton, .topic-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            margin: 10px 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #greetButton:hover, .topic-btn:hover {
+            background-color: #45a049;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+
+        .topics {
+            margin-top: 30px;
+        }
+
+        .topics h2 {
+            color: #444;
+        }
+
+        .topic-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Simulated Frontend</h1>
+    <button id="greetButton">Click to Simulate Greeting from Backend</button>
+    <div id="message" aria-live="polite"></div>
+
+    <div class="topics">
+        <h2>Explore Topics</h2>
+        <div class="topic-container">
+            <button class="topic-btn" data-topic="HTML">HTML</button>
+            <button class="topic-btn" data-topic="CSS">CSS</button>
+            <button class="topic-btn" data-topic="JavaScript">JavaScript</button>
+            <button class="topic-btn" data-topic="React">React</button>
+            <button class="topic-btn" data-topic="Node.js">Node.js</button>
+            <button class="topic-btn" data-topic="MongoDB">MongoDB</button>
+        </div>
+    </div>
+
+    <div class="footer">© 2025 GJ Tech Learning Portal (Simulated)</div>
+
+    <script>
+        // Greeting simulation
+        document.getElementById('greetButton').addEventListener('click', function () {
+            document.getElementById('message').innerText = "Loading greeting...";
+            setTimeout(() => {
+                const backendResponse = "✅ Simulated greeting from the backend!";
+                document.getElementById('message').innerText = backendResponse;
+            }, 1000);
+        });
+
+        // Topic content simulation
+        const topicButtons = document.querySelectorAll('.topic-btn');
+        topicButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const topic = button.getAttribute('data-topic');
+                document.getElementById('message').innerText = `Loading ${topic} content...`;
+                setTimeout(() => {
+                    const response = `📘 This is a simulated backend response for the topic: ${topic}.`;
+                    document.getElementById('message').innerText = response;
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

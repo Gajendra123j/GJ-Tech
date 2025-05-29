@@ -89,7 +89,6 @@
             border-bottom: 2px solid #5fa6e6; /* Blue underline for section titles */
             padding-bottom: 8px;
         }
-
         /* Form element styles */
         label {
             display: block;
@@ -98,7 +97,6 @@
             color: #555;
             font-weight: 500;
         }
-
         input[type="text"],
         input[type="email"],
         input[type="tel"],
@@ -113,7 +111,6 @@
             font-size: 1rem;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
-
         input[type="text"]:focus,
         input[type="email"]:focus,
         input[type="tel"]:focus,
@@ -124,12 +121,10 @@
             outline: none;
             box-shadow: 0 0 5px rgba(74, 144, 226, 0.5); /* Blue shadow on focus */
         }
-
         /* File input specific styles */
         input[type="file"] {
             padding-top: 12px; /* Adjust padding for file input */
         }
-
         /* Error message style */
         .error-message {
             color: #e74c3c; /* Red color for error */
@@ -265,38 +260,25 @@
 
             <div class="form-section">
                 <h2>Documents Upload</h2>
-                <label for="resume">Resume (PDF, max 5MB)</label>
-                <input type="file" id="resume" name="resume" accept=".pdf" required>
-                <div class="error-message" id="resumeError"></div>
-
-                <label for="certificate">Certificate (PDF, max 5MB)</label>
-                <input type="file" id="certificate" name="certificate" accept=".pdf" required>
-                <div class="error-message" id="certificateError"></div>
-
                 <label for="photo">Recent Passport Size Photo (JPG, PNG, max 1MB)</label>
                 <input type="file" id="photo" name="photo" accept=".jpg, .jpeg, .png" required>
                 <div class="error-message" id="photoError"></div>
-
                 <label for="signature">Scanned Signature (JPG, PNG, max 500KB)</label>
                 <input type="file" id="signature" name="signature" accept=".jpg, .jpeg, .png" required>
                 <div class="error-message" id="signatureError"></div>
-
                 <label for="marksheet">High School Marksheet (PDF, max 5MB)</label>
                 <input type="file" id="marksheet" name="marksheet" accept=".pdf" required>
                 <div class="error-message" id="marksheetError"></div>
             </div>
-
             <div class="form-section">
                 <h2>Create Password</h2>
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
                 <div class="error-message" id="passwordError"></div>
-
                 <label for="confirmPassword">Confirm Password</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" required>
                 <div class="error-message" id="confirmPasswordError"></div>
             </div>
-
             <div class="form-section payment-details">
                 <h2>Payment</h2>
                 <p><strong>Total Fee:</strong> ₹500</p>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GJ Tech - Mobile App Development Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-slate-700 text-white text-center py-3 space-x-6 text-lg">
+        <a href="index.html" class="hover:underline">Home 🏡</a>
+        <a href="blogs.html" class="hover:underline">Blogs 👩‍💻</a>
+        <a href="about.html" class="hover:underline">About 🎓</a>
+        <a href="contact.html" class="hover:underline">Contact 📶</a>
+    </nav>
+
+    <main class="max-w-4xl mx-auto p-6">
+        <article class="bg-white rounded-lg shadow-lg p-8">
+            <h1 class="text-3xl font-bold text-slate-800 mb-6">Mobile App Development Guide</h1>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-slate-700 mb-4">Getting Started with Android Development</h2>
+                <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                    <h3 class="text-lg font-semibold text-blue-800 mb-2">Prerequisites:</h3>
+                    <ul class="list-disc list-inside text-blue-700">
+                        <li>Java Development Kit (JDK)</li>
+                        <li>Android Studio</li>
+                        <li>Android SDK</li>
+                        <li>Basic knowledge of Java/Kotlin</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Basic Android Project Structure:</h3>
+                    <pre><code class="language-java">
+// MainActivity.java
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+}
+
+// activity_main.xml
+&lt;LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"&gt;
+    
+    &lt;TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!" /&gt;
+&lt;/LinearLayout&gt;
+                    </code></pre>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-slate-700 mb-4">Key Android Components</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-green-800 mb-2">Activities</h3>
+                        <pre><code class="language-java">
+public class MyActivity extends Activity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.my_layout);
+    }
+}
+                        </code></pre>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-purple-800 mb-2">Fragments</h3>
+                        <pre><code class="language-java">
+public class MyFragment extends Fragment {
+    @Override
+    public View onCreateView(LayoutInflater inflater, 
+                           ViewGroup container, 
+                           Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_my, 
+                              container, false);
+    }
+}
+                        </code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-slate-700 mb-4">User Interface Development</h2>
+                <div class="bg-yellow-50 p-4 rounded-lg mb-4">
+                    <h3 class="text-lg font-semibold text-yellow-800 mb-2">Layout Example:</h3>
+                    <pre><code class="language-xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"&gt;
+
+    &lt;EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter text" /&gt;
+
+    &lt;Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit" /&gt;
+
+&lt;/LinearLayout&gt;
+                    </code></pre>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-slate-700 mb-4">Data Storage</h2>
+                <div class="bg-indigo-50 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold text-indigo-800 mb-2">SQLite Database Example:</h3>
+                    <pre><code class="language-java">
+public class DatabaseHelper extends SQLiteOpenHelper {
+    private static final String DATABASE_NAME = "MyDB";
+    private static final int DATABASE_VERSION = 1;
+
+    public DatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE users (" +
+                  "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                  "name TEXT," +
+                  "email TEXT)");
+    }
+}
+                    </code></pre>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-slate-700 mb-4">Networking and APIs</h2>
+                <div class="bg-red-50 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold text-red-800 mb-2">API Call Example:</h3>
+                    <pre><code class="language-java">
+public class ApiService {
+    private static final String BASE_URL = "https://api.example.com/";
+
+    public void fetchData(Callback callback) {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+            .url(BASE_URL + "data")
+            .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                // Handle response
+            }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // Handle error
+            }
+        });
+    }
+}
+                    </code></pre>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-slate-700 mb-4">Best Practices</h2>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-check text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-slate-700">Code Organization</h3>
+                            <p class="text-gray-600">Use proper package structure and follow MVVM architecture</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-check text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-slate-700">Performance</h3>
+                            <p class="text-gray-600">Optimize layouts, use background threads for heavy operations</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-check text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-slate-700">Security</h3>
+                            <p class="text-gray-600">Implement proper encryption, secure data storage</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-slate-700 mb-4">Testing</h2>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Unit Test Example:</h3>
+                    <pre><code class="language-java">
+@Test
+public void testUserCreation() {
+    User user = new User("John", "john@example.com");
+    assertEquals("John", user.getName());
+    assertEquals("john@example.com", user.getEmail());
+}
+                    </code></pre>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer class="bg-slate-800 text-white text-center py-4 mt-10">
+        <p>&copy; 2024 GJ Tech. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-xml.min.js"></script>
+</body>
+</html> 

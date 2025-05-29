@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GJ Tech Company Pvt Ltd. HTML Test Online</title>
+    <title>GJ Tech Company Pvt Ltd Test Online</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
-        /* General Styling */
+        /* Styles from your previous code */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -130,6 +130,22 @@
         #options-area button {
             width: 100%; /* Make option buttons take full width */
             text-align: left; /* Align option text to the left */
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
+        }
+        #options-area button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+        #options-area button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            opacity: 0.6;
         }
         /* Feedback for answer options */
         button.correct {
@@ -272,12 +288,14 @@
             border-bottom: 1mm solid #eee;
             padding-bottom: 10mm;
         }
+
         .small-certificate .header img {
             width: 15mm; /* Use mm for image size in certificate */
             height: 15mm; /* Use mm for image size in certificate */
             margin-right: 5mm;
             object-fit: contain; /* Ensure logo fits without distortion */
         }
+
         .small-certificate .header h3 {
             font-size: 10pt; /* Use pt for print size */
             margin: 0;
@@ -398,6 +416,7 @@
             display: none; /* Hidden by default */
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
+
         #google-form-link-container p {
             margin-bottom: 15px;
             font-size: 16px;
@@ -474,7 +493,7 @@
                 height: 10mm; /* Adjust logo size */
                 margin-right: 0; /* Remove margin */
                 margin-bottom: 5mm; /* Add bottom margin */
-                }
+            }
             .small-certificate .header h3 {
                 font-size: 10pt; /* Adjust font size */
                 text-align: center; /* Center title */
@@ -518,6 +537,7 @@
                 gap: 10mm; /* Add gap between signatures */
                 margin-top: 15mm; /* Adjust margin */
             }
+
             .small-certificate .signature-block {
                 margin: 0; /* Remove horizontal margin */
             }
@@ -547,13 +567,13 @@
     </style>
 </head>
 <body>
-    <h1>HTML Online Test</h1>
+    <h1> GJ Tech - Mobile Computing  Online Test</h1>
     <div id="test-info-container">
-        <h2>Welcome to the HTML Online Test</h2>
+        <h2>Welcome GJ Tech - Mobile Computing & Android Overview</h2>
         <p>Please read the following instructions carefully before starting the test:</p>
         <ul>
-            <li>This test consists of <span id="total-questions">5</span> multiple-choice questions.</li>
-            <li>You have <span id="test-duration-minutes">1</span> minute to complete the test.</li>
+            <li>This test consists of <span id="total-questions">32</span> multiple-choice questions.</li>
+            <li>You have <span id="test-duration-minutes">20</span> minutes to complete the test.</li>
             <li>Your camera feed will be active during the test for proctoring purposes. Ensure your face is clearly visible.</li>
             <li>Do not navigate away from the test window or open other applications during the test.</li>
             <li>Potential cheating activity may result in the cancellation of your test.</li>
@@ -586,7 +606,7 @@
     <button id="start-button">Start Test</button>
     <div id="main-container">
         <div id="video-container">
-            <h3>Your Camera Feed</h3>
+            <h3>Your Camera Feed 📸</h3>
             <video id="camera-feed" autoplay playsinline></video>
         </div>
         <div id="quiz-container">
@@ -611,11 +631,6 @@
         <p>Awarded on: <span class="bold" id="certificate-completion-date">[Date of Completion]</span></p>
         <p>Score Achieved: <span class="bold" id="certificate-score-large">[Score]%</span></p>
         <img src="singture.jpg" alt="Gajendra Singh" style="width: 80px; height: auto; margin-bottom: 5px;">
-        <div class="signature">
-            <div class="signature-block">
-                <div class="signature-name">Gajendra Singh</div>
-                <div class="signature-title">Gj Tech(CEO) Signatory</div>
-            </div>
     </div>
     <div class="certificate small-certificate" id="small-certificate">
         <div class="header">
@@ -658,7 +673,6 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
-        // Get references to HTML elements
         const cameraFeed = document.getElementById('camera-feed');
         const startButton = document.getElementById('start-button');
         const quizContainer = document.getElementById('quiz-container');
@@ -669,12 +683,10 @@
         const mainContainer = document.getElementById('main-container');
         const cheatingDetectionDiv = document.getElementById('cheating-detection');
         const cancelButton = document.getElementById('cancel-button');
-        // Certificate elements (Large)
         const certificateDiv = document.getElementById('certificate-container');
         const certificateUserName = document.getElementById('certificate-user-name');
         const certificateCompletionDate = document.getElementById('certificate-completion-date');
         const certificateScoreLarge = document.getElementById('certificate-score-large');
-        // Certificate elements (Small - for PDF)
         const smallCertificateDiv = document.getElementById('small-certificate');
         const smallCertificateUserName = document.getElementById('small-certificate-user-name');
         const smallCertificateFatherName = document.getElementById('small-certificate-father-name');
@@ -690,301 +702,425 @@
         const totalQuestionsSpan = document.getElementById('total-questions');
         const testDurationMinutesSpan = document.getElementById('test-duration-minutes');
         const passingScorePercentageSpan = document.getElementById('passing-score-percentage');
-        // Google Form elements
         const googleFormLinkContainer = document.getElementById('google-form-link-container');
-        // IMPORTANT: Replace "https://forms.gle/YOUR_ACTUAL_GOOGLE_FORM_LINK" with your actual Google Form link.
-        // User Details Input elements
         const userDetailsInput = document.getElementById('user-details-input');
         const nameInput = document.getElementById('name-input');
         const fatherNameInput = document.getElementById('father-name-input');
         const districtInput = document.getElementById('district-input');
         const stateInput = document.getElementById('state-input');
-        // Input Error elements
         const nameInputError = document.getElementById('name-input-error');
         const fatherNameInputError = document.getElementById('father-name-input-error');
         const districtInputError = document.getElementById('district-input-error');
         const stateInputError = document.getElementById('state-input-error');
-        // Photo Capture elements
         const photoCanvas = document.getElementById('photo-canvas');
         const photoCanvasCtx = photoCanvas.getContext('2d');
-        // Variables to store user details and photo
         let userName = "";
         let fatherName = "";
         let district = "";
         let state = "";
-        let capturedPhotoDataUrl = null; // To store the captured photo Data URL
-        let stream; // To hold the camera stream
-        let currentQuestionIndex = 0; // Index of the current question
-        let score = 0; // User's score
-        let answerSelected = false; // Flag to prevent multiple answers per question
-        let cheatingDetected = false; // Flag for cheating detection
-        let quizActive = false; // Flag to indicate if the quiz is running
-        let completionDate; // To store the quiz completion date
-        let quizCancelledByCheat = false; // To track if quiz ended due to cheating
-        let periodicPhotoInterval; // Variable to hold the interval for periodic photo capture
-        let cheatDetectionInterval; // Variable to hold the interval for background cheat detection
-        // Quiz duration and timer variables
-        const quizDurationMinutes = parseInt(testDurationMinutesSpan.textContent); // Set test duration in minutes
+        let capturedPhotoDataUrl = null;
+        let stream;
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let answerSelected = false;
+        let cheatingDetected = false;
+        let quizActive = false;
+        let completionDate;
+        let quizCancelledByCheat = false;
+        let periodicPhotoInterval;
+        let cheatDetectionInterval;
+        const quizDurationMinutes = parseInt(testDurationMinutesSpan.textContent, 10);
         const quizDurationSeconds = quizDurationMinutes * 60;
         let timeRemaining = quizDurationSeconds;
-        let timerInterval;
-
-        // Questions array
+        let quizTimerInterval;
+        const passingScorePercentage = parseInt(passingScorePercentageSpan.textContent, 10);
+        const totalQuestions = 32; // Updated total number of questions
+        // Updated questions array with new HTML and mobile development questions
         const questions = [
             {
                 question: "What does HTML stand for?",
-                options: ["Hyper Text Markup Language", "Highly Typed Machine Language", "Home Tool Management Language", "Hyperlinks and Text Markup Language"],
-                correctAnswer: "Hyper Text Markup Language"
+                options: ["Hyper Text Markup Language", "Highly Typed Machine Language", "Hyperlink and Text Management Language", "Home Tool Markup Language"],
+                answer: "Hyper Text Markup Language"
             },
             {
-                question: "Which HTML tag is used to define an unordered list?",
-                options: ["<ul>", "<ol>", "<li>", "<dl>"],
-                correctAnswer: "<ul>"
+                question: "Which tag is used to create an unordered list in HTML?",
+                options: ["&lt;ol&gt;", "&lt;ul&gt;", "&lt;li&gt;", "&lt;list&gt;"],
+                answer: "&lt;ul&gt;"
             },
             {
                 question: "What is the correct HTML tag for inserting a line break?",
+                options: ["&lt;br&gt;", "&lt;lb&gt;", "&lt;break&gt;", "&lt;newline&gt;"],
+                answer: "&lt;br&gt;"
+            },
+            {
+                question: "Which HTML tag is used to create an ordered list?",
+                options: ["&lt;ul&gt;", "&lt;list&gt;", "&lt;ol&gt;", "&lt;dl&gt;"],
+                answer: "&lt;ol&gt;"
+            },
+            {
+                question: "What does the acronym CSS stand for?",
+                options: ["Creative Style Sheets", "Computer Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets"],
+                answer: "Cascading Style Sheets"
+            },
+            {
+                question: "Which HTML attribute is used to define inline styles?",
+                options: ["style", "class", "id", "font"],
+                answer: "style"
+            },
+            {
+                question: "Which HTML tag is used to define the title of an HTML document?",
+                options: ["&lt;header&gt;", "&lt;meta&gt;", "&lt;title&gt;", "&lt;head&gt;"],
+                answer: "&lt;title&gt;"
+            },
+            {
+                question: "Which of the following is the correct way to link an external CSS file to an HTML document?",
+                options: ["&lt;style src=\"styles.css\">", "&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\">", "&lt;stylesheet>styles.css</stylesheet>", "&lt;css file=\"styles.css\">"],
+                answer: "&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\">"
+            },
+            {
+                question: "Which HTML tag is used to create a hyperlink?",
+                options: ["&lt;link&gt;", "&lt;a&gt;", "&lt;hlink&gt;", "&lt;url&gt;"],
+                answer: "&lt;a&gt;"
+            },
+            {
+                question: "What is the purpose of the `alt` attribute in the `<img>` tag?",
+                options: ["To provide an alternative style for the image.", "To specify the alignment of the image.", "To provide alternative text for the image if it cannot be displayed.", "To add a tooltip to the image."],
+                answer: "To provide alternative text for the image if it cannot be displayed."
+            },
+            {
+                question: "Which HTML tag is used to define a table?",
+                options: ["&lt;layout&gt;", "&lt;table&gt;", "&lt;grid&gt;", "&lt;data&gt;"],
+                answer: "&lt;table&gt;"
+            },
+            {
+                question: "What is the purpose of the `&lt;meta charset=\"UTF-8\"&gt;` tag in HTML?",
+                options: ["To define the character encoding for the document.", "To set the author of the document.", "To specify keywords for search engines.", "To control the viewport settings."],
+                answer: "To define the character encoding for the document."
+            },
+            {
+                question: "Which of the following is a popular operating system for mobile devices?",
+                options: ["Windows", "macOS", "Android", "Linux"],
+                answer: "Android"
+            },
+            {
+                question: "What is the primary programming language used for native Android development?",
+                options: ["Swift", "Objective-C", "Java (increasingly Kotlin)", "C#"],
+                answer: "Java (increasingly Kotlin)"
+            },
+            {
+                question: "What is the primary programming language used for native iOS development?",
+                options: ["Java", "Kotlin", "Swift", "Python"],
+                answer: "Swift"
+            },
+            {
+                question: "What is a key benefit of cross-platform mobile development?",
+                options: ["Higher performance than native apps.", "Single codebase for multiple platforms.", "Full access to all device-specific hardware features.", "Automatic optimization for each operating system."],
+                answer: "Single codebase for multiple platforms."
+            },
+            {
+                question: "Which of the following is a popular cross-platform framework developed by Google?",
+                options: ["React Native", "Ionic", "Flutter", "Xamarin"],
+                answer: "Flutter"
+            },
+            {
+                question: "What is the function of a mobile app emulator?",
+                options: ["To install apps on physical devices.", "To simulate a mobile device on a computer for testing.", "To design the user interface of an app.", "To translate code into different languages."],
+                answer: "To simulate a mobile device on a computer for testing."
+            },
+            {
+                question: "What does UI generally refer to in mobile app development?",
+                options: ["Underlying Infrastructure", "User Interaction", "User Interface", "Universal Integration"],
+                answer: "User Interface"
+            },
+            {
+                question: "What does UX generally refer to in mobile app development?",
+                options: ["User Extension", "Universal Exchange", "User Experience", "Utility Exchange"],
+                answer: "User Experience"
+            },
+            {
+                question: "What is an APK file commonly used for?",
+                options: ["Storing iOS app data.", "Distributing and installing Android apps.", "Designing mobile app interfaces.", "Compiling code for web browsers."],
+                answer: "Distributing and installing Android apps."
+            },
+            {
+                question: "What is an IPA file commonly used for?",
+                options: ["Distributing and installing iOS apps.", "Storing Android app data.", "Managing databases in mobile apps.", "Creating animations for mobile websites."],
+                answer: "Distributing and installing iOS apps."
+            }
+            // Add the remaining 10 questions you provided earlier here
+            ,
+            {
+                question: "What is the correct HTML tag for inserting a line break?",
                 options: ["<br>", "<lb>", "<break>", "<newline>"],
-                correctAnswer: "<br>"
+                answer: "<br>"
             },
             {
-                question: "Which tag is used to define the structure of an HTML document?",
-                options: ["<body>", "<head>", "<html>", "<title>"],
-                correctAnswer: "<html>"
+                question: "Which HTML tag is used to create an ordered list?",
+                options: ["<ul>", "<list>", "<ol>", "<dl>"],
+                answer: "<ol>"
             },
             {
-                question: "What is the purpose of the 'alt' attribute in an '<img>' tag?",
-                options: ["To provide an alternative color for the image", "To specify the alignment of the image", "To provide alternative text for the image if it cannot be displayed", "To link the image to another document"],
-                correctAnswer: "To provide alternative text for the image if it cannot be displayed"
+                question: "What does the acronym CSS stand for?",
+                options: ["Creative Style Sheets", "Computer Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets"],
+                answer: "Cascading Style Sheets"
+            },
+            {
+                question: "Which HTML attribute is used to define inline styles?",
+                options: ["style", "class", "id", "font"],
+                answer: "style"
+            },
+            {
+                question: "Which HTML tag is used to define the title of an HTML document?",
+                options: ["<header>", "<meta>", "<title>", "<head>"],
+                answer: "<title>"
+            },
+            {
+                question: "Which of the following is the correct way to link an external CSS file to an HTML document?",
+                options: ["<style src=\"styles.css\">", "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\">", "<stylesheet>styles.css</stylesheet>", "<css file=\"styles.css\">"],
+                answer: "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\">"
+            },
+            {
+                question: "Which HTML tag is used to create a hyperlink?",
+                options: ["<link>", "<a>", "<hlink>", "<url>"],
+                answer: "<a>"
+            },
+            {
+                question: "What is the purpose of the `alt` attribute in the `<img>` tag?",
+                options: ["To provide an alternative style for the image.", "To specify the alignment of the image.", "To provide alternative text for the image if it cannot be displayed.", "To add a tooltip to the image."],
+                answer: "To provide alternative text for the image if it cannot be displayed."
+            },
+            {
+                question: "Which HTML tag is used to define a table?",
+                options: ["<layout>", "<table>", "<grid>", "<data>"],
+                answer: "<table>"
+            },
+            {
+                question: "What is the purpose of the `<meta charset=\"UTF-8\">` tag in HTML?",
+                options: ["To define the character encoding for the document.", "To set the author of the document.", "To specify keywords for search engines.", "To control the viewport settings."],
+                answer: "To define the character encoding for the document."
             }
-            // Add more questions here
         ];
-        const totalQuestions = questions.length;
-        totalQuestionsSpan.textContent = totalQuestions;
-        // Function to validate user details input
+
+        async function startCamera() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+                cameraFeed.srcObject = stream;
+            } catch (err) {
+                console.error("Error accessing camera:", err);
+                alert("Failed to access camera. Please ensure you have granted permission.");
+            }
+        }
+
+        function stopCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                cameraFeed.srcObject = null;
+            }
+        }
+
+        function capturePhoto() {
+            photoCanvas.width = cameraFeed.videoWidth;
+            photoCanvas.height = cameraFeed.videoHeight;
+            photoCanvasCtx.drawImage(cameraFeed, 0, 0, photoCanvas.width, photoCanvas.height);
+            capturedPhotoDataUrl = photoCanvas.toDataURL('image/jpeg');
+            if (smallCertificatePhotoDiv) {
+                smallCertificatePhotoDiv.innerHTML = `<img src="${capturedPhotoDataUrl}" alt="User Photo">`;
+            }
+        }
+
         function validateUserDetails() {
+            userName = nameInput.value.trim();
+            fatherName = fatherNameInput.value.trim();
+            district = districtInput.value.trim();
+            state = stateInput.value.trim();
+
             let isValid = true;
-            if (nameInput.value.trim() === "") {
-                nameInputError.style.display = "block";
+            if (!userName) {
+                nameInputError.style.display = 'block';
                 isValid = false;
             } else {
-                nameInputError.style.display = "none";
-                userName = nameInput.value.trim();
+                nameInputError.style.display = 'none';
             }
-            if (fatherNameInput.value.trim() === "") {
-                fatherNameInputError.style.display = "block";
+            if (!fatherName) {
+                fatherNameInputError.style.display = 'block';
                 isValid = false;
             } else {
-                fatherNameInputError.style.display = "none";
-                fatherName = fatherNameInput.value.trim();
+                fatherNameInputError.style.display = 'none';
             }
-            if (districtInput.value.trim() === "") {
-                districtInputError.style.display = "block";
+            if (!district) {
+                districtInputError.style.display = 'block';
                 isValid = false;
             } else {
-                districtInputError.style.display = "none";
-                district = districtInput.value.trim();
+                districtInputError.style.display = 'none';
             }
-            if (stateInput.value.trim() === "") {
-                stateInputError.style.display = "block";
+            if (!state) {
+                stateInputError.style.display = 'block';
                 isValid = false;
             } else {
-                stateInputError.style.display = "none";
-                state = stateInput.value.trim();
+                stateInputError.style.display = 'none';
             }
             return isValid;
         }
-        // Function to start the quiz
+
         function startQuiz() {
             if (!validateUserDetails()) {
                 return;
             }
-            testInfoContainer.style.display = "none";
-            mainContainer.style.display = "flex";
-            startButton.style.display = "none";
-            quizTimerDisplay.style.display = "block";
+            testInfoContainer.style.display = 'none';
+            startButton.style.display = 'none';
+            mainContainer.style.display = 'flex';
+            quizContainer.style.display = 'block';
+            quizTimerDisplay.style.display = 'block';
             currentQuestionIndex = 0;
             score = 0;
             timeRemaining = quizDurationSeconds;
             quizActive = true;
-            completionDate = null; // Reset completion date
+            cheatingDetected = false;
+            quizCancelledByCheat = false;
             startTimer();
             displayQuestion();
-            startPeriodicPhotoCapture();
-            startCheatDetection();
+            periodicPhotoInterval = setInterval(capturePhoto, 30000); // Capture photo every 30 seconds
+            // Basic cheating detection (more sophisticated methods can be added)
+            cheatDetectionInterval = setInterval(function() {
+                if (document.hidden) {
+                    if (quizActive && !quizCancelledByCheat) {
+                        cheatingDetected = true;
+                        showCheatingDetectionMessage();
+                        endQuiz();
+                    }
+                }
+            }, 1000);
         }
-        // Function to access the camera
-        async function enableCamera() {
-            try {
-                stream = await navigator.mediaDevices.getUserMedia({ video: true });
-                cameraFeed.srcObject = stream;
-            } catch (error) {
-                console.error("Error accessing camera:", error);
-                // Handle the error appropriately (e.g., display a message to the user)
+
+        function displayQuestion() {
+            if (currentQuestionIndex < questions.length) {
+                const questionData = questions[currentQuestionIndex];
+                questionArea.textContent = `${currentQuestionIndex + 1}. ${questionData.question}`;
+                optionsArea.innerHTML = '';
+                questionData.options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.textContent = option;
+                    button.addEventListener('click', () => checkAnswer(option, questionData.answer));
+                    optionsArea.appendChild(button);
+                });
+                nextButton.style.display = 'none';
+                answerSelected = false;
+            } else {
+                endQuiz();
             }
         }
-        // Function to display the current question
-        function displayQuestion() {
-            answerSelected = false;
-            const currentQuestion = questions[currentQuestionIndex];
-            questionArea.textContent = `${currentQuestionIndex + 1}. ${currentQuestion.question}`;
-            optionsArea.innerHTML = "";
-            currentQuestion.options.forEach(option => {
-                const button = document.createElement('button');
-                button.textContent = option;
-                button.classList.add('option-button');
-                button.addEventListener('click', () => selectAnswer(option));
-                optionsArea.appendChild(button);
-            });
-            nextButton.style.display = "none";
-        }
-        // Function to select an answer
-        function selectAnswer(selectedOption) {
-            if (answerSelected || cheatingDetected) {
+
+        function checkAnswer(selectedOption, correctAnswer) {
+            if (!quizActive || answerSelected) {
                 return;
             }
             answerSelected = true;
-            const currentQuestion = questions[currentQuestionIndex];
-            const optionsButtons = optionsArea.querySelectorAll('.option-button');
-            optionsButtons.forEach(button => {
-                if (button.textContent === currentQuestion.correctAnswer) {
+            const buttons = optionsArea.querySelectorAll('button');
+            buttons.forEach(button => {
+                if (button.textContent === correctAnswer) {
                     button.classList.add('correct');
-                }
-                if (button.textContent === selectedOption && selectedOption !== currentQuestion.correctAnswer) {
+                } else if (button.textContent === selectedOption && selectedOption !== correctAnswer) {
                     button.classList.add('wrong');
                 }
                 button.disabled = true;
             });
-            if (selectedOption === currentQuestion.correctAnswer) {
+
+            if (selectedOption === correctAnswer) {
                 score++;
             }
+
             if (currentQuestionIndex < questions.length - 1) {
-                nextButton.style.display = "block";
+                nextButton.style.display = 'block';
             } else {
-                clearInterval(timerInterval);
-                clearInterval(periodicPhotoInterval);
-                clearInterval(cheatDetectionInterval);
                 endQuiz();
             }
         }
-        // Event listener for the next button
-        nextButton.addEventListener('click', () => {
+
+        function nextQuestion() {
             currentQuestionIndex++;
             displayQuestion();
-        });
-        // Function to update the timer display
-        function updateTimer() {
-            const minutes = Math.floor(timeRemaining / 60);
-            const seconds = timeRemaining % 60;
-            quizTimerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            if (timeRemaining <= 0) {
-                clearInterval(timerInterval);
-                clearInterval(periodicPhotoInterval);
-                clearInterval(cheatDetectionInterval);
-                endQuiz();
-            }
-            timeRemaining--;
         }
-        // Function to start the timer
+
         function startTimer() {
-            timerInterval = setInterval(updateTimer, 1000);
+            quizTimerInterval = setInterval(function () {
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                quizTimerDisplay.textContent = `Time Remaining: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                timeRemaining--;
+                if (timeRemaining < 0) {
+                    endQuiz();
+                }
+            }, 1000);
         }
-        // Function to end the quiz
+
+        function stopTimer() {
+            clearInterval(quizTimerInterval);
+        }
+
+        function showCheatingDetectionMessage() {
+            quizContainer.style.display = 'none';
+            cheatingDetectionDiv.style.display = 'block';
+        }
+
+        function handleCancelQuiz() {
+            quizCancelledByCheat = true;
+            endQuiz();
+        }
+
         function endQuiz() {
             quizActive = false;
-            mainContainer.style.display = "none";
-            quizTimerDisplay.style.display = "none";
-            const percentageScore = (score / totalQuestions) * 100;
-            resultDisplay.textContent = `Your final score is ${score} out of ${totalQuestions} (${percentageScore.toFixed(2)}%)`;
+            stopTimer();
+            clearInterval(periodicPhotoInterval);
+            clearInterval(cheatDetectionInterval);
+            stopCamera();
+            mainContainer.style.display = 'none';
+            quizContainer.style.display = 'none';
+            cheatingDetectionDiv.style.display = 'none';
             completionDate = new Date().toLocaleDateString();
-            certificateUserName.textContent = userName;
             certificateCompletionDate.textContent = completionDate;
-            certificateScoreLarge.textContent = percentageScore.toFixed(2);
+
+            const percentageScore = (score / questions.length) * 100;
+            const roundedScore = Math.round(percentageScore);
+            certificateScoreLarge.textContent = `${roundedScore}%`;
+
             smallCertificateUserName.textContent = userName;
             smallCertificateFatherName.textContent = fatherName;
             smallCertificateDistrict.textContent = district;
             smallCertificateState.textContent = state;
             smallCertificateDate.textContent = completionDate;
-            smallCertificateScore.textContent = `${percentageScore.toFixed(2)}%`;
-            // Capture final photo for certificate
-            capturePhoto();
-            if (capturedPhotoDataUrl) {
-                const img = document.createElement('img');
-                img.src = capturedPhotoDataUrl;
-                img.style.width = '100%';
-                img.style.height = '100%';
-                img.style.objectFit = 'cover';
-                smallCertificatePhotoDiv.appendChild(img);
-            }
-            if (percentageScore >= parseInt(passingScorePercentageSpan.textContent)) {
-                certificateDiv.style.display = "block";
-                downloadSmallCertificateButton.style.display = "block";
-                downloadMessage.style.display = "block";
-                googleFormLinkContainer.style.display = "none";
+            smallCertificateScore.textContent = `${roundedScore}%`;
+
+            if (roundedScore >= passingScorePercentage) {
+                certificateDiv.style.display = 'block';
+                downloadSmallCertificateButton.style.display = 'block';
+                downloadMessage.style.display = 'block';
+                googleFormLinkContainer.style.display = 'none';
             } else {
-                certificateDiv.style.display = "none";
-                downloadSmallCertificateButton.style.display = "none";
-                downloadMessage.style.display = "none";
-                googleFormLinkContainer.style.display = "block";
+                certificateDiv.style.display = 'none';
+                downloadSmallCertificateButton.style.display = 'none';
+                downloadMessage.style.display = 'none';
+                googleFormLinkContainer.style.display = 'block';
             }
         }
-        // Cheating detection (basic - focus on the quiz window)
-        function startCheatDetection() {
-            cheatDetectionInterval = setInterval(() => {
-                if (!document.hasFocus() && quizActive && !cheatingDetected) {
-                    cheatingDetected = true;
-                    clearInterval(timerInterval);
-                    clearInterval(periodicPhotoInterval);
-                    quizActive = false;
-                    cheatingDetectionDiv.style.display = "block";
-                    mainContainer.style.display = "none";
-                    quizTimerDisplay.style.display = "none";
-                    completionDate = new Date().toLocaleDateString();
-                    quizCancelledByCheat = true;
-                    // Optionally, you could end the quiz and show a message
-                }
-            }, 1000);
-        }
-        cancelButton.addEventListener('click', () => {
-            cheatingDetectionDiv.style.display = "none";
-            testInfoContainer.style.display = "block";
-            startButton.style.display = "block";
-            resultDisplay.textContent = "";
-            cheatingDetected = false;
-            quizCancelledByCheat = false;
-            // Reset user details as well, if needed
-        });
-        // Photo capture functionality
-        function capturePhoto() {
-            if (stream) {
-                const width = cameraFeed.videoWidth;
-                const height = cameraFeed.videoHeight;
-                photoCanvas.width = width;
-                photoCanvas.height = height;
-                photoCanvasCtx.drawImage(cameraFeed, 0, 0, width, height);
-                capturedPhotoDataUrl = photoCanvas.toDataURL('image/jpeg');
-            }
-        }
-        function startPeriodicPhotoCapture() {
-            periodicPhotoInterval = setInterval(capturePhoto, 5000); // Capture photo every 5 seconds
-        }
-        // Function to download the certificate as a PDF
-        function downloadSmallCertificate() {
+
+        startButton.addEventListener('click', startQuiz);
+        nextButton.addEventListener('click', nextQuestion);
+        cancelButton.addEventListener('click', handleCancelQuiz);
+
+        downloadSmallCertificateButton.addEventListener('click', () => {
             const element = document.getElementById('small-certificate');
             const opt = {
                 margin: [10, 10, 10, 10],
-                filename: 'html_test_certificate.pdf',
+                filename: 'certificate.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2 },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
             html2pdf().from(element).set(opt).save();
-            downloadMessage.style.display = "none";
-        }
-        // Event listeners
-        startButton.addEventListener('click', startQuiz);
-        downloadSmallCertificateButton.addEventListener('click', downloadSmallCertificate);
-        // Enable camera on page load
-        enableCamera();
+        });
+
+        // Start camera feed when the page loads
+        startCamera();
     </script>
 </body>
 </html>

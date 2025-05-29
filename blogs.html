@@ -26,12 +26,14 @@
 .photo-details {
     max-height: 0; /* Initially hidden by setting max-height to 0 */
     overflow: hidden; /* Hide content that exceeds max-height */
-    transition: max-height 0.3s ease-out; /* Smooth transition for expansion/collapse */
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out; /* Smooth transition for expansion/collapse */
     padding: 0 16px; /* Horizontal padding, no vertical padding when collapsed */
+    opacity: 0;
 }
 .photo-details.active {
     max-height: 500px; /* Expand to show content (adjust value based on expected content height) */
     padding: 16px; /* Add padding when active */
+    opacity: 1;
 }
 /* ========== Photo Options (Like, Share, etc.) ========== */
 .photo-options {
@@ -43,7 +45,6 @@
     display: flex; /* Use flexbox for button layout */
     gap: 10px; /* Space between buttons */
 }
-
 .photo-card:hover .photo-options,
 .photo-card:focus-within .photo-options {
     opacity: 1; /* Show options on hover or when an element inside is focused */
@@ -53,26 +54,45 @@
     background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
     border: none; /* Remove default button border */
     border-radius: 50%; /* Make buttons round */
-    padding: 6px; /* Padding inside buttons */
+    padding: 8px; /* Padding inside buttons */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for buttons */
     cursor: pointer; /* Indicate it's clickable */
+    transition: transform 0.2s ease;
 }
-
+.photo-options button:hover {
+    transform: scale(1.1);
+}
 /* ========== Announcement Marquee ========== */
 .announcement-marquee {
     background: linear-gradient(to right, #4f46e5, #7c3aed); /* Gradient background */
     color: white; /* White text color */
-    padding: 8px 0; /* Vertical padding */
+    padding: 10px 0; /* Vertical padding */
     font-weight: 500; /* Medium font weight */
     text-align: center; /* Center text (though marquee handles scrolling) */
     overflow: hidden; /* Hide content that goes outside */
     white-space: nowrap; /* Prevent text from wrapping */
 }
-
 .announcement-marquee a {
     color: white; /* White link color */
-    text-decoration: underline; /* Underline links */
+    text-decoration: none;
     margin: 0 10px; /* Horizontal margin between links */
+    transition: text-decoration 0.3s ease;
+}
+.announcement-marquee a:hover {
+    text-decoration: underline;
+}
+/* ========== Toggle Button ========== */
+.toggle-details {
+    background: none;
+    border: none;
+    color: #3b82f6;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+.toggle-details:hover {
+    background-color: #f3f4f6;
 }
     </style>
 </head>
@@ -123,8 +143,7 @@
                     </div>
                     <div class="p-4">
                         <h3 class="text-lg font-semibold text-slate-800">Web Development Portfolio</h3>
-                        <p class="text-gray-600 text-sm">Posted on: January 15, 2024</p>
-                                                                            <div class="photo-details mt active">
+                        <p class="text-gray-600 text-sm">Posted on: January 15, 2024</p>                                              <div class="photo-details mt active">
                             <p class="text-gray-700">A showcase of modern web development projects using React and Node.js.</p>
                             <div class="mt-2 flex items-center text-sm text-gray-500">
                                 <i class="fas fa-code mr-2"></i>
@@ -132,16 +151,14 @@
                             </div>
                             <div class="mt-1 flex items-center text-sm text-gray-500">
                                 <i class="fas fa-link mr-2"></i>
-                                <a href="https://github.com/Gajendra123j" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+                                <a href="WebDevelopmentBootcamp.html" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
                             </div>
-                        </div>
-                                                                            <button class="mt-2 text-blue-600 hover:underline text-sm toggle-details">
+                        </div>                                                                            <button class="mt-2 text-blue-600 hover:underline text-sm toggle-details">
                             Hide Details
                         </button>
                     </div>
                 </div>
-
-                                <div class="photo-card bg-white rounded-lg overflow-hidden shadow">
+             <div class="photo-card bg-white rounded-lg overflow-hidden shadow">
                     <div class="relative">
                         <img src="app.jpg" alt="Mobile App Development" class="w-full h-48 object-cover">
                                                                     <div class="photo-options absolute top-2 right-2 flex space-x-2">
@@ -164,7 +181,7 @@
                             </div>
                             <div class="mt-1 flex items-center text-sm text-gray-500">
                                 <i class="fas fa-link mr-2"></i>
-                                <a href="https://github.com/Gajendra123j" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+                                <a href="mobile.html" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
                             </div>
                         </div>
                                                                             <button class="mt-2 text-blue-600 hover:underline text-sm toggle-details">
@@ -172,10 +189,10 @@
                         </button>
                     </div>
                 </div>
-
                                 <div class="photo-card bg-white rounded-lg overflow-hidden shadow">
-                    <div class="relative">
+                    <div class="relative"> 
                         <img src="ai.jpg" alt="AI Projects" class="w-full h-48 object-cover">
+                       
                                                                     <div class="photo-options absolute top-2 right-2 flex space-x-2">
                                 <button class="bg-white p-2 rounded-full shadow hover:bg-gray-100">
                                     <i class="fas fa-heart text-red-500"></i>
@@ -220,7 +237,6 @@
                         </a>
                     </div>
                 </div>
-
                                 <div class="bg-gray-50 rounded-lg p-4">
                     <h3 class="text-lg font-semibold text-slate-800 mb-3">Collaboration</h3>
                     <div class="space-y-2">
@@ -232,7 +248,6 @@
                         </a>
                     </div>
                 </div>
-
                                 <div class="bg-gray-50 rounded-lg p-4">
                     <h3 class="text-lg font-semibold text-slate-800 mb-3">Support</h3>
                     <div class="space-y-2">
@@ -247,24 +262,122 @@
             </div>
         </section>
     </main>
-
         <footer class="bg-slate-800 text-white text-center py-4 mt-10">
         <p>&copy; 2025 GJ Tech Pvt. Ltd. 👩‍💻..</p>
     </footer>
-
         <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all details sections as hidden
             document.querySelectorAll('.photo-details').forEach(details => {
-                details.classList.add('active');
+                details.classList.remove('active');
             });
+            // Set up toggle buttons
             document.querySelectorAll('.toggle-details').forEach(button => {
-                button.textContent = 'Hide Details';
-                button.addEventListener('click', function() {
+                button.textContent = 'Show Details';
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     const details = this.previousElementSibling;
                     details.classList.toggle('active');
-                    this.textContent = details.classList.contains('active') ? 'Show Details' : 'Hide Details';
+                    this.textContent = details.classList.contains('active') ? 'Hide Details' : 'Show Details';
                 });
             });
+            // Add click handler for photo cards
+            document.querySelectorAll('.photo-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (!e.target.closest('.photo-options') && !e.target.closest('.toggle-details')) {
+                        const details = this.querySelector('.photo-details');
+                        const button = this.querySelector('.toggle-details');
+                        details.classList.toggle('active');
+                        button.textContent = details.classList.contains('active') ? 'Hide Details' : 'Show Details';
+                    }
+                });
+            });
+            // Like button functionality
+            document.querySelectorAll('.photo-options button:first-child').forEach(button => {
+                button.addEventListener('click', async function(e) {
+                    e.stopPropagation();
+                    const card = this.closest('.photo-card');
+                    const title = card.querySelector('h3').textContent;     
+                    try {
+                        const response = await fetch('/api/blogs', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                title: title,
+                                content: card.querySelector('.photo-details p').textContent,
+                                imageUrl: card.querySelector('img').src,
+                                techStack: card.querySelector('.photo-details .text-gray-500').textContent,
+                                githubLink: card.querySelector('.photo-details a').href
+                            })
+                        });
+
+                        if (response.ok) {
+                            const blog = await response.json();
+                            this.querySelector('i').classList.add('text-red-500');
+                            alert('Blog saved successfully!');
+                        }
+                    } catch (error) {
+                        console.error('Error saving blog:', error);
+                        alert('Error saving blog. Please try again.');
+                    }
+                });
+            });
+            // Load existing blogs
+            async function loadBlogs() {
+                try {
+                    const response = await fetch('/api/blogs');
+                    const blogs = await response.json();
+                    
+                    const blogGrid = document.querySelector('.grid');
+                    blogs.forEach(blog => {
+                        const blogCard = createBlogCard(blog);
+                        blogGrid.appendChild(blogCard);
+                    });
+                } catch (error) {
+                    console.error('Error loading blogs:', error);
+                }
+            }
+            // Create blog card element
+            function createBlogCard(blog) {
+                const card = document.createElement('div');
+                card.className = 'photo-card bg-white rounded-lg overflow-hidden shadow';
+                card.innerHTML = `
+                    <div class="relative">
+                        <img src="${blog.imageUrl}" alt="${blog.title}" class="w-full h-48 object-cover">
+                        <div class="photo-options absolute top-2 right-2 flex space-x-2">
+                            <button class="bg-white p-2 rounded-full shadow hover:bg-gray-100">
+                                <i class="fas fa-heart text-red-500"></i>
+                            </button>
+                            <button class="bg-white p-2 rounded-full shadow hover:bg-gray-100">
+                                <i class="fas fa-share-alt text-blue-500"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-slate-800">${blog.title}</h3>
+                        <p class="text-gray-600 text-sm">Posted on: ${new Date(blog.date).toLocaleDateString()}</p>
+                        <div class="photo-details mt-2">
+                            <p class="text-gray-700">${blog.content}</p>
+                            <div class="mt-2 flex items-center text-sm text-gray-500">
+                                <i class="fas fa-code mr-2"></i>
+                                <span>${blog.techStack}</span>
+                            </div>
+                            <div class="mt-1 flex items-center text-sm text-gray-500">
+                                <i class="fas fa-link mr-2"></i>
+                                <a href="${blog.githubLink}" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
+                            </div>
+                        </div>
+                        <button class="mt-2 text-blue-600 hover:underline text-sm toggle-details">
+                            Show Details
+                        </button>
+                    </div>
+                `;
+                return card;
+            }
+            // Load blogs when page loads
+            loadBlogs();
         });
     </script>
 </body>

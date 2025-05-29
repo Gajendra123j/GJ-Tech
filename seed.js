@@ -28,7 +28,6 @@ const BiodataSchema = new mongoose.Schema({
     responsibilities: [String]
   }]
 });
-
 const BlogSchema = new mongoose.Schema({
   title: String,
   content: String,
@@ -36,10 +35,8 @@ const BlogSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
   tags: [String]
 });
-
 const Biodata = mongoose.model("Biodata", BiodataSchema);
 const Blog = mongoose.model("Blog", BlogSchema);
-
 // Seed data
 const biodata = {
   name: "Gajendra Singh",
@@ -51,8 +48,8 @@ const biodata = {
   },
   education: [{
     degree: "Bachelor of Technology in Computer Science",
-    institution: "XYZ University",
-    period: "2018 - 2022"
+    institution: " University",
+    period: "2023 - 2027"
   }],
   skills: ["JavaScript", "Node.js", "React", "MongoDB", "Express.js", "HTML/CSS"],
   experience: [{
@@ -66,7 +63,6 @@ const biodata = {
     ]
   }]
 };
-
 const blogPosts = [
   {
     title: "Getting Started with MERN Stack Development",
@@ -87,18 +83,15 @@ const blogPosts = [
     tags: ["React", "Frontend", "Web Development"]
   }
 ];
-
 // Seed function
 async function seedDatabase() {
   try {
     // Clear existing data
     await Biodata.deleteMany({});
     await Blog.deleteMany({});
-
     // Insert new data
     await Biodata.create(biodata);
     await Blog.create(blogPosts);
-
     console.log("Database seeded successfully!");
     process.exit(0);
   } catch (error) {
@@ -106,6 +99,5 @@ async function seedDatabase() {
     process.exit(1);
   }
 }
-
 // Run the seed function
 seedDatabase(); 
