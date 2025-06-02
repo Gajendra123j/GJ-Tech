@@ -616,6 +616,7 @@
                 <div class="signature-name">Gajendra Singh</div>
                 <div class="signature-title">Gj Tech(CEO) Signatory</div>
             </div>
+        </div>
     </div>
     <div class="certificate small-certificate" id="small-certificate">
         <div class="header">
@@ -691,8 +692,8 @@
         const testDurationMinutesSpan = document.getElementById('test-duration-minutes');
         const passingScorePercentageSpan = document.getElementById('passing-score-percentage');
         // Google Form elements
-        const googleFormLinkContainer = document.getElementById('google-form-link-container');
-        // IMPORTANT: Replace "https://forms.gle/YOUR_ACTUAL_GOOGLE_FORM_LINK" with your actual Google Form link.
+        const googleFormLinkContainer = document.getElementById('https://docs.google.com/forms/d/e/1FAIpQLSeWYBL6Ni-5XZhPM3xak3mOIu636wxYzp1Pckkl8g-XvRcWcA/viewform?usp=header');
+        // IMPORTANT: Replace "https://docs.google.com/forms/d/e/1FAIpQLSeWYBL6Ni-5XZhPM3xak3mOIu636wxYzp1Pckkl8g-XvRcWcA/viewform?usp=header" with your actual Google Form link.
         // User Details Input elements
         const userDetailsInput = document.getElementById('user-details-input');
         const nameInput = document.getElementById('name-input');
@@ -725,266 +726,406 @@
         let cheatDetectionInterval; // Variable to hold the interval for background cheat detection
         // Quiz duration and timer variables
         const quizDurationMinutes = parseInt(testDurationMinutesSpan.textContent); // Set test duration in minutes
-        const quizDurationSeconds = quizDurationMinutes * 60;
-        let timeRemaining = quizDurationSeconds;
-        let timerInterval;
+        let timeRemaining = quizDurationMinutes * 60; // Convert to seconds
+        let quizTimer; // Variable to hold the timer interval
 
-        // Questions array
+        // Quiz Questions
         const questions = [
             {
                 question: "What does HTML stand for?",
-                options: ["Hyper Text Markup Language", "Highly Typed Machine Language", "Home Tool Management Language", "Hyperlinks and Text Markup Language"],
+                options: ["Hyper Text Markup Language", "Hyperlinks and Text Markup Language", "Home Tool Markup Language", "Hyper Transfer Markup Language"],
                 correctAnswer: "Hyper Text Markup Language"
             },
-            // {
-            //     question: "Which HTML tag is used to define an unordered list?",
-            //     options: ["<ul>", "<ol>", "<li>", "<dl>"],
-            //     correctAnswer: "<ul>"
-            // },
-            // {
-            //     question: "What is the correct HTML tag for inserting a line break?",
-            //     options: ["<br>", "<lb>", "<break>", "<newline>"],
-            //     correctAnswer: "<br>"
-            // },
-            // {
-            //     question: "Which tag is used to define the structure of an HTML document?",
-            //     options: ["<body>", "<head>", "<html>", "<title>"],
-            //     correctAnswer: "<html>"
-            // },
-            // {
-            //     question: "What is the purpose of the 'alt' attribute in an '<img>' tag?",
-            //     options: ["To provide an alternative color for the image", "To specify the alignment of the image", "To provide alternative text for the image if it cannot be displayed", "To link the image to another document"],
-            //     correctAnswer: "To provide alternative text for the image if it cannot be displayed"
-            // }
-            // Add more questions here
-        ];
-        const totalQuestions = questions.length;
-        totalQuestionsSpan.textContent = totalQuestions;
-        // Function to validate user details input
-        function validateUserDetails() {
-            let isValid = true;
-            if (nameInput.value.trim() === "") {
-                nameInputError.style.display = "block";
-                isValid = false;
-            } else {
-                nameInputError.style.display = "none";
-                userName = nameInput.value.trim();
-            }
-            if (fatherNameInput.value.trim() === "") {
-                fatherNameInputError.style.display = "block";
-                isValid = false;
-            } else {
-                fatherNameInputError.style.display = "none";
-                fatherName = fatherNameInput.value.trim();
-            }
-            if (districtInput.value.trim() === "") {
-                districtInputError.style.display = "block";
-                isValid = false;
-            } else {
-                districtInputError.style.display = "none";
-                district = districtInput.value.trim();
-            }
-            if (stateInput.value.trim() === "") {
-                stateInputError.style.display = "block";
-                isValid = false;
-            } else {
-                stateInputError.style.display = "none";
-                state = stateInput.value.trim();
-            }
-            return isValid;
-        }
-        // Function to start the quiz
-        function startQuiz() {
-            if (!validateUserDetails()) {
-                return;
-            }
-            testInfoContainer.style.display = "none";
-            mainContainer.style.display = "flex";
-            startButton.style.display = "none";
-            quizTimerDisplay.style.display = "block";
-            currentQuestionIndex = 0;
-            score = 0;
-            timeRemaining = quizDurationSeconds;
-            quizActive = true;
-            completionDate = null; // Reset completion date
-            startTimer();
-            displayQuestion();
-            startPeriodicPhotoCapture();
-            startCheatDetection();
-        }
-        // Function to access the camera
-        async function enableCamera() {
+            {
+                question: "Which HTML tag is used to define an internal style sheet?",
+                options: ["<script>", "<css>", "<style>", "<link>"],
+                correctAnswer: "<style>"
+            },
+            {
+                question: "Which HTML attribute is used to define inline styles?",
+                options: ["font", "class", "styles", "style"],
+                correctAnswer: "style"
+            },
+            {
+                question: "Which is the correct HTML element for inserting a line break?",
+                options: ["<lb>", "<break>", "<br>", "<newline>"],
+                correctAnswer: "<br>"
+            },
+            {
+                question: "Which HTML element is used to specify a footer for a document or section?",
+                options: ["<bottom>", "<footer>", "<end>", "<section>"],
+                correctAnswer: "<footer>"
+            },
+      {
+        question: "HTML is an acronym for-",
+        options: [
+          "HyperText Markup Language",
+          "HyperText and links Markup Language",
+          "HighText Machine Language",
+          "None of these"
+        ],
+        correctAnswer: "HyperText Markup Language"
+      },
+      {
+        question: "How do I make an ordered list in HTML (a list where the elements are numbered)?",
+        options: ["< ol >", "< ul >", "< li >", "I"],
+        correctAnswer: "< ol >"
+      },
+      {
+        question: "Which of the following elements causes the text in HTML to be italicized?",
+        options: ["< i >", "< italic >", "< it >", "< pre >"],
+        correctAnswer: "< i >"
+      },
+      {
+        question: "How may an image be inserted into HTML?",
+        options: [
+          '< img href="jtp.png" / >',
+          '< img url="jtp.png" / >',
+          '< img link="jtp.png" / >',
+          '< img src="jtp.png" / >'
+        ],
+        correctAnswer: '< img src="jtp.png" / >'
+      },
+      {
+        question: "How can a background color be added to HTML?",
+        options: [
+          '< marquee bgcolor="red" >',
+          '< marquee bg color:"red" >',
+          '< marquee bg-color="red" >',
+          '< marquee color="red" >'
+        ],
+        correctAnswer: '< marquee bg-color="red" >'
+      },
+      {
+        question: "< input > is -",
+        options: ["an empty tag", "All of the above", "a format tag", "None of the above"],
+        correctAnswer: "an empty tag"
+      },
+      {
+        question: "Which of the following tags does the underlined text use?",
+        options: ["< u >", "< i >", "< ul >", "< pre >"],
+        correctAnswer: "< u >"
+      },
+      {
+        question: "What is the HTML code for a checkbox?",
+        options: [
+          '< input type="checkbox" >',
+          '< input type="button" >',
+          '< input type="check" >',
+          '< checkbox >'
+        ],
+        correctAnswer: '< input type="checkbox" >'
+      },
+      {
+        question: "Which of the following tags is used to specify choices in a drop-down menu?",
+        options: ["< select >", "< list >", "< option >", "< dropdown >"],
+        correctAnswer: "< select >"
+      },
+      {
+        question: "HTML tags are surrounded by -",
+        options: ["< and >", "{ and }", "# and #", "! and ?"],
+        correctAnswer: "< and >"
+      }
+    ];
+        // Update total questions in instructions
+        totalQuestionsSpan.textContent = questions.length;
+        const passingScore = (parseInt(passingScorePercentageSpan.textContent) / 100) * questions.length;
+
+        // Function to start camera feed
+        async function startCamera() {
             try {
                 stream = await navigator.mediaDevices.getUserMedia({ video: true });
                 cameraFeed.srcObject = stream;
             } catch (error) {
                 console.error("Error accessing camera:", error);
-                // Handle the error appropriately (e.g., display a message to the user)
+                alert("Could not access camera. Please ensure you have a webcam and grant permission.");
+                startButton.disabled = false; // Re-enable start button if camera fails
             }
         }
-        // Function to display the current question
+        // Function to stop camera feed
+        function stopCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+        }
+        // Function to capture photo from camera feed
+        function capturePhoto() {
+            if (!cameraFeed.srcObject) {
+                console.warn("Camera feed not active, cannot capture photo.");
+                return null;
+            }
+            photoCanvas.width = cameraFeed.videoWidth;
+            photoCanvas.height = cameraFeed.videoHeight;
+            photoCanvasCtx.drawImage(cameraFeed, 0, 0, photoCanvas.width, photoCanvas.height);
+            return photoCanvas.toDataURL('image/jpeg', 0.8); // Capture as JPEG with 80% quality
+        }
+        // Function to display current question
         function displayQuestion() {
-            answerSelected = false;
-            const currentQuestion = questions[currentQuestionIndex];
-            questionArea.textContent = `${currentQuestionIndex + 1}. ${currentQuestion.question}`;
-            optionsArea.innerHTML = "";
-            currentQuestion.options.forEach(option => {
+            answerSelected = false; // Reset for new question
+            const q = questions[currentQuestionIndex];
+            questionArea.textContent = `${currentQuestionIndex + 1}. ${q.question}`;
+            optionsArea.innerHTML = '';
+            q.options.forEach(option => {
                 const button = document.createElement('button');
                 button.textContent = option;
-                button.classList.add('option-button');
-                button.addEventListener('click', () => selectAnswer(option));
+                button.addEventListener('click', () => selectAnswer(option, q.correctAnswer));
                 optionsArea.appendChild(button);
             });
-            nextButton.style.display = "none";
+            nextButton.style.display = 'none'; // Hide next button until an answer is selected
+            resultDisplay.textContent = ''; // Clear previous result message
         }
-        // Function to select an answer
-        function selectAnswer(selectedOption) {
-            if (answerSelected || cheatingDetected) {
-                return;
-            }
+        // Function to handle answer selection
+        function selectAnswer(selectedOption, correctAnswer) {
+            if (answerSelected || cheatingDetected) return; // Prevent multiple selections or if cheating detected
             answerSelected = true;
-            const currentQuestion = questions[currentQuestionIndex];
-            const optionsButtons = optionsArea.querySelectorAll('.option-button');
-            optionsButtons.forEach(button => {
-                if (button.textContent === currentQuestion.correctAnswer) {
+            const buttons = optionsArea.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.disabled = true; // Disable all buttons after selection
+                if (button.textContent === correctAnswer) {
                     button.classList.add('correct');
-                }
-                if (button.textContent === selectedOption && selectedOption !== currentQuestion.correctAnswer) {
+                } else if (button.textContent === selectedOption) {
                     button.classList.add('wrong');
                 }
-                button.disabled = true;
             });
-            if (selectedOption === currentQuestion.correctAnswer) {
+            if (selectedOption === correctAnswer) {
                 score++;
+                resultDisplay.textContent = 'Correct!';
+                resultDisplay.style.color = '#28a745'; // Green
+            } else {
+                resultDisplay.textContent = `Wrong! The correct answer was: ${correctAnswer}`;
+                resultDisplay.style.color = '#dc3545'; // Red
             }
             if (currentQuestionIndex < questions.length - 1) {
-                nextButton.style.display = "block";
+                nextButton.style.display = 'block';
             } else {
-                clearInterval(timerInterval);
-                clearInterval(periodicPhotoInterval);
-                clearInterval(cheatDetectionInterval);
-                endQuiz();
+                // If it's the last question, automatically end the quiz after a short delay
+                setTimeout(endQuiz, 1500);
             }
         }
-        // Event listener for the next button
+        // Function to handle next question or end quiz
         nextButton.addEventListener('click', () => {
             currentQuestionIndex++;
-            displayQuestion();
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion();
+            }
         });
-        // Function to update the timer display
-        function updateTimer() {
-            const minutes = Math.floor(timeRemaining / 60);
-            const seconds = timeRemaining % 60;
-            quizTimerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            if (timeRemaining <= 0) {
-                clearInterval(timerInterval);
-                clearInterval(periodicPhotoInterval);
-                clearInterval(cheatDetectionInterval);
-                endQuiz();
-            }
-            timeRemaining--;
-        }
-        // Function to start the timer
-        function startTimer() {
-            timerInterval = setInterval(updateTimer, 1000);
-        }
-        // Function to end the quiz
-        function endQuiz() {
-            quizActive = false;
-            mainContainer.style.display = "none";
-            quizTimerDisplay.style.display = "none";
-            const percentageScore = (score / totalQuestions) * 100;
-            resultDisplay.textContent = `Your final score is ${score} out of ${totalQuestions} (${percentageScore.toFixed(2)}%)`;
-            completionDate = new Date().toLocaleDateString();
-            certificateUserName.textContent = userName;
-            certificateCompletionDate.textContent = completionDate;
-            certificateScoreLarge.textContent = percentageScore.toFixed(2);
-            smallCertificateUserName.textContent = userName;
-            smallCertificateFatherName.textContent = fatherName;
-            smallCertificateDistrict.textContent = district;
-            smallCertificateState.textContent = state;
-            smallCertificateDate.textContent = completionDate;
-            smallCertificateScore.textContent = `${percentageScore.toFixed(2)}%`;
-            // Capture final photo for certificate
-            capturePhoto();
-            if (capturedPhotoDataUrl) {
-                const img = document.createElement('img');
-                img.src = capturedPhotoDataUrl;
-                img.style.width = '100%';
-                img.style.height = '100%';
-                img.style.objectFit = 'cover';
-                smallCertificatePhotoDiv.appendChild(img);
-            }
-            if (percentageScore >= parseInt(passingScorePercentageSpan.textContent)) {
-                certificateDiv.style.display = "block";
-                downloadSmallCertificateButton.style.display = "block";
-                downloadMessage.style.display = "block";
-                googleFormLinkContainer.style.display = "none";
-            } else {
-                certificateDiv.style.display = "none";
-                downloadSmallCertificateButton.style.display = "none";
-                downloadMessage.style.display = "none";
-                googleFormLinkContainer.style.display = "block";
-            }
-        }
-        // Cheating detection (basic - focus on the quiz window)
-        function startCheatDetection() {
-            cheatDetectionInterval = setInterval(() => {
-                if (!document.hasFocus() && quizActive && !cheatingDetected) {
-                    cheatingDetected = true;
-                    clearInterval(timerInterval);
-                    clearInterval(periodicPhotoInterval);
-                    quizActive = false;
-                    cheatingDetectionDiv.style.display = "block";
-                    mainContainer.style.display = "none";
-                    quizTimerDisplay.style.display = "none";
-                    completionDate = new Date().toLocaleDateString();
-                    quizCancelledByCheat = true;
-                    // Optionally, you could end the quiz and show a message
+        // Function to start the quiz timer
+        function startQuizTimer() {
+            quizTimerDisplay.style.display = 'block';
+            quizTimer = setInterval(() => {
+                const minutes = Math.floor(timeRemaining / 60);
+                let seconds = timeRemaining % 60;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                quizTimerDisplay.textContent = `Time Left: ${minutes}:${seconds}`;
+                if (timeRemaining <= 0) {
+                    clearInterval(quizTimer);
+                    endQuiz(true); // End quiz due to time up
                 }
+                timeRemaining--;
             }, 1000);
         }
-        cancelButton.addEventListener('click', () => {
-            cheatingDetectionDiv.style.display = "none";
-            testInfoContainer.style.display = "block";
-            startButton.style.display = "block";
-            resultDisplay.textContent = "";
-            cheatingDetected = false;
-            quizCancelledByCheat = false;
-            // Reset user details as well, if needed
-        });
-        // Photo capture functionality
-        function capturePhoto() {
-            if (stream) {
-                const width = cameraFeed.videoWidth;
-                const height = cameraFeed.videoHeight;
-                photoCanvas.width = width;
-                photoCanvas.height = height;
-                photoCanvasCtx.drawImage(cameraFeed, 0, 0, width, height);
-                capturedPhotoDataUrl = photoCanvas.toDataURL('image/jpeg');
+        // Function to end the quiz
+        function endQuiz(timeUp = false) {
+            if (!quizActive) return; // Prevent ending quiz multiple times
+            quizActive = false;
+            clearInterval(quizTimer); // Stop the timer
+            clearInterval(cheatDetectionInterval); // Stop cheat detection
+            clearInterval(periodicPhotoInterval); // Stop periodic photo capture
+            stopCamera(); // Stop camera feed
+            mainContainer.style.display = 'none'; // Hide quiz content
+            quizContainer.style.display = 'none';
+            cheatingDetectionDiv.style.display = 'none'; // Ensure cheating message is hidden
+            completionDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            const percentageScore = (score / questions.length) * 100;
+            if (cheatingDetected || quizCancelledByCheat || timeUp) {
+                certificateDiv.style.display = 'none';
+                downloadSmallCertificateButton.style.display = 'none';
+                downloadMessage.style.display = 'none';
+                googleFormLinkContainer.style.display = 'block';
+                resultDisplay.textContent = `Quiz ended. Your score: ${score} out of ${questions.length} (${percentageScore.toFixed(2)}%).`;
+                resultDisplay.style.color = '#dc3545'; // Red for cancellation
+                if (cheatingDetected || quizCancelledByCheat) {
+                     alert("Quiz cancelled due to suspicious activity or acknowledgment of cancellation.");
+                } else if (timeUp) {
+                    alert("Time's up! The quiz has ended.");
+                }
+            } else if (percentageScore >= parseInt(passingScorePercentageSpan.textContent)) {
+                // Display large certificate
+                certificateUserName.textContent = userName;
+                certificateCompletionDate.textContent = completionDate;
+                certificateScoreLarge.textContent = `${percentageScore.toFixed(2)}%`;
+                certificateDiv.style.display = 'block';
+                // Populate small certificate for PDF
+                smallCertificateUserName.textContent = userName;
+                smallCertificateFatherName.textContent = fatherName;
+                smallCertificateDistrict.textContent = district;
+                smallCertificateState.textContent = state;
+                smallCertificateScore.textContent = `${percentageScore.toFixed(2)}%`;
+                smallCertificateDate.textContent = `Date: ${completionDate}`;
+                // Add photo to small certificate
+                if (capturedPhotoDataUrl) {
+                    const img = document.createElement('img');
+                    img.src = capturedPhotoDataUrl;
+                    smallCertificatePhotoDiv.innerHTML = ''; // Clear existing content
+                    smallCertificatePhotoDiv.appendChild(img);
+                }
+                downloadSmallCertificateButton.style.display = 'block';
+                downloadMessage.style.display = 'block';
+                googleFormLinkContainer.style.display = 'none';
+                resultDisplay.textContent = `Congratulations, ${userName}! You scored ${score} out of ${questions.length} (${percentageScore.toFixed(2)}%). You passed!`;
+                resultDisplay.style.color = '#28a745'; // Green
+            } else {
+                certificateDiv.style.display = 'none';
+                downloadSmallCertificateButton.style.display = 'none';
+                downloadMessage.style.display = 'none';
+                googleFormLinkContainer.style.display = 'block';
+                resultDisplay.textContent = `Your score: ${score} out of ${questions.length} (${percentageScore.toFixed(2)}%). You did not pass.`;
+                resultDisplay.style.color = '#dc3545'; // Red
             }
         }
-        function startPeriodicPhotoCapture() {
-            periodicPhotoInterval = setInterval(capturePhoto, 5000); // Capture photo every 5 seconds
+        // Cheating Detection Logic
+        function startCheatingDetection() {
+            // Detect tab/window change
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden && quizActive) {
+                    cheatingDetected = true;
+                    cheatingDetectionDiv.style.display = 'block';
+                    endQuiz();
+                }
+            });
+            // Detect copy/paste attempts
+            document.addEventListener('copy', (e) => {
+                if (quizActive) {
+                    e.preventDefault(); // Prevent copying
+                    cheatingDetected = true;
+                    cheatingDetectionDiv.style.display = 'block';
+                    endQuiz();
+                }
+            });
+            document.addEventListener('cut', (e) => {
+                if (quizActive) {
+                    e.preventDefault(); // Prevent cutting
+                    cheatingDetected = true;
+                    cheatingDetectionDiv.style.display = 'block';
+                    endQuiz();
+                }
+            });
+            document.addEventListener('paste', (e) => {
+                if (quizActive) {
+                    e.preventDefault(); // Prevent pasting
+                    cheatingDetected = true;
+                    cheatingDetectionDiv.style.display = 'block';
+                    endQuiz();
+                }
+            });
+
+            // Optional: Periodic check for other indicators (e.g., mouse leaving window, but this can be intrusive)
+            // cheatDetectionInterval = setInterval(() => {
+            //     // Example: If you want to check for mouse leaving the window more strictly
+            //     // This can be annoying for users, so use with caution.
+            // }, 5000); // Check every 5 seconds
         }
-        // Function to download the certificate as a PDF
-        function downloadSmallCertificate() {
+
+        cancelButton.addEventListener('click', () => {
+            quizCancelledByCheat = true;
+            endQuiz();
+        });
+        // Event listener for Start Test button
+        startButton.addEventListener('click', async () => {
+            // Validate user inputs
+            userName = nameInput.value.trim();
+            fatherName = fatherNameInput.value.trim();
+            district = districtInput.value.trim();
+            state = stateInput.value.trim();
+            let isValid = true;
+            if (userName === "") {
+                nameInputError.style.display = 'block';
+                isValid = false;
+            } else {
+                nameInputError.style.display = 'none';
+            }
+            if (fatherName === "") {
+                fatherNameInputError.style.display = 'block';
+                isValid = false;
+            } else {
+                fatherNameInputError.style.display = 'none';
+            }
+            if (district === "") {
+                districtInputError.style.display = 'block';
+                isValid = false;
+            } else {
+                districtInputError.style.display = 'none';
+            }
+            if (state === "") {
+                stateInputError.style.display = 'block';
+                isValid = false;
+            } else {
+                stateInputError.style.display = 'none';
+            }
+
+            if (!isValid) {
+                return; // Stop if validation fails
+            }
+            startButton.disabled = true;
+            testInfoContainer.style.display = 'none';
+            userDetailsInput.style.display = 'none'; // Hide input fields after starting
+            await startCamera(); // Start camera
+            if (cameraFeed.srcObject) { // Only proceed if camera started successfully
+                capturedPhotoDataUrl = capturePhoto(); // Capture photo at the start
+                mainContainer.style.display = 'flex'; // Show main quiz content
+                quizContainer.style.display = 'block'; // Make sure quiz container is block for proper flex layout
+                quizActive = true;
+                displayQuestion(); // Display the first question
+                startQuizTimer(); // Start the timer
+                startCheatingDetection(); // Start cheating detection
+                // Set up periodic photo capture (e.g., every 30 seconds)
+                periodicPhotoInterval = setInterval(() => {
+                    capturedPhotoDataUrl = capturePhoto();
+                    // You could potentially send this photo to a server for advanced proctoring
+                    console.log("Photo captured periodically.");
+                }, 30000); // Capture photo every 30 seconds
+            } else {
+                startButton.disabled = false; // Re-enable if camera failed
+                testInfoContainer.style.display = 'block'; // Show instructions again
+                userDetailsInput.style.display = 'block'; // Show input fields again
+            }
+        });
+        // Function to download the small certificate as PDF
+        downloadSmallCertificateButton.addEventListener('click', () => {
+            downloadSmallCertificateButton.disabled = true; // Disable to prevent multiple clicks
+            downloadMessage.textContent = "Generating your certificate, please wait...";
+            downloadMessage.style.color = '#0056b3'; // Blue for pending message
             const element = document.getElementById('small-certificate');
             const opt = {
-                margin: [10, 10, 10, 10],
-                filename: 'html_test_certificate.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                margin:       10,
+                filename:     `${userName}_HTML_Certificate.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, logging: true, dpi: 192, letterRendering: true },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
-            html2pdf().from(element).set(opt).save();
-            downloadMessage.style.display = "none";
-        }
-        // Event listeners
-        startButton.addEventListener('click', startQuiz);
-        downloadSmallCertificateButton.addEventListener('click', downloadSmallCertificate);
-        // Enable camera on page load
-        enableCamera();
+            html2pdf().set(options).from(element).save()
+            .then(() => {
+                downloadMessage.textContent = "Your certificate has been downloaded!";
+                downloadMessage.style.color = '#28a745'; // Green for success
+                downloadBtn.disabled = false;
+            })
+            .catch((error) => {
+                console.error("Error generating PDF:", error);
+                downloadMessage.textContent = "Failed to generate certificate. Please try again.";
+                downloadMessage.style.color = '#dc3545'; // Red for error
+                downloadBtn.disabled = false;
+            });
+        });
+        // Initial setup
+        window.addEventListener('load', () => {
+            // Hide main quiz content until start button is clicked
+            mainContainer.style.display = 'none';
+            certificateDiv.style.display = 'none';
+            downloadSmallCertificateButton.style.display = 'none';
+            downloadMessage.style.display = 'none';
+            googleFormLinkContainer.style.display = 'none';
+            smallCertificateDiv.style.display = 'block'; // Ensure it's block for html2pdf to process, but off-screen
+        });
     </script>
 </body>
 </html>

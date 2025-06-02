@@ -70,6 +70,96 @@
             font-size: 0.875rem; /* text-sm */
             margin-top: 0.25rem; /* mt-1 */
         }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #2d3748; /* slate-800 equivalent */
+            color: #e2e8f0; /* text-gray-200 equivalent */
+            padding: 2.5rem 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 1.5rem;
+        }
+
+        .footer-links div {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .footer-links h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links ul li a {
+            color: #cbd5e0; /* text-gray-400 equivalent */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links ul li a:hover {
+            color: #a0aec0; /* text-gray-300 equivalent */
+            text-decoration: underline;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons img {
+            filter: brightness(0) invert(1); /* Makes the placeholder images white */
+        }
+
+        /* Responsive Navigation */
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #2d3748;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding-bottom: 10px;
+            }
+            .navbar-links.active {
+                display: flex;
+            }
+            .navbar-links a {
+                padding: 10px 20px;
+                text-align: center;
+            }
+            .hamburger-menu {
+                display: block;
+            }
+        }
+
+        /* Custom style for the GJ Tech logo border */
+        .gj-tech-logo-border {
+            border: 2px solid yellow; /* This will make the border yellow */
+            padding: 4px 8px; /* Add some padding so the border doesn't hug the text too closely */
+            border-radius: 5px; /* Slightly rounded corners for aesthetics */
+            display: inline-block; /* Ensures the border wraps tightly around the text */
+        }
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
@@ -84,17 +174,22 @@
             <a href="careergoals.html" class="hover:underline">Career Goals and Opportunities </a>
         </marquee>
     </div>
-    <nav class="bg-slate-700 text-white text-center py-3 space-x-6 text-lg sticky top-0 z-50 shadow">
-        <a href="index.html" class="hover:underline">Home 🏡</a>
-        <a href="blogs.html" class="hover:underline">Blogs 👩‍💻</a>
-        <a href="about.html" class="hover:underline">About 🎓</a>
-        <a href="contact.html" class="hover:underline">Contact 📶/Explore Our Courses</a>
-        <a href="careergoals.html" class="hover:underline">Career Goals and Opportunities </a>
-        <a href="CoursesinManagement.html" class="hover:underline">Courses in Management</a>
-        <a href="Registration.html" class="hover:underline">Registration-in</a>
-        <a href="login.html" class="hover:underline">login-in</a>
-    </nav>
-
+</header>
+<nav class="bg-slate-700 text-white text-center py-3 space-x-3 md:space-x-6 text-sm md:text-lg sticky top-0 z-50 shadow w-full">
+    <div class="container mx-auto flex flex-wrap justify-center gap-x-3 md:gap-x-6">
+        <nav class="bg-blue-700 text-white text-center py-3 space-x-6 text-lg">
+            <a href="index.html" class="hover:underline">Home 🏡</a>
+            <a href="blogs.html" class="hover:underline">Blogs 👩‍💻</a>
+            <a href="about.html" class="hover:underline">About 🎓</a>
+            <a href="contact.html" class="hover:underline">Contact 📶/Explore Our Courses</a>
+            <a href="careergoals.html" class="hover:underline">Career Goals and Opportunities </a>
+            <a href="CoursesinManagement.html" class="hover:underline">Courses in Management</a>
+            <a href="Registration.html" class="hover:underline">Registration-in</a>
+            <a href="login.html" class="hover:underline">login-in</a>
+        </nav>
+    </div>
+</nav>
+<main class="max-w-6xl mx-auto p-6 space-y-6"></main>
     <section class="max-w-4xl mx-auto p-6 courses-section">
         <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
             <h2 class="text-2xl font-semibold text-slate-800 mb-6 text-center">Explore Our Courses</h2>
@@ -121,7 +216,7 @@
                                 <h4 class="font-medium text-slate-800">Web Development Bootcamp</h4>
                                 <span class="text-xs font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Starting Soon</span>
                             </div>
-                            <p class="text-sm text-gray-600 mt-2">Duration: 12 weeks</p>
+                            <p class="text-sm text-gray-600 mt-2">Duration: No </p>
                             <div class="mt-3 text-right">
                                 <a href="WebDevelopmentBootcamp.html" class="text-sm text-green-600 hover:text-green-800 font-medium">Learn More →</a>
                             </div>
@@ -131,7 +226,7 @@
                                 <h4 class="font-medium text-slate-800">Mobile App Development</h4>
                                 <span class="text-xs font-semibold bg-green-100 text-green-800 px-2 py-1 rounded-full">Enrolling Now</span>
                             </div>
-                            <p class="text-sm text-gray-600 mt-2">Duration: 8 weeks</p>
+                            <p class="text-sm text-gray-600 mt-2">Duration: No</p>
                             <div class="mt-3 text-right">
                                 <a href="mobile.html" class="text-sm text-green-600 hover:text-green-800 font-medium">Learn More →</a>
                             </div>
@@ -141,7 +236,7 @@
                                 <h4 class="font-medium text-slate-800">Backend Development</h4>
                                 <span class="text-xs font-semibold bg-purple-100 text-purple-800 px-2 py-1 rounded-full">Coming Soon</span>
                             </div>
-                            <p class="text-sm text-gray-600 mt-2">Duration: 10 weeks</p>
+                            <p class="text-sm text-gray-600 mt-2">Duration: No</p>
                             <div class="mt-3 text-right">
                                 <a href="bc.html" class="text-sm text-green-600 hover:text-green-800 font-medium">Learn More →</a>
                             </div>
@@ -189,52 +284,18 @@
                 <div id="formStatusMessage" class="mt-4 p-3 rounded-lg text-center hidden"></div>
             </form>
         </section>
-
-        <section class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow duration-300 contact-card">
-            <h2 class="text-2xl font-semibold text-slate-800 mb-6 text-center">Contact Information</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="text-center p-4">
-                    <i class="fas fa-envelope text-4xl text-red-500 mb-4 social-icon" aria-label="Email"></i>
-                    <h3 class="text-lg font-semibold text-slate-800">Email</h3>
-                    <a href="mailto:gajendras0438@gmail.com" class="text-blue-600 hover:underline">gajendras0438@gmail.com</a>
-                </div>
-                <div class="text-center p-4">
-                    <i class="fab fa-whatsapp text-4xl text-green-500 mb-4 social-icon" aria-label="WhatsApp"></i>
-                    <h3 class="text-lg font-semibold text-slate-800">WhatsApp</h3>
-                    <a href="https://chat.whatsapp.com/F7tHCm4Xq3m8jN2Q00Q2e5" target="_blank" class="text-blue-600 hover:underline contact-link" rel="noopener noreferrer">Add whatsapp Group</a>
-                </div>
-                <div class="text-center p-4">
-                    <i class="fas fa-map-marker-alt text-4xl text-blue-500 mb-4 social-icon" aria-label="Location"></i>
-                    <h3 class="text-lg font-semibold text-slate-800">Location</h3>
-                    <a href="https://www.google.com/maps/place/Moradabad,+Uttar+Pradesh/@28.839886,78.7562852,12z" target="_blank" class="text-blue-600 hover:underline contact-link" rel="noopener noreferrer">
-                        Moradabad, Uttar Pradesh
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow duration-300 contact-card">
-            <h2 class="text-2xl font-semibold text-slate-800 mb-6 text-center">Connect With Us</h2>
-            <div class="flex justify-center space-x-6 text-3xl">
-                <a href="https://x.com/Gajendra123j" target="_blank" class="text-blue-400 hover:text-blue-600 social-icon" title="Twitter" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.instagram.com/gajendra_katariya_015" target="_blank" class="text-pink-500 hover:text-pink-700 social-icon" title="Instagram" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/gajendra-singh-9ba6a5306/" target="_blank" class="text-blue-700 hover:text-blue-900 social-icon" title="LinkedIn" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/Gajendra123j" target="_blank" class="text-gray-800 hover:text-gray-900 social-icon" title="GitHub" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-slate-800 text-white text-center py-4 mt-10">
-        <p>2025 GJ Tech Pvt. Ltd. 👩‍💻..</p>
-        <p class="mt-2">Need help? Visit <a href="https://www.google.com" target="_blank" class="underline text-blue-400 hover:text-blue-600" rel="noopener noreferrer">Google</a></p>
-    </footer>
-
     <script>
         // Client-side form validation and submission handling
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('contactForm');
             const submitButton = document.getElementById('submitButton');
             const formStatusMessage = document.getElementById('formStatusMessage');
+            const hamburger = document.getElementById('hamburger');
+            const navbarLinks = document.querySelector('.navbar-links');
+
+            hamburger.addEventListener('click', () => {
+                navbarLinks.classList.toggle('active');
+            });
 
             form.addEventListener('submit', async (event) => {
                 event.preventDefault(); // Prevent default form submission
@@ -313,5 +374,64 @@
             });
         });
     </script>
+</body>
+</html>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-links">
+            <div>
+                <h4>About GJ Tech</h4>
+                <ul>
+                    <li><a href="about.html">Our Mission</a></li>
+                    <li><a href="blogs.html">Latest Blogs</a></li>
+                    <li><a href="careergoals.html">Career Opportunities</a></li>
+                    <li><a href="CoursesinManagement.html">Management Courses</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="info.html">Help Center</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect With Us</h4>
+                <div class="flex justify-center space-x-6 text-3xl">
+                    <a href="https://x.com/Gajendra123j" target="_blank" class="text-blue-400 hover:text-blue-600 social-icon" title="Twitter" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/gajendra_katariya_015" target="_blank" class="text-pink-500 hover:text-pink-700 social-icon" title="Instagram" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/gajendra-singh-9ba6a5306/" target="_blank" class="text-blue-700 hover:text-blue-900 social-icon" title="LinkedIn" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Gajendra123j" target="_blank" class="text-gray-800 hover:text-gray-900 social-icon" title="GitHub" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <section class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow duration-300 contact-card">
+                <h2 class="text-2xl font-semibold text-slate-800 mb-6 text-center">Contact Information</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="text-center p-4">
+                        <i class="fas fa-envelope text-4xl text-red-500 mb-4 social-icon" aria-label="Email"></i>
+                        <h3 class="text-lg font-semibold text-slate-800">Email</h3>
+                        <a href="mailto:gajendras0438@gmail.com" class="text-blue-600 hover:underline">gajendras0438@gmail.com</a>
+                    </div>
+                    <div class="text-center p-4">
+                        <i class="fab fa-whatsapp text-4xl text-green-500 mb-4 social-icon" aria-label="WhatsApp"></i>
+                        <h3 class="text-lg font-semibold text-slate-800">WhatsApp</h3>
+                        <a href="https://chat.whatsapp.com/F7tHCm4Xq3m8jN2Q00Q2e5" target="_blank" class="text-blue-600 hover:underline contact-link" rel="noopener noreferrer">Add whatsapp Group</a>
+                    </div>
+                    <div class="text-center p-4">
+                        <i class="fas fa-map-marker-alt text-4xl text-blue-500 mb-4 social-icon" aria-label="Location"></i>
+                        <h3 class="text-lg font-semibold text-slate-800">Location</h3>
+                        <a href="https://www.google.com/maps/place/Moradabad,+Uttar+Pradesh/@28.839886,78.7562852,12z" target="_blank" class="text-blue-600 hover:underline contact-link" rel="noopener noreferrer">
+                            Moradabad, Uttar Pradesh
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</footer>
+<footer class="bg-slate-800 text-gold text-center py-4 mt-10">
+    <p>©2024 GJ Tech Pvt. Ltd. 👩‍💻..</p>
+</footer>
 </body>
 </html>
