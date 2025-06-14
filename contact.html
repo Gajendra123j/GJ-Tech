@@ -240,6 +240,24 @@
                             <div class="mt-3 text-right">
                                 <a href="bc.html" class="text-sm text-green-600 hover:text-green-800 font-medium">Learn More →</a>
                             </div>
+                            <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                                <div class="flex justify-between items-center">
+                                    <h4 class="font-medium text-slate-800">Python Development</h4>
+                                    <span class="text-xs font-semibold bg-purple-100 text-purple-800 px-2 py-1 rounded-full">Coming Soon</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-2">Duration: No</p>
+                                <div class="mt-3 text-right">
+                                    <a href="bc.html" class="text-sm text-green-600 hover:text-green-800 font-medium">Learn More →</a>
+                                </div>
+                                <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                                    <div class="flex justify-between items-center">
+                                        <h4 class="font-medium text-slate-800">JavaScript Development</h4>
+                                        <span class="text-xs font-semibold bg-purple-100 text-purple-800 px-2 py-1 rounded-full">Coming Soon</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-2">Duration: No</p>
+                                    <div class="mt-3 text-right">
+                                        <a href="bc.html" class="text-sm text-green-600 hover:text-green-800 font-medium">Learn More →</a>
+                                    </div>
                         </div>
                     </div>
                 </div>
@@ -251,7 +269,6 @@
             </div>
         </div>
     </section>
-
     <main id="main-content" class="max-w-4xl mx-auto p-6 space-y-6">
         <section class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow duration-300 contact-card">
             <h2 class="text-2xl font-semibold text-slate-800 mb-6 text-center">Get in Touch</h2>
@@ -296,23 +313,19 @@
             hamburger.addEventListener('click', () => {
                 navbarLinks.classList.toggle('active');
             });
-
             form.addEventListener('submit', async (event) => {
                 event.preventDefault(); // Prevent default form submission
-
                 let isValid = true;
                 const formData = new FormData(form);
                 const data = {};
                 for (let [key, value] of formData.entries()) {
                     data[key] = value;
                 }
-
                 // Clear previous errors and messages
                 document.querySelectorAll('.error-message').forEach(el => el.classList.add('hidden'));
                 formStatusMessage.classList.add('hidden');
                 formStatusMessage.textContent = '';
                 formStatusMessage.classList.remove('bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
-
                 // Basic validation
                 if (!data.name.trim()) {
                     document.getElementById('name-error').classList.remove('hidden');
@@ -330,28 +343,23 @@
                     document.getElementById('message-error').classList.remove('hidden');
                     isValid = false;
                 }
-
                 if (!isValid) {
                     formStatusMessage.textContent = 'Please correct the errors in the form.';
                     formStatusMessage.classList.remove('hidden');
                     formStatusMessage.classList.add('bg-red-100', 'text-red-700');
                     return;
                 }
-
                 // Show loading state
                 submitButton.textContent = 'Sending...';
                 submitButton.disabled = true;
                 submitButton.classList.add('opacity-75', 'cursor-not-allowed');
-
                 try {
                     // Simulate API call (replace with your actual fetch request)
                     // Example: const response = await fetch(form.action, { method: form.method, body: JSON.stringify(data), headers: { 'Content-Type': 'application/json' } });
                     // For now, we'll simulate success/failure with a timeout
                     await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate network delay
-
                     // Simulate success
                     const success = true; // Change to false to test failure
-
                     if (success) {
                         formStatusMessage.textContent = 'Thank you for your message! We will get back to you soon.';
                         formStatusMessage.classList.remove('hidden');

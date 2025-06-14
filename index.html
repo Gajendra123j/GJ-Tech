@@ -18,18 +18,18 @@
             --light-blue: rgb(19, 16, 16);
             --dark-blue: rgb(25, 46, 46);
             --link-blue:rgb(15, 14, 14);
-            --star-gold: #1e1a09;
+            --star-gold: #e2a31c; /* Changed to a brighter gold */
             --primary-color: #151511; /* Standard primary blue */
             --footer-bg:rgb(29, 25, 23); /* Darker gray footer */
             --footer-text: #f4f2ee;
             --footer-link: #429cdd;
             --footer-link-hover: #e3dcd6;
             /* Updated Color Scheme Variables */
-            --main-bg-light: #21bcbc; /* Very light gray background */
-            --card-bg-light: #f8f8f7; /* White card background */
-            --text-dark: #0b0b0b; /* Dark gray text */
-            --primary-blue:rgb(20, 153, 151); /* A standard blue */
-            --secondary-blue:rgb(52, 6, 6); /* A lighter blue */
+            --main-bg-light: #e2eafa; /* Very light gray background, adjusted for better contrast */
+            --card-bg-light: #c7b7b7; /* White card background */
+            --text-dark: #1a202c; /* Dark gray text */
+            --primary-blue:#d97715; /* A standard blue */
+            --secondary-blue:#3b82f6; /* A lighter blue */ 
         }
         /* Smooth scrolling for anchor links */
         html {
@@ -272,7 +272,7 @@
             transform: scale(1.1);
         }
         /* ========== Utility Styles (Updated colors) ========== */
-         /* Section titles with primary blue color */
+        /* Section titles with primary blue color */
         .section-title {
             font-size: 2rem;
             font-weight: bold;
@@ -296,7 +296,7 @@
         /* Primary button with primary blue styling */
         .btn-primary {
             background-color: var(--primary-blue); /* Primary blue color */
-            color: #161515; /* White text */
+            color: #ffffff; /* White text */
         }
         .btn-primary:hover {
             background-color: var(--dark-blue); /* Darker blue on hover */
@@ -346,16 +346,16 @@
                 margin-top: 1rem;
                 margin-bottom: 1rem;
             }
-             header .absolute.top-4.left-4 {
-                 justify-content: center;
-                 width: 100%;
-                 margin-bottom: 0.5rem;
-             }
-             header .absolute.top-4.right-4 {
-                 justify-content: center;
-                 width: 100%;
-                 margin-top: 0.5rem;
-             }
+            header .absolute.top-4.left-4 {
+                justify-content: center;
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+            header .absolute.top-4.right-4 {
+                justify-content: center;
+                width: 100%;
+                margin-top: 0.5rem;
+            }
             header .absolute.top-4.left-4 input {
                 width: 80%;
             }
@@ -373,9 +373,9 @@
                 flex-direction: row;
                 gap: 1.5rem;
             }
-             .main-nav a {
-                 padding: 0;
-             }
+            .main-nav a {
+                padding: 0;
+            }
         }
         /* Styling for the VIP Events section (Updated colors) */
         .vip-event-card {
@@ -389,8 +389,8 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .vip-event-card:hover {
-             transform: translateY(-5px);
-             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
         .vip-event-card h3 {
             font-size: 1.25rem;
@@ -431,7 +431,7 @@
             margin-bottom: 1rem;
             color: var(--primary-blue); /* Primary blue color for icons */
         }
-         .vip-benefit-card h3 {
+        .vip-benefit-card h3 {
             font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
@@ -453,7 +453,7 @@
         .direct-download-link:hover {
             color: var(--dark-blue); /* Darker color on hover */
         }
-         /* Styling for the Technologies section cards (Updated colors and backgrounds) */
+        /* Styling for the Technologies section cards (Updated colors and backgrounds) */
         .tech-card {
             background-color: var(--card-bg-light); /* Light card background */
             color: var(--text-dark); /* Dark text */
@@ -470,34 +470,34 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
-       /* Individual tech card backgrounds - Placeholder images for demonstration */
-       /* Replace with actual image paths if you have them */
-       .tech-card:nth-child(1) { /* Python */
-           background-image: url('https://via.placeholder.com/150/FFD43B/000000?text=Python');
-           background-size: cover;
-           background-position: center;
-       }
-       .tech-card:nth-child(2) { /* CSS */
-           background-image: url('https://via.placeholder.com/150/264DE4/FFFFFF?text=CSS');
-           background-size: cover;
-           background-position: center;
-       }
-       .tech-card:nth-child(3) { /* HTML */
-           background-image: url('https://via.placeholder.com/150/E44D26/FFFFFF?text=HTML');
-           background-size: cover;
-           background-position: center;
-       }
-       .tech-card:nth-child(4) { /* JavaScript */
-           background-image: url('https://via.placeholder.com/150/F7DF1E/000000?text=JS');
-           background-size: cover;
-           background-position: center;
-       }
-       .tech-card:nth-child(5) { /* AI & ML */
-           background-image: url('https://via.placeholder.com/150/6A0DAD/FFFFFF?text=AI/ML');
-           background-size: cover;
-           background-position: center;
-       }
-        /* Overlay to ensure text readability */
+        /* Individual tech card backgrounds - Placeholder images for demonstration */
+        /* Replace with actual image paths if you have them */
+        .tech-card:nth-child(1) { /* Python */
+            background-image: url('https://placehold.co/150x150/FFD43B/000000?text=Python');
+            background-size: cover;
+            background-position: center;
+        }
+        .tech-card:nth-child(2) { /* CSS */
+            background-image: url('https://placehold.co/150x150/264DE4/FFFFFF?text=CSS');
+            background-size: cover;
+            background-position: center;
+        }
+        .tech-card:nth-child(3) { /* HTML */
+            background-image: url('https://placehold.co/150x150/E44D26/FFFFFF?text=HTML');
+            background-size: cover;
+            background-position: center;
+        }
+        .tech-card:nth-child(4) { /* JavaScript */
+            background-image: url('https://placehold.co/150x150/F7DF1E/000000?text=JS');
+            background-size: cover;
+            background-position: center;
+        }
+        .tech-card:nth-child(5) { /* AI & ML */
+            background-image: url('https://placehold.co/150x150/6A0DAD/FFFFFF?text=AI/ML');
+            background-size: cover;
+            background-position: center;
+        }
+         /* Overlay to ensure text readability */
         .tech-card::before {
             content: '';
             position: absolute;
@@ -505,7 +505,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(247, 240, 240, 0.85); /* Semi-transparent white overlay */
+            background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white overlay */
             z-index: 1; /* Place above background image */
             border-radius: var(--card-radius);
         }
@@ -526,18 +526,17 @@
         }
     </style>
 </head>
-<body class="bg-blue-100 font-sans">
+<body class="bg-gray-70 font-sans">
     <div class="announcement-marquee">
-        <marquee behavior="scroll" direction="left" scrollamount="5">
-            <img src="ck.jpg" alt="Company Logo" style="height: 24px; vertical-align: middle;">
-            🚀 Welcome to GJ Tech! New projects coming soon! |
-            <a href="blogs.html">Check out our latest blog posts</a> |
-            <a href="contact.html">Join our tech community</a> |
-            <a href="about.html">Learn more about our mission</a> |
-            <a href="CoursesinManagement.html" class="hover:underline">Courses in Management</a> |
-            <a href="careergoals.html" class="hover:underline">Career Goals and Opportunities </a> |>
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+        🚀 Welcome to GJ Tech! New projects coming soon!
+        <a href="blogs.html">Check out our latest blog posts</a> |
+        <a href="contact.html">Join our tech community</a> |
+        <a href="about.html">Learn more about our mission</a> |
+        <a href="CoursesinManagement.html" class="hover:underline">Courses in Management</a> |
+        <a href="careergoals.html" class="hover:underline">Career Goals and Opportunities </a>
     </marquee>
-    </div>
+</div>
     <header class="bg-slate-900 text-white text-center py-6 shadow-md relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-r from-blue-700 to-teal-700 opacity-30"></div>
         <div class="relative z-10">
@@ -553,22 +552,18 @@
             <div class="flex justify-center items-center mt-4">
                 <img src="Education.jpg" alt="GJ Tech" class="w-52 h-36 object-contain rounded-lg shadow transform hover:scale-105 transition-transform duration-300">
             </div>
-            </div>
         </div>
     </header>
     <nav class="bg-slate-700 text-white text-center py-3 space-x-3 md:space-x-6 text-sm md:text-lg sticky top-0 z-50 shadow w-full">
-        <div class="container mx-auto flex flex-wrap justify-center gap-x-3 md:gap-x-6">
-            <nav class="bg-blue-700 text-white text-center py-3 space-x-6 text-lg">
-                <a href="index.html" class="hover:underline">Home 🏡</a>
-                <a href="blogs.html" class="hover:underline">Blogs 👩‍💻</a>
-                <a href="about.html" class="hover:underline">About 🎓</a>
-                <a href="contact.html" class="hover:underline">Contact 📶/Explore Our Courses</a>
-                <a href="careergoals.html" class="hover:underline">Career Goals and Opportunities </a>
-                <a href="CoursesinManagement.html" class="hover:underline">Courses in Management</a>
-                <a href="Registration.html" class="hover:underline">Registration-in</a>
-                <a href="login.html" class="hover:underline">login-in</a>
-            </nav>
-        </div>
+        <a href="index.html" class="hover:underline">Home 🏡</a>
+        <a href="blogs.html" class="hover:underline">Blogs 👩‍💻</a>
+        <a href="about.html" class="hover:underline">About 🎓</a>
+        <a href="contact.html" class="hover:underline">Contact 📶/Explore Our Courses</a>
+        <a href="careergoals.html" class="hover:underline">Career Goals and Opportunities </a>
+        <a href="CoursesinManagement.html" class="hover:underline">Courses in Management</a>
+        <a href="Registration.html" class="hover:underline">Registration-in</a>
+        <a href="login.html" class="hover:underline">login-in</a>
+    </nav>
     </nav>
     <main class="container mx-auto px-4 py-8">
         <section id="get-started-cta" class="card text-center mb-8">
@@ -581,7 +576,7 @@
         <section id="profile" class="profile-section card">
             <h2 class="section-title">My Profile</h2>
             <div class="flex flex-col items-center">
-                <img src="jg.jpg" alt="Gajendra Singh Profile" class="rounded-full w-32 h-32 mb-4 shadow-lg object-cover border-4 border-blue-400">
+                <img src="ck1.jpg" alt="Gajendra Singh Profile" class="rounded-full w-32 h-32 mb-4 shadow-lg object-cover border-4 border-blue-400">
                 <p class="text-lg font-semibold text-gray-800"> 👋Gajendra Singh</p>
                 <div class="bg-white p-6 rounded-xl shadow-md max-w-3xl mx-auto">
                     <h1 class="text-3xl font-bold text-gray-800 mb-4">👋Gajendra Singh</h1>
@@ -667,119 +662,176 @@
                 <div class="tech-card card">
                     <i class="fab fa-python icon text-blue-600"></i>
                     <h3>Python Development</h3>
-                    <p class="text-gray-700">Python is a versatile programming language used for a wide range of applications, including web development, data science, software development, automation, and more. It's known for its readability and ease of use, making it a popular choice for beginners and experienced developers alike. 
+                    <p class="text-gray-700">Python is a versatile programming language used for a wide range of applications, including web development, data science, software development, automation, and more. It is known for its simplicity and readability.</p>
                 </div>
                 <div class="tech-card card">
                     <i class="fab fa-css3-alt icon text-blue-600"></i>
                     <h3>CSS Styling</h3>
-                    <p class="text-gray-700">Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML (including XML dialects such as SVG, MathML or XHTML). CSS describes how elements should be rendered on screen, on paper, in speech, or on other media.</p>
+                    <p class="text-gray-700">CSS (Cascading Style Sheets) is used for describing the presentation of a document written in HTML. It allows us to control the look and feel of web pages, making them visually appealing and responsive.</p>
                 </div>
                 <div class="tech-card card">
                     <i class="fab fa-html5 icon text-blue-600"></i>
-                    <h3>HTML5 Markup</h3>
-                    <p class="text-gray-700">HTML, or HyperText Markup Language, is the foundational language used to structure and organize content for display on web pages. It acts as the skeleton of a website, defining the elements like headings, paragraphs, images, and links, using tags that tell a web browser how to display them. </p>
+                    <h3>HTML Structure</h3>
+                    <p class="text-gray-700">HTML (HyperText Markup Language) is the standard markup language for documents designed to be displayed in a web browser. It provides the basic structure of a webpage, allowing for the embedding of objects like images and interactive forms.</p>
                 </div>
                 <div class="tech-card card">
                     <i class="fab fa-js-square icon text-blue-600"></i>
-                    <h3>JavaScript Mastery</h3>
-                    <p class="text-gray-700">JavaScript is a versatile programming language primarily used to add interactivity and dynamic content to web pages. It's the dominant client-side scripting language, meaning it runs directly in the user's browser to create engaging user experiences. Beyond web development, JavaScript is also used for back-end development, mobile app development, and even game development. </p>
+                    <h3>JavaScript Interactivity</h3>
+                    <p class="text-gray-700">JavaScript is a programming language that enables interactive web pages. It allows for dynamic content, multimedia control, animated images, and much more, providing a rich user experience.</p>
                 </div>
                 <div class="tech-card card">
                     <i class="fas fa-brain icon text-blue-600"></i>
                     <h3>AI & Machine Learning</h3>
-                    <p class="text-gray-700">Machine learning (ML) is a field within artificial intelligence (AI) that focuses on enabling computers to learn from data without being explicitly programmed. It involves algorithms that can analyze data, identify patterns, and make predictions or decisions. These algorithms improve their performance over time as they are exposed to more data. </p>
+                    <p class="text-gray-700">Artificial Intelligence (AI) and Machine Learning (ML) involve developing systems that can learn from data, identify patterns, and make decisions with minimal human intervention. We apply these technologies to create intelligent solutions.</p>
+                </div>
+                 <div class="tech-card card">
+                    <i class="fas fa-cloud icon text-blue-600"></i>
+                    <h3>Cloud Computing</h3>
+                    <p class="text-gray-700">Cloud computing delivers on-demand computing services—from applications to storage and processing power—typically over the internet with a pay-as-you-go pricing model. We leverage cloud platforms for scalable and robust solutions.</p>
+                </div>
+                <div class="tech-card card">
+                    <i class="fas fa-database icon text-blue-600"></i>
+                    <h3>Database Management</h3>
+                    <p class="text-gray-700">Effective database management is crucial for storing, organizing, and retrieving data efficiently. We work with various database systems to ensure data integrity, security, and high performance for your applications.</p>
+                </div>
+                <div class="tech-card card">
+                    <i class="fas fa-mobile-alt icon text-blue-600"></i>
+                    <h3>Mobile Development</h3>
+                    <p class="text-gray-700">We specialize in creating engaging and user-friendly mobile applications for various platforms. Our focus is on delivering high-performance and intuitive apps that cater to diverse user needs and enhance digital experiences.</p>
+                </div>
+                <div class="tech-card card">
+                    <i class="fas fa-shield-alt icon text-blue-600"></i>
+                    <h3>Cybersecurity Solutions</h3>
+                    <p class="text-gray-700">Protecting digital assets from cyber threats is paramount. We implement robust cybersecurity measures, including threat detection, data encryption, and secure coding practices, to safeguard your information and systems.</p>
+                </div>
+                <div class="tech-card card">
+                    <i class="fas fa-project-diagram icon text-blue-600"></i>
+                    <h3>DevOps & Automation</h3>
+                    <p class="text-gray-700">DevOps practices streamline software development and IT operations through automation, continuous integration, and continuous delivery. We implement DevOps pipelines to accelerate development cycles and improve software quality.</p>
                 </div>
             </div>
         </section>
     </main>
     <footer class="footer">
         <div class="container">
-            <div class="footer-about">
-                <h4 class="text-white">About GJ Tech</h4>
-                <p>If you are looking for information related to "Empowering the next generation of tech professionals through quality education and community," I can definitely help you with that! Please tell me:</p>
-                <div class="social-icons mt-4 flex space-x-4">
-                    <a href="https://www.linkedin.com/in/gajendra-singh-9ba6a5306" target="_blank" rel="noopener noreferrer">
-                        <img src="linkdin.jpg" alt="LinkedIn" class="w-6 h-6"/>
-                    </a>
-                    <a href="https://github.com/Gajendra123j" target="_blank" rel="noopener noreferrer">
-                        <img src="github.jpg" alt="GitHub" class="w-6 h-6"/>
-                    </a>
-                    <a href="https://www.instagram.com/gajendra_katariya_015" target="_blank" rel="noopener noreferrer">
-                        <img src="in.jpg" alt="Instagram" class="w-6 h-6"/>
-                    </a>
-                    <a href="mailto:gajendras0438@gmail.com">
-                        <img src="https://img.icons8.com/ios-filled/24/ffffff/mail.png" alt="Email" class="w-6 h-6"/>
-                    </a>
-                </div>
+            <div class="footer-info">
+                <h4 class="text-yellow-500">GJ Tech Pvt. Ltd.</h4>
+                <p>&copy; 2025 All rights reserved.</p>
+                <p>Moradabad, Uttar Pradesh, India</p>
             </div>
             <div class="footer-links">
                 <div>
-                    <h4 class="text-white">Quick Links</h4>
+                    <h4>Quick Links</h4>
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
                         <li><a href="blogs.html">Blogs</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white">Courses</h4>
-                    <ul>
-                        <li><a href="CoursesinManagement.html">Management Courses</a></li>
-                        <li><a href="careergoals.html">Career Opportunities</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white">Support</h4>
+                    <h4>Resources</h4>
                     <ul>
                         <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="support.html">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Connect</h4>
+                    <ul class="social-icons flex space-x-4 mt-2">
+                        <li><a href="https://linkedin.com/company/gjtech" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin text-blue-400 hover:text-blue-200 text-2xl"></i></a></li>
+                        <li><a href="https://twitter.com/gjtech" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter-square text-blue-400 hover:text-blue-200 text-2xl"></i></a></li>
+                        <li><a href="https://facebook.com/gjtech" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-square text-blue-400 hover:text-blue-200 text-2xl"></i></a></li>
+                        <li><a href="https://github.com/gjtech" target="_blank" rel="noopener noreferrer"><i class="fab fa-github-square text-blue-400 hover:text-blue-200 text-2xl"></i></a></li>
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 GJ Tech Pvt. Ltd. All rights reserved.</p>
-            <div class="legal-links">
-                <a href="privacy.html">Privacy Policy</a> |
+            <div class="footer-bottom">
+                <p>Designed with ❤️ by GJ Tech Team</p>
+                <div class="legal-links mt-2">
+                    <a href="privacy.html">Privacy Policy</a> |    
+                </div>
             </div>
         </div>
     </footer>
     <script>
-        // Star rating functionality
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        // Rating submission logic
         document.getElementById('submitRating').addEventListener('click', function() {
             const selectedRating = document.querySelector('input[name="rating"]:checked');
             const ratingMessage = document.getElementById('ratingMessage');
             if (selectedRating) {
-                ratingMessage.textContent = `Thank you for rating us ${selectedRating.value} stars! Your feedback is valuable.`;
+                const ratingValue = selectedRating.value;
+                ratingMessage.textContent = `Thank you for rating us ${ratingValue} stars! Your feedback is valuable.`;
                 ratingMessage.style.color = 'green';
+                // You can add logic here to send the rating to a server
+                console.log(`User submitted a rating of ${ratingValue} stars.`);
             } else {
                 ratingMessage.textContent = 'Please select a star rating before submitting.';
                 ratingMessage.style.color = 'red';
             }
         });
-        // Page search functionality
-        document.getElementById('pageSearch').addEventListener('keyup', function(event) {
-            if (event.key === 'Enter') {
-                const searchTerm = this.value.toLowerCase();
-                const sections = document.querySelectorAll('main section');
-                let found = false;
-                for (let section of sections) {
-                    const sectionText = section.textContent.toLowerCase();
-                    if (sectionText.includes(searchTerm)) {
-                        section.scrollIntoView({ behavior: 'smooth' });
-                        // Optional: Highlight the section or content
-                        section.style.border = '2px solid yellow'; // Simple highlight
-                        setTimeout(() => section.style.border = '', 3000); // Remove highlight after 3 seconds
+        // Basic page search functionality (client-side)
+        document.getElementById('pageSearch').addEventListener('keyup', function() {
+            const searchTerm = this.value.toLowerCase();
+            const mainContent = document.querySelector('main');
+            let found = false;
+            // Remove previous highlights
+            mainContent.querySelectorAll('.highlight').forEach(span => {
+                const parent = span.parentNode;
+                parent.replaceChild(document.createTextNode(span.textContent), span);
+            });
+            if (searchTerm.length > 2) { // Only search if more than 2 characters
+                const walker = document.createTreeWalker(mainContent, NodeFilter.SHOW_TEXT, null, false);
+                let node;
+                while (node = walker.nextNode()) {
+                    const text = node.nodeValue;
+                    const lowerText = text.toLowerCase();
+                    let index = 0;
+                    const fragments = [];
+                    while ((index = lowerText.indexOf(searchTerm, index)) !== -1) {
+                        if (index > 0) {
+                            fragments.push(document.createTextNode(text.substring(0, index)));
+                        }
+                        const highlight = document.createElement('span');
+                        highlight.className = 'highlight bg-yellow-300 rounded px-1';
+                        highlight.textContent = text.substring(index, index + searchTerm.length);
+                        fragments.push(highlight);
+                        index += searchTerm.length;
                         found = true;
-                        break;
+                    }
+
+                    if (fragments.length > 0) {
+                        fragments.push(document.createTextNode(text.substring(index)));
+                        const parent = node.parentNode;
+                        if (parent) {
+                            fragments.forEach(fragment => parent.insertBefore(fragment, node));
+                            parent.removeChild(node);
+                        }
                     }
                 }
-                if (!found) {
-                    alert('No matching content found on this page.');
-                }
+            }
+            // Optional: Provide feedback if nothing found
+            if (searchTerm.length > 2 && !found) {
+                // You could display a small message to the user, e.g., next to the search bar
+                console.log('No matches found for:', searchTerm);
             }
         });
+        // Ensure marquee content duplicates for continuous scroll effect if needed
+        // This JavaScript is for a more robust marquee if the CSS one isn't enough,
+        // but typically the CSS marquee with padding-left: 100% is sufficient.
+        // If you need truly infinite scroll without gaps, you might duplicate content:
+        // const marqueeContent = document.querySelector('.marquee-content');
+        // marqueeContent.innerHTML += marqueeContent.innerHTML; // Duplicates content
     </script>
 </body>
 </html>
