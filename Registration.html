@@ -3,101 +3,110 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> GJ Tech Form with Fee</title>
+  <title>GJ Tech Form with Fee</title>
   <style>
-    /* Basic CSS for form styling */
     body {
-      font-family: 'Inter', Arial, sans-serif; /* Using Inter font as per guidelines */
-      background: #f0f0f0;
+      font-family: 'Inter', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       display: flex;
-      flex-direction: column; /* Changed to column to stack elements */
-      justify-content: flex-start; /* Align items to the start of the column */
-      align-items: center; /* Center horizontally */
-      min-height: 100vh; /* Ensure it takes full viewport height */
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      min-height: 100vh;
       margin: 0;
-      padding: 0; /* Remove body padding as elements will handle their own */
+      padding: 0;
       box-sizing: border-box;
     }
-    /* Styles for the announcement marquee */
     .announcement-marquee {
       width: 100%;
-      background-color: #e7e729; /* Light red background */
-      color: #2552e5; /* Dark red text */
-      padding: 8px 0;
+      background: linear-gradient(90deg, #e7e729, #f1fa2c);
+      color: #2552e5;
+      padding: 10px 0;
       font-size: 0.9em;
       text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      margin-bottom: 15px; /* Space below marquee */
-    }
-    .announcement-marquee marquee {
-      white-space: nowrap; /* Ensure text stays on one line */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
       overflow: hidden;
-      box-sizing: border-box;
+      white-space: nowrap;
+    }
+    .marquee-content {
+      display: inline-block;
+      animation: marquee 30s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
     }
     .announcement-marquee a {
       color: #721c24;
       text-decoration: underline;
-      margin: 0 10px;
+      margin: 0 15px;
+      font-weight: 600;
     }
-    /* Styles for the navigation bar (based on Tailwind-like classes) */
     .nav-bar {
-      background-color: #334155; /* Equivalent to bg-slate-700 */
+      background: linear-gradient(135deg, #2c3e50, #34495e);
       color: white;
       text-align: center;
-      padding: 12px 0; /* py-3 */
+      padding: 15px 0;
       display: flex;
       justify-content: center;
-      flex-wrap: wrap; /* Allow items to wrap on smaller screens */
-      gap: 12px; /* space-x-3 md:space-x-6 */
-      font-size: 0.875rem; /* text-sm */
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 0.9rem;
       position: sticky;
       top: 0;
       z-index: 50;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
       width: 100%;
+      backdrop-filter: blur(10px);
     }
     .nav-bar a {
       color: white;
       text-decoration: none;
-      padding: 5px 10px;
-      border-radius: 5px;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      padding: 8px 16px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
     }
     .nav-bar a:hover {
-      background-color: #475569; /* A slightly lighter slate for hover */
-      color: #e2e8f0;
-    }
-    /* Media queries for navigation bar responsiveness */
-    @media (min-width: 768px) { /* md breakpoint */
-      .nav-bar {
-        font-size: 1.125rem; /* text-lg */
-        gap: 24px; /* md:space-x-6 */
-      }
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
     .form-container {
-      background: white;
-      padding: 30px;
-      border-radius: 12px; /* Rounded corners */
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1); /* Enhanced shadow */
-      width: 100%; /* Make it fluid */
-      max-width: 400px; /* Max width for larger screens */
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 450px;
       box-sizing: border-box;
-      margin-top: 20px; /* Space below navigation bar */
-      margin-bottom: 20px; /* Space at the bottom */
+      margin: 30px 20px;
+      border: 1px solid rgba(255,255,255,0.3);
     }
     h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      color: #333;
-      font-size: 1.8em;
-    }
+  text-align: center;                
+  margin-bottom: 30px;                
+  color: #2c3e50;                    
+  font-size: 2em;                    
+  font-weight: 700;                   
+     background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
     label {
-      font-weight: 600; /* Slightly bolder */
+      font-weight: 600;
       margin-top: 15px;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
       display: block;
-      color: #555;
+      color: #34495e;
+      font-size: 0.95em;
     }
+
     input[type="text"],
     input[type="email"],
     input[type="tel"],
@@ -105,209 +114,315 @@
     input[type="file"] {
       display: block;
       width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
       font-size: 16px;
-      border: 1px solid #ddd;
-      border-radius: 8px; /* Rounded corners for inputs */
-      box-sizing: border-box; /* Include padding and border in the element's total width and height */
-      transition: border-color 0.3s ease;
+      border: 2px solid #e1e8ed;
+      border-radius: 12px;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.9);
     }
+
     input[type="text"]:focus,
     input[type="email"]:focus,
     input[type="tel"]:focus,
     input[type="password"]:focus,
     input[type="file"]:focus {
-      border-color: #0e76a8; /* Highlight on focus */
+      border-color: #667eea;
       outline: none;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      transform: translateY(-2px);
     }
+
     input[type="file"] {
-      padding: 8px; /* Adjust padding for file input */
+      padding: 12px;
+      border-style: dashed;
     }
-    p {
-      font-weight: bold;
+
+    .fee-display {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 20px;
+      border-radius: 15px;
       text-align: center;
-      margin-top: 25px;
-      color: #0e76a8; /* Emphasize fee */
-      font-size: 1.1em;
+      margin: 25px 0;
+      font-size: 1.3em;
+      font-weight: bold;
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
     }
-    button {
-      margin-top: 20px;
-      padding: 14px;
+    .pay-button {
+      margin-top: 25px;
+      padding: 16px 30px;
       width: 100%;
-      background-color: #0e76a8;
+      background: linear-gradient(135deg, #667eea, #764ba2);
       color: white;
       border: none;
-      border-radius: 8px; /* Rounded corners for button */
+      border-radius: 12px;
       cursor: pointer;
       font-size: 18px;
       font-weight: bold;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 4px 10px rgba(14, 118, 168, 0.3); /* Button shadow */
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      position: relative;
+      overflow: hidden;
     }
-    button:hover {
-      background-color: #0b5a80;
-      transform: translateY(-2px); /* Slight lift effect on hover */
+    .pay-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s ease;
     }
-    button:active {
-      transform: translateY(0); /* Press down effect */
+    .pay-button:hover::before {
+      left: 100%;
     }
-    /* Responsive adjustments */
+    .pay-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+    }
+    .pay-button:active {
+      transform: translateY(-1px);
+    }
+    .status-message {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: 600;
+      display: none;
+    }
+    .status-success {
+      background: linear-gradient(135deg, #00b894, #00cec9);
+      color: white;
+    }
+    .status-error {
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      color: white;
+    }
     @media (max-width: 600px) {
       .form-container {
-        padding: 20px;
-        margin: 10px;
+        padding: 25px;
+        margin: 15px;
       }
       h2 {
-        font-size: 1.5em;
+        font-size: 1.6em;
       }
-      button {
-        font-size: 16px;
-        padding: 12px;
+      .nav-bar {
+        gap: 10px;
+        font-size: 0.8rem;
+      }
+      .nav-bar a {
+        padding: 6px 12px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="announcement-marquee">
+  <!-- Announcement Marquee -->
+  <div class="announcement-marquee bg-gradient-to-r from-purple-700 to-indigo-700 text-white py-2 text-center text-sm sticky top-0 z-50 shadow-md">
     <marquee behavior="scroll" direction="left" scrollamount="5">
-      🚀 Welcome to GJ Tech! New projects coming soon!
-      <a href="blogs.html">Check out our latest blog posts</a> |
-      <a href="contact.html">Join our tech community</a> |
-      <a href="about.html">Learn more about our mission</a> |
-      <a href="careergoals.html">Career Goals and Opportunities</a>
+        🚀 Welcome to GJ Tech! New projects coming soon!
+        <a href="blogs.html" class="underline hover:text-neon-blue ml-4">Check out our latest Study Hub  posts</a> |
+        <a href="contact.html" class="underline hover:text-neon-blue ml-4">Join our tech community Course Assignment Test 🌎</a> |
+        <a href="about.html" class="underline hover:text-neon-blue ml-4">Learn more Explore Our Course</a> |
+        <a href="careergoals.html" class="underline hover:text-neon-blue ml-4">Career Goals and Opportunities</a>
     </marquee>
+</div>
   </div>
   <nav class="nav-bar">
-    <a href="index.html">Home 🏡</a>
-    <a href="blogs.html">Blogs 👩‍💻</a>
-    <a href="about.html">About 🎓</a>
-    <a href="contact.html">Contact 📶/Explore Our Courses</a>
-    <a href="careergoals.html">Career Goals</a>
-    <a href="CoursesinManagement.html">Courses in Management</a>
-    <a href="Registration.html">Registration-in</a>
-    <a href="login.html">Login-in</a>
+    <a href="index.html" class="hover:underline">Home 🏡</a>
+    <a href="blogs.html" class="hover:underline">Study Hub 👩‍💻</a>
+    <a href="about.html" class="hover:underline">About 🎓</a>
+    <a href="contact.html" class="hover:underline">Explore Our Courses</a>
+    <a href="careergoals.html" class="hover:underline">Career Goals </a>
+    <a href="CoursesinManagement.html" class="hover:underline">Course Assignment Test 🌎</a>
+    <a href="Registration.html" class="hover:underline">Registration</a>
+    <a href="login.html" class="hover:underline">login</a>
   </nav>
   <div class="form-container">
     <h2>Registration Form</h2>
     <form id="applicationForm">
-      <label for="name">Full Name</label>
-      <input type="text" id="name" required>
-      <label for="email">Email</label>
-      <input type="email" id="email" required>
-      <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" required>
-      <label for="password">Password</label>
-      <input type="password" id="password" required>
-      <label for="confirmPassword">Confirm Password</label>
-      <input type="password" id="confirmPassword" required>
-      <label for="photo">Upload Photo</label>
+      <label for="name">Full Name *</label>
+      <input type="text" id="name" required placeholder="Enter your full name">
+      <label for="email">Email Address *</label>
+      <input type="email" id="email" required placeholder="Enter your email">
+      <label for="phone">Phone Number *</label>
+      <input type="tel" id="phone" required placeholder="Enter 10-digit phone number">
+      <label for="password">Password *</label>
+      <input type="password" id="password" required placeholder="Minimum 6 characters">
+      <label for="confirmPassword">Confirm Password *</label>
+      <input type="password" id="confirmPassword" required placeholder="Re-enter your password">
+      <label for="photo">Upload Photo *</label>
       <input type="file" id="photo" accept="image/*" required>
-      <label for="signature">Upload Signature</label>
+      <label for="signature">Upload Signature *</label>
       <input type="file" id="signature" accept="image/*" required>
-      <p>Application Fee: ₹100</p>
-      <button type="button" onclick="payAndSubmit()">Pay & Submit</button>
+      <div class="fee-display">
+        💳 Application Fee: ₹100
+      </div>
+      <button type="button" class="pay-button" onclick="simulatePayment()">
+        🚀 Pay ₹100 & Submit Application
+      </button>
     </form>
+    <div id="statusMessage" class="status-message"></div>
   </div>
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
-    async function payAndSubmit() {
-      // Get form field values
+    // Store form data in memory
+    let applicationData = [];
+    function showStatus(message, isSuccess = true) {
+      const statusDiv = document.getElementById('statusMessage');
+      statusDiv.textContent = message;
+      statusDiv.className = `status-message ${isSuccess ? 'status-success' : 'status-error'}`;
+      statusDiv.style.display = 'block';
+      setTimeout(() => {
+        statusDiv.style.display = 'none';
+      }, 5000);
+    }
+    function generateApplicationId() {
+      return 'GJT' + Date.now() + Math.floor(Math.random() * 1000);
+    }
+    function validateForm() {
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const phone = document.getElementById("phone").value.trim();
       const password = document.getElementById("password").value;
       const confirmPassword = document.getElementById("confirmPassword").value;
-      const photoFile = document.getElementById("photo").files[0]; // Get the actual File object
-      const signatureFile = document.getElementById("signature").files[0]; // Get the actual File object
-      // --- Client-side Form Validation ---
+      const photoFile = document.getElementById("photo").files[0];
+      const signatureFile = document.getElementById("signature").files[0];
       if (!name || !email || !phone || !password || !confirmPassword || !photoFile || !signatureFile) {
-        alert("Please fill all fields and upload required files.");
-        return;
+        showStatus("❌ Please fill all required fields and upload files.", false);
+        return false;
       }
       if (password !== confirmPassword) {
-        alert("Passwords do not match. Please re-enter.");
-        return;
+        showStatus("❌ Passwords do not match. Please re-enter.", false);
+        return false;
       }
-      if (password.length < 6) { // Example: minimum password length validation
-        alert("Password must be at least 6 characters long.");
-        return;
+      if (password.length < 6) {
+        showStatus("❌ Password must be at least 6 characters long.", false);
+        return false;
       }
-      // Basic email format validation (more robust validation should be on the backend)
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
-        alert("Please enter a valid email address.");
+        showStatus("❌ Please enter a valid email address.", false);
+        return false;
+      }
+      const phoneRegex = /^\d{10}$/;
+      if (!phoneRegex.test(phone)) {
+        showStatus("❌ Please enter a valid 10-digit phone number.", false);
+        return false;
+      }
+      return true;
+    }
+    async function simulatePayment() {
+      if (!validateForm()) {
         return;
       }
-      // Basic phone number validation (e.g., for 10 digits)
-      const phoneRegex = /^\d{10}$/; // Assumes 10-digit Indian phone number
-      if (!phoneRegex.test(phone)) {
-          alert("Please enter a valid 10-digit phone number.");
-          return;
-      }
-      // Create a FormData object to send both text data and files to the backend
-      const formData = new FormData();
-      formData.append('name', name);
-      formData.append('email', email);
-      formData.append('phone', phone);
-      formData.append('password', password); // Password will be hashed on the backend
-      formData.append('photo', photoFile); // Append the photo file
-      formData.append('signature', signatureFile); // Append the signature file
-      // --- Razorpay Payment Integration ---
-      const options = {
-        key: "YOUR_RAZORPAY_KEY_ID", // 🚨 IMPORTANT: Replace with your actual Razorpay Key ID
-                                     // This is a public key, safe to use on the frontend.
-        amount: 10000, // Amount in paise (e.g., 100 INR = 10000 paise)
-        currency: "INR",
-        name: "GJ Tech",
-        description: "Application Fee Payment",
-        image: "https://placehold.co/60x60/0e76a8/ffffff?text=GJ", // Optional: Your company logo
-        handler: async function (response) {
-          // This function is called when the payment is successful
-          alert("Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
-          // Append the Razorpay payment ID to the formData
-          formData.append('razorpayPaymentId', response.razorpay_payment_id);
-          // --- Send Form Data to Backend After Successful Payment ---
-          try {
-            // Make a POST request to your Node.js backend endpoint
-            // Ensure this URL matches the port your backend server is running on (e.g., 3000)
-            const backendResponse = await fetch('http://localhost:3000/submit-application', {
-              method: 'POST',
-              body: formData, // FormData automatically sets the correct 'Content-Type' header (multipart/form-data)
-            });
-            const data = await backendResponse.json(); // Parse the JSON response from the backend
-            if (backendResponse.ok) { // Check if the backend response status is in the 2xx range (success)
-              alert(data.message + "\nYour Application ID: " + data.applicationId);
-              // Optionally, clear the form or redirect the user after successful submission
-              document.getElementById("applicationForm").reset();
-            } else {
-              // Handle errors returned by the backend (e.g., validation issues, duplicate entries)
-              alert("Error submitting application to backend: " + data.message);
-              console.error('Backend Error Details:', data.error);
-            }
-          } catch (error) {
-            // Handle network errors or issues with the backend server itself
-            console.error('Network or server error during form submission:', error);
-            alert('A network error occurred while saving your application. Please try again.');
-          }
-        },
-        prefill: {
-          name: name,
-          email: email,
-          contact: phone
-        },
-        theme: {
-          color: "#0e76a8" // Customize Razorpay checkout theme color
+      const button = document.querySelector('.pay-button');
+      const originalText = button.innerHTML;
+      // Show processing state
+      button.innerHTML = '⏳ Processing Payment...';
+      button.disabled = true;
+      try {
+        // Simulate payment processing delay
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        // Simulate payment gateway response
+        const paymentSuccess = Math.random() > 0.1; // 90% success rate
+        if (paymentSuccess) {
+          const paymentId = 'pay_' + Date.now() + Math.floor(Math.random() * 10000);
+          await saveApplication(paymentId);
+          button.innerHTML = '✅ Payment Successful!';
+          button.style.background = 'linear-gradient(135deg, #00b894, #00cec9)';
+          setTimeout(() => {
+            button.innerHTML = originalText;
+            button.disabled = false;
+            button.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+          }, 3000);
+        } else {
+          throw new Error('Payment failed due to insufficient funds or network error');
         }
-      };
-      const rzp = new Razorpay(options);
-      // Handle payment failure events
-      rzp.on('payment.failed', function (response){
-        alert("Payment Failed! Reason: " + response.error.description + "\nPlease try again or contact support.");
-        console.error("Razorpay Payment Error:", response.error);
-      });
-      rzp.open(); // Open the Razorpay checkout modal
+      } catch (error) {
+        showStatus(`❌ Payment Failed: ${error.message}. Please try again.`, false);
+        button.innerHTML = '❌ Payment Failed - Retry';
+        button.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+        button.disabled = false;
+        setTimeout(() => {
+          button.innerHTML = originalText;
+          button.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+        }, 3000);
+      }
     }
+    async function saveApplication(paymentId) {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const photoFile = document.getElementById("photo").files[0];
+      const signatureFile = document.getElementById("signature").files[0];
+      const applicationId = generateApplicationId();
+      // Create application object
+      const applicationData = {
+        applicationId: applicationId,
+        name: name,
+        email: email,
+        phone: phone,
+        photoName: photoFile.name,
+        signatureName: signatureFile.name,
+        paymentId: paymentId,
+        paymentAmount: 100,
+        submissionDate: new Date().toISOString(),
+        status: 'Submitted'
+      };
+      if (!window.applications) {
+        window.applications = [];
+      }
+      window.applications.push(applicationData);
+      showStatus(`🎉 Application submitted successfully! Your Application ID: ${applicationId}`, true);
+      document.getElementById("applicationForm").reset();
+      setTimeout(() => {
+        showStatus(`📧 Confirmation email sent to ${email}. Payment ID: ${paymentId}`, true);
+      }, 2000);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add focus effects to inputs
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+          this.style.transform = 'translateY(-2px)';
+        });
+        input.addEventListener('blur', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+      // Add file upload preview (simple)
+      const fileInputs = document.querySelectorAll('input[type="file"]');
+      fileInputs.forEach(input => {
+        input.addEventListener('change', function() {
+          if (this.files.length > 0) {
+            const fileName = this.files[0].name;
+            this.style.borderColor = '#00b894';
+            this.style.background = 'linear-gradient(135deg, #00b894, #00cec9, #ffffff)';
+            this.style.background = 'rgba(0, 184, 148, 0.1)';
+            // Create a visual indicator
+            let indicator = this.nextElementSibling;
+            if (!indicator || !indicator.classList.contains('file-indicator')) {
+              indicator = document.createElement('div');
+              indicator.classList.add('file-indicator');
+              indicator.style.cssText = `
+                margin-top: -15px;
+                margin-bottom: 15px;
+                font-size: 0.85em;
+                color: #00b894;
+                font-weight: 600;
+              `;
+              this.parentNode.insertBefore(indicator, this.nextSibling);
+            }
+            indicator.textContent = `✅ ${fileName}`;
+          }
+        });
+      });
+    });
   </script>
 </body>
 </html>

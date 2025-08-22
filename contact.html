@@ -1,445 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Contact GJ Tech - Get in touch with our team for inquiries and support" />
-    <meta name="keywords" content="GJ Tech, contact, support, tech help, programming assistance" />
-    <title>GJ Tech - Contact</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore management courses offered by GJ Tech. Learn about project management, leadership, and business strategy to advance your career.">
+    <meta name="keywords" content="GJ Tech, management courses, project management, leadership, business strategy, tech education, online courses">
+    <title>GJ Tech - Management Courses</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Tailwind CSS CDN for utility classes -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* Custom styles for the announcement marquee */
+        /* General styling for headers with a dynamic underline effect */
+        .section-header {
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 5px; /* Add some padding for the underline */
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6); /* Blue to purple gradient */
+            transform: scaleX(0); /* Initially hidden */
+            transition: transform 0.3s ease; /* Smooth transition */
+        }
+        .section-header:hover::after {
+            transform: scaleX(1); /* Expands on hover */
+        }
+
+        /* Card hover effect for sections and course cards */
+        .card-hover {
+            transition: all 0.3s ease; /* Smooth transition for all properties */
+        }
+        .card-hover:hover {
+            transform: translateY(-5px); /* Lifts the card slightly */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Adds a subtle shadow */
+        }
+
+        /* Styling for the announcement marquee */
         .announcement-marquee {
-            background: linear-gradient(to right, #4f46e5, #7c3aed);
-            color: rgb(220, 129, 24);
+            background: linear-gradient(to right, #4f46e5, #7c3aed); /* Purple gradient background */
+            color: white; /* White text for contrast */
             padding: 8px 0;
             font-weight: 500;
-            text-align: center;
         }
         .announcement-marquee a {
-            color: rgb(196, 56, 56);
+            color: rgb(192, 87, 22); /* Orange color for links */
             text-decoration: underline;
             margin: 0 10px;
         }
-        /* Styles for contact cards with hover effects */
-        .contact-card {
-            transition: all 0.3s ease;
-        }
-        .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        /* Focus styles for form inputs */
-        .form-input:focus {
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
-            outline: none;
-        }
-        /* Hover effects for social media icons */
-        .social-icon {
-            transition: all 0.3s ease;
-        }
-        .social-icon:hover {
-            transform: scale(1.2);
-        }
-        /* Hover effects for contact links */
-        .contact-link {
-            transition: all 0.3s ease;
-            color: inherit;
-            text-decoration: none;
-        }
-        .contact-link:hover {
-            color: #4f46e5;
-            transform: translateY(-2px);
-        }
-        /* Basic body and main content styling for centering */
-        body {
-            margin: 0;
-            font-family: sans-serif;
-        }
-        main, .courses-section {
-            max-width: 42rem; /* Sets a maximum width for content */
-            margin: auto; /* Centers the content horizontally */
-            padding: 1.5rem; /* Adds padding around the content */
-            box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
-        }
-        /* Style for error messages */
-        .error-message {
-            color: #ef4444; /* red-500 */
-            font-size: 0.875rem; /* text-sm */
-            margin-top: 0.25rem; /* mt-1 */
-        }
 
-        /* Footer Styles */
+        /* Footer styling */
         .footer {
-            background-color: #2d3748; /* slate-800 equivalent */
-            color: #e2e8f0; /* text-gray-200 equivalent */
-            padding: 2.5rem 1.5rem;
-            margin-top: 2.5rem;
+            background-color: #0a1428; /* Dark blue background */
+            color: #4b5563; /* Gray text */
+            padding: 2rem 0;
         }
-
         .footer .container {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 1.5rem;
+            padding: 0 20px;
         }
-
-        .footer-links div {
-            flex: 1;
-            min-width: 150px;
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
-
-        .footer-links h4 {
-            font-size: 1.125rem;
-            font-weight: 600;
+        .footer-links div h4 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #a7d9ff; /* Light blue for footer headings */
             margin-bottom: 1rem;
-            color: #fff;
         }
-
-        .footer-links ul {
+        .footer-links div ul {
             list-style: none;
             padding: 0;
         }
-
-        .footer-links ul li {
+        .footer-links div ul li {
             margin-bottom: 0.5rem;
         }
-
-        .footer-links ul li a {
-            color: #cbd5e0; /* text-gray-400 equivalent */
+        .footer-links div ul li a {
+            color: #c5c7cc; /* Light gray for footer links */
             text-decoration: none;
             transition: color 0.3s ease;
         }
-
-        .footer-links ul li a:hover {
-            color: #a0aec0; /* text-gray-300 equivalent */
-            text-decoration: underline;
+        .footer-links div ul li a:hover {
+            color: #3b82f6; /* Blue on hover */
+        }
+        .footer .social-icons img {
+            border-radius: 4px; /* Slightly rounded corners for social icons */
         }
 
-        .social-icons {
-            display: flex;
-            gap: 1rem;
+        /* Specific sizing for placeholder images used as social icons */
+        .w-6.h-6 {
+            width: 1.5rem;
+            height: 1.5rem;
         }
 
-        .social-icons img {
-            filter: brightness(0) invert(1); /* Makes the placeholder images white */
+        /* Responsive font sizing for navigation bar */
+        .text-sm.md\:text-lg {
+            font-size: 0.875rem; /* Default small font size */
         }
-
-        /* Responsive Navigation */
-        @media (max-width: 768px) {
-            .navbar-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background-color: #2d3748;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                padding-bottom: 10px;
+        @media (min-width: 768px) {
+            .text-sm.md\:text-lg {
+                font-size: 1.125rem; /* Larger font size on medium screens and up */
             }
-            .navbar-links.active {
-                display: flex;
-            }
-            .navbar-links a {
-                padding: 10px 20px;
-                text-align: center;
-            }
-            .hamburger-menu {
-                display: block;
-            }
-        }
-
-        /* Custom style for the GJ Tech logo border */
-        .gj-tech-logo-border {
-            border: 2px solid yellow; /* This will make the border yellow */
-            padding: 4px 8px; /* Add some padding so the border doesn't hug the text too closely */
-            border-radius: 5px; /* Slightly rounded corners for aesthetics */
-            display: inline-block; /* Ensures the border wraps tightly around the text */
         }
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
-    <a href="#main-content" class="sr-only focus:not-sr-only text-blue-600 underline absolute top-0 left-0 p-3 bg-white z-50">Skip to main content</a>
-
-    <div class="announcement-marquee">
+    <!-- Announcement Marquee -->
+    <div class="announcement-marquee bg-gradient-to-r from-purple-700 to-indigo-700 text-white py-2 text-center text-sm sticky top-0 z-50 shadow-md">
         <marquee behavior="scroll" direction="left" scrollamount="5">
             🚀 Welcome to GJ Tech! New projects coming soon!
-            <a href="blogs.html">Check out our latest blog posts</a> |
-            <a href="contact.html">Join our tech community</a> |
-            <a href="about.html">Learn more about our mission</a>
-            <a href="careergoals.html" class="hover:underline">Career Goals and Opportunities </a>
+            <a href="blogs.html" class="underline hover:text-neon-blue ml-4">Check out our latest Study Hub  posts</a> |
+            <a href="contact.html" class="underline hover:text-neon-blue ml-4">Join our tech community Course Assignment Test 🌎</a> |
+            <a href="about.html" class="underline hover:text-neon-blue ml-4">Learn more Explore Our Course</a> |
+            <a href="careergoals.html" class="underline hover:text-neon-blue ml-4">Career Goals and Opportunities</a>
         </marquee>
     </div>
-</header>
-<nav class="bg-slate-700 text-white text-center py-3 space-x-3 md:space-x-6 text-sm md:text-lg sticky top-0 z-50 shadow w-full">
-    <div class="container mx-auto flex flex-wrap justify-center gap-x-3 md:gap-x-6">
-        <nav class="bg-blue-700 text-white text-center py-3 space-x-6 text-lg">
-            <a href="index.html" class="hover:underline">Home 🏡</a>
-            <a href="blogs.html" class="hover:underline">Blogs 👩‍💻</a>
-            <a href="about.html" class="hover:underline">About 🎓</a>
-            <a href="contact.html" class="hover:underline">Contact 📶/Explore Our Courses</a>
-            <a href="careergoals.html" class="hover:underline">Career Goals and Opportunities </a>
-            <a href="CoursesinManagement.html" class="hover:underline">Courses in Management</a>
-            <a href="Registration.html" class="hover:underline">Registration-in</a>
-            <a href="login.html" class="hover:underline">login-in</a>
-        </nav>
-    </div>
-</nav>
-<main class="max-w-6xl mx-auto p-6 space-y-6"></main>
-    <section class="max-w-4xl mx-auto p-6 courses-section">
-        <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-            <h2 class="text-2xl font-semibold text-slate-800 mb-6 text-center">Explore Our Courses</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-blue-50 rounded-lg p-6 hover:bg-blue-100 transition-colors duration-300">
-                    <h3 class="text-xl font-semibold text-slate-800 mb-4 flex items-center">
-                        <i class="fas fa-graduation-cap text-blue-600 mr-2"></i> Available Courses
-                    </h3>
-                    <ul class="list-disc list-inside text-gray-700 space-y-2">
-                        <li>Full Stack Web Development</li>
-                        <li>Data Science with Python</li>
-                        <li>Mobile App Development (Android/iOS)</li>
-                        <li>Cloud Computing Fundamentals</li>
-                        <li>Cybersecurity Essentials</li>
-                    </ul>
-                </div>
-                <div class="bg-green-50 rounded-lg p-6 hover:bg-green-100 transition-colors duration-300">
-                    <h3 class="text-xl font-semibold text-slate-800 mb-4 flex items-center">
-                        <i class="fas fa-calendar-check text-green-600 mr-2"></i> Course Schedule
-                    </h3>
-                    <div class="space-y-4">
-                        <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                            <div class="flex justify-between items-center">
-                                <h4 class="font-medium text-slate-800">Web Development Bootcamp</h4>
-                                <span class="text-xs font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Starting Soon</span>
-                            </div>
-                            <p class="text-sm text-gray-600 mt-2">Duration: No </p>
-                            <div class="mt-3 text-right">
-                                <a href="WebDevelopmentBootcamp.html" class="text-sm text-green-600 hover:text-green-800 font-medium">Learn More →</a>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                            <div class="flex justify-between items-center">
-                                <h4 class="font-medium text-slate-800">Mobile App Development</h4>
-                                <span class="text-xs font-semibold bg-green-100 text-green-800 px-2 py-1 rounded-full">Enrolling Now</span>
-                            </div>
-                            <p class="text-sm text-gray-600 mt-2">Duration: No</p>
-                            <div class="mt-3 text-right">
-                                <a href="mobile.html" class="text-sm text-green-600 hover:text-green-800 font-medium">Learn More →</a>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                            <div class="flex justify-between items-center">
-                                <h4 class="font-medium text-slate-800">Backend Development</h4>
-                                <span class="text-xs font-semibold bg-purple-100 text-purple-800 px-2 py-1 rounded-full">Coming Soon</span>
-                            </div>
-                            <p class="text-sm text-gray-600 mt-2">Duration: No</p>
-                            <div class="mt-3 text-right">
-                                <a href="bc.html" class="text-sm text-green-600 hover:text-green-800 font-medium">Learn More →</a>
-                            </div>
-                            <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                                <div class="flex justify-between items-center">
-                                    <h4 class="font-medium text-slate-800">Python Development</h4>
-                                    <span class="text-xs font-semibold bg-purple-100 text-purple-800 px-2 py-1 rounded-full">Coming Soon</span>
-                                </div>
-                                <p class="text-sm text-gray-600 mt-2">Duration: No</p>
-                                <div class="mt-3 text-right">
-                                    <a href="bc.html" class="text-sm text-green-600 hover:text-green-800 font-medium">Learn More →</a>
-                                </div>
-                                <div class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                                    <div class="flex justify-between items-center">
-                                        <h4 class="font-medium text-slate-800">JavaScript Development</h4>
-                                        <span class="text-xs font-semibold bg-purple-100 text-purple-800 px-2 py-1 rounded-full">Coming Soon</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600 mt-2">Duration: No</p>
-                                    <div class="mt-3 text-right">
-                                        <a href="bc.html" class="text-sm text-green-600 hover:text-green-800 font-medium">Learn More →</a>
-                                    </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-6 text-center">
-                <a href="contact.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105">
-                    <i class="fas fa-user-plus mr-2"></i> Enroll or Learn More
-                </a>
-            </div>
-        </div>
-    </section>
-    <main id="main-content" class="max-w-4xl mx-auto p-6 space-y-6">
-        <section class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow duration-300 contact-card">
-            <h2 class="text-2xl font-semibold text-slate-800 mb-6 text-center">Get in Touch</h2>
-            <form id="contactForm" class="space-y-4" action="#" method="POST">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                        <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none form-input" required aria-describedby="name-error"/>
-                        <p id="name-error" class="error-message hidden">Please enter your name.</p>
-                    </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                        <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none form-input" required aria-describedby="email-error"/>
-                        <p id="email-error" class="error-message hidden">Please enter a valid email address.</p>
-                    </div>
-                </div>
-                <div>
-                    <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-                    <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none form-input" required aria-describedby="subject-error"/>
-                    <p id="subject-error" class="error-message hidden">Please enter a subject.</p>
-                </div>
-                <div>
-                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                    <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none form-input" required aria-describedby="message-error"></textarea>
-                    <p id="message-error" class="error-message hidden">Please enter your message.</p>
-                </div>
-                <button type="submit" id="submitButton" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
-                    Send Message
-                </button>
-                <div id="formStatusMessage" class="mt-4 p-3 rounded-lg text-center hidden"></div>
-            </form>
-        </section>
-    <script>
-        // Client-side form validation and submission handling
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('contactForm');
-            const submitButton = document.getElementById('submitButton');
-            const formStatusMessage = document.getElementById('formStatusMessage');
-            const hamburger = document.getElementById('hamburger');
-            const navbarLinks = document.querySelector('.navbar-links');
+    <!-- Navigation Bar -->
+    <nav class="bg-indigo-700 text-white text-center py-3 space-x-3 md:space-x-6 text-sm md:text-lg sticky top-0 z-50 shadow-lg w-full">
+        <a href="index.html" class="hover:underline hover:text-indigo-200 transition-colors duration-300 px-2 py-1 rounded">Home 🏡</a>
+        <a href="blogs.html" class="hover:underline hover:text-indigo-200 transition-colors duration-300 px-2 py-1 rounded">Study Hub 👩‍💻</a>
+        <a href="about.html" class="hover:underline hover:text-indigo-200 transition-colors duration-300 px-2 py-1 rounded">About 🎓</a>
+        <a href="contact.html" class="hover:underline hover:text-indigo-200 transition-colors duration-300 px-2 py-1 rounded">Explore Our Courses</a>
+        <a href="careergoals.html" class="hover:underline hover:text-indigo-200 transition-colors duration-300 px-2 py-1 rounded">Career Goals </a>
+        <a href="CoursesinManagement.html" class="hover:underline hover:text-indigo-200 transition-colors duration-300 px-2 py-1 rounded">Course Assignment Test 🌎</a>
+        <a href="Registration.html" class="hover:underline hover:text-indigo-200 transition-colors duration-300 px-2 py-1 rounded">Registration ®</a>
+        <a href="login.html" class="hover:underline hover:text-indigo-200 transition-colors duration-300 px-2 py-1 rounded">login-in</a>
+    </nav>
 
-            hamburger.addEventListener('click', () => {
-                navbarLinks.classList.toggle('active');
-            });
-            form.addEventListener('submit', async (event) => {
-                event.preventDefault(); // Prevent default form submission
-                let isValid = true;
-                const formData = new FormData(form);
-                const data = {};
-                for (let [key, value] of formData.entries()) {
-                    data[key] = value;
-                }
-                // Clear previous errors and messages
-                document.querySelectorAll('.error-message').forEach(el => el.classList.add('hidden'));
-                formStatusMessage.classList.add('hidden');
-                formStatusMessage.textContent = '';
-                formStatusMessage.classList.remove('bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
-                // Basic validation
-                if (!data.name.trim()) {
-                    document.getElementById('name-error').classList.remove('hidden');
-                    isValid = false;
-                }
-                if (!data.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-                    document.getElementById('email-error').classList.remove('hidden');
-                    isValid = false;
-                }
-                if (!data.subject.trim()) {
-                    document.getElementById('subject-error').classList.remove('hidden');
-                    isValid = false;
-                }
-                if (!data.message.trim()) {
-                    document.getElementById('message-error').classList.remove('hidden');
-                    isValid = false;
-                }
-                if (!isValid) {
-                    formStatusMessage.textContent = 'Please correct the errors in the form.';
-                    formStatusMessage.classList.remove('hidden');
-                    formStatusMessage.classList.add('bg-red-100', 'text-red-700');
-                    return;
-                }
-                // Show loading state
-                submitButton.textContent = 'Sending...';
-                submitButton.disabled = true;
-                submitButton.classList.add('opacity-75', 'cursor-not-allowed');
-                try {
-                    // Simulate API call (replace with your actual fetch request)
-                    // Example: const response = await fetch(form.action, { method: form.method, body: JSON.stringify(data), headers: { 'Content-Type': 'application/json' } });
-                    // For now, we'll simulate success/failure with a timeout
-                    await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate network delay
-                    // Simulate success
-                    const success = true; // Change to false to test failure
-                    if (success) {
-                        formStatusMessage.textContent = 'Thank you for your message! We will get back to you soon.';
-                        formStatusMessage.classList.remove('hidden');
-                        formStatusMessage.classList.add('bg-green-100', 'text-green-700');
-                        form.reset(); // Clear the form
-                    } else {
-                        throw new Error('Failed to send message.'); // Simulate an error
-                    }
-                } catch (error) {
-                    formStatusMessage.textContent = 'There was an error sending your message. Please try again later.';
-                    formStatusMessage.classList.remove('hidden');
-                    formStatusMessage.classList.add('bg-red-100', 'text-red-700');
-                    console.error('Form submission error:', error);
-                } finally {
-                    // Reset button state
-                    submitButton.textContent = 'Send Message';
-                    submitButton.disabled = false;
-                    submitButton.classList.remove('opacity-75', 'cursor-not-allowed');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
-<footer class="footer">
-    <div class="container">
-        <div class="footer-links">
-            <div>
-                <h4>About GJ Tech</h4>
-                <ul>
-                    <li><a href="about.html">Our Mission</a></li>
-                    <li><a href="blogs.html">Latest Blogs</a></li>
-                    <li><a href="careergoals.html">Career Opportunities</a></li>
-                    <li><a href="CoursesinManagement.html">Management Courses</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="info.html">Help Center</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Connect With Us</h4>
-                <div class="flex justify-center space-x-6 text-3xl">
-                    <a href="https://x.com/Gajendra123j" target="_blank" class="text-blue-400 hover:text-blue-600 social-icon" title="Twitter" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/gajendra_katariya_015" target="_blank" class="text-pink-500 hover:text-pink-700 social-icon" title="Instagram" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/in/gajendra-singh-9ba6a5306/" target="_blank" class="text-blue-700 hover:text-blue-900 social-icon" title="LinkedIn" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/Gajendra123j" target="_blank" class="text-gray-800 hover:text-gray-900 social-icon" title="GitHub" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-            <section class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow duration-300 contact-card">
-                <h2 class="text-2xl font-semibold text-slate-800 mb-6 text-center">Contact Information</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="text-center p-4">
-                        <i class="fas fa-envelope text-4xl text-red-500 mb-4 social-icon" aria-label="Email"></i>
-                        <h3 class="text-lg font-semibold text-slate-800">Email</h3>
-                        <a href="mailto:gajendras0438@gmail.com" class="text-blue-600 hover:underline">gajendras0438@gmail.com</a>
-                    </div>
-                    <div class="text-center p-4">
-                        <i class="fab fa-whatsapp text-4xl text-green-500 mb-4 social-icon" aria-label="WhatsApp"></i>
-                        <h3 class="text-lg font-semibold text-slate-800">WhatsApp</h3>
-                        <a href="https://chat.whatsapp.com/F7tHCm4Xq3m8jN2Q00Q2e5" target="_blank" class="text-blue-600 hover:underline contact-link" rel="noopener noreferrer">Add whatsapp Group</a>
-                    </div>
-                    <div class="text-center p-4">
-                        <i class="fas fa-map-marker-alt text-4xl text-blue-500 mb-4 social-icon" aria-label="Location"></i>
-                        <h3 class="text-lg font-semibold text-slate-800">Location</h3>
-                        <a href="https://www.google.com/maps/place/Moradabad,+Uttar+Pradesh/@28.839886,78.7562852,12z" target="_blank" class="text-blue-600 hover:underline contact-link" rel="noopener noreferrer">
-                            Moradabad, Uttar Pradesh
-                        </a>
+    <main class="max-w-4xl mx-auto p-6 space-y-6">
+
+        <!-- Hero Section for Management Courses -->
+        <section class="bg-blue-600 text-white rounded-lg shadow-xl p-8 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Advance Your Career with Our Management Courses 📚</h1>
+            <p class="text-lg mb-6">Master the skills needed to lead teams, manage projects, and drive business success in the tech industry and beyond.</p>
+            <a href="Registration.html" class="bg-white text-blue-700 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300 transform hover:scale-105">Enroll Now</a>
+        </section>
+
+        <!-- Featured Management Courses Section -->
+        <section class="bg-white rounded-lg shadow-lg p-6 card-hover">
+            <h2 class="text-2xl font-semibold text-slate-800 mb-6 section-header">Featured Management Courses</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Course Card 1: Introduction to Project Management -->
+                <div class="bg-gray-50 rounded-lg p-4 shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200">
+                    <img src="data:image/jpeg;base64,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" alt="Project Management Course" class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">Introduction to Project Management</h3>
+                    <p class="text-gray-700 mb-3 text-sm">Learn the fundamentals of project management, from planning and execution to risk management and team collaboration. Perfect for aspiring project leads.</p>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-green-600 font-bold">Free</span>
+                        <a href="mangement.html" class="text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-300">Learn More →</a>
                     </div>
                 </div>
-            </section>
-        </div>
-    </div>
-</footer>
-<footer class="bg-slate-800 text-gold text-center py-4 mt-10">
-    <p>©2024 GJ Tech Pvt. Ltd. 👩‍💻..</p>
-</footer>
+
+                <!-- Course Card 2: Strategic Leadership & Innovation -->
+                <div class="bg-gray-50 rounded-lg p-4 shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200">
+                    <img src="data:image/jpeg;base64,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" alt="Strategic Leadership Course" class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">Mobile Computing & Android Overview</h3>
+                    <p class="text-gray-700 mb-3 text-sm">Mobile computing means using computers or smartphones anywhere through wireless networks. It makes communication and data access easy on the move. Android is an open-source mobile operating system by Google, widely used in smartphones because it is free, user-friendly, and supports many apps.</p>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-green-600 font-bold">Free</span>
+                        <a href="mobile.html" class="text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-300">Learn More →</a>
+                    </div>
+                </div>
+
+                <!-- Course Card 3: Agile & Scrum for Tech Teams -->
+                <div class="bg-gray-50 rounded-lg p-4 shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8UXXNRTBX0Hknwzm-7HazNAeVl5Veqw13rg&s" alt="Agile & Scrum Course" class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">Web development Bootcamp</h3>
+                    <p class="text-gray-700 mb-3 text-sm"> Web development is changing rapidly with new technologies and creative ideas. From simple static websites to smart, interactive, and immersive applications, the future of web development is all about making the internet faster, smarter, and more user-friendly. With the rise of AI, Web 3.0, and immersive experiences, developers are shaping a digital world that is more connected, secure, and engaging for everyone.</p>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-green-600 font-bold">Free</span>
+                        <a href="WebDevelopmentBootcamp.html" class="text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-300">Learn More →</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Why Learn Management with GJ Tech? Section -->
+        <section class="bg-white rounded-lg shadow-lg p-6 card-hover">
+            <h2 class="text-2xl font-semibold text-slate-800 mb-4 section-header">Why Learn Management with GJ Tech?</h2>
+            <ul class="list-disc list-inside text-gray-700 space-y-3">
+                <li><span class="font-semibold text-slate-800">Industry-Relevant Content:</span> Our courses are designed with real-world applications and current industry standards in mind.</li>
+                <li><span class="font-semibold text-slate-800">Learn at Your Own Pace:</span> All courses are self-paced, allowing you to learn whenever and wherever it's convenient for you.</li>
+                <li><span class="font-semibold text-slate-800">Completely Free:</span> True to our mission, all course materials are available at no cost to empower everyone.</li>
+                <li><span class="font-semibold text-slate-800">Practical and Hands-On:</span> We focus on practical knowledge and actionable insights you can apply immediately in your career.</li>
+            </ul>
+        </section>
+
+        <!-- Call to Action Section: Ready to Lead? -->
+        <section class="bg-indigo-700 text-white rounded-lg shadow-xl p-8 text-center">
+            <h2 class="text-2xl font-bold mb-4">Ready to Lead?</h2>
+            <p class="text-md mb-6">Take the next step in your professional journey. Register today to get started with our free management courses.</p>
+            <a href="Registration.html" class="bg-blue-500 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-blue-400 transition-colors duration-300 transform hover:scale-105">Start Your Journey</a>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-links">
+                    <div>
+                        <h4>About GJ Tech</h4>
+                        <ul>
+                            <li><a href="about.html">Our Mission</a></li>
+                            <li><a href="blogs.html">Latest Blogs</a></li>
+                            <li><a href="careergoals.html">Career Opportunities</a></li>
+                            <li><a href="CoursesinManagement.html">Management Courses</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="info.html">Help Center</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Connect</h4>
+                        <div class="social-icons flex space-x-4 mt-2">
+                            <a href="https://www.linkedin.com/in/gajendra-singh-9ba6a5306" target="_blank" rel="noopener noreferrer">
+                                <img src="https://placehold.co/24x24/2d3748/e2e8f0?text=LI" alt="LinkedIn" class="w-6 h-6">
+                            </a>
+                            <a href="https://github.com/Gajendra123j" target="_blank" rel="noopener noreferrer">
+                                <img src="https://placehold.co/24x24/2d3748/e2e8f0?text=GH" alt="GitHub" class="w-6 h-6">
+                            </a>
+                            <a href="https://x.com/Gajendra123j" target="_blank" rel="noopener noreferrer">
+                                <img src="https://placehold.co/24x24/2d3748/e2e8f0?text=X" alt="Twitter" class="w-6 h-6">
+                            </a>
+                            <a href="https://www.instagram.com/gajendra_katariya_015" target="_blank" rel="noopener noreferrer">
+                                <img src="https://placehold.co/24x24/2d3748/e2e8f0?text=IG" alt="Instagram" class="w-6 h-6">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Bottom Copyright Footer -->
+    <footer class="bg-slate-800 text-sky-300 text-center py-4 mt-10">
+        <p>&copy;2025 GJ Tech Pvt. Ltd. 👩‍💻..</p>
+    </footer>
 </body>
 </html>

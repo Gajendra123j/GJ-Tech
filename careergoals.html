@@ -3,559 +3,828 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="Learn about GJ Tech - A platform dedicated to technology, programming, and digital innovation">
-    <meta name="keywords" content="GJ Tech, technology, programming, digital innovation, tech education">
+    <meta name="description" content="Explore career goals, opportunities, and professional development at GJ Tech - Your gateway to tech success">
+    <meta name="keywords" content="GJ Tech, career goals, tech careers, professional development, opportunities, programming jobs">
     <title>GJ Tech - Career Goals and Opportunities</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Styles for the body and overall layout */
-        body {
-            font-family: 'Arial', sans-serif; /* Use a common sans-serif font */
-            line-height: 1.6; /* Improve readability */
-            margin: 0; /* Remove default body margin */
-            padding: 0; /* Remove default padding */
-            background-color: #3d0e1c; /* Light background color */
-            color: #3b3a24; /* Default text color */
-            display: flex; /* Use flexbox to center content */
-            flex-direction: column; /* Stack header, nav, and content */
-            align-items: center; /* Center content horizontally */
-            min-height: 100vh; /* Minimum height of the viewport */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* Styles for the main content container */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Enhanced Announcement Marquee */
+        .announcement-marquee {
+            background: linear-gradient(90deg, #11cfdc, #0fb4ae);
+            color: #1a0a0a;
+            padding: 12px 0;
+            font-weight: 500;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .announcement-marquee a {
+            color: #000;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .announcement-marquee a:hover {
+            background: rgba(236, 216, 3, 0.8);
+            color: #000;
+        }
+
+        /* Enhanced Navigation */
+        nav {
+            background: rgba(51, 65, 85, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .nav-container a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            font-weight: 500;
+        }
+
+        .nav-container a:hover, .nav-container a.active {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Search Bar */
+        .search-container {
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 0 20px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            font-size: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .search-box .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #667eea;
+            font-size: 18px;
+        }
+
+        /* Main Container */
         .container {
-            max-width: 800px; /* Maximum width of the content container */
-            width: 100%; /* Make container responsive */
-            background: #d1b996; /* White background for the content area */
-            padding: 30px; /* Padding inside the container */
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: 0 4px 8px rgba(77, 91, 16, 0.1); /* Subtle shadow */
-            margin-top: 20px; /* Space below navigation */
-            margin-bottom: 20px; /* Space above footer */
-        }
-        /* Styles for headings */
-        h1, h2 {
-            color: #0056b3; /* Blue color for headings */
-            text-align: center; /* Center align headings */
-            margin-bottom: 20px; /* Space below headings */
-        }
-        h1 {
-            border-bottom: 2px solid #0056b3; /* Underline for main heading */
-            padding-bottom: 10px; /* Space between heading and underline */
-        }
-        /* Styles for sections */
-        section {
-            margin-bottom: 30px; /* Space between sections */
-        }
-        /* Styles for lists */
-        ul {
-            list-style-type: disc; /* Use bullet points for lists */
-            margin-left: 25px; /* Indent the list */
-            padding: 0; /* Remove default padding */
-        }
-        li {
-            margin-bottom: 12px; /* Space between list items */
-            padding-left: 5px; /* Add a little padding to list items */
-        }
-        /* Styles for paragraphs */
-        p {
-            margin-bottom: 15px; /* Space below paragraphs */
-        }
-        /* Style for links */
-        a {
-            color: #007bff; /* Blue color for links */
-            text-decoration: none; /* Remove underline */
-        }
-        a:hover {
-            text-decoration: underline; /* Add underline on hover */
-        }
-        /* Styles for section headers (from a previous snippet) */
-        .section-header {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
         }
-        .section-header::after {
+
+        .container::before {
             content: '';
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(to right, #3b82f6, #8b5cf6);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-        .section-header:hover::after {
-            transform: scaleX(1);
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
         }
 
-        /* Styles for card hover effect (from a previous snippet) */
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        /* Styles for the announcement marquee */
-        .announcement-marquee {
-            background: linear-gradient(to right, #11cfdc, #0fb4ae); /* Adjusted gradient */
-            color: #1a0a0a; /* Adjusted color for better contrast */
-            padding: 8px 0;
-            font-weight: 500; /* Slightly bolder */
-            overflow: hidden; /* Ensure content stays within */
-            white-space: nowrap; /* Prevent text wrapping */
-            width: 100%; /* Ensure marquee takes full width */
-        }
-        .announcement-marquee marquee {
-            display: inline-block; /* Allow content to flow */
-            width: 100%; /* Fill container width */
-        }
-        .announcement-marquee a {
-            color: #000000; /* Contrast color for links */
-            text-decoration: underline;
-            margin: 0 15px; /* Increased margin */
-            font-weight: 600; /* Bolder link text */
-            transition: color 0.3s ease; /* Smooth color transition */
-        }
-        .announcement-marquee a:hover {
-            color: #ecd803; /* White color on hover */
-        }
-
-        /* Styles for team card hover effect (from a previous snippet) */
-        .team-card {
-            transition: all 0.3s ease;
-        }
-        .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        /* Multimedia Card Styles (from second snippet) */
-        .multimedia-card {
-            width: 150px; /* Consistent width */
-            height: auto; /* Height adapts to content */
-            transition: all 0.3s ease; /* Smooth transition for hover effects */
-            margin: 10px; /* Adjusted margin for better spacing */
-            display: flex; /* Use flexbox for content alignment */
-            flex-direction: column; /* Stack image and text */
-            align-items: center; /* Center content horizontally */
-            text-align: center; /* Center text */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
-            border-radius: 10px; /* Rounded corners */
-            overflow: hidden; /* Hide overflow for rounded corners */
-            background-color: rgb(51, 221, 233); /* Add background color */
-            padding: 15px; /* Add padding inside the card */
-        }
-        .multimedia-card img {
-            width: 100%; /* Image fills the card width */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 8px; /* Slightly smaller border-radius for image */
-            margin-bottom: 10px; /* Space between image and text */
-        }
-        .multimedia-card:hover {
-            transform: translateY(-5px); /* Lift effect on hover */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Enhanced shadow on hover */
-        }
-        .multimedia-card p {
-            font-size: 0.9rem; /* Adjust font size */
-            line-height: 1.4; /* Adjust line height */
-            color: #4a5568; /* text-gray-700 from Tailwind */
-        }
-
-        /* Footer styles */
-        .footer {
-            background-color: #1a202c; /* bg-slate-900 from Tailwind */
-            padding: 40px 20px; /* Increased padding */
-            color: #cbc618d3; /* Light text color */
-            font-size: 0.9rem; /* Slightly smaller base font size */
-            width: 100%; /* Ensure footer takes full width */
-        }
-        .footer .container {
-            max-width: 1200px; /* Limit container width */
-            margin: 0 auto; /* Center container */
-            display: flex; /* Use flexbox for layout */
-            flex-wrap: wrap; /* Allow items to wrap */
-            justify-content: space-between; /* Distribute space between items */
-            gap: 30px; /* Add gap between flex items */
-        }
-        .footer > .container {
-            flex-direction: column; /* Stack items on small screens */
-            align-items: center;
+        /* Enhanced Headings */
+        h1 {
+            color: #333;
             text-align: center;
-        }
-        @media (min-width: 768px) { /* Apply flex layout on medium screens and up */
-            .footer > .container {
-                flex-direction: row;
-                align-items: flex-start;
-                text-align: left;
-            }
-             .footer-links div {
-                flex: 1; /* Allow footer link columns to grow */
-                min-width: 150px; /* Minimum width for columns */
-                margin-right: 20px; /* Space between columns */
-            }
-             .footer-links div:last-child {
-                margin-right: 0; /* No margin on the last column */
-            }
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
         }
 
-        /* Styles for download app section in footer */
-        .download-app h3 {
-            margin-bottom: 15px; /* Increased margin */
-            font-size: 1.2rem; /* Adjusted font size */
-            font-weight: 600;
-        }
-        .app-links img {
-            height: 45px; /* Slightly larger app icons */
-            margin-right: 15px; /* Increased margin */
-            vertical-align: middle;
-            transition: transform 0.3s ease; /* Smooth transition */
-        }
-         .app-links img:hover {
-            transform: scale(1.05); /* Slightly enlarge on hover */
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
         }
 
-        /* Styles for footer links */
-        .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around; /* Adjust spacing */
-            margin-top: 20px;
-            width: 100%; /* Ensure links take full width in flex container */
-        }
-        .footer-links div {
-            margin-bottom: 20px; /* Space between link groups */
-        }
-        .footer-links h4 {
-            margin-bottom: 12px; /* Increased margin */
-            font-size: 1.1rem; /* Adjusted font size */
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
             font-weight: 600;
-            color: #da4113; /* Slightly lighter heading color */
+            position: relative;
+            padding-left: 20px;
         }
-        .footer-links ul {
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        h3 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* Enhanced Sections */
+        section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.7);
+        }
+
+        /* Enhanced Lists */
+        ul {
             list-style: none;
+            margin-left: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+            padding: 12px 15px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        li:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateX(5px);
+        }
+
+        li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Progress Tracking */
+        .progress-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.2);
+            height: 8px;
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: white;
+            height: 100%;
+            border-radius: 4px;
+            animation: fillProgress 2s ease-in-out;
+        }
+
+        @keyframes fillProgress {
+            0% { width: 0%; }
+            100% { width: 75%; }
+        }
+
+        /* Interactive Cards */
+        .opportunity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .opportunity-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .opportunity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+
+        .opportunity-card .icon {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .opportunity-card h4 {
+            color: #333;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .opportunity-card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Enhanced Links */
+        a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        a:hover {
+            color: #764ba2;
+        }
+
+        a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-outline:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Enhanced Footer */
+        .footer {
+            background: linear-gradient(135deg, #1a202c, #2d3748);
+            padding: 50px 20px 20px;
+            color: white;
+            margin-top: 50px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h4 {
+            color: #667eea;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 10px;
+            background: none;
+            border: none;
             padding: 0;
         }
-        .footer-links li {
-            margin-bottom: 8px; /* Increased margin */
+
+        .footer-section li::before {
+            display: none;
         }
-         .footer-links a {
-            color: #cc7c20; /* Lighter link color */
-            text-decoration: none;
-            transition: color 0.3s ease; /* Smooth color transition */
+
+        .footer-section a {
+            color: #cbd5e0;
+            transition: color 0.3s ease;
         }
-         .footer-links a:hover {
-            color: #e4c239; /* White color on hover */
-            text-decoration: underline;
+
+        .footer-section a:hover {
+            color: #667eea;
         }
-        /* Styles for social icons in footer */
-        .social-icons img {
-            height: 35px; /* Slightly larger social icons */
-            margin: 0 8px; /* Adjusted margin */
-            vertical-align: middle;
-            transition: transform 0.3s ease; /* Smooth transition */
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
         }
-         .social-icons a {
-            display: inline-block; /* Ensure margin works */
-        }
-        .social-icons img:hover {
-            transform: scale(1.1); /* Slightly enlarge on hover */
-        }
-        /* Styles for the bottom section of the footer */
-        .footer-bottom {
-            margin-top: 30px;
-            font-size: 0.85rem; /* Smaller font size */
-            border-top: 1px solid #4a5568; /* Add a separating line */
-            padding-top: 20px;
-            width: 100%; /* Ensure bottom section takes full width */
-            text-align: center; /* Center text */
-        }
-        .footer-bottom img {
-            height: 40px; /* Adjusted logo size */
-            display: block;
-            margin: 0 auto 10px auto; /* Center logo */
-        }
-        .legal-links a {
-            color: #63b3ed; /* Light blue legal link color */
-            text-decoration: none;
-            margin: 0 10px; /* Adjusted margin */
-            transition: color 0.3s ease; /* Smooth color transition */
-        }
-         .legal-links a:hover {
-            color: #ffffff; /* White color on hover */
-            text-decoration: underline;
-        }
-        /* Profile Section Styles (from second snippet) */
-        .profile-section {
-            background-color: rgb(205, 173, 86); /* Add background */
-            padding: 30px; /* Add padding */
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
-            margin-bottom: 20px; /* Space below section */
-        }
-        .profile-section img {
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(102, 126, 234, 0.1);
             border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            margin-bottom: 20px;
-            object-fit: cover; /* Ensure image covers the area without distortion */
-            border: 4px solid #726b4b; /* Add a white border around image */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adjusted shadow */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #667eea;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
         }
-        .profile-section p {
-            margin-bottom: 15px; /* Add space below paragraphs */
-            line-height: 1.6; /* Improve readability */
+
+        .social-icons a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px);
         }
-        .profile-section .text-lg {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: #2d3748; /* Adjusted color */
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #4a5568;
+            color: #cbd5e0;
         }
-         .profile-section .text-gray-600 {
-            color: #4a5568; /* Adjusted color */
-            font-size: 0.95rem;
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-container {
+                gap: 10px;
+            }
+            
+            .nav-container a {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .opportunity-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
         }
-         .profile-section .text-sm {
-            font-size: 0.9rem;
-            color: #4a5568; /* Adjusted color */
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .profile-section a {
-            color: #007bff; /* Use a standard blue for links */
-            text-decoration: none;
-            font-weight: 500; /* Adjusted font-weight */
-            margin-top: 15px; /* Increased margin */
-            display: inline-block;
-            transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth transitions */
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
         }
-        .profile-section a:hover {
-            text-decoration: underline;
-            color: #0056b3; /* Darker blue on hover */
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
         }
     </style>
 </head>
-<body class="bg-gray-100 font-sans">
-    <div class="announcement-marquee">
+<body>
+    <!-- Announcement Marquee -->
+    <div class="announcement-marquee bg-gradient-to-r from-purple-700 to-indigo-700 text-white py-2 text-center text-sm sticky top-0 z-50 shadow-md">
         <marquee behavior="scroll" direction="left" scrollamount="5">
             🚀 Welcome to GJ Tech! New projects coming soon!
-            <a href="blogs.html">Blogs Check here </a> //
-            <a href="contact.html">Join our tech Community contact</a> //
-            <a href="about.html">Learn more about our mission</a> //
-            <a href="registration.html">Registration Form Click Here</a>
+            <a href="blogs.html" class="underline hover:text-neon-blue ml-4">Check out our latest Study Hub  posts</a> |
+            <a href="contact.html" class="underline hover:text-neon-blue ml-4">Join our tech community Course Assignment Test 🌎</a> |
+            <a href="about.html" class="underline hover:text-neon-blue ml-4">Learn more Explore Our Course</a> |
+            <a href="careergoals.html" class="underline hover:text-neon-blue ml-4">Career Goals and Opportunities</a>
         </marquee>
     </div>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="blogs.html"><i class="fas fa-blog"></i> Study Hub </a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> Explore Our Courses</a>
+            <a href="careergoals.html" class="active"><i class="fas fa-rocket"></i> Career Goals</a>
+            <a href="CoursesinManagement.html"><i class="fas fa-graduation-cap"></i> Course Assignment Test 🌎 </a>
+            <a href="Registration.html"><i class="fas fa-user-plus"></i> Register</a>
+            <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
         </div>
-    </header>
-    <nav class="bg-slate-700 text-white text-center py-3 space-x-3 md:space-x-6 text-sm md:text-lg sticky top-0 z-50 shadow w-full">
-        <a href="index.html" class="hover:underline">Home 🏡</a>
-        <a href="blogs.html" class="hover:underline">Blogs 👩‍💻</a>
-        <a href="about.html" class="hover:underline">About 🎓</a>
-        <a href="contact.html" class="hover:underline">Contact 📶/Explore Our Courses</a>
-        <a href="careergoals.html" class="hover:underline">Career Goals and Opportunities </a>
-        <a href="CoursesinManagement.html" class="hover:underline">Courses in Management 📚</a>
-        <a href="Registration.html" class="hover:underline">Registration ®</a>
-        <a href="login.html" class="hover:underline">Login</a>
     </nav>
-    <div class="container">
-        <h1>My Career Goals and Opportunities</h1>
-        <section>
-            <h2>Understanding Career Goals</h2>
-            <p>Career goals are aspirations that guide your professional journey. They can be short-term (achievable in months to a couple of years) or long-term (spanning several years or even a decade). Setting clear, actionable goals is crucial for planning your development and identifying the steps needed to reach your desired future.</p>
-        </section>
-        <section>
-            <h2>My Specific Career Goals</h2>
-            <p>Here are some of my key career goals, broken down for clarity:</p>
-            <ul>
-                <li><h3>Short-Term</h3>
-                    <ul>
-                        <li>Complete [Specific Certification/Course]
-                            Aim to gain expertise in [specific area] by completing [course name/certification].</li>
-                        <li>Lead a Small Project Team
-                            Take the initiative to manage and guide a small project, improving leadership and team collaboration skills.
-                        </li>
-                        <li>Improve Proficiency in [Specific Skill/Software]
-                            Focus on mastering [skill/software], allowing for better performance and efficiency in daily tasks and projects.</li>
-                    </ul>
-                </li>
-                <li><h3>Mid-Term:</h3>
-                    <ul>
-                        <li>Transition into [Specific Role Title]
-                            Work towards advancing into the role of [desired role], leveraging skills and experience gained in the earlier stages of your career.</li>
-                        <li>To build a strong network of contacts in [Specific Industry/Area].</li>
-                        <li>Build a Strong Network in [Specific Industry/Area]
-                            Actively connect with professionals in [industry/area], participating in events, forums, and collaborations to foster meaningful relationships and expand career opportunities.</li>
-                    </ul>
-                </li>
-                <li><h3>Long-Term</h3>
-                    <ul>
-                        <li>Achieve a Senior Leadership Position (e.g., [Senior Role Title])
-                            Strive to reach a senior role, such as [desired senior role], where I can lead large teams and influence strategic decisions within the organization.</li>
-                        <li>Become a Recognized Expert in [Specific Niche]
-                            Build a strong personal brand by gaining deep expertise in [specific niche] and contributing to the field through publications, speaking engagements, and innovative projects.</li>
-                        <li>Mentor Junior Professionals and Contribute to Their Growth
-                            Actively mentor and guide the next generation of professionals, sharing knowledge and offering support to help them achieve their career aspirations.</li>
-                    </ul>
-                </li>
-            </ul>
-        </section>
-        <section>
-            <h2>Identifying Your Skills and Interests</h2>
-            <p>Understanding your current skills and interests is the foundation for setting realistic and fulfilling career goals. Take time to assess:</p>
-            <ul>
-                <li><strong>Technical Skills:</strong>
-                    Identify the specific tools, software, and programming languages you are proficient in. Consider which ones you want to improve or learn next.
-                    Example: Python, JavaScript, SQL, Cloud Technologies.
-                </li>
-                <li><strong>Soft Skills:</strong> Reflect on your non-technical skills such as communication, teamwork, problem-solving, leadership, and adaptability. These are just as crucial for career advancement and job success.</li>
-                <li><strong>Transferable Skills:</strong> Look at skills you've gained in one area that could be applied to another. These might include project management, data analysis, or customer relations.
-                </li>
-                <li><strong>Interests:</strong> Think about the tasks, industries, or problems that truly engage you. What excites you? Whether it’s tech development, leadership roles, or working on innovative solutions, aligning your goals with these interests is key.</li>
-            </ul>
-            <p>Aligning your goals with your strengths and passions increases the likelihood of success and job satisfaction.</p>
-        </section>
-        <section>
-            <h2>Exploring Opportunities for Growth</h2>
-            <p>Aligning your goals with your strengths and passions increases the likelihood of success and job satisfaction. When your career path matches your abilities and enthusiasm, you'll be motivated to achieve your goals and thrive in your work.
-            </p>
-            <ul>
-                <li><strong>Professional Development:</strong>
-                    <ul>
-                        <li><a href="https://www.coursera.org/" target="_blank" rel="noopener noreferrer">Online courses (Coursera, edX, Udemy, etc.)</a></li>
-                        <li>Workshops and seminars</li>
-                        <li>Industry certifications</li>
-                        <li>Advanced degrees</li>
-                    </ul>
-                </li>
-                <li><strong>Networking:</strong>
-                    <ul>
-                        <li>Attending industry conferences and meetups</li>
-                        <li>Joining professional organizations</li>
-                        <li>Connecting with peers and mentors on <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                        <li>Informational interviews</li>
-                    </ul>
-                </li>
-                <li><strong>Internal Opportunities:</strong>
-                    <ul>
-                        <li>Taking on new responsibilities or projects</li>
-                        <li>Seeking promotions or internal transfers</li>
-                        <li>Participating in company training programs</li>
-                    </ul>
-                </li>
-                <li><strong>External Opportunities:</strong>
-                    <ul>
-                        <li>Exploring job openings in target roles or companies</li>
-                        <li>Freelancing or consulting to gain diverse experience</li>
-                        <li>Volunteering in relevant fields</li>
-                        <li>Searching for internships on <a href="https://www.internshala.com/" target="_blank" rel="noopener noreferrer">Internshala</a> or similar platforms.</li>
-                        <li>Looking for job opportunities on portals like <a href="https://www.naukri.com/" target="_blank" rel="noopener noreferrer">Naukri</a>, <a href="https://www.linkedin.com/jobs/" target="_blank" rel="noopener noreferrer">LinkedIn Jobs</a>, or <a href="https://www.indeed.com/" target="_blank" rel="noopener noreferrer">Indeed</a>.</li>
-                        <li>Investigating <a href="[Link to 2025 specific job/internship board or career fair list]" target="_blank" rel="noopener noreferrer">2025 specific opportunities and recruitment drives</a>.</li>
-                    </ul>
-                </li>
-            </ul>
-        </section>
-        <section>
-            <h2>Strategies for Continuous Learning</h2>
-            <p>The professional landscape is constantly evolving, and to stay relevant and competitive, a strong commitment to continuous learning is essential. Here are some effective strategies:
-            </p>
-            <ul>
-                <li>Read Industry Publications and Blogs
-                    Stay informed by regularly reading articles, journals, and blogs related to your field. This will help you stay updated on the latest trends, technologies, and best practices.</li>
-                <li>Follow Thought Leaders on Social Media
-                    Connect with influential voices in your industry. Platforms like Twitter, LinkedIn, and Instagram can offer insights, tips, and perspectives from top experts.</li>
-                <li>Listen to Podcasts or Watch Webinars
-                    Tune into podcasts or webinars to consume knowledge on the go. This allows you to learn while commuting, exercising, or multitasking, keeping your mind engaged with fresh ideas.
-                </li>
-                <li>Practice New Skills Regularly
-                    Consistent practice is key to mastering new skills. Set aside time each week to work on hands-on projects or online tutorials to reinforce what you learn.</li>
-                <li>Seek Feedback and Apply It
-                    Actively ask for feedback from peers, mentors, or supervisors. Use this feedback to make improvements and refine your skills.</li>
-                <li>Be Open to Learning from Mistakes
-                    Mistakes are part of growth. Embrace them as opportunities to learn and adapt. Reflect on what went wrong, adjust your approach, and keep moving forward.</li>
-            </ul>
-        </section>
-    </div>
-    <footer class="footer">
-        <div class="container flex flex-col md:flex-row justify-between gap-8">
-            <div class="download-app mb-8 text-center md:text-left">
-                <h3 class="text-xl font-bold mb-4 text-gray-300">Download Our App</h3>
-                <div class="app-links flex justify-center md:justify-start space-x-4">
-                    <div class="h-10 w-24 bg-gray-700 flex items-center justify-center rounded text-white text-xs">
-                         Play Store
-                     </div>
-                     <div class="h-10 w-24 bg-gray-700 flex items-center justify-center rounded text-white text-xs">
-                         App Store
-                     </div>
-                </div>
-            </div>
-            <div class="footer-links flex flex-wrap justify-center md:justify-start gap-8 flex-grow">
-                <div class="w-full md:w-auto">
-                    <h4 class="font-semibold mb-3 text-lg text-gray-300">About Us</h4>
-                    <ul>
-                        <li class="mb-2"><a href="home.html">Our Story</a></li>
-                        <li class="mb-2"><a href="about.html">Our Team</a></li>
-                        <li class="mb-2"><a href="careergoals.html">Careers</a></li>
-                    </ul>
-                </div>
-                <div class="w-full md:w-auto">
-                    <h4 class="font-semibold mb-3 text-lg text-gray-300">Services</h4>
-                    <ul>
-                        <li class="mb-2"><a href="blogs.html">Web Development</a></li>
-                        <li class="mb-2"><a href="blogs.html">Mobile Development</a></li>
-                        <li class="mb-2"><a href="contact.html">Tech Consultation</a></li>
-                    </ul>
-                </div>
-                <div class="w-full md:w-auto">
-                    <h4 class="font-semibold mb-3 text-lg text-gray-300">Contact</h4>
-                    <ul>
-                        <li class="gajendras0438@gmail.com"><a href="emailus.html">Email Us</a></li>
-                        <li class="mb-2"><a href="info.html">Support</a></li>
-                        <li class="info.html"><a href="info.html">Inquiry</a></li>
-                    </ul>
-                </div>
-            </div>
-             <div class="social-icons text-center md:text-left w-full md:w-auto">
-                 <h4 class="font-semibold mb-3 text-lg text-gray-300">Follow Us</h4>
-                 <div class="flex justify-center md:justify-start space-x-4 text-xl">
-                    <a href="https://github.com/Gajendra123j" aria-label="GitHub" target="_blank">
-                        <i class="fab fa-github text-gray-400 hover:text-white transition-colors duration-300"></i>
-                      </a>
-                      <a href="https://x.com/Gajendra123j" aria-label="Twitter" target="_blank">
-                        <i class="fab fa-twitter-square text-gray-400 hover:text-white transition-colors duration-300"></i>
-                      </a>
-                      <a href="https://www.instagram.com/gajendra_katariya_015" aria-label="Instagram" target="_blank">
-                        <i class="fab fa-instagram-square text-gray-400 hover:text-white transition-colors duration-300"></i>
-                      </a>
-                      <a href="https://www.linkedin.com/in/gajendra-singh-9ba6a5306" aria-label="LinkedIn" target="_blank">
-                        <i class="fab fa-linkedin text-gray-400 hover:text-white transition-colors duration-300"></i>
-                      </a>  
-                 </div>
-             </div>
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" id="pageSearch" placeholder="Search career topics, skills, opportunities...">
+            <i class="fas fa-search search-icon"></i>
         </div>
-        <div class="footer-bottom text-center">
-            <p>&copy; 2025 GJ Tech. All rights reserved.</p>
-            <div class="legal-links mt-2">
-                <a href="privacy.html">Privacy Policy</a> | <a href="privacy.html">Terms of Service</a> | <a href="cookies.html">Cookie Policy</a>
+    </div>
+    <div class="container fade-in">
+        <h1><i class="fas fa-rocket"></i> My Career Goals and Opportunities</h1>
+        <div class="progress-card">
+            <h3><i class="fas fa-chart-line"></i> Your Career Progress</h3>
+            <p>Track your journey towards professional success</p>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 75%;"></div>
             </div>
+            <p>75% towards your next milestone!</p>
+        </div>
+        <section class="fade-in">
+            <h2><i class="fas fa-lightbulb"></i> Understanding Career Goals</h2>
+            <p>Career goals are aspirations that guide your professional journey. They can be short-term (achievable in months to a couple of years) or long-term (spanning several years or even a decade). Setting clear, actionable goals is crucial for planning your development and identifying the steps needed to reach your desired future.</p>
+            <div class="opportunity-grid">
+                <div class="opportunity-card">
+                    <div class="icon"><i class="fas fa-calendar-week"></i></div>
+                    <h4>Short-term Goals</h4>
+                    <p>Achievable within 6-24 months. Focus on immediate skill development and quick wins.</p>
+                </div>
+                <div class="opportunity-card">
+                    <div class="icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h4>Mid-term Goals</h4>
+                    <p>Spanning 2-5 years. Build expertise and advance your position within the industry.</p>
+                </div>
+                <div class="opportunity-card">
+                    <div class="icon"><i class="fas fa-trophy"></i></div>
+                    <h4>Long-term Vision</h4>
+                    <p>5-10 years ahead. Define your ultimate career destination and legacy.</p>
+                </div>
+            </div>
+        </section>
+        <section class="fade-in">
+            <h2><i class="fas fa-target"></i> My Specific Career Goals</h2>
+            <p>Here are my key career goals, strategically planned for success:</p>
+            <div style="margin-top: 30px;">
+                <h3><i class="fas fa-clock"></i> Short-Term Goals (6-24 months)</h3>
+                <ul>
+                    <li>
+                        <strong>Complete Advanced Certification</strong><br>
+                        Gain expertise in cloud computing (AWS/Azure) and modern JavaScript frameworks to stay competitive in the tech market.
+                    </li>
+                    <li>
+                        <strong>Lead a Cross-functional Project</strong><br>
+                        Take initiative to manage a team of 3-5 developers, improving leadership skills and project management capabilities.
+                    </li>
+                    <li>
+                        <strong>Master AI/ML Technologies</strong><br>
+                        Build proficiency in Python, TensorFlow, and machine learning algorithms for future-ready skills.
+                    </li>
+                </ul>
+                <h3><i class="fas fa-chart-line"></i> Mid-Term Goals (2-5 years)</h3>
+                <ul>
+                    <li>
+                        <strong>Transition to Senior Technical Role</strong><br>
+                        Advance to Senior Software Engineer or Technical Lead position, leveraging accumulated expertise and leadership experience.
+                    </li>
+                    <li>
+                        <strong>Build Industry Network</strong><br>
+                        Establish connections with 100+ professionals through conferences, meetups, and online communities in the tech ecosystem.
+                    </li>
+                    <li>
+                        <strong>Contribute to Open Source</strong><br>
+                        Become an active contributor to major open-source projects, building reputation and giving back to the community.
+                    </li>
+                </ul>
+                <h3><i class="fas fa-crown"></i> Long-Term Vision (5-10 years)</h3>
+                <ul>
+                    <li>
+                        <strong>Achieve C-Level Executive Position</strong><br>
+                        Reach CTO or VP of Engineering role, influencing strategic technology decisions and leading large-scale digital transformations.
+                    </li>
+                    <li>
+                        <strong>Become Industry Thought Leader</strong><br>
+                        Establish expertise in emerging technologies, speak at conferences, publish articles, and influence industry trends.
+                    </li>
+                    <li>
+                        <strong>Mentor Next Generation</strong><br>
+                        Guide and inspire 50+ junior professionals through formal mentorship programs and knowledge sharing initiatives.
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="fade-in">
+            <h2><i class="fas fa-user-cog"></i> Skills Assessment & Development</h2>
+            <p>Understanding your current capabilities is the foundation for setting realistic and fulfilling career goals:</p>
+            <div class="opportunity-grid">
+                <div class="opportunity-card">
+                    <div class="icon"><i class="fas fa-code"></i></div>
+                    <h4>Technical Skills</h4>
+                    <p>Programming languages, frameworks, tools, and technologies that power your career growth.</p>
+                </div>
+                <div class="opportunity-card">
+                    <div class="icon"><i class="fas fa-users"></i></div>
+                    <h4>Soft Skills</h4>
+                    <p>Communication, leadership, problem-solving, and emotional intelligence for professional success.</p>
+                </div>
+                <div class="opportunity-card">
+                    <div class="icon"><i class="fas fa-exchange-alt"></i></div>
+                    <h4>Transferable Skills</h4>
+                    <p>Versatile abilities that apply across industries and roles, increasing your market value.</p>
+                </div>
+            </div>
+            <ul style="margin-top: 30px;">
+                <li><strong>Technical Proficiency:</strong> JavaScript, Python, React, Node.js, AWS, Docker, Kubernetes</li>
+                <li><strong>Leadership Abilities:</strong> Team management, strategic planning, conflict resolution, mentoring</li>
+                <li><strong>Communication Skills:</strong> Public speaking, technical writing, cross-team collaboration</li>
+                <li><strong>Business Acumen:</strong> Project management, budget planning, stakeholder management</li>
+            </ul>
+        </section>
+        <section class="fade-in">
+            <h2><i class="fas fa-rocket"></i> Growth Opportunities & Pathways</h2>
+            <p>Multiple avenues exist for professional development and career advancement:</p>
+            <div class="opportunity-grid">
+                <div class="opportunity-card">
+                    <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h4>Professional Development</h4>
+                    <p>Structured learning through courses, certifications, and formal education programs.</p>
+                </div>
+                <div class="opportunity-card">
+                    <div class="icon"><i class="fas fa-network-wired"></i></div>
+                    <h4>Strategic Networking</h4>
+                    <p>Building meaningful professional relationships and industry connections.</p>
+                </div>
+                <div class="opportunity-card">
+                    <div class="icon"><i class="fas fa-briefcase"></i></div>
+                    <h4>Career Opportunities</h4>
+                    <p>Internal promotions, external positions, and entrepreneurial ventures.</p>
+                </div>
+            </div>
+            <ul style="margin-top: 30px;">
+                <li><strong>Online Learning Platforms:</strong> <a href="https://www.coursera.org/" target="_blank">Coursera</a>, <a href="https://www.udemy.com/" target="_blank">Udemy</a>, <a href="https://www.pluralsight.com/" target="_blank">Pluralsight</a></li>
+                <li><strong>Professional Networks:</strong> <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>, industry meetups, tech conferences</li>
+                <li><strong>Job Portals:</strong> <a href="https://www.naukri.com/" target="_blank">Naukri.com</a>, <a href="https://www.indeed.com/" target="_blank">Indeed</a>, <a href="https://www.glassdoor.com/" target="_blank">Glassdoor</a></li>
+                <li><strong>Skill Development:</strong> GitHub contributions, hackathons, technical blogs, side projects</li>
+            </ul>
+        </section>
+        <section class="fade-in">
+            <h2><i class="fas fa-book-open"></i> Continuous Learning Strategy</h2>
+            <p>In today's rapidly evolving tech landscape, continuous learning is not optional—it's essential for career survival and growth:</p>
+            <ul>
+                <li><strong>Stay Current with Industry Trends:</strong> Follow tech blogs, subscribe to newsletters, and monitor emerging technologies</li>
+                <li><strong>Practice Consistently:</strong> Dedicate 1-2 hours daily to coding, learning new frameworks, or working on personal projects</li>
+                <li><strong>Join Professional Communities:</strong> Participate in Stack Overflow, Reddit tech communities, and Discord servers</li>
+                <li><strong>Attend Virtual Events:</strong> Webinars, online conferences, and virtual meetups for knowledge sharing</li>
+                <li><strong>Build a Learning Portfolio:</strong> Document your learning journey through blogs, GitHub repositories, and project showcases</li>
+                <li><strong>Seek Feedback Actively:</strong> Regular code reviews, mentorship sessions, and peer evaluations for improvement</li>
+            </ul>
+        </section>
+        <div class="action-buttons">
+            <a href="info.html" class="btn btn-primary">
+                <i class="fas fa-envelope"></i> Get Career Guidance
+            </a>
+            <a href="blogs.html" class="btn btn-outline">
+                <i class="fas fa-book"></i> Explore Courses
+            </a>
+            <a href="Registration.html" class="btn btn-outline">
+                <i class="fas fa-user-plus"></i> Join Our Community
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4><i class="fas fa-info-circle"></i> About GJ Tech</h4>
+                <ul>
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="careergoals.html">Careers</a></li>
+                    <li><a href="index.html">Mission & Vision</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-cogs"></i> Services</h4>
+                <ul>
+                    <li><a href="WebDevelopmentBootcamp.html">Web Bootcamp Development</a></li>
+                    <li><a href="mobile.html">Mobile App Development</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-share-alt"></i> Follow Us</h4>
+                <p>Connect with us on social media for updates and news.</p>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/gajendra-singh-9ba6a5306" target="_blank" rel="noopener noreferrer">
+                        <img src="https://placehold.co/24x24/2d3748/e2e8f0?text=LI" alt="LinkedIn" class="w-6 h-6">
+                    </a>
+                    <a href="https://github.com/Gajendra123j" target="_blank" rel="noopener noreferrer">
+                        <img src="https://placehold.co/24x24/2d3748/e2e8f0?text=GH" alt="GitHub" class="w-6 h-6">
+                    </a>
+                    <a href="https://x.com/Gajendra123j" target="_blank" rel="noopener noreferrer">
+                        <img src="https://placehold.co/24x24/2d3748/e2e8f0?text=X" alt="Twitter" class="w-6 h-6">
+                    </a>
+                    <a href="https://www.instagram.com/gajendra_katariya_015" target="_blank" rel="noopener noreferrer">
+                        <img src="https://placehold.co/24x24/2d3748/e2e8f0?text=IG" alt="Instagram" class="w-6 h-6">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 GJ Tech. All Rights Reserved.</p>
         </div>
     </footer>
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </div>
     <script>
-        document.getElementById('pageSearch').addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const content = document.querySelector('.container'); // Search within the main content area
-            const searchElements = content.querySelectorAll('p, li, h2'); // Get paragraphs, list items, and h2
-
-            searchElements.forEach(element => {
-                const text = element.textContent.toLowerCase();
-                if (text.includes(searchTerm) || searchTerm === '') {
-                    element.style.backgroundColor = ''; // Reset highlight
-                    element.style.display = ''; // Show element
-                } else {
-                    element.style.display = 'none'; // Hide element if no match
-                }
+        // Get the button
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        };
+        // When the user clicks on the button, scroll to the top of the document
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
-        });
+        }
     </script>
 </body>
 </html>

@@ -37,15 +37,12 @@
             font-size: 18px;
             color: green;
         }
-
         .topics {
             margin-top: 30px;
         }
-
         .topics h2 {
             color: #444;
         }
-
         .topic-container {
             display: flex;
             flex-wrap: wrap;
@@ -53,7 +50,6 @@
             gap: 10px;
             margin-top: 10px;
         }
-
         .footer {
             margin-top: 40px;
             font-size: 14px;
@@ -77,9 +73,7 @@
             <button class="topic-btn" data-topic="MongoDB">MongoDB</button>
         </div>
     </div>
-
     <div class="footer">© 2025 GJ Tech Learning Portal (Simulated)</div>
-
     <script>
         // Greeting simulation
         document.getElementById('greetButton').addEventListener('click', function () {
@@ -89,7 +83,6 @@
                 document.getElementById('message').innerText = backendResponse;
             }, 1000);
         });
-
         // Topic content simulation
         const topicButtons = document.querySelectorAll('.topic-btn');
         topicButtons.forEach(button => {

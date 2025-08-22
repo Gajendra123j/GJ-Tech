@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
+  <title>Login - GJ Tech</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <script src="https://kit.fontawesome.com/a81368914c.js" crossorigin="anonymous"></script>
   <style>
     * {
@@ -13,177 +13,585 @@
       padding: 0;
       font-family: 'Poppins', sans-serif;
     }
+
     body {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background: linear-gradient(135deg, #74EBD5, #ACB6E5);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      position: relative;
+      overflow-x: hidden;
     }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
     .announcement-marquee {
-      background: #222;
+      background: linear-gradient(90deg, #1a1a2e, #16213e);
       color: #fff;
-      padding: 10px;
+      padding: 12px 0;
       font-size: 0.95rem;
+      position: relative;
+      z-index: 10;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
+
+    .marquee-content {
+      display: inline-block;
+      white-space: nowrap;
+      animation: marquee 25s linear infinite;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
     .announcement-marquee a {
-      color: #90cdf4;
+      color: #74d3ff;
       text-decoration: none;
-      margin: 0 10px;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: color 0.3s ease;
     }
+
+    .announcement-marquee a:hover {
+      color: #a8e6ff;
+    }
+
     nav {
-      background-color: #334155;
+      background: rgba(51, 65, 85, 0.95);
+      backdrop-filter: blur(10px);
       color: white;
-      padding: 10px 0;
+      padding: 15px 0;
       text-align: center;
-      font-size: 1rem;
+      font-size: 0.95rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
+
     nav a {
-      margin: 0 10px;
+      margin: 0 15px;
       text-decoration: none;
       color: white;
+      padding: 8px 16px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      display: inline-block;
+      background: rgba(255,255,255,0.1);
     }
+
     nav a:hover {
-      text-decoration: underline;
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
+
+    .login-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
     .login-card {
-      background: #fff;
-      border-radius: 12px;
-      width: 360px;
-      padding: 30px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 400px;
+      padding: 40px;
+      box-shadow: 
+        0 20px 40px rgba(0,0,0,0.1),
+        0 0 0 1px rgba(255,255,255,0.2);
       text-align: center;
-      margin: auto; /* Centers the card vertically and horizontally */
+      position: relative;
+      overflow: hidden;
     }
+
+    .login-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+    }
+
     .login-card h1 {
       font-weight: 700;
-      margin-bottom: 24px;
+      margin-bottom: 30px;
       color: #333;
+      font-size: 2rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
+
     .input-group {
       text-align: left;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      position: relative;
     }
+
     .input-group label {
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       font-size: 0.9rem;
       color: #555;
+      font-weight: 500;
     }
+
     .input-group input {
       width: 100%;
-      padding: 10px 12px;
-      border: none;
-      border-bottom: 1px solid #ccc;
+      padding: 14px 16px;
+      border: 2px solid #e1e8ed;
+      border-radius: 12px;
       outline: none;
       font-size: 1rem;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.8);
     }
+
     .input-group input:focus {
-      border-bottom-color: #667eea;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      transform: translateY(-2px);
     }
+
+    .input-group input:valid {
+      border-color: #00b894;
+    }
+
     .forgot {
       display: block;
       text-align: right;
-      margin-top: 6px;
+      margin-top: 8px;
       font-size: 0.85rem;
     }
+
     .forgot a {
       text-decoration: none;
       color: #667eea;
+      transition: color 0.3s ease;
     }
+
+    .forgot a:hover {
+      color: #764ba2;
+    }
+
     .btn-login {
       width: 100%;
-      padding: 12px;
-      margin-top: 10px;
+      padding: 16px;
+      margin-top: 20px;
       border: none;
-      border-radius: 50px;
+      border-radius: 12px;
       background: linear-gradient(135deg, #667eea, #764ba2);
       color: #fff;
-      font-size: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: opacity 0.3s;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
     }
+
+    .btn-login::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .btn-login:hover::before {
+      left: 100%;
+    }
+
     .btn-login:hover {
-      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
     }
+
+    .btn-login:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     .social-login {
-      margin: 20px 0;
+      margin: 30px 0;
+      position: relative;
     }
+
+    .social-login::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #ddd, transparent);
+    }
+
     .social-login p {
       font-size: 0.9rem;
       color: #777;
-      margin-bottom: 12px;
+      margin-bottom: 20px;
+      background: rgba(255,255,255,0.9);
+      padding: 0 20px;
+      display: inline-block;
+      position: relative;
+      z-index: 1;
     }
+
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
     .social-login a {
       text-decoration: none;
-      margin: 0 8px;
-      font-size: 1.2rem;
-      color: #555;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
-    /* Specific colors for social icons */
+
+    .social-login a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+
     .social-login a .fa-facebook-f {
-        color: #3b5998; /* Facebook blue */
+      color: #3b5998;
     }
+
     .social-login a .fa-linkedin-in {
-        color: #0077b5; /* LinkedIn blue */
+      color: #0077b5;
     }
+
     .social-login a .fa-google {
-        color: #dd4b39; /* Google red */
+      color: #dd4b39;
     }
+
     .signup {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: #777;
-      margin-top: 20px; /* Added margin for spacing */
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
     }
+
     .signup a {
       text-decoration: none;
       color: #667eea;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .signup a:hover {
+      color: #764ba2;
+    }
+
+    .status-message {
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
       font-weight: 500;
+      display: none;
+      text-align: center;
+    }
+
+    .status-success {
+      background: linear-gradient(135deg, #00b894, #00cec9);
+      color: white;
+    }
+
+    .status-error {
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      color: white;
+    }
+
+    .loading-spinner {
+      display: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top: 2px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .login-card {
+        padding: 30px 25px;
+        margin: 15px;
+      }
+      
+      nav a {
+        margin: 5px;
+        padding: 6px 12px;
+        font-size: 0.85rem;
+      }
+      
+      .login-card h1 {
+        font-size: 1.7rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="announcement-marquee">
+  <!-- Announcement Marquee -->
+  <div class="announcement-marquee bg-gradient-to-r from-purple-700 to-indigo-700 text-white py-2 text-center text-sm sticky top-0 z-50 shadow-md">
     <marquee behavior="scroll" direction="left" scrollamount="5">
-      🚀 Welcome to GJ Tech! New projects coming soon!
-      <a href="blogs.html">Check out our latest blog posts</a> |
-      <a href="contact.html">Join our tech community</a> |
-      <a href="about.html">Learn more about our mission</a> |
-      <a href="careergoals.html">Career Goals and Opportunities</a>
+        🚀 Welcome to GJ Tech! New projects coming soon!
+        <a href="blogs.html" class="underline hover:text-neon-blue ml-4">Check out our latest Study Hub  posts</a> |
+        <a href="contact.html" class="underline hover:text-neon-blue ml-4">Join our tech community Course Assignment Test 🌎</a> |
+        <a href="about.html" class="underline hover:text-neon-blue ml-4">Learn more Explore Our Course</a> |
+        <a href="careergoals.html" class="underline hover:text-neon-blue ml-4">Career Goals and Opportunities</a>
     </marquee>
-  </div>
-  <nav class="bg-slate-700 text-white text-center py-3 space-x-3 md:space-x-6 text-sm md:text-lg sticky top-0 z-50 shadow w-full">
-    <a href="index.html">Home 🏡</a>
-    <a href="blogs.html">Blogs 👩‍💻</a>
-    <a href="about.html">About 🎓</a>
-    <a href="contact.html">Contact 📶/Explore Our Courses</a>
-    <a href="careergoals.html">Career Goals</a>
-    <a href="CoursesinManagement.html">Courses in Management</a>
-    <a href="Registration.html">Registration-in</a>
-    <a href="login.html">Login-in</a>
+</div>
+  <nav>
+    <a href="index.html" class="hover:underline">Home 🏡</a>
+    <a href="blogs.html" class="hover:underline">Study Hub 👩‍💻</a>
+    <a href="about.html" class="hover:underline">About 🎓</a>
+    <a href="contact.html" class="hover:underline">Contact 📶/Explore Our Courses</a>
+    <a href="careergoals.html" class="hover:underline">Career Goals and Opportunities </a>
+    <a href="CoursesinManagement.html" class="hover:underline">Courses in Management</a>
+    <a href="Registration.html" class="hover:underline">Registration-in</a>
+    <a href="login.html" class="hover:underline">login-in</a>
   </nav>
-  <div class="login-card">
-    <h1>Login</h1>
-    <form action="#" method="post">
-      <div class="input-group">
-        <label for="username">Username</label>
-        <input id="username" name="username" type="text" placeholder="Type your username" required>
+
+  <div class="login-container">
+    <div class="login-card">
+      <h1>Welcome Back</h1>
+      
+      <div id="statusMessage" class="status-message"></div>
+      
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="username">Username or Email</label>
+          <input id="username" name="username" type="text" placeholder="Enter your username or email" required>
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" placeholder="Enter your password" required>
+          <span class="forgot"><a href="#" onclick="showForgotPassword()">Forgot password?</a></span>
+        </div>
+        <button type="submit" class="btn-login" id="loginBtn">
+          <span class="loading-spinner" id="loadingSpinner"></span>
+          <span id="loginText">LOGIN</span>
+        </button>
+      </form>
+
+      <div class="social-login">
+        <p>Or Sign In Using</p>
+        <div class="social-buttons">
+          <a href="#" onclick="socialLogin('facebook')" aria-label="Login with Facebook" title="Login with Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" onclick="socialLogin('linkedin')" aria-label="Login with LinkedIn" title="Login with LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="#" onclick="socialLogin('google')" aria-label="Login with Google" title="Login with Google">
+            <i class="fab fa-google"></i>
+          </a>
+        </div>
       </div>
-      <div class="input-group">
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" placeholder="Type your password" required>
-        <span class="forgot"><a href="#">Forgot password?</a></span>
+
+      <div class="signup">
+        <p>Don't have an account? <a href="#register" onclick="showRegisterMessage()">SIGN UP</a></p>
       </div>
-      <button type="submit" class="btn-login">LOGIN</button>
-    </form>
-    <div class="social-login">
-      <p>Or Sign In Using</p>
-      <a href="https://www.facebook.com/" aria-label="Login with Facebook" title="Login with Facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://www.linkedin.com/help/linkedin/answer/a522735" aria-label="Login with LinkedIn" title="Login with LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://support.google.com/accounts/answer/14095?hl=en" aria-label="Login with Google" title="Login with Google"><i class="fab fa-google"></i></a>
-    </div>
-    <div class="signup">
-      <p>Don't have an account? <a href="Registration.html">SIGN UP</a></p>
     </div>
   </div>
+
+  <script>
+    // Mock user database (in real app, this would be on server)
+    const mockUsers = [
+      { username: 'admin', email: 'admin@gjtech.com', password: 'admin123' },
+      { username: 'user1', email: 'user1@example.com', password: 'password123' },
+      { username: 'demo', email: 'demo@gjtech.com', password: 'demo123' },
+      { username: 'gjtech', email: 'info@gjtech.com', password: 'gjtech2024' }
+    ];
+
+    function showStatus(message, isSuccess = true) {
+      const statusDiv = document.getElementById('statusMessage');
+      statusDiv.textContent = message;
+      statusDiv.className = `status-message ${isSuccess ? 'status-success' : 'status-error'}`;
+      statusDiv.style.display = 'block';
+      
+      setTimeout(() => {
+        statusDiv.style.display = 'none';
+      }, 5000);
+    }
+
+    function setButtonLoading(isLoading) {
+      const btn = document.getElementById('loginBtn');
+      const spinner = document.getElementById('loadingSpinner');
+      const text = document.getElementById('loginText');
+      
+      btn.disabled = isLoading;
+      spinner.style.display = isLoading ? 'inline-block' : 'none';
+      text.textContent = isLoading ? 'Signing In...' : 'LOGIN';
+    }
+
+    async function simulateNetworkDelay() {
+      // Simulate network delay for realistic experience
+      await new Promise(resolve => setTimeout(resolve, 1500));
+    }
+
+    function validateCredentials(username, password) {
+      // Check against mock database
+      return mockUsers.find(user => 
+        (user.username === username || user.email === username) && 
+        user.password === password
+      );
+    }
+
+    async function handleLogin(event) {
+      event.preventDefault();
+      
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      
+      if (!username || !password) {
+        showStatus('❌ Please fill in all fields', false);
+        return;
+      }
+
+      setButtonLoading(true);
+      
+      try {
+        await simulateNetworkDelay();
+        
+        const user = validateCredentials(username, password);
+        if (user) {
+          showStatus('✅ Login successful! Redirecting...', true);
+          // Store login session (in real app, use secure tokens)
+          sessionStorage.setItem('gjtech_user', JSON.stringify({
+            username: user.username,
+            email: user.email,
+            loginTime: new Date().toISOString()
+          }));
+          setTimeout(() => {
+            showStatus('🎉 Welcome to GJ Tech Dashboard!', true);
+            // In real app, redirect to dashboard
+            // window.location.href = 'dashboard.html';
+          }, 2000); 
+        } else {
+          showStatus('❌ Invalid username or password. Try demo/demo123', false);
+        }   
+      } catch (error) {
+        showStatus('❌ Network error. Please try again.', false);
+      } finally {
+        setButtonLoading(false);
+      }
+    }
+    function showForgotPassword() {
+      const email = prompt('Enter your email address for password reset:');
+      if (email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailRegex.test(email)) {
+          showStatus(`📧 Password reset link sent to ${email}`, true);
+        } else {
+          showStatus('❌ Please enter a valid email address', false);
+        }
+      }
+    }
+    async function socialLogin(provider) {
+      showStatus(`🔄 Connecting to ${provider.charAt(0).toUpperCase() + provider.slice(1)}...`, true);
+      // Simulate social login process
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Simulate random success/failure (90% success rate)
+      if (Math.random() > 0.1) {
+        const userData = {
+          username: `${provider}_user`,
+          email: `user@${provider}.com`,
+          loginTime: new Date().toISOString(),
+          provider: provider
+        };
+        sessionStorage.setItem('gjtech_user', JSON.stringify(userData));
+        showStatus(`✅ Successfully logged in with ${provider.charAt(0).toUpperCase() + provider.slice(1)}!`, true);   
+        setTimeout(() => {
+          showStatus('🎉 Welcome to GJ Tech!', true);
+        }, 2000);
+      } else {
+        showStatus(`❌ ${provider.charAt(0).toUpperCase() + provider.slice(1)} login failed. Please try again.`, false);
+      }
+    }
+    function showRegisterMessage() {
+      showStatus('📝 Redirecting to registration page...', true);
+      // In real app: window.location.href = 'registration.html';
+    }
+    // Initialize event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('loginForm').addEventListener('submit', handleLogin);
+      // Add demo credentials hint
+      setTimeout(() => {
+        showStatus('💡 Demo credentials: demo/demo123 or admin/admin123', true);
+      }, 1000);
+      // Add input validation effects
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+          this.style.transform = 'translateY(-2px)';
+        });
+        input.addEventListener('blur', function() {
+          this.style.transform = 'translateY(0)';
+        });
+        input.addEventListener('input', function() {
+          // Real-time validation feedback
+          if (this.value.trim()) {
+            this.style.borderColor = '#00b894';
+          } else {
+            this.style.borderColor = '#e1e8ed';
+          }
+         });
+      });
+    });
+    // Check if user is already logged in
+    const existingUser = sessionStorage.getItem('gjtech_user');
+    if (existingUser) {
+      const userData = JSON.parse(existingUser);
+      showStatus(`👋 Welcome back, ${userData.username}! You're already logged in.`, true);
+    }
+  </script>
 </body>
 </html>

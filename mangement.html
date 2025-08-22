@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Management Project Course - Full Outline</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a modern, readable look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            color: #1f2937; /* Dark gray text */
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 1.5rem;
+        }
+
+        .hero {
+            background-image: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%); /* Teal gradient */
+            color: white;
+            padding: 3rem 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .fixed-nav {
+            position: sticky;
+            top: 0;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            padding: 0.5rem 0;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            padding: 0 1rem;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 0.75rem 1rem;
+            color: #4b5563;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-radius: 0.5rem;
+            margin: 0 0.25rem;
+        }
+
+        .nav-link:hover {
+            background-color: #e5e7eb;
+            color: #0f766e; /* Dark teal on hover */
+        }
+
+        .nav-link.active {
+            background-color: #d1fae5; /* Light green for active */
+            color: #059669; /* Green for active */
+            font-weight: 600;
+        }
+
+        .section-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f766e; /* Dark teal for titles */
+            border-bottom: 2px solid #6ee7b7; /* Light teal underline */
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .subsection-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #059669; /* Green for subsections */
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .list-style-disc {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+
+        .list-style-decimal {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+        }
+
+        .code-block {
+            background-color: #1f2937; /* Dark background for code */
+            color: #f3f4f6; /* Light text for code */
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Hero Section -->
+        <header class="hero mb-8">
+            <h1 class="text-4xl">Management Project Course</h1>
+            <h2 class="text-2xl">Practical Exposure to Real-World Business Challenges</h2>
+        </header>
+        <!-- Course Sections -->
+        <main class="space-y-8 mt-8">
+            <section id="course-introduction" class="section-card">
+                <h2 class="section-title">Course Introduction</h2>
+                <p class="mb-4">The Management Project Course is designed to give students practical exposure to real-world business and management problems. It helps in applying classroom concepts such as planning, organizing, leadership, teamwork, and decision-making to practical projects. Through this course, students learn how to manage resources, analyze situations, solve problems, and deliver results effectively.</p>
+                <p>This course is a hands-on, project-based learning experience designed to bridge the gap between academic theory and professional practice. Students will work in teams on a real-world project, applying key management principles to achieve a successful outcome.</p>
+            </section>
+            <section id="course-objectives" class="section-card">
+                <h2 class="section-title">Course Objectives</h2>
+                <p>Upon successful completion of this course, students will be able to:</p>
+                <ul class="list-style-disc space-y-2 mt-4">
+                    <li><strong>Apply Project Management Fundamentals:</strong> Understand and utilize the five project lifecycle phases: Initiation, Planning, Execution, Monitoring & Control, and Closure.</li>
+                    <li><strong>Develop Core Management Skills:</strong> Enhance abilities in planning, organizing, resource management, and budgeting.</li>
+                    <li><strong>Practice Leadership and Teamwork:</strong> Demonstrate effective leadership, communication, and conflict resolution within a project team.</li>
+                    <li><strong>Analyze and Solve Problems:</strong> Use critical thinking and analytical tools to identify project risks, analyze situations, and develop effective solutions.</li>
+                    <li><strong>Communicate Effectively:</strong> Prepare professional project proposals, reports, and presentations for various stakeholders.</li>
+                    <li><strong>Utilize Project Management Tools:</strong> Become proficient in using common project management software and techniques (e.g., Gantt Charts, WBS).</li>
+                </ul>
+            </section>
+            <section id="module-1" class="section-card">
+                <h2 class="section-title">Module 1: Introduction to Project Management</h2>
+                <h3 class="subsection-title">Topics:</h3>
+                <ul class="list-style-disc space-y-1">
+                    <li>What is a project? The characteristics of projects vs. operations.</li>
+                    <li>The strategic importance of projects in an organization.</li>
+                    <li>The role and responsibilities of a project manager.</li>
+                    <li>Introduction to the Project Management Body of Knowledge (PMBOK) and other methodologies (Agile, Waterfall).</li>
+                </ul>
+                <h3 class="subsection-title">Activities:</h3>
+                <ul class="list-style-disc space-y-1">
+                    <li>Team formation and charter creation.</li>
+                    <li>Brainstorming and selecting a project topic.</li>
+                </ul>
+            </section>
+            <section id="module-2" class="section-card">
+                <h2 class="section-title">Module 2: Project Initiation and Scope Definition</h2>
+                <h3 class="subsection-title">Topics:</h3>
+                <ul class="list-style-disc space-y-1">
+                    <li>Conducting a feasibility study and stakeholder analysis.</li>
+                    <li>Developing a project charter and a clear scope statement.</li>
+                    <li>Defining project goals, objectives, and deliverables.</li>
+                    <li>Creating a Work Breakdown Structure (WBS) to break down the project into manageable tasks.</li>
+                </ul>
+                <h3 class="subsection-title">Activities:</h3>
+                <ul class="list-style-disc space-y-1">
+                    <li>Drafting the Project Charter for the team project.</li>
+                    <li>Presenting the project idea and scope to the class.</li>
+                </ul>
+            </section>
+            <section id="module-3" class="section-card">
+                <h2 class="section-title">Module 3: Project Planning and Scheduling</h2>
+                <h3 class="subsection-title">Topics:</h3>
+                <ul class="list-style-disc space-y-1">
+                    <li>Developing a detailed project schedule (Gantt chart, Critical Path Method).</li>
+                    <li>Estimating time, costs, and resources.</li>
+                    <li>Creating a project budget and resource allocation plan.</li>
+                    <li>Identifying and managing project dependencies.</li>
+                </ul>
+                <h3 class="subsection-title">Activities:</h3>
+                <ul class="list-style-disc space-y-1">
+                    <li>Creating a detailed project plan and schedule.</li>
+                    <li>Using project management software (e.g., Microsoft Project, Asana, Trello) to build the schedule.</li>
+                </ul>
+            </section>
+            <section id="module-4" class="section-card">
+                <h2 class="section-title">Module 4: Risk and Quality Management</h2>
+                <h3 class="subsection-title">Topics:</h3>
+                <ul class="list-style-disc space-y-1">
+                    <li>Identifying, analyzing, and mitigating project risks.</li>
+                    <li>Developing a risk management plan.</li>
+                    <li>Implementing quality assurance and quality control.</li>
+                    <li>Understanding the importance of a quality management plan.</li>
+                </ul>
+                <h3 class="subsection-title">Activities:</h3>
+                <ul class="list-style-disc space-y-1">
+                    <li>Conducting a risk assessment for the team project.</li>
+                    <li>Developing a risk register and mitigation strategies.</li>
+                </ul>
+            </section>
+            <section id="module-5" class="section-card">
+                <h2 class="section-title">Module 5: Project Execution and Team Leadership</h2>
+                <h3 class="subsection-title">Topics:</h3>
+                <ul class="list-style-disc space-y-1">
+                    <li>Executing the project plan.</li>
+                    <li>Leadership styles in a project environment.</li>
+                    <li>Team building, motivation, and managing conflict.</li>
+                    <li>Effective communication within the team and with stakeholders.</li>
+                </ul>
+                <h3 class="subsection-title">Activities:</h3>
+                <ul class="list-style-disc space-y-1">
+                    <li>Weekly team meetings and progress reports.</li>
+                    <li>Case study analysis on leadership challenges.</li>
+                </ul>
+            </section>
+            <section id="module-6" class="section-card">
+                <h2 class="section-title">Module 6: Monitoring, Control, and Change Management</h2>
+                <h3 class="subsection-title">Topics:</h3>
+                <ul class="list-style-disc space-y-1">
+                    <li>Tracking project progress against the plan.</li>
+                    <li>Performance reporting and Earned Value Analysis (EVA).</li>
+                    <li>Managing project changes and "scope creep."</li>
+                    <li>Developing a change control process.</li>
+                </ul>
+                <h3 class="subsection-title">Activities:</h3>
+                <ul class="list-style-disc space-y-1">
+                    <li>Analyzing project performance data.</li>
+                    <li>Submitting a formal Change Request for the team project (if applicable).</li>
+                </ul>
+            </section>
+            <section id="module-7" class="section-card">
+                <h2 class="section-title">Module 7: Project Closure and Final Presentation</h2>
+                <h3 class="subsection-title">Topics:</h3>
+                <ul class="list-style-disc space-y-1">
+                    <li>The project closure process and final deliverables.</li>
+                    <li>Conducting a "lessons learned" session.</li>
+                    <li>Final project reporting and documentation.</li>
+                    <li>Handover to the client or organization.</li>
+                </ul>
+                <h3 class="subsection-title">Activities:</h3>
+                <ul class="list-style-disc space-y-1">
+                    <li>Final project report submission.</li>
+                    <li>Final project presentation to the class and a panel of "stakeholders."</li>
+                </ul>
+            </section>
+            <section id="assessment" class="section-card">
+                <h2 class="section-title">Assessment</h2>
+                <p>The course is heavily project-based, with assessments focusing on both the process and the final outcome.</p>
+                <h3 class="subsection-title">Breakdown:</h3>
+                <ul class="list-style-disc space-y-2">
+                    <li><strong>Project Deliverables (60%):</strong>
+                        <ul class="list-style-disc list-inside ml-4">
+                            <li>Project Charter & Scope Document</li>
+                            <li>Project Plan & Budget</li>
+                            <li>Risk & Quality Management Plan</li>
+                            <li>Progress Reports</li>
+                            <li>Final Project Report & Documentation</li>
+                        </ul>
+                    </li>
+                    <li><strong>Team Performance (20%):</strong>
+                        <ul class="list-style-disc list-inside ml-4">
+                            <li>Peer evaluations based on contribution, communication, and teamwork.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Individual Assessments (20%):</strong>
+                        <ul class="list-style-disc list-inside ml-4">
+                            <li>Mid-term quiz on project management concepts.</li>
+                            <li>Final presentation (individual grade).</li>
+                            <li>Reflective journal on personal learning and challenges.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            
+        </main>
+    </div>
+    <script>
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        function onScroll() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150; 
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', onScroll);
+        window.addEventListener('load', onScroll);
+    </script>
+</body>
+</html>
