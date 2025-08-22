@@ -420,87 +420,6 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 font-sans">
-    <!-- Accessibility: Skip to main content link -->
-    <a href="#main-content" class="sr-only focus:not-sr-only text-blue-600 underline absolute top-0 left-0 p-3 bg-white z-50">Skip to main content</a>
-    
-    <!-- Animated Announcement Marquee -->
-    <div class="announcement-marquee bg-gradient-to-r from-purple-700 to-indigo-700 text-white py-2 text-center text-sm sticky top-0 z-50 shadow-md">
-        <div class="announcement-content">
-            <div class="announcement-item">
-                🚀 Welcome to GJ Tech! New projects coming soon!
-                <a href="blogs.html" class="underline hover:text-cyan-300 ml-2">Check out our latest Study Hub posts</a>
-            </div>
-            <div class="announcement-item">
-                🌎 Join our tech community Course Assignment Test
-                <a href="contact.html" class="underline hover:text-cyan-300 ml-2">Explore Our Courses</a>
-            </div>
-            <div class="announcement-item">
-                🎓 Learn more about our educational programs
-                <a href="about.html" class="underline hover:text-cyan-300 ml-2">About Us</a>
-            </div>
-            <div class="announcement-item">
-                💼 Career Goals and Opportunities await you
-                <a href="careergoals.html" class="underline hover:text-cyan-300 ml-2">Career Goals</a>
-            </div>
-             <!-- Duplicate the content for seamless looping -->
-            <div class="announcement-item">
-                🚀 Welcome to GJ Tech! New projects coming soon!
-                <a href="blogs.html" class="underline hover:text-cyan-300 ml-2">Check out our latest Study Hub posts</a>
-            </div>
-            <div class="announcement-item">
-                🌎 Join our tech community Course Assignment Test
-                <a href="contact.html" class="underline hover:text-cyan-300 ml-2">Explore Our Courses</a>
-            </div>
-            <div class="announcement-item">
-                🎓 Learn more about our educational programs
-                <a href="about.html" class="underline hover:text-cyan-300 ml-2">About Us</a>
-            </div>
-            <div class="announcement-item">
-                💼 Career Goals and Opportunities await you
-                <a href="careergoals.html" class="underline hover:text-cyan-300 ml-2">Career Goals</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- News Ticker -->
-    <div class="news-ticker">
-        <div class="news-content">
-            <div class="news-item">📈 GJ Tech has successfully completed 50+ projects this year!</div>
-            <div class="news-item">🎯 New AI course launches next month - Early bird discount available</div>
-            <div class="news-item">🏆 Winner of Best Educational Platform Award 2024</div>
-            <div class="news-item">🔥 Join 1000+ students already learning with us</div>
-            <div class="news-item">💡 Free webinar on Future Tech Trends - Register now!</div>
-            <!-- Duplicate content for seamless looping -->
-            <div class="news-item">📈 GJ Tech has successfully completed 50+ projects this year!</div>
-            <div class="news-item">🎯 New AI course launches next month - Early bird discount available</div>
-            <div class="news-item">🏆 Winner of Best Educational Platform Award 2024</div>
-            <div class="news-item">🔥 Join 1000+ students already learning with us</div>
-            <div class="news-item">💡 Free webinar on Future Tech Trends - Register now!</div>
-        </div>
-    </div>
-
-    <!-- Main Navigation -->
-    <nav class="bg-slate-700 text-white py-3 sticky top-[76px] z-40 shadow w-full" id="main-navigation">
-        <div class="container mx-auto flex flex-wrap justify-center items-center px-4 relative">
-            <!-- Hamburger Button for mobile -->
-            <button class="md:hidden absolute right-4 top-1/2 -translate-y-1/2 text-white focus:outline-none" aria-controls="nav-links" aria-expanded="false" aria-label="Toggle navigation menu">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
-            <!-- Navigation Links -->
-            <ul class="w-full hidden md:flex flex-col md:flex-row md:flex-wrap justify-center items-center gap-y-2 gap-x-3 md:gap-x-6 text-sm md:text-lg mt-4 md:mt-0" id="nav-links">
-                <li><a href="index.html" class="hover:underline hover:text-cyan-300">Home 🏡</a></li>
-                <li><a href="blogs.html" class="hover:underline hover:text-cyan-300">Study Hub 👩‍💻</a></li>
-                <li><a href="about.html" class="hover:underline hover:text-cyan-300">About 🎓</a></li>
-                <li><a href="contact.html" class="hover:underline hover:text-cyan-300">Explore Our Courses</a></li>
-                <li><a href="careergoals.html" class="hover:underline hover:text-cyan-300">Career Goals</a></li>
-                <li><a href="CoursesinManagement.html" class="hover:underline hover:text-cyan-300">Course Assignment Test 🌎</a></li>
-                <li><a href="Registration.html" class="hover:underline hover:text-cyan-300">Registration</a></li>
-                <li><a href="login.html" class="hover:underline hover:text-cyan-300">Login</a></li>
-            </ul>
-        </div>
-    </nav>
-
     <!-- Floating Action Buttons -->
     <div class="floating-announcements">
         <button class="floating-btn" title="Latest Updates" onclick="scrollToSection('announcements')">
@@ -510,7 +429,6 @@
             <i class="fas fa-envelope"></i>
         </button>
     </div>
-
     <!-- Main Content Area -->
     <main class="container mx-auto px-4 py-12" id="main-content">
         <!-- Profile Header Section -->
@@ -694,7 +612,6 @@
                     menuButton.setAttribute('aria-expanded', !isExpanded);
                 });
             }
-
             // Smooth scroll for floating buttons
             window.scrollToSection = (id) => {
                 const element = document.getElementById(id);
