@@ -21,7 +21,7 @@
             --glass-bg: rgba(255, 255, 255, 0.1);
             --text-glow: #ffffff;
         }
-        
+
         * {
             box-sizing: border-box;
         }
@@ -31,6 +31,22 @@
             color: white;
             overflow-x: hidden;
         }
+
+        /* Announcement Marquee */
+        .announcement-marquee {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .announcement-marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0%   { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
         /* Animated Background */
         .animated-bg {
             position: fixed;
@@ -340,6 +356,18 @@
             .tech-stack-item {
                 padding: 1rem;
             }
+            /* Hide desktop menu on mobile */
+            #main-navigation .container {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                padding-top: 1rem;
+            }
+            /* Show menu when open */
+            #main-navigation .container.active {
+                display: flex;
+            }
         }
         /* Dark mode toggle */
         .theme-toggle {
@@ -373,48 +401,81 @@
             content: '☀️';
             transform: translateX(25px);
         }
+        /* Footer */
+        .footer {
+            background-color: #1a1a2e;
+            padding: 4rem 2rem;
+            color: #ccc;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-links h4 {
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .footer-links ul li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: var(--neon-blue);
+            text-decoration: underline;
+        }
+        .social-icons a {
+            color: #fff;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: var(--neon-blue);
+        }
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
     <a href="#main-content" class="sr-only focus:not-sr-only text-blue-600 underline absolute top-0 left-0 p-3 bg-white z-50">Skip to main content</a>
-    <!-- Announcement Marquee -->
     <div class="announcement-marquee bg-gradient-to-r from-purple-700 to-indigo-700 text-white py-2 text-center text-sm sticky top-0 z-50 shadow-md">
-        <marquee behavior="scroll" direction="left" scrollamount="5">
+        <span>
             🚀 Welcome to GJ Tech! New projects coming soon!
-            <a href="blogs.html" class="underline hover:text-neon-blue ml-4">Check out our latest Study Hub  posts</a> |
-            <a href="contact.html" class="underline hover:text-neon-blue ml-4">Join our tech community Course Assignment Test 🌎</a> |
+            <a href="blogs.html" class="underline hover:text-neon-blue ml-4">Check out our latest Study Hub posts</a> |
+            <a href="contact.html" class="underline hover:text-neon-blue ml-4">Join our tech community Course Assignment Test 🌎</a> |
             <a href="about.html" class="underline hover:text-neon-blue ml-4">Learn more Explore Our Course</a> |
             <a href="careergoals.html" class="underline hover:text-neon-blue ml-4">Career Goals and Opportunities</a>
-        </marquee>
+        </span>
     </div>
-    <!-- Main Navigation Bar -->
-    <nav class="bg-slate-700 text-white text-center py-3 space-x-3 md:space-x-6 text-sm md:text-lg sticky top-[38px] z-50 shadow w-full" id="main-navigation">
-        <div class="container mx-auto flex flex-wrap justify-center gap-x-3 md:gap-x-6">
-            <a href="index.html" class="hover:underline hover:text-neon-blue">Home 🏡</a>
-            <a href="blogs.html" class="hover:underline hover:text-neon-blue">Study Hub 👩‍💻</a>
-            <a href="about.html" class="hover:underline hover:text-neon-blue">About 🎓</a>
-            <a href="contact.html" class="hover:underline hover:text-neon-blue">Explore Our Courses</a>
-            <a href="careergoals.html" class="hover:underline hover:text-neon-blue">Career Goals</a>
-            <a href="CoursesinManagement.html" class="hover:underline hover:text-neon-blue">Course Assignment Test 🌎
-            </a>
-            <a href="Registration.html" class="hover:underline hover:text-neon-blue">Registration</a>
-            <a href="login.html" class="hover:underline hover:text-neon-blue">login</a>
+
+    <nav class="bg-slate-700 text-white py-3 space-x-3 md:space-x-6 text-sm md:text-lg sticky top-[38px] z-50 shadow w-full" id="main-navigation">
+        <div class="container mx-auto flex flex-wrap justify-center md:gap-x-6">
+            <ul class="flex flex-wrap justify-center gap-x-3 md:gap-x-6">
+                <li><a href="index.html" class="hover:underline hover:text-neon-blue">Home 🏡</a></li>
+                <li><a href="blogs.html" class="hover:underline hover:text-neon-blue">Study Hub 👩‍💻</a></li>
+                <li><a href="about.html" class="hover:underline hover:text-neon-blue">About 🎓</a></li>
+                <li><a href="contact.html" class="hover:underline hover:text-neon-blue">Explore Our Courses</a></li>
+                <li><a href="careergoals.html" class="hover:underline hover:text-neon-blue">Career Goals</a></li>
+                <li><a href="CoursesinManagement.html" class="hover:underline hover:text-neon-blue">Course Assignment Test 🌎</a></li>
+                <li><a href="Registration.html" class="hover:underline hover:text-neon-blue">Registration</a></li>
+                <li><a href="login.html" class="hover:underline hover:text-neon-blue">Login</a></li>
+            </ul>
         </div>
-        <!-- Mobile menu toggle button (hidden on desktop) -->
-        <button class="md:hidden absolute right-4 top-1/2 -translate-y-1/2 text-white focus:outline-none" aria-controls="main-navigation-menu" aria-expanded="false" onclick="toggleMenu()">
+        <button class="md:hidden absolute right-4 top-1/2 -translate-y-1/2 text-white focus:outline-none" aria-controls="main-navigation-menu" aria-expanded="false" onclick="toggleMenu()" aria-label="Toggle navigation menu">
             <i class="fas fa-bars text-xl"></i>
         </button>
     </nav>
-    <!-- Placeholder for main content ID for skip link -->
+
     <div id="main-content"></div>
     <div class="animated-bg"></div>
-    <!-- Particles System -->
     <div class="particles" id="particles"></div>
-    <!-- Theme Toggle -->
     <div class="theme-toggle" id="themeToggle"></div>
-    <!-- Neural Network Background -->
     <div class="neural-network" id="neuralNetwork"></div>
-    <!-- AI Chat Widget -->
     <div class="ai-chat-widget" id="aiChatWidget">
         <i class="fas fa-robot text-white text-xl"></i>
         <div class="ai-chat-content hidden">
@@ -432,7 +493,6 @@
             </div>
         </div>
     </div>
-    <!-- Header -->
     <header class="relative z-10 py-20 text-center">
         <div class="container mx-auto px-4">
             <h1 class="text-6xl font-bold mb-4">
@@ -448,9 +508,7 @@
             </button>
         </div>
     </header>
-    <!-- Main Content -->
     <main class="container mx-auto px-4 py-12">
-        <!-- AI Profile Section -->
         <section class="glass-card text-center mb-12">
             <div class="ai-avatar mb-6">
                 <img src="jg.jpg" alt="Gajendra Singh - AI Enhanced">
@@ -461,7 +519,6 @@
                 👋 I’m Gajendra Singh, a Computer Science Engineering student (Batch 2023–2027) at MIT Moradabad (AKTU). I’m passionate about Artificial Intelligence, Machine Learning, and Full-Stack Development, and I enjoy building smart applications that address real-world challenges.
                 Alongside my studies, I’m also learning and working at GJ Tech Pvt. Ltd., a platform I founded to share knowledge through Web Development Solutions 💻,Quiz & Learning Platforms 🧠,Projects & Open Source ⚡,Educational Support 🎓. At GJ Tech, our mission is to make cutting-edge technology, programming, and IT concepts accessible to learners from all backgrounds.
             </p> 
-            <!-- AI Skills Progress -->
             <div class="grid md:grid-cols-3 gap-6 mt-8">
                 <div>
                     <h4 class="text-lg mb-2">AI Development</h4>
@@ -486,7 +543,6 @@
                 </div>
             </div>
         </section>
-        <!-- AI-Powered Features -->
         <section class="glass-card mb-12">
             <h2 class="text-3xl font-bold text-center mb-8 neon-text">AI-Powered Features</h2>
             <div class="grid md:grid-cols-3 gap-6">
@@ -513,7 +569,6 @@
                 </div>
             </div>
         </section>
-        <!-- Interactive Tech Stack -->
         <section class="glass-card mb-12">
             <h2 class="text-3xl font-bold text-center mb-8 neon-text">Next-Gen Technology Stack</h2>
             <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
@@ -554,7 +609,6 @@
                 </div>
             </div>
         </section>
-        <!-- AI Projects Showcase -->
         <section class="glass-card mb-12">
             <h2 class="text-3xl font-bold text-center mb-8 neon-text">AI Innovation Lab</h2>
             <div class="grid md:grid-cols-2 gap-8">
@@ -576,7 +630,6 @@
                 </div>
             </div>
         </section>
-        <!-- Interactive Rating with AI Analysis -->
         <section class="glass-card text-center">
             <h2 class="text-3xl font-bold mb-6 neon-text">AI Experience Rating</h2>
             <p class="text-gray-300 mb-6">Rate your experience and get AI-powered insights</p>
@@ -593,49 +646,55 @@
             </div>
         </section>
     </main>
-    <!-- Footer -->
-    <footer class="footer" role="contentinfo">
-        <div class="container mx-auto px-4 py-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
                 <div>
-                    <h4 class="text-xl font-bold mb-4 text-white">GJ Tech Pvt. Ltd.</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="about.html" class="hover:text-neon-blue transition-colors">About Us</a></li>
-                        <li><a href="blogs.html" class="hover:text-neon-blue transition-colors">Blog</a></li>
-                        <li><a href="careergoals.html" class="hover:text-neon-blue transition-colors">Careers</a></li>
-                        <li><a href="contact.html" class="hover:text-neon-blue transition-colors">Contact Us</a></li>
+                    <h4>About GJ Tech</h4>
+                    <ul>
+                        <li><a href="about.html">Our Mission</a></li>
+                        <li><a href="blogs.html">Latest Blogs</a></li>
+                        <li><a href="careergoals.html">Career Opportunities</a></li>
+                        <li><a href="CoursesinManagement.html">Management Courses</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-xl font-bold mb-4 text-white">Resources</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="courses.html" class="hover:text-neon-blue transition-colors">Courses</a></li>
-                        <li><a href="Livemeet.html" class="hover:text-neon-blue transition-colors">Live Meet</a></li>
-                        <li><a href="documentation.html" class="hover:text-neon-blue transition-colors">Documentation</a></li>
-                        <li><a href="faqs.html" class="hover:text-neon-blue transition-colors">FAQs</a></li>
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="info.html">Help Center</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-xl font-bold mb-4 text-white">Legal</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="privacy.html" class="hover:text-neon-blue transition-colors">Privacy Policy</a></li>
-                        <li><a href="terms.html" class="hover:text-neon-blue transition-colors">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-700 mt-8 pt-6 text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-                <p>&copy; 2025 GJ Tech Pvt. Ltd. All rights reserved.</p>
-                <div class="legal-links space-x-4">
-                    <a href="privacy.html" class="hover:text-neon-blue transition-colors">privacy</a>
+                    <h4>Connect</h4>
+                    <div class="social-icons flex space-x-4 mt-2">
+                        <a href="https://www.linkedin.com/in/gajendra-singh-9ba6a5306" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/Gajendra123j" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://x.com/Gajendra123j" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.instagram.com/gajendra_katariya_015" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
+    <footer class="bg-slate-800 text-sky-300 text-center py-4 mt-10">
+        <p>&copy;2025 GJ Tech Pvt. Ltd. 👩‍💻..</p>
+    </footer>
+
     <script>
         // Particle System
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 50
+            const particleCount = 50;
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
@@ -645,10 +704,11 @@
                 particlesContainer.appendChild(particle);
             }
         }
+
         // Neural Network Nodes
         function createNeuralNetwork() {
             const networkContainer = document.getElementById('neuralNetwork');
-            const nodeCount = 20;   
+            const nodeCount = 20;  
             for (let i = 0; i < nodeCount; i++) {
                 const node = document.createElement('div');
                 node.className = 'node';
@@ -658,13 +718,15 @@
                 networkContainer.appendChild(node);
             }
         }
+        
         // AI Chat Widget
         document.getElementById('aiChatWidget').addEventListener('click', function() {
             this.classList.toggle('ai-chat-expanded');
             const content = this.querySelector('.ai-chat-content');
             content.classList.toggle('hidden');
         });
-        // AI Rating System (Existing Star Rating)
+
+        // AI Rating System
         const aiStars = document.querySelectorAll('.ai-star');
         const aiAnalysis = document.getElementById('aiAnalysis');
         const aiInsight = document.getElementById('aiInsight');
@@ -678,50 +740,21 @@
         aiStars.forEach((star, index) => {
             star.addEventListener('click', function() {
                 const rating = index + 1;
-                // Update star display
                 aiStars.forEach((s, i) => {
                     s.style.color = i < rating ? '#fbbf24' : '#6b7280';
-                });     
-                // Show AI analysis
+                });   
                 aiAnalysis.classList.remove('hidden');
                 aiInsight.textContent = aiInsights[index];
             });
         });
-        // --- New JavaScript functions from user input ---
-        // Listener for a 'submitRating' button (HTML element not present in current page)
-        // This function expects radio buttons named 'rating' and a 'ratingMessage' element.
-        // You would need to add these HTML elements for this functionality to work.
-        // Example HTML: <div id="ratingSection"><input type="radio" name="rating" value="1"> ... <button id="submitRating">Submit</button><p id="ratingMessage"></p></div>
-        document.getElementById('submitRating')?.addEventListener('click', function() {
-            const rating = document.querySelector('input[name="rating"]:checked');
-            const message = document.getElementById('ratingMessage');
-            if (rating) {
-                message.textContent = `Thank you for your ${rating.value} star rating! Your feedback is important to us.`;
-                message.style.color = '#10B981';
-            } else {
-                message.textContent = 'Please select a star rating before submitting.';
-                message.style.color = '#EF4444';
-            }
-        });
-        // Mobile menu toggle function (HTML elements not present in current page's header)
-        // This function expects a button with an 'onclick="toggleMenu()"' attribute and a navigation element with 'id="main-navigation"'.
-        // You would need to add these HTML elements to your header/navigation for this to work.
-        // The menu itself should have an ID like "main-navigation-menu" and start with "hidden" class for mobile.
-        const mobileMenuButton = document.querySelector('[onclick="toggleMenu()"]');
-        const mainNavMenu = document.getElementById('main-navigation-menu'); // Renamed from mainNav for clarity
+        
+        // Mobile menu toggle
         function toggleMenu() {
-            if (mobileMenuButton && mainNavMenu) {
-                const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
-                mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-                mainNavMenu.classList.toggle('hidden');
-            } else {
-                console.warn("Toggle menu elements (mobileMenuButton or main-navigation-menu) not found.");
-            }
+            const navContainer = document.querySelector('#main-navigation .container');
+            navContainer.classList.toggle('active');
         }
-        // Expose toggleMenu globally if it's meant to be called from an inline onclick attribute
-        window.toggleMenu = toggleMenu;
-        // --- End of New JavaScript functions --- 
-        // Initialize dynamic elements
+
+        // Initialize animations on load
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
             createNeuralNetwork();
