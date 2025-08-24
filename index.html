@@ -1,651 +1,1480 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>GJ Tech - AI Powered Future</title>
+    <title>GJ Tech Pvt. Ltd. - CareerHub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Base Styling */
         :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --neon-blue: #00f0ff;
-            --neon-pink: #ff0080;
-            --neon-green: #39ff14;
-            --dark-bg: #0a0a0f;
-            --card-dark: #1a1a2e;
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --text-glow: #ffffff;
-        }
-
-        * {
-            box-sizing: border-box;
+            --primary-color: #6366f1; /* Indigo 500 */
+            --primary-dark: #4f46e5; /* Indigo 600 */
+            --secondary-color: #ec4899; /* Pink 500 */
+            --text-color: #333;
+            --light-text-color: #e2e8f0; /* Slate 200 */
+            --bg-color: #f8fafc; /* Slate 50 */
+            --card-bg: #fff;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --gemini-gradient: linear-gradient(90deg, #4285F4, #34A853, #FBBC05, #EA4335); /* Google colors */
         }
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--dark-bg);
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        /* Header */
+        .header {
+            background-color: var(--primary-color);
             color: white;
-            overflow-x: hidden;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom-left-radius: 15px; /* Added rounded corners */
+            border-bottom-right-radius: 15px; /* Added rounded corners */
         }
-
-        /* Announcement Marquee */
-        .announcement-marquee {
+        .header .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .nav-icons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .icon-btn, .profile-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+        }
+        .icon-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .profile-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            border-radius: 9999px; /* Fully rounded */
+        }
+        .profile-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+            position: relative;
             overflow: hidden;
-            white-space: nowrap;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
         }
-        .announcement-marquee span {
-            display: inline-block;
-            padding-left: 100%;
-            animation: marquee 20s linear infinite;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float-bubble 15s ease-in-out infinite alternate;
         }
-        @keyframes marquee {
-            0%   { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float-bubble 12s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+        @keyframes float-bubble {
+            0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+            25% { transform: translateY(-10px) translateX(10px) scale(1.05); }
+            50% { transform: translateY(10px) translateX(-10px) scale(0.95); }
+            75% { transform: translateY(-5px) translateX(-5px) scale(1.02); }
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 900;
+        }
+        .hero h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-top: 0;
+            margin-bottom: 2rem;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 30px;
+            padding: 0.5rem 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: var(--shadow);
+        }
+        .search-box {
+            flex-grow: 1;
+            border: none;
+            outline: none;
+            padding: 0.5rem 0;
+            font-size: 1rem;
+            color: var(--text-color);
+            border-radius: 20px; /* Added rounded corners */
+        }
+        .search-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .clear-btn, .search-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.5rem;
+            border-radius: 20px;
+            transition: background-color 0.2s ease;
+        }
+        .clear-btn {
+            color: #ef4444; /* Red 500 */
+        }
+        .clear-btn:hover {
+            background-color: #fecaca; /* Red 200 */
+        }
+        .search-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            font-weight: 600;
+        }
+        .search-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        .chips {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .chip {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+        .chip:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        .btn-ghost {
+            background: none;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .btn-ghost:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--primary-color);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        .btn-gemini {
+            background: var(--gemini-gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid transparent; /* No border for gradient */
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-gemini:hover {
+            opacity: 0.9;
+        }
+        .btn-gemini.loading {
+            background: #cbd5e1; /* Greyed out when loading */
+            cursor: not-allowed;
         }
 
-        /* Animated Background */
-        .animated-bg {
+        /* Main Content */
+        .main-content {
+            padding: 2rem 0;
+        }
+        .section-header {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .opportunities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .opportunity-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            position: relative; /* For the pill positioning */
+        }
+        .opportunity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .opportunity-card .pill {
+            background-color: #fde68a; /* Amber 200 */
+            color: #92400e; /* Amber 800 */
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .opportunity-card .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .opportunity-card .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .opportunity-card .card-subtitle {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        .pro-banner {
+            background: linear-gradient(90deg, #f0abfc 0%, #a78bfa 100%); /* Purple/Pink gradient */
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow);
+        }
+        .pro-banner .pro-content {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        .pro-banner .explore-btn {
+            background-color: white;
+            color: var(--primary-color);
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        .pro-banner .explore-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+        .featured-section {
+            margin-bottom: 3rem;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .featured-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+        .featured-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .featured-image {
+            font-size: 2rem;
+            background-color: #e0e7ff; /* Indigo 100 */
+            padding: 0.8rem;
+            border-radius: 10px;
+            display: flex; /* For centering icon */
+            align-items: center;
+            justify-content: center;
+        }
+        .featured-content {
+            flex-grow: 1;
+        }
+
+        .featured-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .featured-company {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+        .featured-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: #475569;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .featured-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .mentors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .mentor-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+        .mentor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .mentor-avatar {
+            width: 70px;
+            height: 70px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 0.75rem;
+        }
+        .mentor-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .mentor-title {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 0.75rem;
+        }
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.1rem;
+            color: #64748b;
+            display: none;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: var(--primary-color);
+            animation: spin 1s ease infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-around;
+            padding: 0.75rem 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 90;
+        }
+        .bottom-nav .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.75rem;
+            color: #64748b;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+        }
+        .bottom-nav .nav-item:hover,
+        .bottom-nav .nav-item.active {
+            color: var(--primary-color);
+            background-color: #eff6ff;
+        }
+        .bottom-nav .nav-item i {
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+        /* Adjusted to use Font Awesome classes directly */
+        /* .bottom-nav .nav-item:nth-child(1)::before { content: "\f015"; } */
+        /* .bottom-nav .nav-item:nth-child(2)::before { content: "\f50b"; } */
+
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 101;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: visibility 0s, opacity 0.5s ease;
+        }
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        .toast.status-error {
+            background-color: #ef4444;
+        }
+        .toast.status-success {
+            background-color: #22c55e;
+        }
+        .modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            background: linear-gradient(45deg, #0a0a0f, #1a1a2e, #16213e);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 102;
+            display: none;
         }
-        .animated-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .modal-card {
+            background-color: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            max-height: 90vh;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #475569;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="url"],
+        .form-group textarea {
             width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 80%, rgba(120, 219, 226, 0.1) 0%, transparent 50%);
-            animation: float 20s ease-in-out infinite;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
         }
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        .form-group textarea {
+            resize: vertical;
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-20px) rotate(1deg); }
-            66% { transform: translateY(10px) rotate(-1deg); }
+
+        /* Original GJ Tech Nav and Hero elements for context, but not fully integrated with the CareerHub content */
+        .announcement-marquee {
+            top: 0px; /* Adjusted due to sticky header */
+            position: relative; /* Changed to relative to not overlap */
         }
-        /* Glassmorphism Cards */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            transition: all 0.3s ease;
+        .bg-slate-700 {
+            top: 0px; /* Adjusted due to sticky header */
+            position: sticky;
+            z-index: 101; /* Higher than primary header */
+        }
+        .neon-text {
+            color: #fff;
+            text-shadow:
+                0 0 7px #fff,
+                0 0 10px #fff,
+                0 0 21px #fff,
+                0 0 42px #0fa,
+                0 0 82px #0fa,
+                0 0 92px #0fa,
+                0 0 102px #0fa,
+                0 0 151px #0fa;
+        }
+        .holo-btn {
+            background: linear-gradient(45deg, #00f260, #0575e6, #a100ff, #f20089, #ff0000);
+            background-size: 300% 300%;
+            animation: holographic-gradient 10s ease infinite;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
             position: relative;
             overflow: hidden;
+            transition: transform 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 242, 96, 0.5);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
         }
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s;
+        .holo-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 242, 96, 0.8);
         }
-        .glass-card:hover::before {
-            left: 100%;
+        @keyframes holographic-gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        .glass-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.2);
-            border-color: var(--neon-blue);
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            color: white;
         }
-        /* AI Avatar with Floating Animation */
-        .ai-avatar {
-            position: relative;
-            display: inline-block;
-        }
-        .ai-avatar img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border: 3px solid var(--neon-blue);
-            box-shadow: 0 0 30px var(--neon-blue);
-            animation: pulse 2s infinite;
-        }
-        .ai-avatar::after {
-            content: '🤖';
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            font-size: 2rem;
-            animation: bounce 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 30px var(--neon-blue); }
-            50% { box-shadow: 0 0 50px var(--neon-pink), 0 0 70px var(--neon-blue); }
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-        /* Neon Text Effects */
-        .neon-text {
-            color: var(--neon-blue);
-            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 40px var(--neon-blue);
-            animation: flicker 3s infinite alternate;
-        }
-        @keyframes flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
-        /* AI Chat Widget */
         .ai-chat-widget {
             position: fixed;
             bottom: 20px;
             right: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
             width: 60px;
             height: 60px;
-            background: var(--primary-gradient);
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
             z-index: 1000;
+            transition: all 0.3s ease;
         }
         .ai-chat-widget:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(102, 126, 234, 0.6);
-        }
-        .ai-chat-expanded {
-            width: 350px;
-            height: 500px;
-            border-radius: 20px;
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        /* Interactive Tech Stack */
-        .tech-stack-item {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .tech-stack-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--primary-gradient);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .tech-stack-item:hover::before {
-            opacity: 0.1;
-        }
-        .tech-stack-item:hover {
-            transform: translateY(-10px) scale(1.05);
-            border-color: var(--neon-blue);
-            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.3);
-        }
-        .tech-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        /* AI Progress Bars */
-        .ai-progress {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            padding: 3px;
-            margin: 1rem 0;
-        }
-        .ai-progress-fill {
-            background: var(--primary-gradient);
-            height: 8px;
-            border-radius: 50px;
-            transition: width 2s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .ai-progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shimmer 2s infinite;
-        } 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        /* Neural Network Animation */
-        .neural-network {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0.3;
-        }
-        .node {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: var(--neon-blue);
-            border-radius: 50%;
-            animation: nodeGlow 3s infinite ease-in-out;
-        }
-        @keyframes nodeGlow {
-            0%, 100% { box-shadow: 0 0 5px var(--neon-blue); }
-            50% { box-shadow: 0 0 20px var(--neon-blue), 0 0 30px var(--neon-pink); }
-        }
-        /* Holographic Button */
-        .holo-btn {
-            background: linear-gradient(45deg, transparent, rgba(0, 240, 255, 0.1), transparent);
-            border: 2px solid var(--neon-blue);
-            color: var(--neon-blue);
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .holo-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-        .holo-btn:hover::before {
-            left: 100%;
-        }
-        .holo-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 30px var(--neon-blue);
-            text-shadow: 0 0 10px var(--neon-blue);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
         }
-        /* Particle System */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        .particle {
+        .ai-chat-content {
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--neon-blue);
-            border-radius: 50%;
-            animation: floatParticle 10s infinite linear;
+            bottom: 80px;
+            right: 0;
+            width: 300px;
+            background-color: #2d3748; /* Darker background */
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transform-origin: bottom right;
+            animation: fadeInScale 0.3s ease-out forwards;
+            color: white;
         }
-        @keyframes floatParticle {
-            0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) translateX(100px);
-                opacity: 0;
-            }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
         }
-        /* Mobile Responsiveness */
+
+
         @media (max-width: 768px) {
-            .glass-card {
-                padding: 1.5rem;
-                margin-bottom: 1.5rem;
+            .hero h1 {
+                font-size: 2.5rem;
             }
-            .ai-avatar img {
-                width: 120px;
-                height: 120px;
+            .hero h2 {
+                font-size: 1.5rem;
             }
-            .ai-chat-widget {
-                bottom: 80px;
-                right: 15px;
-            }
-            .tech-stack-item {
+            .search-container {
+                flex-direction: column;
                 padding: 1rem;
+                border-radius: 20px;
             }
-            /* Hide desktop menu on mobile */
-            #main-navigation .container {
-                display: none;
+            .search-box {
+                width: 100%;
+                margin-bottom: 0.75rem;
+                padding: 0.75rem 0.5rem;
+                text-align: center;
+            }
+            .search-actions {
+                width: 100%;
+                justify-content: center;
+                gap: 1rem;
+            }
+            .search-btn {
+                flex-grow: 1;
+                max-width: 150px;
+            }
+            .opportunities-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            .featured-card {
                 flex-direction: column;
                 align-items: center;
-                gap: 1rem;
-                padding-top: 1rem;
+                text-align: center;
             }
-            /* Show menu when open */
-            #main-navigation .container.active {
+            .featured-image {
+                margin-bottom: 0.75rem;
+            }
+            .featured-meta {
+                justify-content: center;
+            }
+            .pro-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            .pro-banner .explore-btn {
+                width: 100%;
+            }
+            .bottom-nav {
                 display: flex;
             }
+            .header .nav .nav-items {
+                display: none;
+            }
+            .header .nav-icons .icon-btn {
+                display: flex;
+            }
+            /* Adjust AI chat widget for mobile */
+            .ai-chat-content {
+                width: 90%;
+                left: 5%;
+                right: 5%;
+                bottom: 80px;
+            }
         }
-        /* Dark mode toggle */
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 25px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            z-index: 1000;
-        }
-        .theme-toggle::after {
-            content: '🌙';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 21px;
-            height: 21px;
-            border-radius: 50%;
-            background: var(--neon-blue);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            transition: transform 0.3s ease;
-        }
-        .theme-toggle.light::after {
-            content: '☀️';
-            transform: translateX(25px);
-        }
-        /* Footer */
-        .footer {
-            background-color: #1a1a2e;
-            padding: 4rem 2rem;
-            color: #ccc;
-        }
-        .footer-links {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .footer-links h4 {
-            color: #fff;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        .footer-links ul li {
-            margin-bottom: 0.5rem;
-        }
-        .footer-links a {
-            color: #ccc;
-            transition: color 0.3s ease;
-        }
-        .footer-links a:hover {
-            color: var(--neon-blue);
-            text-decoration: underline;
-        }
-        .social-icons a {
-            color: #fff;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
-        }
-        .social-icons a:hover {
-            color: var(--neon-blue);
+        @media (min-width: 769px) {
+            .bottom-nav {
+                display: none;
+            }
+            /* Ensure the header nav items are visible on desktop */
+            .header .nav-items {
+                display: flex !important;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-100 font-sans">
-    <a href="#main-content" class="sr-only focus:not-sr-only text-blue-600 underline absolute top-0 left-0 p-3 bg-white z-50">Skip to main content</a>
-    <div class="announcement-marquee bg-gradient-to-r from-purple-700 to-indigo-700 text-white py-2 text-center text-sm sticky top-0 z-50 shadow-md">
-        <span>
-            🚀 Welcome to GJ Tech! New projects coming soon!
-            <a href="blogs.html" class="underline hover:text-neon-blue ml-4">Check out our latest Study Hub posts</a> |
-            <a href="contact.html" class="underline hover:text-neon-blue ml-4">Join our tech community Course Assignment Test 🌎</a> |
-            <a href="about.html" class="underline hover:text-neon-blue ml-4">Learn more Explore Our Course</a> |
-            <a href="careergoals.html" class="underline hover:text-neon-blue ml-4">Career Goals and Opportunities</a>
-        </span>
-    </div>
-
+<body>
+    <!-- Main site navigation for GJ Tech, sticky below marquee -->
     <nav class="bg-slate-700 text-white py-3 space-x-3 md:space-x-6 text-sm md:text-lg sticky top-[38px] z-50 shadow w-full" id="main-navigation">
         <div class="container mx-auto flex flex-wrap justify-center md:gap-x-6">
-            <ul class="flex flex-wrap justify-center gap-x-3 md:gap-x-6">
-                <li><a href="index.html" class="hover:underline hover:text-neon-blue">Home 🏡</a></li>
-                <li><a href="blogs.html" class="hover:underline hover:text-neon-blue">Study Hub 👩‍💻</a></li>
-                <li><a href="about.html" class="hover:underline hover:text-neon-blue">About 🎓</a></li>
-                <li><a href="contact.html" class="hover:underline hover:text-neon-blue">Explore Our Courses</a></li>
-                <li><a href="careergoals.html" class="hover:underline hover:text-neon-blue">Career Goals</a></li>
-                <li><a href="CoursesinManagement.html" class="hover:underline hover:text-neon-blue">Course Assignment Test 🌎</a></li>
-                <li><a href="Registration.html" class="hover:underline hover:text-neon-blue">Registration</a></li>
-                <li><a href="login.html" class="hover:underline hover:text-neon-blue">Login</a></li>
+            <ul class="flex flex-wrap justify-center gap-x-3 md:gap-x-6 nav-items">
+                <li><a href="index.html" class="hover:underline hover:text-blue-200">Home 🏡</a></li>
+                <li><a href="blogs.html" class="hover:underline hover:text-blue-200">Study Hub 👩‍💻</a></li>
+                <li><a href="about.html" class="hover:underline hover:text-blue-200">About 🎓</a></li>
+                <li><a href="contact.html" class="hover:underline hover:text-blue-200">Explore Our Courses</a></li>
+                <li><a href="careergoals.html" class="hover:underline hover:text-blue-200">Career Goals</a></li>
+                <li><a href="CoursesinManagement.html" class="hover:underline hover:text-blue-200">Course Assignment Test 🌎</a></li>
+                <li><a href="Registration.html" class="hover:underline hover:text-blue-200">Registration</a></li>
+                <li><a href="login.html" class="hover:underline hover:text-blue-200">Login</a></li>
             </ul>
         </div>
-        <button class="md:hidden absolute right-4 top-1/2 -translate-y-1/2 text-white focus:outline-none" aria-controls="main-navigation-menu" aria-expanded="false" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+        <button class="md:hidden absolute right-4 top-1/2 -translate-y-1/2 text-white focus:outline-none" aria-controls="main-navigation-menu" aria-expanded="false" onclick="toggleMainNavigationMenu()" aria-label="Toggle navigation menu">
             <i class="fas fa-bars text-xl"></i>
         </button>
     </nav>
-
     <div id="main-content"></div>
-    <div class="animated-bg"></div>
-    <div class="particles" id="particles"></div>
-    <div class="theme-toggle" id="themeToggle"></div>
-    <div class="neural-network" id="neuralNetwork"></div>
-    <div class="ai-chat-widget" id="aiChatWidget">
+    <!-- AI Chat Widget -->
+    <div class="ai-chat-widget" id="aiChatWidget" onclick="toggleAIChat()">
         <i class="fas fa-robot text-white text-xl"></i>
         <div class="ai-chat-content hidden">
-            <div class="p-4 border-b border-gray-600">
+            <div class="p-4 border-b border-gray-600 rounded-t-lg">
                 <h3 class="text-lg font-bold text-white">AI Assistant</h3>
                 <p class="text-sm text-gray-300">Powered by GJ Tech AI</p>
             </div>
-            <div class="p-4 space-y-3 max-h-300 overflow-y-auto">
+            <div class="p-4 space-y-3 max-h-[300px] overflow-y-auto">
                 <div class="bg-blue-600 p-3 rounded-lg">
                     <p class="text-sm">Hello! I'm your AI assistant. How can I help you explore GJ Tech?</p>
                 </div>
             </div>
-            <div class="p-4 border-t border-gray-600">
+            <div class="p-4 border-t border-gray-600 rounded-b-lg">
                 <input type="text" placeholder="Ask me anything..." class="w-full bg-transparent border border-gray-600 rounded-lg p-2 text-white placeholder-gray-400">
             </div>
         </div>
     </div>
-    <header class="relative z-10 py-20 text-center">
-        <div class="container mx-auto px-4">
-            <h1 class="text-6xl font-bold mb-4">
-                <span class="neon-text">GJ Tech</span>
-                <span class="text-white">Pvt. Ltd.</span>
-            </h1>
-            <p class="text-2xl mb-8 text-gray-300">
-                Powered by <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Artificial Intelligence</span>
-            </p>
-            <button class="holo-btn">
-                Explore the Future
-                <i class="fas fa-rocket ml-2"></i>
-            </button>
-        </div>
+    <!-- CareerHub Header -->
+    <header class="header">
+        <nav class="nav container" aria-label="Main">
+            <div class="logo">CareerHub</div>
+            <div class="nav-icons">
+                <button class="icon-btn" aria-label="Notifications" onclick="toggleNotifications()">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <button class="icon-btn" aria-label="Menu" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="profile-btn" aria-label="Profile" onclick="showProfileModal()">GJ</button>
+            </div>
+        </nav>
     </header>
-    <main class="container mx-auto px-4 py-12">
-        <section class="glass-card text-center mb-12">
-            <div class="ai-avatar mb-6">
-                <img src="jg.jpg" alt="Gajendra Singh - AI Enhanced">
-            </div>
-            <h2 class="text-4xl font-bold mb-4 neon-text">Gajendra Singh</h2>
-            <p class="text-xl mb-4 text-gray-300">Founder(CEO) || Tech Enthusiast || AI & Future Technologies Learner MIT Moradabad || 2023–2027 || AKTU Affiliated</p>
-            <p class="text-lg mb-6 text-gray-400 max-w-2xl mx-auto">
-                👋 I’m Gajendra Singh, a Computer Science Engineering student (Batch 2023–2027) at MIT Moradabad (AKTU). I’m passionate about Artificial Intelligence, Machine Learning, and Full-Stack Development, and I enjoy building smart applications that address real-world challenges.
-                Alongside my studies, I’m also learning and working at GJ Tech Pvt. Ltd., a platform I founded to share knowledge through Web Development Solutions 💻,Quiz & Learning Platforms 🧠,Projects & Open Source ⚡,Educational Support 🎓. At GJ Tech, our mission is to make cutting-edge technology, programming, and IT concepts accessible to learners from all backgrounds.
-            </p> 
-            <div class="grid md:grid-cols-3 gap-6 mt-8">
-                <div>
-                    <h4 class="text-lg mb-2">AI Development</h4>
-                    <div class="ai-progress">
-                        <div class="ai-progress-fill" style="width: 95%"></div>
-                    </div>
-                    <span class="text-sm text-gray-400">95%</span>
-                </div>
-                <div>
-                    <h4 class="text-lg mb-2">Machine Learning</h4>
-                    <div class="ai-progress">
-                        <div class="ai-progress-fill" style="width: 90%"></div>
-                    </div>
-                    <span class="text-sm text-gray-400">90%</span>
-                </div>
-                <div>
-                    <h4 class="text-lg mb-2">Neural Networks</h4>
-                    <div class="ai-progress">
-                        <div class="ai-progress-fill" style="width: 88%"></div>
-                    </div>
-                    <span class="text-sm text-gray-400">88%</span>
+    <!-- CareerHub Hero Section -->
+    <section class="hero" id="unstop" aria-label="Hero">
+        <div class="container">
+            <h1>Hi, <span id="userName">Gajendra</span></h1>
+            <h2>Unlock Your Career</h2>
+            <div class="search-container" role="search">
+                <input id="searchInput" type="text" class="search-box" placeholder="Search opportunities, roles, companies, tags… (e.g., React, Remote, Amazon)" />
+                <div class="search-actions">
+                    <button class="clear-btn" onclick="clearSearch()" title="Clear">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <button class="search-btn" onclick="searchOpportunities()" title="Search">
+                        <i class="fas fa-search"></i> Search
+                    </button>
                 </div>
             </div>
-        </section>
-        <section class="glass-card mb-12">
-            <h2 class="text-3xl font-bold text-center mb-8 neon-text">AI-Powered Features</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="text-center">
-                    <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
-                        <i class="fas fa-brain text-2xl text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Smart Learning</h3>
-                    <p class="text-gray-400">AI adapts to your learning style and pace</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r from-pink-500 to-red-500 flex items-center justify-center">
-                        <i class="fas fa-eye text-2xl text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Computer Vision</h3>
-                    <p class="text-gray-400">Advanced image and pattern recognition</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r from-green-500 to-teal-500 flex items-center justify-center">
-                        <i class="fas fa-comments text-2xl text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">NLP Processing</h3>
-                    <p class="text-gray-400">Natural language understanding and generation</p>
-                </div>
+            <div class="chips" style="justify-content:center; margin-top:12px;">
+                <button class="chip btn-ghost" onclick="quickTag('Remote')">#Remote</button>
+                <button class="chip btn-ghost" onclick="quickTag('Internship')">#Internship</button>
+                <button class="chip btn-ghost" onclick="quickTag('JavaScript')">#JavaScript</button>
+                <button class="chip btn-ghost" onclick="quickTag('Design')">#Design</button>
             </div>
-        </section>
-        <section class="glass-card mb-12">
-            <h2 class="text-3xl font-bold text-center mb-8 neon-text">Next-Gen Technology Stack</h2>
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
-                <div class="tech-stack-item">
-                    <div class="tech-icon">
-                        <i class="fab fa-python"></i>
-                    </div>
-                    <h3 class="font-bold">Python AI</h3>
-                    <p class="text-sm text-gray-400 mt-2">Advanced ML frameworks</p>
-                </div>
-                <div class="tech-stack-item">
-                    <div class="tech-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3 class="font-bold">TensorFlow</h3>
-                    <p class="text-sm text-gray-400 mt-2">Deep learning models</p>
-                </div>
-                <div class="tech-stack-item">
-                    <div class="tech-icon">
-                        <i class="fab fa-react"></i>
-                    </div>
-                    <h3 class="font-bold">React AI</h3>
-                    <p class="text-sm text-gray-400 mt-2">Intelligent interfaces</p>
-                </div>
-                <div class="tech-stack-item">
-                    <div class="tech-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <h3 class="font-bold">Cloud ML</h3>
-                    <p class="text-sm text-gray-400 mt-2">Scalable AI solutions</p>
-                </div>
-                <div class="tech-stack-item">
-                    <div class="tech-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3 class="font-bold">AutoML</h3>
-                    <p class="text-sm text-gray-400 mt-2">Automated machine learning</p>
-                </div>
+        </div>
+    </section>
+    <!-- CareerHub Main Content -->
+    <main class="main-content container">
+        <h3 class="section-header">Time to #BeUnstoppable</h3>
+        <div class="opportunities-grid" aria-label="Categories">
+            <div class="opportunity-card internships animate" onclick="scrollToSection('internships')" role="button" tabindex="0">
+                <span class="pill">Popular</span>
+                <span class="card-icon"><i class="fas fa-briefcase"></i></span>
+                <h4 class="card-title">Internships</h4>
+                <p class="card-subtitle">Gain Practical Experience</p>
+            </div>
+            <div class="opportunity-card mentorships animate" onclick="scrollToSection('mentorships')" role="button" tabindex="0">
+                <span class="card-icon"><i class="fas fa-user-graduate"></i></span>
+                <h4 class="card-title">Mentorships</h4>
+                <p class="card-subtitle">Guidance From Top Mentors</p>
+            </div>
+            <div class="opportunity-card jobs animate" onclick="scrollToSection('jobs')" role="button" tabindex="0">
+                <span class="card-icon"><i class="fas fa-chart-line"></i></span>
+                <h4 class="card-title">Jobs</h4>
+                <p class="card-subtitle">Explore Diverse Careers</p>
+            </div>
+            <div class="opportunity-card practice animate" onclick="scrollToSection('practice')" role="button" tabindex="0">
+                <span class="card-icon"><i class="fas fa-code"></i></span>
+                <h4 class="card-title">Practice</h4>
+                <p class="card-subtitle">Refine Skills Daily</p>
+            </div>
+            <div class="opportunity-card competitions animate" onclick="scrollToSection('competitions')" role="button" tabindex="0">
+                <span class="card-icon"><i class="fas fa-trophy"></i></span>
+                <h4 class="card-title">Competitions</h4>
+                <p class="card-subtitle">Battle For Excellence</p>
+            </div>
+            <div class="opportunity-card more animate" onclick="showToast('More opportunities coming soon!', 'info')" role="button" tabindex="0">
+                <span class="card-icon"><i class="fas fa-ellipsis-h"></i></span>
+                <h4 class="card-title">More</h4>
+                <p class="card-subtitle">Discover Everything</p>
+            </div>
+        </div>
+        <div class="pro-banner" role="region" aria-label="Pro Upgrade">
+            <div class="pro-content">
+                <div><strong>Aryan</strong><br />Just Went Unstop Pro!</div>
+            </div>
+            <button class="explore-btn" onclick="showToast('Explore Pro features!', 'info')">Explore Pro</button>
+        </div>
+        <section class="featured-section" aria-labelledby="featuredHeader">
+            <h3 id="featuredHeader" class="section-header">Featured Opportunities</h3>
+            <div class="loading" id="featuredLoading">
+                <div class="spinner"></div>Loading Featured Opportunities...
+            </div>
+            <div class="featured-grid" id="featuredGrid">
+                <!-- Featured opportunities will be loaded here by JavaScript -->
             </div>
         </section>
-        <section class="glass-card mb-12">
-            <h2 class="text-3xl font-bold text-center mb-8 neon-text">AI Innovation Lab</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-gradient-to-r from-purple-600/20 to-pink-600/20 p-6 rounded-xl border border-purple-400/30">
-                    <h3 class="text-xl font-bold mb-4">🧠 Neural Vision AI</h3>
-                    <p class="text-gray-300 mb-4">Advanced computer vision system that can analyze and understand complex visual data in real-time.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm bg-purple-600/30 px-3 py-1 rounded-full">Deep Learning</span>
-                        <button class="text-purple-400 hover:text-purple-300">Explore →</button>
-                    </div>
-                </div>
-                <div class="bg-gradient-to-r from-blue-600/20 to-cyan-600/20 p-6 rounded-xl border border-blue-400/30">
-                    <h3 class="text-xl font-bold mb-4">🚀 Quantum ML Engine</h3>
-                    <p class="text-gray-300 mb-4">Next-generation quantum-enhanced machine learning algorithms for complex problem solving.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm bg-blue-600/30 px-3 py-1 rounded-full">Quantum AI</span>
-                        <button class="text-blue-400 hover:text-blue-300">Explore →</button>
-                    </div>
-                </div>
+        <section id="internships" class="featured-section" aria-labelledby="internHeader">
+            <h3 id="internHeader" class="section-header">Internships</h3>
+            <div class="loading" id="internshipsLoading">
+                <div class="spinner"></div>Loading Internships...
+            </div>
+            <div class="featured-grid" id="internshipsGrid">
+                <!-- Internships will be loaded here by JavaScript -->
             </div>
         </section>
-        <section class="glass-card text-center">
-            <h2 class="text-3xl font-bold mb-6 neon-text">AI Experience Rating</h2>
-            <p class="text-gray-300 mb-6">Rate your experience and get AI-powered insights</p>
-            <div class="flex justify-center space-x-4 mb-6">
-                <button class="ai-star text-4xl text-gray-600 hover:text-yellow-400 transition-colors" data-rating="1">⭐</button>
-                <button class="ai-star text-4xl text-gray-600 hover:text-yellow-400 transition-colors" data-rating="2">⭐</button>
-                <button class="ai-star text-4xl text-gray-600 hover:text-yellow-400 transition-colors" data-rating="3">⭐</button>
-                <button class="ai-star text-4xl text-gray-600 hover:text-yellow-400 transition-colors" data-rating="4">⭐</button>
-                <button class="ai-star text-4xl text-gray-600 hover:text-yellow-400 transition-colors" data-rating="5">⭐</button>
+        <section id="jobs" class="featured-section" aria-labelledby="jobsHeader">
+            <h3 id="jobsHeader" class="section-header">Jobs</h3>
+            <div class="loading" id="jobsLoading">
+                <div class="spinner"></div>Loading Jobs...
             </div>
-            <div id="aiAnalysis" class="bg-gradient-to-r from-green-600/20 to-blue-600/20 p-4 rounded-xl border border-green-400/30 hidden">
-                <h4 class="text-lg font-bold mb-2">🤖 AI Analysis</h4>
-                <p id="aiInsight" class="text-gray-300"></p>
+            <div class="featured-grid" id="jobsGrid">
+                <!-- Jobs will be loaded here by JavaScript -->
+            </div>
+        </section>
+        <section id="competitions" class="featured-section" aria-labelledby="compHeader">
+            <h3 id="compHeader" class="section-header">Competitions</h3>
+            <div class="loading" id="competitionsLoading">
+                <div class="spinner"></div>Loading Competitions...
+            </div>
+            <div class="featured-grid" id="competitionsGrid">
+                <!-- Competitions will be loaded here by JavaScript -->
+            </div>
+        </section>
+        <section id="practice" class="featured-section" aria-labelledby="practiceHeader">
+            <h3 id="practiceHeader" class="section-header">Daily Practice</h3>
+            <div class="loading" id="practiceLoading">
+                <div class="spinner"></div>Loading Practice Challenges...
+            </div>
+            <div class="featured-grid" id="practiceGrid">
+                <!-- Practice challenges will be loaded here by JavaScript -->
+            </div>
+        </section>
+        <section id="mentorships" class="featured-section" aria-labelledby="mentorsHeader">
+            <h3 id="mentorsHeader" class="section-header">Our Mentors</h3>
+            <div class="loading" id="mentorshipsLoading">
+                <div class="spinner"></div>Loading Mentors...
+            </div>
+            <div class="mentors-grid" id="mentorsGrid">
+                <!-- Mentors will be loaded here by JavaScript -->
             </div>
         </section>
     </main>
+    <!-- Bottom Navigation for Mobile -->
+    <nav class="bottom-nav" role="navigation" aria-label="Mobile Navigation">
+        <a href="index.html" class="nav-item active">
+            <i class="fas fa-home"></i> Home
+        </a>
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-briefcase"></i> Jobs
+        </a>
+        <a href="contact.html" class="nav-item">
+            <i class="fas fa-user-tie"></i> Mentors
+        </a>
+        <a href="CoursesinManagement.html" class="nav-item">
+            <i class="fas fa-trophy"></i> Competitions
+        </a>
+        <a href="profile.js" class="nav-item" onclick="showProfileModal()">
+            <i class="fas fa-user"></i> Profile
+        </a>
+        <a href="#" class="nav-item" onclick="toggleMenu()">
+            <i class="fas fa-ellipsis-h"></i> More
+        </a>
+    </nav>
+    <!-- Global Toast Notification -->
+    <div id="toast" class="toast"></div>
+    <!-- Modals -->
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Edit Profile</h3>
+                <button class="icon-btn" onclick="closeModal('profileModal')">
+                    <i class="fas fa-times text-gray-600"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="profileName">Name:</label>
+                    <input type="text" id="profileName" value="Gajendra Singh">
+                </div>
+                <div class="form-group">
+                    <label for="profileEmail">Email:</label>
+                    <input type="email" id="profileEmail" value="gajendra.singh@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="profileBio">Bio:</label>
+                    <textarea id="profileBio" rows="4">Founder, Tech Enthusiast, AI & Future Technologies Learner.</textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-ghost" onclick="closeModal('profileModal')">Close</button>
+                <button class="btn-primary" onclick="saveProfile()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+    <!-- Main Menu Modal (for the three bars icon) -->
+    <div id="mainMenuModal" class="modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Menu</h3>
+                <button class="icon-btn" onclick="closeModal('mainMenuModal')">
+                    <i class="fas fa-times text-gray-600"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="space-y-4">
+                    <li><a href="#" class="text-lg text-indigo-600 hover:underline" onclick="closeModal('mainMenuModal');">Home</a></li>
+                    <li><a href="#" class="text-lg text-indigo-600 hover:underline" onclick="closeModal('mainMenuModal');">Notifications</a></li>
+                    <li><a href="#" class="text-lg text-indigo-600 hover:underline" onclick="closeModal('mainMenuModal');">Settings</a></li>
+                    <li><a href="#" class="text-lg text-indigo-600 hover:underline" onclick="closeModal('mainMenuModal');">Help & Support</a></li>
+                    <li><a href="#" class="text-lg text-indigo-600 hover:underline" onclick="closeModal('mainMenuModal');">Logout</a></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-ghost" onclick="closeModal('mainMenuModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="module">
+        // Firebase Imports
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+        // Firestore imports are commented out as we are not using Firestore yet in this version.
+        // import { getFirestore, doc, getDoc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, collection, query, where, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
+
+        // --- Firebase Initialization ---
+        let db;
+        let auth;
+        let userId = 'anonymous'; // Default to anonymous
+
+        // Global variables provided by the Canvas environment
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        if (Object.keys(firebaseConfig).length > 0) {
+            const app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            // db = getFirestore(app); // Uncomment if you add Firestore functionality
+
+            // Authenticate user
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    userId = user.uid;
+                    console.log("Firebase user authenticated:", userId);
+                    // You can update the UI with the authenticated user's name if available
+                    // document.getElementById('userName').textContent = user.displayName || 'User';
+                } else {
+                    console.log("No Firebase user, attempting sign-in...");
+                    try {
+                        if (initialAuthToken) {
+                            await signInWithCustomToken(auth, initialAuthToken);
+                            console.log("Signed in with custom token.");
+                        } else {
+                            await signInAnonymously(auth);
+                            console.log("Signed in anonymously.");
+                        }
+                    } catch (error) {
+                        console.error("Firebase authentication error:", error);
+                        showToast(`Authentication failed: ${error.message}`, 'error');
+                    }
+                }
+            });
+        } else {
+            console.warn("Firebase config not found. Running in mock data mode without Firebase.");
+            showToast("Firebase not configured. Features requiring persistence will not work.", 'error');
+        }
+
+        // --- User Profile Data (Mock) ---
+        let userProfile = {
+            name: "Gajendra Singh",
+            email: "gajendra.singh@example.com",
+            bio: "Founder, Tech Enthusiast, AI & Future Technologies Learner."
+        };
+
+        // --- Mock Data ---
+        const mockOpportunities = {
+            featured: [
+                {
+                    id: 'feat1',
+                    icon: '<i class="fab fa-react text-blue-500"></i>',
+                    title: 'Senior React Developer',
+                    company: 'InnovateX Solutions',
+                    location: 'Remote',
+                    type: 'Full-time',
+                    salary: '₹18-25 LPA',
+                    tags: ['React', 'Frontend', 'Remote', 'JavaScript', 'Senior']
+                },
+                {
+                    id: 'feat2',
+                    icon: '<i class="fas fa-robot text-purple-500"></i>',
+                    title: 'AI/ML Engineer',
+                    company: 'DeepMind Tech',
+                    location: 'Bengaluru, India',
+                    type: 'Full-time',
+                    salary: '₹20-30 LPA',
+                    tags: ['AI', 'ML', 'Python', 'Deep Learning', 'On-site']
+                },
+                {
+                    id: 'feat3',
+                    icon: '<i class="fas fa-pencil-ruler text-pink-500"></i>',
+                    title: 'UI/UX Designer',
+                    company: 'CreativeFlow Studio',
+                    location: 'Hyderabad, India',
+                    type: 'Full-time',
+                    salary: '₹10-15 LPA',
+                    tags: ['UI/UX', 'Design', 'Figma', 'On-site']
+                },
+                {
+                    id: 'feat4',
+                    icon: '<i class="fas fa-cloud text-gray-500"></i>',
+                    title: 'Cloud Solutions Architect',
+                    company: 'Azure Innovations',
+                    location: 'Remote',
+                    type: 'Full-time',
+                    salary: '₹22-35 LPA',
+                    tags: ['Cloud', 'Azure', 'AWS', 'GCP', 'Remote', 'Architecture']
+                },
+            ],
+            internships: [
+                {
+                    id: 'int1',
+                    icon: '<i class="fas fa-laptop-code text-green-500"></i>',
+                    title: 'Software Development Intern',
+                    company: 'Tech Solutions Inc.',
+                    location: 'Remote',
+                    type: 'Internship',
+                    salary: '₹20k/month',
+                    tags: ['Development', 'Internship', 'Remote', 'Python', 'Java']
+                },
+                {
+                    id: 'int2',
+                    icon: '<i class="fas fa-chart-bar text-yellow-500"></i>',
+                    title: 'Data Analyst Intern',
+                    company: 'DataInsights Co.',
+                    location: 'Mumbai, India',
+                    type: 'Internship',
+                    salary: '₹15k/month',
+                    tags: ['Data', 'Analytics', 'SQL', 'Excel', 'On-site']
+                }
+            ],
+            jobs: [
+                {
+                    id: 'job1',
+                    icon: '<i class="fas fa-server text-blue-600"></i>',
+                    title: 'Backend Engineer (Node.js)',
+                    company: 'API Masters',
+                    location: 'Remote',
+                    type: 'Full-time',
+                    salary: '₹15-20 LPA',
+                    tags: ['Backend', 'Node.js', 'Express', 'MongoDB', 'Remote']
+                },
+                {
+                    id: 'job2',
+                    icon: '<i class="fas fa-mobile-alt text-purple-600"></i>',
+                    title: 'Android Developer',
+                    company: 'MobileInnovate',
+                    location: 'Delhi, India',
+                    type: 'Full-time',
+                    salary: '₹12-18 LPA',
+                    tags: ['Android', 'Kotlin', 'Java', 'Mobile', 'On-site']
+                }
+            ],
+            competitions: [
+                {
+                    id: 'comp1',
+                    icon: '<i class="fas fa-medal text-yellow-500"></i>',
+                    title: 'CodeSprint 2025',
+                    company: 'Global Coders',
+                    location: 'Online',
+                    type: 'Competition',
+                    prize: '₹1 Lakh + Job Offer',
+                    tags: ['Coding', 'Algorithm', 'Online']
+                },
+                {
+                    id: 'comp2',
+                    icon: '<i class="fas fa-lightbulb text-orange-500"></i>',
+                    title: 'AI Hackathon: Future City',
+                    company: 'Smart Cities Initiative',
+                    location: 'Hyderabad, India (Hybrid)',
+                    type: 'Hackathon',
+                    prize: '₹75k + Mentorship',
+                    tags: ['AI', 'ML', 'Hackathon', 'Hybrid']
+                }
+            ],
+            practice: [
+                {
+                    id: 'prac1',
+                    icon: '<i class="fas fa-keyboard text-green-700"></i>',
+                    title: 'Daily Coding Challenge',
+                    company: 'LeetCode Practice',
+                    location: 'Online',
+                    type: 'Practice',
+                    difficulty: 'Medium',
+                    tags: ['Coding', 'Algorithms', 'Data Structures']
+                },
+                {
+                    id: 'prac2',
+                    icon: '<i class="fas fa-database text-blue-700"></i>',
+                    title: 'SQL Query Optimization',
+                    company: 'Database Drills',
+                    location: 'Online',
+                    type: 'Practice',
+                    difficulty: 'Hard',
+                    tags: ['SQL', 'Database', 'Optimization']
+                }
+            ],
+            mentors: [
+                {
+                    id: 'mentor1',
+                    name: 'Dr. Priya Sharma',
+                    title: 'AI Ethicist & Researcher',
+                    initials: 'PS',
+                    expertise: ['AI Ethics', 'NLP', 'Research']
+                },
+                {
+                    id: 'mentor2',
+                    name: 'Vijay Kumar',
+                    title: 'Lead Software Architect',
+                    initials: 'VK',
+                    expertise: ['System Design', 'Backend', 'Cloud']
+                },
+                {
+                    id: 'mentor3',
+                    name: 'Sara Khan',
+                    title: 'Senior UX Strategist',
+                    initials: 'SK',
+                    expertise: ['UX Research', 'Product Design', 'Figma']
+                },
+                {
+                    id: 'mentor4',
+                    name: 'Rahul Singh',
+                    title: 'DevOps Engineer',
+                    initials: 'RS',
+                    expertise: ['AWS', 'CI/CD', 'Automation']
+                }
+            ]
+        };
+
+        // --- Utility Functions ---
+        function showToast(message, status = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast show'; // Reset classes
+            if (status === 'error') {
+                toast.classList.add('status-error');
+            } else if (status === 'success') {
+                toast.classList.add('status-success');
+            } else {
+                // Default info style
+            }
+
+            setTimeout(() => {
+                toast.className = 'toast';
+            }, 3000);
+        }
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'flex';
+                // Add aria-hidden="false" for accessibility
+                modal.setAttribute('aria-hidden', 'false');
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                // Add aria-hidden="true" for accessibility
+                modal.setAttribute('aria-hidden', 'true');
+            }
+        }
+
+        // --- Header and Navigation Functions ---
+        function toggleNotifications() {
+            showToast('Notifications are coming soon!', 'info');
+        }
+
+        function toggleMenu() {
+            openModal('mainMenuModal');
+        }
+
+        function showProfileModal() {
+            // Populate the input fields with current userProfile data
+            document.getElementById('profileName').value = userProfile.name;
+            document.getElementById('profileEmail').value = userProfile.email;
+            document.getElementById('profileBio').value = userProfile.bio;
+            openModal('profileModal');
+        }
+
+        function saveProfile() {
+            // Update the userProfile object with values from input fields
+            userProfile.name = document.getElementById('profileName').value;
+            userProfile.email = document.getElementById('profileEmail').value;
+            userProfile.bio = document.getElementById('profileBio').value;
+
+            // Update the name in the hero section if it exists
+            const userNameElement = document.getElementById('userName');
+            if (userNameElement) {
+                userNameElement.textContent = userProfile.name.split(' ')[0]; // Show first name
+            }
+
+            showToast('Profile updated successfully!', 'success');
+            closeModal('profileModal');
+        }
+
+        function toggleMainNavigationMenu() {
+            const navItems = document.querySelector('.nav-items');
+            if (navItems) {
+                navItems.classList.toggle('hidden'); // Simple toggle for mobile nav items
+                // For a more sophisticated menu, you might open a modal or slide-out menu.
+            }
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            showToast('Search input cleared.', 'info');
+            searchOpportunities(); // Re-run search to show all
+        }
+
+        function quickTag(tag) {
+            const searchInput = document.getElementById('searchInput');
+            if (!searchInput.value.includes(tag)) {
+                searchInput.value = (searchInput.value ? searchInput.value + ' ' : '') + tag;
+            }
+            searchOpportunities();
+            showToast(`Filtered by tag: ${tag}`, 'info');
+        }
+
+        function scrollToSection(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+                // Remove active class from all bottom-nav items
+                document.querySelectorAll('.bottom-nav .nav-item').forEach(item => item.classList.remove('active'));
+                // Add active class to the corresponding nav-item
+                const activeNavItem = document.querySelector(`.bottom-nav a[href="#${id}"]`);
+                if (activeNavItem) activeNavItem.classList.add('active');
+            }
+        }
+
+        // Function to create a featured/opportunity card HTML element
+        function createOpportunityCard(opportunity) {
+            const card = document.createElement('div');
+            card.className = 'featured-card';
+            card.innerHTML = `
+                <div class="featured-image">${opportunity.icon}</div>
+                <div class="featured-content">
+                    <h4 class="featured-title">${opportunity.title}</h4>
+                    <p class="featured-company">${opportunity.company}</p>
+                    <div class="featured-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> ${opportunity.location}</span>
+                        <span><i class="fas fa-clock"></i> ${opportunity.type}</span>
+                        ${opportunity.salary ? `<span><i class="fas fa-dollar-sign"></i> ${opportunity.salary}</span>` : ''}
+                        ${opportunity.prize ? `<span><i class="fas fa-gift"></i> ${opportunity.prize}</span>` : ''}
+                        ${opportunity.difficulty ? `<span><i class="fas fa-tachometer-alt"></i> ${opportunity.difficulty}</span>` : ''}
+                    </div>
+                    <div class="chips flex gap-1 mt-2">
+                        ${opportunity.tags.map(tag => `<button class="chip btn-ghost" onclick="quickTag('${tag}')">${tag}</button>`).join('')}
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        // Function to create a mentor card HTML element
+        function createMentorCard(mentor) {
+            const card = document.createElement('div');
+            card.className = 'mentor-card';
+            card.innerHTML = `
+                <div class="mentor-avatar">${mentor.initials}</div>
+                <h4 class="mentor-name">${mentor.name}</h4>
+                <p class="mentor-title">${mentor.title}</p>
+                <div class="chips flex gap-1 mt-2 justify-center">
+                    ${mentor.expertise.map(exp => `<span class="chip">${exp}</span>`).join('')}
+                </div>
+            `;
+            return card;
+        }
+
+        // Function to load and display opportunities
+        async function loadOpportunities(type, containerId, loadingId, allOpportunities) {
+            const container = document.getElementById(containerId);
+            const loading = document.getElementById(loadingId);
+            if (!container || !loading) return;
+
+            container.innerHTML = ''; // Clear previous content
+            loading.style.display = 'block'; // Show loading spinner
+
+            await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
+
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filteredOpportunities = allOpportunities.filter(opp =>
+                opp.title.toLowerCase().includes(searchTerm) ||
+                opp.company.toLowerCase().includes(searchTerm) ||
+                opp.location.toLowerCase().includes(searchTerm) ||
+                opp.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+            );
+
+            if (filteredOpportunities.length === 0) {
+                container.innerHTML = '<p class="text-center text-gray-500 mt-4">No opportunities found for your search.</p>';
+            } else {
+                if (type === 'mentors') {
+                    filteredOpportunities.forEach(mentor => container.appendChild(createMentorCard(mentor)));
+                } else {
+                    filteredOpportunities.forEach(opportunity => container.appendChild(createOpportunityCard(opportunity)));
+                }
+            }
+            loading.style.display = 'none'; // Hide loading spinner
+        }
+
+        // Main search function to reload all sections
+        async function searchOpportunities() {
+            // Display loading for all sections before reloading
+            document.getElementById('featuredLoading').style.display = 'block';
+            document.getElementById('internshipsLoading').style.display = 'block';
+            document.getElementById('jobsLoading').style.display = 'block';
+            document.getElementById('competitionsLoading').style.display = 'block';
+            document.getElementById('practiceLoading').style.display = 'block';
+            document.getElementById('mentorshipsLoading').style.display = 'block';
+
+            await Promise.all([
+                loadOpportunities('featured', 'featuredGrid', 'featuredLoading', mockOpportunities.featured),
+                loadOpportunities('internships', 'internshipsGrid', 'internshipsLoading', mockOpportunities.internships),
+                loadOpportunities('jobs', 'jobsGrid', 'jobsLoading', mockOpportunities.jobs),
+                loadOpportunities('competitions', 'competitionsGrid', 'competitionsLoading', mockOpportunities.competitions),
+                loadOpportunities('practice', 'practiceGrid', 'practiceLoading', mockOpportunities.practice),
+                loadOpportunities('mentors', 'mentorsGrid', 'mentorshipsLoading', mockOpportunities.mentors)
+            ]);
+            showToast('Opportunities refreshed!', 'success');
+        }
+
+        // --- AI Chat Widget Functions ---
+        function toggleAIChat() {
+            const chatContent = document.querySelector('#aiChatWidget .ai-chat-content');
+            chatContent.classList.toggle('hidden');
+        }
+
+        // Initial load of opportunities when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            searchOpportunities();
+            // Update the initial name in the hero section
+            const userNameElement = document.getElementById('userName');
+            if (userNameElement) {
+                userNameElement.textContent = userProfile.name.split(' ')[0];
+            }
+            // Setup mobile nav active state based on initial scroll
+            const currentHash = window.location.hash;
+            if (currentHash) {
+                document.querySelectorAll('.bottom-nav .nav-item').forEach(item => item.classList.remove('active'));
+                const activeNavItem = document.querySelector(`.bottom-nav a[href="${currentHash}"]`);
+                if (activeNavItem) activeNavItem.classList.add('active');
+            } else {
+                document.querySelector('.bottom-nav a[href="#unstop"]').classList.add('active');
+            }
+        });
+
+        // Event listener for window resize to handle responsiveness
+        window.addEventListener('resize', () => {
+            const navItems = document.querySelector('.nav-items');
+            if (window.innerWidth > 768) {
+                navItems.classList.remove('hidden'); // Ensure desktop menu is visible
+            }
+        });
+    </script>
     <footer class="footer">
         <div class="container">
             <div class="footer-links">
@@ -689,76 +1518,5 @@
     <footer class="bg-slate-800 text-sky-300 text-center py-4 mt-10">
         <p>&copy;2025 GJ Tech Pvt. Ltd. 👩‍💻..</p>
     </footer>
-
-    <script>
-        // Particle System
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 10 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Neural Network Nodes
-        function createNeuralNetwork() {
-            const networkContainer = document.getElementById('neuralNetwork');
-            const nodeCount = 20;  
-            for (let i = 0; i < nodeCount; i++) {
-                const node = document.createElement('div');
-                node.className = 'node';
-                node.style.left = Math.random() * 100 + '%';
-                node.style.top = Math.random() * 100 + '%';
-                node.style.animationDelay = Math.random() * 3 + 's';
-                networkContainer.appendChild(node);
-            }
-        }
-        
-        // AI Chat Widget
-        document.getElementById('aiChatWidget').addEventListener('click', function() {
-            this.classList.toggle('ai-chat-expanded');
-            const content = this.querySelector('.ai-chat-content');
-            content.classList.toggle('hidden');
-        });
-
-        // AI Rating System
-        const aiStars = document.querySelectorAll('.ai-star');
-        const aiAnalysis = document.getElementById('aiAnalysis');
-        const aiInsight = document.getElementById('aiInsight');
-        const aiInsights = [
-            "AI suggests focusing on foundational concepts to improve your experience.",
-            "Based on your rating, AI recommends exploring intermediate topics.",
-            "AI analysis shows you're ready for advanced concepts. Great progress!",
-            "Excellent engagement! AI suggests you become a community mentor.",
-            "Outstanding! You're achieving AI mastery. Consider contributing to our research."
-        ];
-        aiStars.forEach((star, index) => {
-            star.addEventListener('click', function() {
-                const rating = index + 1;
-                aiStars.forEach((s, i) => {
-                    s.style.color = i < rating ? '#fbbf24' : '#6b7280';
-                });   
-                aiAnalysis.classList.remove('hidden');
-                aiInsight.textContent = aiInsights[index];
-            });
-        });
-        
-        // Mobile menu toggle
-        function toggleMenu() {
-            const navContainer = document.querySelector('#main-navigation .container');
-            navContainer.classList.toggle('active');
-        }
-
-        // Initialize animations on load
-        document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-            createNeuralNetwork();
-        });
-    </script>
 </body>
 </html>
