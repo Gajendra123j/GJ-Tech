@@ -775,24 +775,8 @@
     </style>
 </head>
 <body>
-    <!-- Main site navigation for GJ Tech, sticky below marquee -->
-    <nav class="bg-slate-700 text-white py-3 space-x-3 md:space-x-6 text-sm md:text-lg sticky top-[38px] z-50 shadow w-full" id="main-navigation">
-        <div class="container mx-auto flex flex-wrap justify-center md:gap-x-6">
-            <ul class="flex flex-wrap justify-center gap-x-3 md:gap-x-6 nav-items">
-                <li><a href="index.html" class="hover:underline hover:text-blue-200">Home 🏡</a></li>
-                <li><a href="blogs.html" class="hover:underline hover:text-blue-200">Study Hub 👩‍💻</a></li>
-                <li><a href="about.html" class="hover:underline hover:text-blue-200">About 🎓</a></li>
-                <li><a href="contact.html" class="hover:underline hover:text-blue-200">Explore Our Courses</a></li>
-                <li><a href="careergoals.html" class="hover:underline hover:text-blue-200">Career Goals</a></li>
-                <li><a href="CoursesinManagement.html" class="hover:underline hover:text-blue-200">Course Assignment Test 🌎</a></li>
-                <li><a href="Registration.html" class="hover:underline hover:text-blue-200">Registration</a></li>
-                <li><a href="login.html" class="hover:underline hover:text-blue-200">Login</a></li>
-            </ul>
-        </div>
-        <button class="md:hidden absolute right-4 top-1/2 -translate-y-1/2 text-white focus:outline-none" aria-controls="main-navigation-menu" aria-expanded="false" onclick="toggleMainNavigationMenu()" aria-label="Toggle navigation menu">
-            <i class="fas fa-bars text-xl"></i>
-        </button>
-    </nav>
+   
+   
     <div id="main-content"></div>
     <!-- AI Chat Widget -->
     <div class="ai-chat-widget" id="aiChatWidget" onclick="toggleAIChat()">
@@ -812,6 +796,20 @@
             </div>
         </div>
     </div>
+    <!-- Main site navigation for GJ Tech, sticky below marquee -->
+    <nav class="bg-slate-700 text-white py-3 space-x-3 md:space-x-6 text-sm md:text-lg sticky top-[38px] z-50 shadow w-full" id="main-navigation">
+        <div class="container mx-auto flex flex-wrap justify-center md:gap-x-6">
+            <ul class="flex flex-wrap justify-center gap-x-3 md:gap-x-6 nav-items">
+                <li><a href="index.html" class="hover:underline hover:text-blue-200">Home 🏡</a></li>
+                <li><a href="blogs.html" class="hover:underline hover:text-blue-200">Study Hub 👩‍💻</a></li>
+                <li><a href="about.html" class="hover:underline hover:text-blue-200">About 🎓</a></li>
+                <li><a href="contact.html" class="hover:underline hover:text-blue-200">Explore Our Courses</a></li>
+                <li><a href="careergoals.html" class="hover:underline hover:text-blue-200">Career Goals</a></li>
+                <li><a href="CoursesinManagement.html" class="hover:underline hover:text-blue-200">Course Assignment Test 🌎</a></li>
+                <li><a href="Registration.html" class="hover:underline hover:text-blue-200">Registration</a></li>
+                <li><a href="login.html" class="hover:underline hover:text-blue-200">Login</a></li>
+            </ul>
+        </div>
     <!-- CareerHub Header -->
     <header class="header">
         <nav class="nav container" aria-label="Main">
@@ -962,7 +960,7 @@
         <a href="CoursesinManagement.html" class="nav-item">
             <i class="fas fa-trophy"></i> Competitions
         </a>
-        <a href="profile.js" class="nav-item" onclick="showProfileModal()">
+        <a href="profile.html" class="nav-item" onclick="showProfileModal()">
             <i class="fas fa-user"></i> Profile
         </a>
         <a href="#" class="nav-item" onclick="toggleMenu()">

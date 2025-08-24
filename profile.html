@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GJ Tech Pvt Ltd</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Enhanced body background with a subtle gradient */
+            background: linear-gradient(135deg, #e0f2fe 0%, #ede9fe 100%);
+            color: #374151;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 16px; /* Slightly more rounded */
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.1), 0 6px 15px -3px rgba(0, 0, 0, 0.08); /* Stronger shadow */
+            padding: 30px;
+            margin-top: 20px;
+        }
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+            color: #2c3e50; /* Darker label for better contrast */
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="url"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e0; /* Lighter default border */
+            border-radius: 10px; /* Slightly more rounded inputs */
+            font-size: 1rem;
+            transition: all 0.2s ease-in-out;
+            box-sizing: border-box;
+            background-color: #f8fafc; /* Very light background for inputs */
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #6366f1; /* More vibrant focus color (indigo-500) */
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3); /* Clearer focus shadow */
+        }
+        .section-header {
+            font-size: 1.6rem; /* Slightly larger */
+            font-weight: 700;
+            color: #4f46e5; /* Primary color for section headers */
+            margin-bottom: 20px;
+            border-bottom: 2px solid #a78bfa; /* Lighter purple border */
+            padding-bottom: 10px;
+            letter-spacing: -0.025em; /* Tighter letter spacing */
+        }
+        .add-button, .remove-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 18px; /* Slightly larger padding */
+            border-radius: 10px; /* More rounded buttons */
+            font-weight: 600; /* Bolder text */
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out; /* Add transform for subtle click effect */
+            font-size: 0.95rem; /* Slightly larger font */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        .add-button {
+            background-color: #4f46e5; /* Indigo-600 */
+            color: white;
+        }
+        .add-button:hover {
+            background-color: #4338ca; /* Darker indigo on hover */
+            transform: translateY(-1px); /* Subtle lift effect */
+        }
+        .add-button:active {
+            transform: translateY(0); /* Press down effect */
+        }
+        .remove-button {
+            background-color: #ef4444; /* Red-500 */
+            color: white;
+            margin-left: 12px; /* Slightly more margin */
+        }
+        .remove-button:hover {
+            background-color: #dc2626; /* Darker red on hover */
+            transform: translateY(-1px);
+        }
+        .remove-button:active {
+            transform: translateY(0);
+        }
+        .item-list > div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px; /* Slightly more spacing */
+        }
+        .item-list input {
+            flex-grow: 1;
+            margin-right: 12px;
+        }
+        .toast-message {
+            position: fixed;
+            bottom: 25px; /* Slightly higher */
+            right: 25px; /* Slightly more to the left */
+            background-color: #2d3748; /* Darker background */
+            color: #ffffff;
+            padding: 18px 30px; /* Larger padding */
+            border-radius: 10px; /* More rounded */
+            box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.2), 0 3px 7px -1px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            transform: translateY(20px); /* Start lower */
+            z-index: 1000;
+            font-weight: 500;
+        }
+        .toast-message.show {
+            opacity: 1;
+            transform: translateY(0); /* Slide up effect */
+        }
+        /* Profile photo styling */
+        #profilePhotoPreview {
+            width: 110px; /* Slightly larger preview */
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #a78bfa; /* Primary color border */
+            margin-top: 15px;
+            margin-bottom: 25px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #d1d5db;
+        }
+        #profilePhotoPreview.hidden {
+            display: none;
+        }
+        /* Style for the photo preview container */
+        .photo-preview-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        /* Background for complex items (experience/projects) */
+        .item-list.space-y-4 > div {
+            background-color: #f0f4f8; /* Light blue-gray background */
+            border-color: #dbeafe; /* Lighter blue border */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-3xl font-bold text-center mb-8 text-indigo-700">GJ Tech Pvt Ltd 🚀</h1>
+
+        <form id="profileForm">
+            <!-- Personal Details -->
+            <section class="mb-8">
+                <h2 class="section-header">Personal Details</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="john.doe@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+1234567890">
+                    </div>
+                    <div class="form-group">
+                        <label for="linkedin">LinkedIn Profile URL</label>
+                        <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/johndoe">
+                    </div>
+                    <div class="form-group">
+                        <label for="github">GitHub Profile URL</label>
+                        <input type="url" id="github" name="github" placeholder="https://github.com/johndoe">
+                    </div>
+                    <div class="form-group">
+                        <label for="resumeUrl">Resume URL</label>
+                        <input type="url" id="resumeUrl" name="resumeUrl" placeholder="https://example.com/my-resume.pdf">
+                    </div>
+                    <div class="form-group">
+                        <label for="profilePhotoUrl">Profile Photo URL</label>
+                        <input type="url" id="profilePhotoUrl" name="profilePhotoUrl" placeholder="https://example.com/my-photo.jpg">
+                    </div>
+                    <!-- Profile Photo Preview -->
+                    <div class="form-group md:col-span-2 photo-preview-container">
+                        <img id="profilePhotoPreview" src="" alt="Profile Photo Preview" class="hidden">
+                        <p id="noPhotoText" class="text-gray-500 text-sm hidden">No photo selected</p>
+                    </div>
+                </div>
+            </section>
+            <!-- Data Engineering Specifics -->
+            <section class="mb-8">
+                <h2 class="section-header">GJ Tech</h2>
+                <!-- Skills -->
+                <div class="mb-6">
+                    <label class="block text-lg font-semibold text-gray-800 mb-3">Skills </label>
+                    <div id="skillsList" class="item-list">
+                        <div>
+                            <input type="text" name="skills" placeholder="Add a skill" class="flex-grow">
+                            <button type="button" class="remove-button hidden" onclick="removeItem(this)">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-button" onclick="addItem('skills')">Add Skill</button>
+                </div>
+                <!-- Tools -->
+                <div class="mb-6">
+                    <label class="block text-lg font-semibold text-gray-800 mb-3">Tools </label>
+                    <div id="toolsList" class="item-list">
+                        <div>
+                            <input type="text" name="tools" placeholder="Add a tool" class="flex-grow">
+                            <button type="button" class="remove-button hidden" onclick="removeItem(this)">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-button" onclick="addItem('tools')">Add Tool</button>
+                </div>
+                <!-- Certifications -->
+                <div class="mb-6">
+                    <label class="block text-lg font-semibold text-gray-800 mb-3">Certifications </label>
+                    <div id="certificationsList" class="item-list">
+                        <div>
+                            <input type="text" name="certifications" placeholder="Add a certification" class="flex-grow">
+                            <button type="button" class="remove-button hidden" onclick="removeItem(this)">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-button" onclick="addItem('certifications')">Add Certification</button>
+                </div>
+                <!-- Experience -->
+                <div class="mb-6">
+                    <label class="block text-lg font-semibold text-gray-800 mb-3">Experience </label>
+                    <div id="experienceList" class="item-list space-y-4">
+                        <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                            <input type="text" name="experience_title" placeholder="Job Title" class="mb-2">
+                            <input type="text" name="experience_company" placeholder="Company Name" class="mb-2">
+                            <input type="text" name="experience_dates" placeholder="Start Date - End Date (e.g., Jan 2020 - Dec 2023)" class="mb-2">
+                            <textarea name="experience_description" placeholder="Key responsibilities and achievements" rows="3"></textarea>
+                            <button type="button" class="remove-button mt-2 hidden" onclick="removeItem(this, true)">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-button" onclick="addItem('experience')">Add Experience</button>
+                </div>
+                <!-- Projects -->
+                <div class="mb-6">
+                    <label class="block text-lg font-semibold text-gray-800 mb-3">Projects (Project Name, Technologies, Description)</label>
+                    <div id="projectsList" class="item-list space-y-4">
+                        <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                            <input type="text" name="project_name" placeholder="Project Name" class="mb-2">
+                            <input type="text" name="project_technologies" placeholder="Technologies Used (comma-separated)" class="mb-2">
+                            <textarea name="project_description" placeholder="Project description and your role" rows="3"></textarea>
+                            <button type="button" class="remove-button mt-2 hidden" onclick="removeItem(this, true)">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-button" onclick="addItem('projects')">Add Project</button>
+                </div>
+            </section>
+            <!-- Action Buttons -->
+            <div class="flex justify-end space-x-4 mt-8">
+                <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200 ease-in-out shadow-md">
+                    Save Profile
+                </button>
+                <button type="button" id="clearButton" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition duration-200 ease-in-out shadow-md">
+                    Clear All
+                </button>
+            </div>
+        </form>
+        <div id="toastMessage" class="toast-message"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProfileData();
+            // Show remove buttons if there's more than one item initially
+            updateRemoveButtons('skillsList');
+            updateRemoveButtons('toolsList');
+            updateRemoveButtons('certificationsList');
+            updateRemoveButtons('experienceList');
+            updateRemoveButtons('projectsList');
+
+            // Add input listener for profile photo URL to show preview instantly
+            document.getElementById('profilePhotoUrl').addEventListener('input', updateProfilePhotoPreview);
+        });
+        document.getElementById('profileForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            saveProfileData();
+        });
+        document.getElementById('clearButton').addEventListener('click', function() {
+            if (confirm("Are you sure you want to clear all profile data? This action cannot be undone.")) {
+                localStorage.removeItem('dataEngineerProfile');
+                document.getElementById('profileForm').reset();
+                // Reset dynamic lists to single empty input
+                resetDynamicList('skillsList', 'skills', 'Add a skill', false);
+                resetDynamicList('toolsList', 'tools', 'Add a tool', false);
+                resetDynamicList('certificationsList', 'certifications', 'Add a certification', false);
+                resetDynamicList('experienceList', 'experience', 'Job Title', true);
+                resetDynamicList('projectsList', 'projects', 'Project Name', true);
+                // Reset profile photo preview
+                document.getElementById('profilePhotoPreview').classList.add('hidden');
+                document.getElementById('profilePhotoPreview').src = '';
+                document.getElementById('noPhotoText').classList.remove('hidden');
+
+                showToast('Profile data cleared!');
+            }
+        });
+
+        // Function to show toast messages
+        function showToast(message) {
+            const toast = document.getElementById('toastMessage');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000); // Hide after 3 seconds
+        }
+
+        // Function to add a new item to a dynamic list
+        function addItem(listId) {
+            const list = document.getElementById(listId + 'List');
+            let newItemDiv;
+
+            if (listId === 'experience') {
+                newItemDiv = document.createElement('div');
+                // Updated background for complex item add
+                newItemDiv.className = 'p-4 border border-gray-200 rounded-lg bg-gray-50';
+                newItemDiv.innerHTML = `
+                    <input type="text" name="experience_title" placeholder="Job Title" class="mb-2">
+                    <input type="text" name="experience_company" placeholder="Company Name" class="mb-2">
+                    <input type="text" name="experience_dates" placeholder="Start Date - End Date (e.g., Jan 2020 - Dec 2023)" class="mb-2">
+                    <textarea name="experience_description" placeholder="Key responsibilities and achievements" rows="3"></textarea>
+                    <button type="button" class="remove-button mt-2" onclick="removeItem(this, true)">Remove</button>
+                `;
+            } else if (listId === 'projects') {
+                newItemDiv = document.createElement('div');
+                // Updated background for complex item add
+                newItemDiv.className = 'p-4 border border-gray-200 rounded-lg bg-gray-50';
+                newItemDiv.innerHTML = `
+                    <input type="text" name="project_name" placeholder="Project Name" class="mb-2">
+                    <input type="text" name="project_technologies" placeholder="Technologies Used (comma-separated)" class="mb-2">
+                    <textarea name="project_description" placeholder="Project description and your role" rows="3"></textarea>
+                    <button type="button" class="remove-button mt-2" onclick="removeItem(this, true)">Remove</button>
+                `;
+            } else {
+                newItemDiv = document.createElement('div');
+                newItemDiv.innerHTML = `
+                    <input type="text" name="${listId}" placeholder="Add a ${listId.slice(0, -1) || listId}" class="flex-grow">
+                    <button type="button" class="remove-button" onclick="removeItem(this)">Remove</button>
+                `;
+            }
+            list.appendChild(newItemDiv);
+            updateRemoveButtons(list.id);
+        }
+
+        // Function to remove an item from a dynamic list
+        function removeItem(button, isComplex = false) {
+            const parent = isComplex ? button.closest('.p-4') : button.parentNode;
+            const list = parent.parentNode;
+            list.removeChild(parent);
+            updateRemoveButtons(list.id);
+        }
+
+        // Update visibility of remove buttons based on item count
+        function updateRemoveButtons(listId) {
+            const list = document.getElementById(listId);
+            const items = list.children;
+            if (items.length <= 1) {
+                // Hide all remove buttons if there's only one item
+                Array.from(items).forEach(item => {
+                    const removeBtn = item.querySelector('.remove-button');
+                    if (removeBtn) removeBtn.classList.add('hidden');
+                });
+            } else {
+                // Show all remove buttons if there are multiple items
+                Array.from(items).forEach(item => {
+                    const removeBtn = item.querySelector('.remove-button');
+                    if (removeBtn) removeBtn.classList.remove('hidden');
+                });
+            }
+        }
+
+        // Reset dynamic list to a single empty input
+        function resetDynamicList(listId, nameAttribute, placeholder, isComplex) {
+            const list = document.getElementById(listId);
+            list.innerHTML = ''; // Clear existing items
+            let newItemDiv;
+
+            if (isComplex) {
+                newItemDiv = document.createElement('div');
+                // Updated background for complex item reset
+                newItemDiv.className = 'p-4 border border-gray-200 rounded-lg bg-gray-50';
+                if (nameAttribute === 'experience') {
+                     newItemDiv.innerHTML = `
+                        <input type="text" name="experience_title" placeholder="Job Title" class="mb-2">
+                        <input type="text" name="experience_company" placeholder="Company Name" class="mb-2">
+                        <input type="text" name="experience_dates" placeholder="Start Date - End Date (e.g., Jan 2020 - Dec 2023)" class="mb-2">
+                        <textarea name="experience_description" placeholder="Key responsibilities and achievements" rows="3"></textarea>
+                        <button type="button" class="remove-button mt-2 hidden" onclick="removeItem(this, true)">Remove</button>
+                    `;
+                } else if (nameAttribute === 'projects') {
+                     newItemDiv.innerHTML = `
+                        <input type="text" name="project_name" placeholder="Project Name" class="mb-2">
+                        <input type="text" name="project_technologies" placeholder="Technologies Used (comma-separated)" class="mb-2">
+                        <textarea name="project_description" placeholder="Project description and your role" rows="3"></textarea>
+                        <button type="button" class="remove-button mt-2 hidden" onclick="removeItem(this, true)">Remove</button>
+                    `;
+                }
+            } else {
+                newItemDiv = document.createElement('div');
+                newItemDiv.innerHTML = `
+                    <input type="text" name="${nameAttribute}" placeholder="${placeholder}" class="flex-grow">
+                    <button type="button" class="remove-button hidden" onclick="removeItem(this)">Remove</button>
+                `;
+            }
+            list.appendChild(newItemDiv);
+            updateRemoveButtons(listId); // Ensure remove button is hidden for single item
+        }
+
+
+        // Function to save profile data to localStorage
+        function saveProfileData() {
+            const formData = new FormData(document.getElementById('profileForm'));
+            const profile = {};
+
+            // Personal Details
+            profile.name = formData.get('name');
+            profile.email = formData.get('email');
+            profile.phone = formData.get('phone');
+            profile.linkedin = formData.get('linkedin');
+            profile.github = formData.get('github');
+            profile.resumeUrl = formData.get('resumeUrl'); // New field
+            profile.profilePhotoUrl = formData.get('profilePhotoUrl'); // New field
+
+            // Dynamic Lists (Skills, Tools, Certifications)
+            profile.skills = formData.getAll('skills').filter(item => item.trim() !== '');
+            profile.tools = formData.getAll('tools').filter(item => item.trim() !== '');
+            profile.certifications = formData.getAll('certifications').filter(item => item.trim() !== '');
+
+            // Experience
+            const experienceEntries = [];
+            const experienceTitles = formData.getAll('experience_title');
+            const experienceCompanies = formData.getAll('experience_company');
+            const experienceDates = formData.getAll('experience_dates');
+            const experienceDescriptions = formData.getAll('experience_description');
+
+            for (let i = 0; i < experienceTitles.length; i++) {
+                if (experienceTitles[i].trim() !== '' || experienceCompanies[i].trim() !== '' || experienceDates[i].trim() !== '' || experienceDescriptions[i].trim() !== '') {
+                    experienceEntries.push({
+                        title: experienceTitles[i],
+                        company: experienceCompanies[i],
+                        dates: experienceDates[i],
+                        description: experienceDescriptions[i]
+                    });
+                }
+            }
+            profile.experience = experienceEntries;
+
+            // Projects
+            const projectEntries = [];
+            const projectNames = formData.getAll('project_name');
+            const projectTechnologies = formData.getAll('project_technologies');
+            const projectDescriptions = formData.getAll('project_description');
+
+            for (let i = 0; i < projectNames.length; i++) {
+                if (projectNames[i].trim() !== '' || projectTechnologies[i].trim() !== '' || projectDescriptions[i].trim() !== '') {
+                    projectEntries.push({
+                        name: projectNames[i],
+                        technologies: projectTechnologies[i],
+                        description: projectDescriptions[i]
+                    });
+                }
+            }
+            profile.projects = projectEntries;
+
+            localStorage.setItem('dataEngineerProfile', JSON.stringify(profile));
+            showToast('Profile data saved successfully!');
+            // Update photo preview after saving
+            updateProfilePhotoPreview();
+        }
+
+        // Function to load profile data from localStorage
+        function loadProfileData() {
+            const storedProfile = localStorage.getItem('dataEngineerProfile');
+            if (storedProfile) {
+                const profile = JSON.parse(storedProfile);
+
+                // Personal Details
+                document.getElementById('name').value = profile.name || '';
+                document.getElementById('email').value = profile.email || '';
+                document.getElementById('phone').value = profile.phone || '';
+                document.getElementById('linkedin').value = profile.linkedin || '';
+                document.getElementById('github').value = profile.github || '';
+                document.getElementById('resumeUrl').value = profile.resumeUrl || ''; // New field
+                document.getElementById('profilePhotoUrl').value = profile.profilePhotoUrl || ''; // New field
+
+                // Update photo preview immediately after loading
+                updateProfilePhotoPreview(profile.profilePhotoUrl);
+
+
+                // Dynamic Lists (Skills, Tools, Certifications)
+                loadDynamicList('skillsList', 'skills', profile.skills);
+                loadDynamicList('toolsList', 'tools', profile.tools);
+                loadDynamicList('certificationsList', 'certifications', profile.certifications);
+
+                // Experience
+                loadComplexList('experienceList', profile.experience, 'experience');
+
+                // Projects
+                loadComplexList('projectsList', profile.projects, 'projects');
+
+                showToast('Profile data loaded!');
+            }
+        }
+
+        // Helper function to load simple dynamic lists
+        function loadDynamicList(listId, nameAttribute, items) {
+            const list = document.getElementById(listId);
+            list.innerHTML = ''; // Clear existing inputs
+
+            if (items && items.length > 0) {
+                items.forEach(item => {
+                    const newItemDiv = document.createElement('div');
+                    newItemDiv.innerHTML = `
+                        <input type="text" name="${nameAttribute}" value="${item || ''}" class="flex-grow">
+                        <button type="button" class="remove-button" onclick="removeItem(this)">Remove</button>
+                    `;
+                    list.appendChild(newItemDiv);
+                });
+            } else {
+                // Add a single empty input if no items
+                addItem(nameAttribute);
+            }
+            updateRemoveButtons(listId);
+        }
+
+        // Helper function to load complex dynamic lists (experience, projects)
+        function loadComplexList(listId, items, type) {
+            const list = document.getElementById(listId);
+            list.innerHTML = ''; // Clear existing inputs
+
+            if (items && items.length > 0) {
+                items.forEach(item => {
+                    const newItemDiv = document.createElement('div');
+                    // Ensure the class is applied correctly on load
+                    newItemDiv.className = 'p-4 border border-gray-200 rounded-lg bg-gray-50';
+                    if (type === 'experience') {
+                        newItemDiv.innerHTML = `
+                            <input type="text" name="experience_title" placeholder="Job Title" value="${item.title || ''}" class="mb-2">
+                            <input type="text" name="experience_company" placeholder="Company Name" value="${item.company || ''}" class="mb-2">
+                            <input type="text" name="experience_dates" placeholder="Start Date - End Date (e.g., Jan 2020 - Dec 2023)" class="mb-2">
+                            <textarea name="experience_description" placeholder="Key responsibilities and achievements" rows="3">${item.description || ''}</textarea>
+                            <button type="button" class="remove-button mt-2" onclick="removeItem(this, true)">Remove</button>
+                        `;
+                    } else if (type === 'projects') {
+                        newItemDiv.innerHTML = `
+                            <input type="text" name="project_name" placeholder="Project Name" value="${item.name || ''}" class="mb-2">
+                            <input type="text" name="project_technologies" placeholder="Technologies Used (comma-separated)" value="${item.technologies || ''}" class="mb-2">
+                            <textarea name="project_description" placeholder="Project description and your role" rows="3">${item.description || ''}</textarea>
+                            <button type="button" class="remove-button mt-2" onclick="removeItem(this, true)">Remove</button>
+                        `;
+                    }
+                    list.appendChild(newItemDiv);
+                });
+            } else {
+                // Add a single empty input if no items
+                addItem(type);
+            }
+            updateRemoveButtons(listId);
+        }
+
+        // Function to update the profile photo preview
+        function updateProfilePhotoPreview(urlFromLoad) {
+            const photoInput = document.getElementById('profilePhotoUrl');
+            const photoPreview = document.getElementById('profilePhotoPreview');
+            const noPhotoText = document.getElementById('noPhotoText');
+            const url = urlFromLoad || photoInput.value;
+
+            if (url && url.trim() !== '') {
+                photoPreview.src = url;
+                photoPreview.classList.remove('hidden');
+                noPhotoText.classList.add('hidden');
+                // Handle image loading errors
+                photoPreview.onerror = () => {
+                    photoPreview.classList.add('hidden');
+                    photoPreview.src = ''; // Clear src to prevent broken image icon
+                    noPhotoText.classList.remove('hidden');
+                    noPhotoText.textContent = "Could not load image. Check URL.";
+                };
+                photoPreview.onload = () => {
+                    noPhotoText.classList.add('hidden'); // Hide any error messages if load succeeds
+                };
+            } else {
+                photoPreview.classList.add('hidden');
+                photoPreview.src = '';
+                noPhotoText.classList.remove('hidden');
+                noPhotoText.textContent = "No photo selected";
+            }
+        }
+    </script>
+</body>
+</html>
