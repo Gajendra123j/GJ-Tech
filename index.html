@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Base Styling */
         :root {
             --primary-color: #6366f1; /* Indigo 500 */
             --primary-dark: #4f46e5; /* Indigo 600 */
@@ -38,7 +37,6 @@
             margin: 0 auto;
             padding: 0 1rem;
         }
-        /* Header */
         .header {
             background-color: var(--primary-color);
             color: white;
@@ -87,12 +85,11 @@
             font-weight: 600;
             font-size: 1rem;
             text-transform: uppercase;
-            border-radius: 9999px; /* Fully rounded */
+            border-radius: 9999px; 
         }
         .profile-btn:hover {
             background-color: rgba(255, 255, 255, 0.3);
         }
-        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
             color: white;
@@ -160,7 +157,7 @@
             padding: 0.5rem 0;
             font-size: 1rem;
             color: var(--text-color);
-            border-radius: 20px; /* Added rounded corners */
+            border-radius: 20px; 
         }
         .search-actions {
             display: flex;
@@ -176,10 +173,10 @@
             transition: background-color 0.2s ease;
         }
         .clear-btn {
-            color: #ef4444; /* Red 500 */
+            color: #ef4444; 
         }
         .clear-btn:hover {
-            background-color: #fecaca; /* Red 200 */
+            background-color: #fecaca; 
         }
         .search-btn {
             background-color: var(--primary-color);
@@ -241,7 +238,7 @@
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 20px;
-            border: 1px solid transparent; /* No border for gradient */
+            border: 1px solid transparent; 
             cursor: pointer;
             transition: opacity 0.2s ease;
             display: inline-flex;
@@ -252,11 +249,9 @@
             opacity: 0.9;
         }
         .btn-gemini.loading {
-            background: #cbd5e1; /* Greyed out when loading */
+            background: #cbd5e1; 
             cursor: not-allowed;
         }
-
-        /* Main Content */
         .main-content {
             padding: 2rem 0;
         }
@@ -282,15 +277,15 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             cursor: pointer;
             border: 1px solid var(--border-color);
-            position: relative; /* For the pill positioning */
+            position: relative; 
         }
         .opportunity-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
         .opportunity-card .pill {
-            background-color: #fde68a; /* Amber 200 */
-            color: #92400e; /* Amber 800 */
+            background-color: #fde68a; 
+            color: #92400e;
             padding: 0.2rem 0.6rem;
             border-radius: 10px;
             font-size: 0.75rem;
@@ -314,7 +309,7 @@
             color: #64748b;
         }
         .pro-banner {
-            background: linear-gradient(90deg, #f0abfc 0%, #a78bfa 100%); /* Purple/Pink gradient */
+            background: linear-gradient(90deg, #f0abfc 0%, #a78bfa 100%); 
             color: white;
             padding: 1.5rem;
             border-radius: 15px;
@@ -368,17 +363,16 @@
         }
         .featured-image {
             font-size: 2rem;
-            background-color: #e0e7ff; /* Indigo 100 */
+            background-color: #e0e7ff; 
             padding: 0.8rem;
             border-radius: 10px;
-            display: flex; /* For centering icon */
+            display: flex; 
             align-items: center;
             justify-content: center;
         }
         .featured-content {
             flex-grow: 1;
         }
-
         .featured-title {
             font-size: 1.1rem;
             font-weight: 700;
@@ -498,10 +492,6 @@
             font-size: 1.2rem;
             margin-bottom: 0.25rem;
         }
-        /* Adjusted to use Font Awesome classes directly */
-        /* .bottom-nav .nav-item:nth-child(1)::before { content: "\f015"; } */
-        /* .bottom-nav .nav-item:nth-child(2)::before { content: "\f50b"; } */
-
         .toast {
             visibility: hidden;
             min-width: 250px;
@@ -598,16 +588,14 @@
         .form-group textarea {
             resize: vertical;
         }
-
-        /* Original GJ Tech Nav and Hero elements for context, but not fully integrated with the CareerHub content */
         .announcement-marquee {
-            top: 0px; /* Adjusted due to sticky header */
-            position: relative; /* Changed to relative to not overlap */
+            top: 0px; 
+            position: relative; 
         }
         .bg-slate-700 {
-            top: 0px; /* Adjusted due to sticky header */
+            top: 0px;
             position: sticky;
-            z-index: 101; /* Higher than primary header */
+            z-index: 101; 
         }
         .neon-text {
             color: #fff;
@@ -681,7 +669,7 @@
             bottom: 80px;
             right: 0;
             width: 300px;
-            background-color: #2d3748; /* Darker background */
+            background-color: #2d3748; 
             border-radius: 15px;
             box-shadow: var(--shadow);
             transform-origin: bottom right;
@@ -692,8 +680,6 @@
             from { opacity: 0; transform: scale(0.8); }
             to { opacity: 1; transform: scale(1); }
         }
-
-
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
@@ -755,7 +741,6 @@
             .header .nav-icons .icon-btn {
                 display: flex;
             }
-            /* Adjust AI chat widget for mobile */
             .ai-chat-content {
                 width: 90%;
                 left: 5%;
@@ -767,18 +752,14 @@
             .bottom-nav {
                 display: none;
             }
-            /* Ensure the header nav items are visible on desktop */
             .header .nav-items {
                 display: flex !important;
             }
         }
     </style>
 </head>
-<body>
-   
-   
+<body> 
     <div id="main-content"></div>
-    <!-- AI Chat Widget -->
     <div class="ai-chat-widget" id="aiChatWidget" onclick="toggleAIChat()">
         <i class="fas fa-robot text-white text-xl"></i>
         <div class="ai-chat-content hidden">
@@ -796,7 +777,6 @@
             </div>
         </div>
     </div>
-    <!-- Main site navigation for GJ Tech, sticky below marquee -->
     <nav class="bg-slate-700 text-white py-3 space-x-3 md:space-x-6 text-sm md:text-lg sticky top-[38px] z-50 shadow w-full" id="main-navigation">
         <div class="container mx-auto flex flex-wrap justify-center md:gap-x-6">
             <ul class="flex flex-wrap justify-center gap-x-3 md:gap-x-6 nav-items">
@@ -810,10 +790,9 @@
                 <li><a href="login.html" class="hover:underline hover:text-blue-200">Login</a></li>
             </ul>
         </div>
-    <!-- CareerHub Header -->
     <header class="header">
         <nav class="nav container" aria-label="Main">
-            <div class="logo">CareerHub</div>
+            <div class="logo">GJ Tech</div>
             <div class="nav-icons">
                 <button class="icon-btn" aria-label="Notifications" onclick="toggleNotifications()">
                     <i class="fas fa-bell"></i>
@@ -825,7 +804,6 @@
             </div>
         </nav>
     </header>
-    <!-- CareerHub Hero Section -->
     <section class="hero" id="unstop" aria-label="Hero">
         <div class="container">
             <h1>Hi, <span id="userName">Gajendra</span></h1>
@@ -853,7 +831,6 @@
             </div>
         </div>
     </section>
-    <!-- CareerHub Main Content -->
     <main class="main-content container">
         <h3 class="section-header">Time to #BeUnstoppable</h3>
         <div class="opportunities-grid" aria-label="Categories">
@@ -891,7 +868,7 @@
         </div>
         <div class="pro-banner" role="region" aria-label="Pro Upgrade">
             <div class="pro-content">
-                <div><strong>Aryan</strong><br />Just Went Unstop Pro!</div>
+                <div><strong>Aryan</strong><br />Just Went GJ Tech Pro!</div>
             </div>
             <button class="explore-btn" onclick="showToast('Explore Pro features!', 'info')">Explore Pro</button>
         </div>
@@ -901,7 +878,6 @@
                 <div class="spinner"></div>Loading Featured Opportunities...
             </div>
             <div class="featured-grid" id="featuredGrid">
-                <!-- Featured opportunities will be loaded here by JavaScript -->
             </div>
         </section>
         <section id="internships" class="featured-section" aria-labelledby="internHeader">
@@ -910,7 +886,6 @@
                 <div class="spinner"></div>Loading Internships...
             </div>
             <div class="featured-grid" id="internshipsGrid">
-                <!-- Internships will be loaded here by JavaScript -->
             </div>
         </section>
         <section id="jobs" class="featured-section" aria-labelledby="jobsHeader">
@@ -919,7 +894,6 @@
                 <div class="spinner"></div>Loading Jobs...
             </div>
             <div class="featured-grid" id="jobsGrid">
-                <!-- Jobs will be loaded here by JavaScript -->
             </div>
         </section>
         <section id="competitions" class="featured-section" aria-labelledby="compHeader">
@@ -928,7 +902,6 @@
                 <div class="spinner"></div>Loading Competitions...
             </div>
             <div class="featured-grid" id="competitionsGrid">
-                <!-- Competitions will be loaded here by JavaScript -->
             </div>
         </section>
         <section id="practice" class="featured-section" aria-labelledby="practiceHeader">
@@ -937,7 +910,6 @@
                 <div class="spinner"></div>Loading Practice Challenges...
             </div>
             <div class="featured-grid" id="practiceGrid">
-                <!-- Practice challenges will be loaded here by JavaScript -->
             </div>
         </section>
         <section id="mentorships" class="featured-section" aria-labelledby="mentorsHeader">
@@ -946,35 +918,17 @@
                 <div class="spinner"></div>Loading Mentors...
             </div>
             <div class="mentors-grid" id="mentorsGrid">
-                <!-- Mentors will be loaded here by JavaScript -->
             </div>
         </section>
     </main>
-    <!-- Bottom Navigation for Mobile -->
     <nav class="bottom-nav" role="navigation" aria-label="Mobile Navigation">
-        <a href="index.html" class="nav-item active">
-            <i class="fas fa-home"></i> Home
-        </a>
-        <a href="index.html" class="nav-item">
-            <i class="fas fa-briefcase"></i> Jobs
-        </a>
-        <a href="contact.html" class="nav-item">
-            <i class="fas fa-user-tie"></i> Mentors
-        </a>
-        <a href="CoursesinManagement.html" class="nav-item">
-            <i class="fas fa-trophy"></i> Competitions
-        </a>
-        <a href="profile.html" class="nav-item" onclick="showProfileModal()">
-            <i class="fas fa-user"></i> Profile
-        </a>
-        <a href="#" class="nav-item" onclick="toggleMenu()">
-            <i class="fas fa-ellipsis-h"></i> More
-        </a>
-    </nav>
-    <!-- Global Toast Notification -->
+        <a href="index.html" class="nav-item active"> <i class="fas fa-home"></i> Home </a>
+        <a href="careergoals.html" class="nav-item"> <i class="fas fa-briefcase"></i> Jobs</a>
+        <a href="contact.html" class="nav-item"><i class="fas fa-user-tie"></i> Mentors</a>
+        <a href="CoursesinManagement.html" class="nav-item"> <i class="fas fa-trophy"></i> Competitions </a>
+        <a href="profile.html" class="nav-item" onclick="showProfileModal()"> <i class="fas fa-user"></i> Profile</a>
+        <a href="#" class="nav-item" onclick="toggleMenu()"> <i class="fas fa-ellipsis-h"></i> More</a> </nav>
     <div id="toast" class="toast"></div>
-    <!-- Modals -->
-    <!-- Profile Modal -->
     <div id="profileModal" class="modal">
         <div class="modal-card">
             <div class="modal-header">
@@ -1003,7 +957,6 @@
             </div>
         </div>
     </div>
-    <!-- Main Menu Modal (for the three bars icon) -->
     <div id="mainMenuModal" class="modal">
         <div class="modal-card">
             <div class="modal-header">
@@ -1014,11 +967,10 @@
             </div>
             <div class="modal-body">
                 <ul class="space-y-4">
-                    <li><a href="#" class="text-lg text-indigo-600 hover:underline" onclick="closeModal('mainMenuModal');">Home</a></li>
-                    <li><a href="#" class="text-lg text-indigo-600 hover:underline" onclick="closeModal('mainMenuModal');">Notifications</a></li>
-                    <li><a href="#" class="text-lg text-indigo-600 hover:underline" onclick="closeModal('mainMenuModal');">Settings</a></li>
-                    <li><a href="#" class="text-lg text-indigo-600 hover:underline" onclick="closeModal('mainMenuModal');">Help & Support</a></li>
-                    <li><a href="#" class="text-lg text-indigo-600 hover:underline" onclick="closeModal('mainMenuModal');">Logout</a></li>
+                    <li><a href="index.html" class="text-lg text-indigo-600 hover:underline" onclick="closeModal('mainMenuModal');">Home</a></li>
+                    <li><a href="privacy.html" class="text-lg text-indigo-600 hover:underline" onclick="closeModal('mainMenuModal');">Settings</a></li>
+                    <li><a href="info.html" class="text-lg text-indigo-600 hover:underline" onclick="closeModal('mainMenuModal');">Help & Support</a></li>
+                    <li><a href="login.html" class="text-lg text-indigo-600 hover:underline" onclick="closeModal('mainMenuModal');">Login</a></li>
                 </ul>
             </div>
             <div class="modal-footer">
@@ -1026,37 +978,22 @@
             </div>
         </div>
     </div>
-
-
     <script type="module">
-        // Firebase Imports
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
-        // Firestore imports are commented out as we are not using Firestore yet in this version.
-        // import { getFirestore, doc, getDoc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, collection, query, where, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
-
-        // --- Firebase Initialization ---
         let db;
         let auth;
-        let userId = 'anonymous'; // Default to anonymous
-
-        // Global variables provided by the Canvas environment
+        let userId = 'anonymous'; 
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
         const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
         if (Object.keys(firebaseConfig).length > 0) {
             const app = initializeApp(firebaseConfig);
             auth = getAuth(app);
-            // db = getFirestore(app); // Uncomment if you add Firestore functionality
-
-            // Authenticate user
             onAuthStateChanged(auth, async (user) => {
                 if (user) {
                     userId = user.uid;
                     console.log("Firebase user authenticated:", userId);
-                    // You can update the UI with the authenticated user's name if available
-                    // document.getElementById('userName').textContent = user.displayName || 'User';
                 } else {
                     console.log("No Firebase user, attempting sign-in...");
                     try {
@@ -1077,15 +1014,11 @@
             console.warn("Firebase config not found. Running in mock data mode without Firebase.");
             showToast("Firebase not configured. Features requiring persistence will not work.", 'error');
         }
-
-        // --- User Profile Data (Mock) ---
         let userProfile = {
             name: "Gajendra Singh",
             email: "gajendra.singh@example.com",
             bio: "Founder, Tech Enthusiast, AI & Future Technologies Learner."
         };
-
-        // --- Mock Data ---
         const mockOpportunities = {
             featured: [
                 {
@@ -1193,7 +1126,7 @@
                     type: 'Hackathon',
                     prize: '₹75k + Mentorship',
                     tags: ['AI', 'ML', 'Hackathon', 'Hybrid']
-                }
+                },
             ],
             practice: [
                 {
@@ -1248,44 +1181,34 @@
                 }
             ]
         };
-
-        // --- Utility Functions ---
         function showToast(message, status = 'info') {
             const toast = document.getElementById('toast');
             toast.textContent = message;
-            toast.className = 'toast show'; // Reset classes
+            toast.className = 'toast show'; 
             if (status === 'error') {
                 toast.classList.add('status-error');
             } else if (status === 'success') {
                 toast.classList.add('status-success');
             } else {
-                // Default info style
             }
-
             setTimeout(() => {
                 toast.className = 'toast';
             }, 3000);
         }
-
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
             if (modal) {
                 modal.style.display = 'flex';
-                // Add aria-hidden="false" for accessibility
                 modal.setAttribute('aria-hidden', 'false');
             }
         }
-
         function closeModal(modalId) {
             const modal = document.getElementById(modalId);
             if (modal) {
                 modal.style.display = 'none';
-                // Add aria-hidden="true" for accessibility
                 modal.setAttribute('aria-hidden', 'true');
             }
         }
-
-        // --- Header and Navigation Functions ---
         function toggleNotifications() {
             showToast('Notifications are coming soon!', 'info');
         }
@@ -1293,43 +1216,34 @@
         function toggleMenu() {
             openModal('mainMenuModal');
         }
-
         function showProfileModal() {
-            // Populate the input fields with current userProfile data
             document.getElementById('profileName').value = userProfile.name;
             document.getElementById('profileEmail').value = userProfile.email;
             document.getElementById('profileBio').value = userProfile.bio;
             openModal('profileModal');
         }
-
         function saveProfile() {
-            // Update the userProfile object with values from input fields
             userProfile.name = document.getElementById('profileName').value;
             userProfile.email = document.getElementById('profileEmail').value;
             userProfile.bio = document.getElementById('profileBio').value;
-
-            // Update the name in the hero section if it exists
             const userNameElement = document.getElementById('userName');
             if (userNameElement) {
-                userNameElement.textContent = userProfile.name.split(' ')[0]; // Show first name
+                userNameElement.textContent = userProfile.name.split(' ')[0]; 
             }
 
             showToast('Profile updated successfully!', 'success');
             closeModal('profileModal');
         }
-
         function toggleMainNavigationMenu() {
             const navItems = document.querySelector('.nav-items');
             if (navItems) {
-                navItems.classList.toggle('hidden'); // Simple toggle for mobile nav items
-                // For a more sophisticated menu, you might open a modal or slide-out menu.
+                navItems.classList.toggle('hidden'); 
             }
         }
-
         function clearSearch() {
             document.getElementById('searchInput').value = '';
             showToast('Search input cleared.', 'info');
-            searchOpportunities(); // Re-run search to show all
+            searchOpportunities(); 
         }
 
         function quickTag(tag) {
@@ -1340,20 +1254,15 @@
             searchOpportunities();
             showToast(`Filtered by tag: ${tag}`, 'info');
         }
-
         function scrollToSection(id) {
             const section = document.getElementById(id);
             if (section) {
                 section.scrollIntoView({ behavior: 'smooth' });
-                // Remove active class from all bottom-nav items
                 document.querySelectorAll('.bottom-nav .nav-item').forEach(item => item.classList.remove('active'));
-                // Add active class to the corresponding nav-item
                 const activeNavItem = document.querySelector(`.bottom-nav a[href="#${id}"]`);
                 if (activeNavItem) activeNavItem.classList.add('active');
             }
         }
-
-        // Function to create a featured/opportunity card HTML element
         function createOpportunityCard(opportunity) {
             const card = document.createElement('div');
             card.className = 'featured-card';
@@ -1376,8 +1285,6 @@
             `;
             return card;
         }
-
-        // Function to create a mentor card HTML element
         function createMentorCard(mentor) {
             const card = document.createElement('div');
             card.className = 'mentor-card';
@@ -1391,18 +1298,13 @@
             `;
             return card;
         }
-
-        // Function to load and display opportunities
         async function loadOpportunities(type, containerId, loadingId, allOpportunities) {
             const container = document.getElementById(containerId);
             const loading = document.getElementById(loadingId);
             if (!container || !loading) return;
-
-            container.innerHTML = ''; // Clear previous content
-            loading.style.display = 'block'; // Show loading spinner
-
-            await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
-
+            container.innerHTML = ''; 
+            loading.style.display = 'block'; 
+            await new Promise(resolve => setTimeout(resolve, 500)); 
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const filteredOpportunities = allOpportunities.filter(opp =>
                 opp.title.toLowerCase().includes(searchTerm) ||
@@ -1410,7 +1312,6 @@
                 opp.location.toLowerCase().includes(searchTerm) ||
                 opp.tags.some(tag => tag.toLowerCase().includes(searchTerm))
             );
-
             if (filteredOpportunities.length === 0) {
                 container.innerHTML = '<p class="text-center text-gray-500 mt-4">No opportunities found for your search.</p>';
             } else {
@@ -1420,12 +1321,9 @@
                     filteredOpportunities.forEach(opportunity => container.appendChild(createOpportunityCard(opportunity)));
                 }
             }
-            loading.style.display = 'none'; // Hide loading spinner
+            loading.style.display = 'none'; 
         }
-
-        // Main search function to reload all sections
         async function searchOpportunities() {
-            // Display loading for all sections before reloading
             document.getElementById('featuredLoading').style.display = 'block';
             document.getElementById('internshipsLoading').style.display = 'block';
             document.getElementById('jobsLoading').style.display = 'block';
@@ -1443,22 +1341,16 @@
             ]);
             showToast('Opportunities refreshed!', 'success');
         }
-
-        // --- AI Chat Widget Functions ---
         function toggleAIChat() {
             const chatContent = document.querySelector('#aiChatWidget .ai-chat-content');
             chatContent.classList.toggle('hidden');
         }
-
-        // Initial load of opportunities when the page loads
         document.addEventListener('DOMContentLoaded', () => {
             searchOpportunities();
-            // Update the initial name in the hero section
             const userNameElement = document.getElementById('userName');
             if (userNameElement) {
                 userNameElement.textContent = userProfile.name.split(' ')[0];
             }
-            // Setup mobile nav active state based on initial scroll
             const currentHash = window.location.hash;
             if (currentHash) {
                 document.querySelectorAll('.bottom-nav .nav-item').forEach(item => item.classList.remove('active'));
@@ -1468,12 +1360,10 @@
                 document.querySelector('.bottom-nav a[href="#unstop"]').classList.add('active');
             }
         });
-
-        // Event listener for window resize to handle responsiveness
         window.addEventListener('resize', () => {
             const navItems = document.querySelector('.nav-items');
             if (window.innerWidth > 768) {
-                navItems.classList.remove('hidden'); // Ensure desktop menu is visible
+                navItems.classList.remove('hidden'); 
             }
         });
     </script>

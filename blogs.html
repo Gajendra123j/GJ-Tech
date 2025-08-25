@@ -7,51 +7,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* Enhanced Animations */
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
-        
         @keyframes pulse-glow {
             0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
             50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
         }
-
         .ai-card {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             animation: float 6s ease-in-out infinite;
         }
-
         .study-material {
             transition: all 0.3s ease;
             border-left: 4px solid #3b82f6;
         }
-
         .study-material:hover {
             transform: translateX(10px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
-
         .interactive-demo {
             background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
             animation: pulse-glow 2s ease-in-out infinite;
         }
-
         .code-simulator {
             background: #1e1e1e;
             color: #d4d4d4;
             font-family: 'Courier New', monospace;
         }
-
         .ai-learning-path {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             position: relative;
             overflow: hidden;
         }
-
         .ai-learning-path::before {
             content: '';
             position: absolute;
@@ -62,33 +53,25 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
             animation: shine 2s infinite;
         }
-
         @keyframes shine {
             0% { left: -100%; }
             100% { left: 100%; }
         }
-
         .neural-network {
             background: radial-gradient(circle, #667eea 0%, #764ba2 100%);
         }
-
-        /* Study Progress Tracker */
         .progress-ring {
             transform: rotate(-90deg);
         }
-
         .progress-ring-circle {
             transition: stroke-dasharray 0.35s;
             transform: rotate(0deg);
             transform-origin: 50% 50%;
         }
-
-        /* AI Chat Interface */
         .chat-interface {
             max-height: 400px;
             overflow-y: auto;
         }
-
         .message-user {
             background: #3b82f6;
             color: white;
@@ -102,13 +85,11 @@
         }
     </style>
 </head>
-        <!-- Mobile menu toggle button (hidden on desktop) -->
         <button class="md:hidden absolute right-4 top-1/2 -translate-y-1/2 text-white focus:outline-none" aria-controls="main-navigation-menu" aria-expanded="false" onclick="toggleMenu()">
             <i class="fas fa-bars text-xl"></i>
         </button>
     </nav>
     <main class="max-w-7xl mx-auto p-6 space-y-8">
-        <!-- Hero Section -->
         <section id="home" class="ai-card rounded-xl p-8 text-center">
             <h1 class="text-4xl font-bold mb-4">🧠 GJ Tech AI Study Hub</h1>
             <p class="text-xl mb-6">Master Artificial Intelligence with Interactive Learning</p>
@@ -121,11 +102,9 @@
                 </button>
             </div>
         </section>
-        <!-- AI Study Materials -->
         <section id="ai-materials" class="bg-white rounded-xl shadow-lg p-8">
             <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">📚 AI Study Materials</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Machine Learning Fundamentals -->
                 <div class="study-material bg-white p-6 rounded-lg shadow hover:shadow-xl">
                     <div class="flex items-center mb-4">
                         <i class="fas fa-brain text-3xl text-blue-500 mr-4"></i>
@@ -141,7 +120,6 @@
                         </button>
                     </div>
                 </div>
-                <!-- Deep Learning -->
                 <div class="study-material bg-white p-6 rounded-lg shadow hover:shadow-xl">
                     <div class="flex items-center mb-4">
                         <i class="fas fa-network-wired text-3xl text-purple-500 mr-4"></i>
@@ -157,7 +135,6 @@
                         </button>
                     </div>
                 </div>
-                <!-- Natural Language Processing -->
                 <div class="study-material bg-white p-6 rounded-lg shadow hover:shadow-xl">
                     <div class="flex items-center mb-4">
                         <i class="fas fa-comments text-3xl text-green-500 mr-4"></i>
@@ -173,7 +150,6 @@
                         </button>
                     </div>
                 </div>
-                <!-- Computer Vision -->
                 <div class="study-material bg-white p-6 rounded-lg shadow hover:shadow-xl">
                     <div class="flex items-center mb-4">
                         <i class="fas fa-eye text-3xl text-red-500 mr-4"></i>
@@ -189,7 +165,6 @@
                         </button>
                     </div>
                 </div>
-                <!-- Python for AI -->
                 <div class="study-material bg-white p-6 rounded-lg shadow hover:shadow-xl">
                     <div class="flex items-center mb-4">
                         <i class="fab fa-python text-3xl text-yellow-500 mr-4"></i>
@@ -205,7 +180,6 @@
                         </button>
                     </div>
                 </div>
-                <!-- AI Ethics & Safety -->
                 <div class="study-material bg-white p-6 rounded-lg shadow hover:shadow-xl">
                     <div class="flex items-center mb-4">
                         <i class="fas fa-shield-alt text-3xl text-gray-500 mr-4"></i>
@@ -223,13 +197,9 @@
                 </div>
             </div>
         </section>
-
-        <!-- Interactive Learning Section -->
         <section id="interactive" class="bg-white rounded-xl shadow-lg p-8">
             <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">⚡ Interactive Learning</h2>
-            
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- AI Code Simulator -->
                 <div class="code-simulator rounded-lg p-6">
                     <div class="flex items-center mb-4">
                         <i class="fas fa-terminal text-green-400 mr-3"></i>
@@ -251,8 +221,6 @@
                         Output will appear here...
                     </div>
                 </div>
-
-                <!-- AI Learning Progress -->
                 <div class="bg-gradient-to-br from-blue-500 to-purple-600 p-6 rounded-lg text-white">
                     <h3 class="text-xl font-semibold mb-4">📈 Your AI Learning Progress</h3>
                     
@@ -264,7 +232,6 @@
                         <div class="w-full bg-blue-200 rounded-full h-2">
                             <div class="bg-white h-2 rounded-full" style="width: 75%"></div>
                         </div>
-
                         <div class="flex items-center justify-between">
                             <span>Deep Learning</span>
                             <span class="font-semibold">45%</span>
@@ -272,7 +239,6 @@
                         <div class="w-full bg-blue-200 rounded-full h-2">
                             <div class="bg-white h-2 rounded-full" style="width: 45%"></div>
                         </div>
-
                         <div class="flex items-center justify-between">
                             <span>Computer Vision</span>
                             <span class="font-semibold">60%</span>
@@ -281,7 +247,6 @@
                             <div class="bg-white h-2 rounded-full" style="width: 60%"></div>
                         </div>
                     </div>
-
                     <div class="mt-6 text-center">
                         <div class="text-3xl font-bold">Overall: 60%</div>
                         <p class="text-blue-100">Keep learning! You're doing great! 🎉</p>
@@ -289,13 +254,11 @@
                 </div>
             </div>
         </section>
-
-        <!-- AI Assistant Chat -->
         <div id="ai-chat-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
             <div class="flex items-center justify-center h-full">
                 <div class="bg-white rounded-lg shadow-2xl w-96 max-h-96">
                     <div class="bg-blue-600 text-white p-4 rounded-t-lg flex justify-between items-center">
-                        <h3 class="font-semibold">🤖 AI Study Assistant</h3>
+                        <h3 class="font-semibold"> 🤖 AI Study Assistant</h3>
                         <button onclick="closeAIChat()" class="text-white hover:text-gray-200">✕</button>
                     </div>
                     <div id="chat-messages" class="chat-interface p-4 h-64 overflow-y-auto">
@@ -316,8 +279,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Study Material Modal -->
         <div id="study-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
             <div class="flex items-center justify-center h-full p-4">
                 <div class="bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-full overflow-y-auto">
@@ -326,52 +287,42 @@
                         <button onclick="closeStudyModal()" class="text-white hover:text-gray-200 text-xl">✕</button>
                     </div>
                     <div id="study-modal-content" class="p-6">
-                        <!-- Content will be loaded dynamically -->
                     </div>
                 </div>
             </div>
         </div>
-
     </main>
-
     <footer class="bg-slate-800 text-white text-center py-6 mt-12">
         <div class="max-w-6xl mx-auto">
             <p class="text-lg mb-2">🧠 GJ Tech AI Study Hub</p>
             <p class="text-gray-400">&copy; 2025 GJ Tech Pvt. Ltd. - Advancing AI Education</p>
         </div>
     </footer>
-
     <script>
-        // Study Materials Database
         const studyMaterials = {
             'ml-basics': {
                 title: '🤖 Machine Learning Fundamentals',
                 content: `
                     <h2 class="text-2xl font-bold mb-4">Machine Learning Overview</h2>
                     <p class="text-gray-700 mb-4">Machine Learning is a subset of AI that enables computers to learn and improve from experience without being explicitly programmed.</p>
-                    
                     <h3 class="text-xl font-semibold mt-6 mb-2">Key Concepts:</h3>
                     <ul class="list-disc list-inside space-y-2 text-gray-700">
                         <li><strong>Supervised Learning:</strong> Learning with labeled data.</li>
                         <li><strong>Unsupervised Learning:</strong> Finding patterns in unlabeled data.</li>
                         <li><strong>Reinforcement Learning:</strong> Learning through rewards and penalties.</li>
-                    </ul>
-                    
+                    </ul> 
                     <h3 class="text-xl font-semibold mt-6 mb-2">Popular Algorithms:</h3>
                     <div class="bg-gray-100 p-4 rounded text-sm overflow-x-auto">
                         <pre><code>
 # Linear Regression Example
 from sklearn.linear_model import LinearRegression
 import numpy as np
-
 # Sample data
 X = np.array([[1], [2], [3], [4], [5]])
 y = np.array([2, 4, 6, 8, 10])
-
 # Create and train model
 model = LinearRegression()
 model.fit(X, y)
-
 # Make prediction
 prediction = model.predict([[6]])
 console.log(f"Prediction for 6: ${prediction[0]}")
@@ -384,27 +335,23 @@ console.log(f"Prediction for 6: ${prediction[0]}")
                 content: `
                     <h2 class="text-2xl font-bold mb-4">Deep Learning Fundamentals</h2>
                     <p class="text-gray-700 mb-4">Deep learning uses multi-layered neural networks to solve complex problems, enabling features like image recognition and natural language processing.</p>
-                    
                     <h3 class="text-xl font-semibold mt-6 mb-2">Neural Network Architecture:</h3>
                     <div class="grid grid-cols-3 gap-4 my-4 text-center text-sm font-medium">
                         <div class="bg-blue-100 p-3 rounded">Input Layer</div>
                         <div class="bg-green-100 p-3 rounded">Hidden Layers</div>
                         <div class="bg-red-100 p-3 rounded">Output Layer</div>
                     </div>
-                    
                     <h3 class="text-xl font-semibold mt-6 mb-2">TensorFlow Example:</h3>
                     <div class="bg-gray-100 p-4 rounded text-sm overflow-x-auto">
                         <pre><code>
 import tensorflow as tf
 from tensorflow import keras
-
 # Create a simple neural network
 model = keras.Sequential([
     keras.layers.Dense(128, activation='relu', input_shape=(784,)),
     keras.layers.Dropout(0.2),
     keras.layers.Dense(10, activation='softmax')
-])
-
+])2
 model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
@@ -426,10 +373,8 @@ model.compile(optimizer='adam',
                         <li>Machine Translation</li>
                         <li>Question Answering</li>
                     </ul>
-                    
                     <h3 class="text-xl font-semibold mt-6 mb-2">Transformers & Attention:</h3>
                     <p class="text-gray-700 mb-4">The transformer architecture, powered by its attention mechanism, revolutionized NLP by allowing models to weigh the importance of different words in a sentence.</p>
-                    
                     <div class="bg-gray-100 p-4 rounded text-sm overflow-x-auto">
                         <pre><code>
 # Simple text analysis with NLTK
@@ -495,14 +440,11 @@ console.log("Image processing simulated successfully!");
                         <li><strong>Accountability:</strong> Taking responsibility for AI outcomes.</li>
                         <li><strong>Safety:</strong> Ensuring AI systems are secure and reliable.</li>
                     </ul>
-                    
                     <h3 class="text-xl font-semibold mt-6 mb-2">Bias Mitigation:</h3>
                     <p class="text-gray-700 mb-4">Techniques to reduce bias in AI systems include using diverse training data, conducting regular bias audits, and applying algorithmic adjustments.</p>
                 `
             }
         };
-
-        // AI Chat Responses
         const aiResponses = {
             'hello': 'Hello! I\'m excited to help you learn about AI! What topic would you like to explore?',
             'machine learning': 'Machine Learning is fascinating! It\'s all about teaching computers to learn patterns from data. Would you like to start with supervised or unsupervised learning?',
@@ -512,61 +454,44 @@ console.log("Image processing simulated successfully!");
             'help': 'I can help you with:\n• AI concepts and theory\n• Programming examples\n• Career guidance\n• Study recommendations\n• Code debugging',
             'default': 'That\'s a great question! AI is a vast field. Could you be more specific about what aspect you\'d like to learn about?'
         };
-
-        // Functions
         function startLearningPath() {
-            // Using a custom message box instead of alert()
             showMessageBox('🚀 Welcome to your AI learning journey! Start with Machine Learning Fundamentals and work your way up!');
             document.getElementById('ai-materials').scrollIntoView({ behavior: 'smooth' });
         }
-
         function openAIChat() {
             document.getElementById('ai-chat-modal').classList.remove('hidden');
         }
-
         function closeAIChat() {
             document.getElementById('ai-chat-modal').classList.add('hidden');
         }
-
         function sendChatMessage() {
             const input = document.getElementById('chat-input');
             const message = input.value.trim();
             if (!message) return;
-
             const chatMessages = document.getElementById('chat-messages');
-            
-            // Add user message
             const userMsg = document.createElement('div');
             userMsg.className = 'message-user p-2 rounded-lg mb-2';
             userMsg.textContent = message;
             chatMessages.appendChild(userMsg);
-
-            // Generate AI response
             const aiMsg = document.createElement('div');
             aiMsg.className = 'message-ai p-2 rounded-lg mb-2';
             aiMsg.textContent = generateAIResponse(message);
             chatMessages.appendChild(aiMsg);
-
             input.value = '';
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
-
         function generateAIResponse(message) {
-            const lowerMessage = message.toLowerCase();
-            
+            const lowerMessage = message.toLowerCase(); 
             for (const [keyword, response] of Object.entries(aiResponses)) {
                 if (keyword !== 'default' && lowerMessage.includes(keyword)) {
                     return response;
                 }
             }
-            
             return aiResponses.default;
         }
-
         function openStudyMaterial(materialId) {
             const material = studyMaterials[materialId];
             if (!material) return;
-
             document.getElementById('study-modal-title').textContent = material.title;
             document.getElementById('study-modal-content').innerHTML = material.content;
             document.getElementById('study-modal').classList.remove('hidden');
@@ -575,12 +500,9 @@ console.log("Image processing simulated successfully!");
         function closeStudyModal() {
             document.getElementById('study-modal').classList.add('hidden');
         }
-
         function runAICode() {
             const codeInput = document.getElementById('code-input').textContent;
             const output = document.getElementById('code-output');
-            
-            // Simulate code execution
             if (codeInput.includes('print')) {
                 const match = codeInput.match(/print\(['"](.*?)['"]\)/);
                 if (match) {
@@ -594,8 +516,6 @@ console.log("Image processing simulated successfully!");
                 output.textContent = 'Code executed! Output depends on your implementation.';
             }
         }
-
-        // Custom message box functions
         let messageBoxTimeout;
         function showMessageBox(message) {
             const messageBox = document.createElement('div');
@@ -603,18 +523,12 @@ console.log("Image processing simulated successfully!");
             messageBox.className = 'fixed bottom-4 right-4 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg text-lg z-[9999] opacity-0 transition-opacity duration-300';
             messageBox.textContent = message;
             document.body.appendChild(messageBox);
-
-            // Animate in
             setTimeout(() => {
                 messageBox.style.opacity = '1';
             }, 10);
-
-            // Clear any existing timeout
             if (messageBoxTimeout) {
                 clearTimeout(messageBoxTimeout);
             }
-
-            // Animate out and remove after 3 seconds
             messageBoxTimeout = setTimeout(() => {
                 messageBox.style.opacity = '0';
                 messageBox.addEventListener('transitionend', () => {
@@ -622,7 +536,6 @@ console.log("Image processing simulated successfully!");
                 }, { once: true });
             }, 3000);
         }
-
         function openNeuralNetworkDemo() {
             showMessageBox('🧠 Neural Network Demo: Visualizing how neural networks process data layer by layer!');
         }
@@ -630,11 +543,9 @@ console.log("Image processing simulated successfully!");
         function openTextAnalyzer() {
             showMessageBox('📝 Text Analyzer: Analyze sentiment, extract entities, and understand text patterns!');
         }
-
         function openImageClassifier() {
             showMessageBox('🖼️ Image Classifier: Upload images and see AI identify objects in real-time!');
         }
-
         function openCodeLab(type) {
             showMessageBox(`🐍 Opening ${type} code lab! Time to get hands-on.`);
         }
