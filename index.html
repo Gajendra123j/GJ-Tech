@@ -779,53 +779,6 @@
         </div>
     </div>
 </div>
-<script>
-function toggleAIChat() {
-    document.querySelector(".ai-chat-content").classList.toggle("hidden");
-}
-async function sendMessage() {
-    const inputField = document.getElementById("userInput");
-    const message = inputField.value.trim();
-    if (!message) return;
-    addMessage(message, "user");
-    inputField.value = "";
-    try {
-        const response = await fetch("https://api.openai.com/v1/chat/completions", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer YOUR_API_KEY" 
-            },
-            body: JSON.stringify({
-                model: "gpt-3.5-turbo",
-                messages: [{ role: "user", content: message }]
-            })
-        });
-        const data = await response.json();
-        const reply = data.choices[0].message.content;
-        addMessage(reply, "ai");
-
-    } catch (error) {
-        addMessage("⚠️ Error connecting to AI.", "ai");
-        console.error(error);
-    }
-}
-function addMessage(text, sender) {
-    const chatBox = document.getElementById("chatMessages");
-    const msgDiv = document.createElement("div");
-
-    if (sender === "user") {
-        msgDiv.className = "bg-gray-700 p-3 rounded-lg text-white text-sm text-right";
-    } else {
-        msgDiv.className = "bg-green-600 p-3 rounded-lg text-white text-sm";
-    }
-
-    msgDiv.textContent = text;
-    chatBox.appendChild(msgDiv);
-    chatBox.scrollTop = chatBox.scrollHeight;
-}
-</script>
-<script src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSow-EMZ_O6mOdG4oi6ySeR42z_1IoyRcR3Qw&s" crossorigin="anonymous"></script>
     <header class="header">
         <nav class="nav container" aria-label="Main">
             <div class="logo">GJ Tech</div>
