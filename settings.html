@@ -1,77 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Structure</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Basic styling for the body */
-        body {
-            font-family: "Inter", sans-serif; /* Use Inter font */
-            margin: 0; /* Remove default body margin */
-            padding: 0; /* Remove default body padding */
-            background-color: #f7f7f7; /* Light grey background */
-            color: #333; /* Default text color */
-        }
-
-        /* Styling for the navigation bar */
-        nav {
-            background-color: #ffffff; /* White background for nav */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-            padding: 1rem; /* Padding inside the nav */
-        }
-        /* Styling for the unordered list within the nav */
-        nav ul {
-            list-style: none; /* Remove bullet points */
-            padding: 0; /* Remove default list padding */
-            margin: 0; /* Remove default list margin */
-            display: flex; /* Arrange list items horizontally */
-            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
-            justify-content: center; /* Center the navigation items */
-            gap: 1.5rem; /* Space between navigation items */
-        }
-        /* Styling for each list item */
-        nav ul li {
-            display: inline-block; /* Ensure items are inline blocks */
-        }
-        /* Styling for the links within the list items */
-        nav ul li a {
-            text-decoration: none; /* Remove underline from links */
-            color: #4a5568; /* Grey text color */
-            font-weight: 500; /* Medium font weight */
-            padding: 0.5rem 1rem; /* Padding around the link text */
-            border-radius: 0.375rem; /* Rounded corners for links */
-            transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out; /* Smooth transition */
-        }
-        /* Hover effect for links */
-        nav ul li a:hover {
-            color: #2b6cb0; /* Darker blue on hover */
-            background-color: #ebf8ff; /* Light blue background on hover */
-        }
-        /* Styling for the main content area */
-        .content {
-            padding: 2rem; /* Padding around the content */
-            text-align: center; /* Center the content text */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Job - Job Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f8f9fb; 
+      color: #333; 
+    }
+    header {
+      background: #1a1a1a; 
+      padding: 12px 20px;
+      color: #fff; 
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      font-size: 18px;
+    }
+    header a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+    header a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      display: flex;
+    }
+    .sidebar {
+      width: 250px;
+      background: #fff; 
+      padding: 20px;
+      border-right: 1px solid #ddd; 
+      height: 100vh; 
+    }
+    .sidebar h3 {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #666; 
+    }
+    .sidebar ul {
+      list-style: none; 
+      padding: 0;
+    }
+    .sidebar ul li {
+      padding: 8px 0;
+      font-size: 14px;
+      cursor: pointer; 
+    }
+    .sidebar ul li:hover {
+      color: #0073e6; 
+    }
+    .sidebar ul li a {
+      text-decoration: none;
+      color: inherit; 
+      display: block; 
+    }
+    .sidebar ul li a:hover {
+      color: #0073e6; 
+    }
+    .content {
+      flex: 1; 
+      padding: 20px;
+    }
+    .card {
+      background: #fff; 
+      padding: 20px;
+      border-radius: 6px; 
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+    }
+    label {
+      display: block; 
+      margin: 10px 0 5px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    input[type="text"], 
+    input[type="date"], 
+    input[type="number"], 
+    select {
+      width: 100%; 
+      padding: 10px;
+      border: 1px solid #ddd; 
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .radio-group {
+      margin: 10px 0;
+    }
+    .radio-group label {
+      font-weight: normal; 
+      margin-right: 15px;
+    }
+    .map-options {
+      display: flex; 
+      gap: 15px; 
+      margin: 15px 0;
+    }
+    .map-option {
+      flex: 1;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .map-option.selected {
+      border-color: #0073e6; 
+      background: #eef6ff;
+    }
+    .actions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-end; 
+      gap: 10px; 
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .cancel {
+      background: #ddd; 
+    }
+    .save {
+      background: #0073e6; 
+      color: #fff; 
+    }
+  </style>
 </head>
 <body>
-    <header class="bg-slate-800 text-white text-center py-3 text-sm md:text-lg sticky top-0 z-50 shadow main-nav">
-        <div class="container mx-auto flex flex-wrap justify-center gap-x-3 md:gap-x-6">
-            <a href="index.html" class="hover:underline">Home 🏡</a>
-            <a href="blogs.html" class="hover:underline">Blogs 👩‍💻</a>
-            <a href="about.html" class="hover:underline">About 🎓</a>
-            <a href="contact.html" class="hover:underline">Contact 📶</a>
-            <a href="careergoals.html" class="hover:underline">Career Goals and Opportunities</a>
-            <a href="CoursesinManagement.html" class="hover:underline">Courses in Management</a>
-            <a href="Registration.html" class="hover:underline">Registration-in</a>
-            <a href="login.html" class="hover:underline">Login-in</a>
-        </div>
-    </header>
-    <div class="content">
-        <h1 class="text-3xl font-bold mb-4">Gj Tech</h1>
-        <p>2025 GJ Tech Pvt. Ltd. 👩‍💻...</p>
+<header>
+  <h1> GJ Tech-Job Portal</h1>
+  <div>
+    <li><a href="index.html" class="hover:underline hover:text-blue-200">Profile🏡</a></li>
+  </div>
+</header>
+<!-- Main container for layout, splits into sidebar and content -->
+<div class="container">
+  <!-- Sidebar for navigation links -->
+  <div class="sidebar">
+    <h3>Edit Job</h3>
+    <ul>
+        <li><a href="index.html" class="hover:underline hover:text-blue-200">Home 🏡</a></li>
+        <li><a href="blogs.html" class="hover:underline hover:text-blue-200">Study Hub 👩‍💻</a></li>
+        <li><a href="about.html" class="hover:underline hover:text-blue-200">About 🎓</a></li>
+        <li><a href="contact.html" class="hover:underline hover:text-blue-200">Explore Our Courses</a></li>
+        <li><a href="careergoals.html" class="hover:underline hover:text-blue-200">Career Goals</a></li>
+        <li><a href="CoursesinManagement.html" class="hover:underline hover:text-blue-200">Course Assignment Test 🌎</a></li>
+        <li><a href="profile.html" class="hover:underline hover:text-blue-200">Profile Edit</a></li>
+        <li><a href="privacy.html" class="hover:underline hover:text-blue-200">Privacy</a></li>
     </div>
+  <div class="content">
+    <div class="card">
+      <h2>Getting started</h2>
+      <form id="jobForm">
+        <label>Company Name</label>
+        <input type="text" value="Champion Solutions" readonly>
+        <label>Job Title *</label>
+        <input type="text" id="jobTitle" placeholder="Enter job title" required>
+        <label>Where will an employee report to work? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="report" value="specific" checked> Employees will report to a specific address</label>
+          <label><input type="radio" name="report" value="remote"> Employees will not report to a specific address</label>
+        </div>
+        <label>How do you want your location displayed to job seekers? *</label>
+        <div class="map-options">
+          <div class="map-option selected" onclick="selectMapOption(this)">Hide street address</div>
+          <div class="map-option" onclick="selectMapOption(this)">Show street address</div>
+        </div>
+        <label>Enter a street address *</label>
+        <input type="text" id="streetAddress" placeholder="Enter street address" required>
+        <div class="actions">
+          <button type="button" class="cancel" onclick="resetForm()">Cancel</button>
+          <button type="submit" class="save">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  function selectMapOption(element) {
+    document.querySelectorAll('.map-option').forEach(opt => {
+      opt.classList.remove('selected');
+    });
+    element.classList.add('selected');
+  }
+  function resetForm() {
+    document.getElementById("jobForm").reset(); 
+    showCustomMessageBox("Form has been reset!");
+  }
+  document.getElementById("jobForm").addEventListener("submit", function(e) {
+    e.preventDefault(); 
+    let title = document.getElementById("jobTitle").value;
+    let address = document.getElementById("streetAddress").value; 
+    showCustomMessageBox("Job Saved!\nTitle: " + title + "\nAddress: " + address);
+  });
+  function showCustomMessageBox(message) {
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    `;
+    const messageBox = document.createElement('div');
+    messageBox.style.cssText = `
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+    `;
+    const messageContent = document.createElement('p');
+    messageContent.innerText = message;
+    messageContent.style.whiteSpace = 'pre-wrap'; 
+    messageBox.appendChild(messageContent);
+    const closeButton = document.createElement('button');
+    closeButton.innerText = 'OK';
+    closeButton.style.cssText = `
+      background: #0073e6;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 15px;
+    `;
+    closeButton.onclick = () => document.body.removeChild(overlay);
+    messageBox.appendChild(closeButton);
+    overlay.appendChild(messageBox);
+    document.body.appendChild(overlay);
+  }
+</script>
 </body>
 </html>
