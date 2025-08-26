@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GJ Tech Pvt Ltd</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -163,7 +162,6 @@
         <h1 class="text-3xl font-bold text-center mb-8 text-indigo-700">GJ Tech Pvt Ltd 🚀</h1>
 
         <form id="profileForm">
-            <!-- Personal Details -->
             <section class="mb-8">
                 <h2 class="section-header">Personal Details</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -195,17 +193,14 @@
                         <label for="profilePhotoUrl">Profile Photo URL</label>
                         <input type="url" id="profilePhotoUrl" name="profilePhotoUrl" placeholder="https://example.com/my-photo.jpg">
                     </div>
-                    <!-- Profile Photo Preview -->
                     <div class="form-group md:col-span-2 photo-preview-container">
                         <img id="profilePhotoPreview" src="" alt="Profile Photo Preview" class="hidden">
                         <p id="noPhotoText" class="text-gray-500 text-sm hidden">No photo selected</p>
                     </div>
                 </div>
             </section>
-            <!-- Data Engineering Specifics -->
             <section class="mb-8">
                 <h2 class="section-header">GJ Tech</h2>
-                <!-- Skills -->
                 <div class="mb-6">
                     <label class="block text-lg font-semibold text-gray-800 mb-3">Skills </label>
                     <div id="skillsList" class="item-list">
@@ -216,7 +211,6 @@
                     </div>
                     <button type="button" class="add-button" onclick="addItem('skills')">Add Skill</button>
                 </div>
-                <!-- Tools -->
                 <div class="mb-6">
                     <label class="block text-lg font-semibold text-gray-800 mb-3">Tools </label>
                     <div id="toolsList" class="item-list">
@@ -227,7 +221,6 @@
                     </div>
                     <button type="button" class="add-button" onclick="addItem('tools')">Add Tool</button>
                 </div>
-                <!-- Certifications -->
                 <div class="mb-6">
                     <label class="block text-lg font-semibold text-gray-800 mb-3">Certifications </label>
                     <div id="certificationsList" class="item-list">
@@ -238,7 +231,6 @@
                     </div>
                     <button type="button" class="add-button" onclick="addItem('certifications')">Add Certification</button>
                 </div>
-                <!-- Experience -->
                 <div class="mb-6">
                     <label class="block text-lg font-semibold text-gray-800 mb-3">Experience </label>
                     <div id="experienceList" class="item-list space-y-4">
@@ -252,7 +244,6 @@
                     </div>
                     <button type="button" class="add-button" onclick="addItem('experience')">Add Experience</button>
                 </div>
-                <!-- Projects -->
                 <div class="mb-6">
                     <label class="block text-lg font-semibold text-gray-800 mb-3">Projects (Project Name, Technologies, Description)</label>
                     <div id="projectsList" class="item-list space-y-4">
@@ -266,7 +257,6 @@
                     <button type="button" class="add-button" onclick="addItem('projects')">Add Project</button>
                 </div>
             </section>
-            <!-- Action Buttons -->
             <div class="flex justify-end space-x-4 mt-8">
                 <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200 ease-in-out shadow-md">
                     Save Profile
@@ -291,10 +281,12 @@
             // Add input listener for profile photo URL to show preview instantly
             document.getElementById('profilePhotoUrl').addEventListener('input', updateProfilePhotoPreview);
         });
+
         document.getElementById('profileForm').addEventListener('submit', function(event) {
             event.preventDefault();
             saveProfileData();
         });
+
         document.getElementById('clearButton').addEventListener('click', function() {
             if (confirm("Are you sure you want to clear all profile data? This action cannot be undone.")) {
                 localStorage.removeItem('dataEngineerProfile');
@@ -324,286 +316,227 @@
             }, 3000); // Hide after 3 seconds
         }
 
-        // Function to add a new item to a dynamic list
-        function addItem(listId) {
-            const list = document.getElementById(listId + 'List');
-            let newItemDiv;
+        // Function to save form data to Local Storage
+        function saveProfileData() {
+            const formData = new FormData(document.getElementById('profileForm'));
+            const data = {};
 
-            if (listId === 'experience') {
-                newItemDiv = document.createElement('div');
-                // Updated background for complex item add
-                newItemDiv.className = 'p-4 border border-gray-200 rounded-lg bg-gray-50';
-                newItemDiv.innerHTML = `
-                    <input type="text" name="experience_title" placeholder="Job Title" class="mb-2">
-                    <input type="text" name="experience_company" placeholder="Company Name" class="mb-2">
-                    <input type="text" name="experience_dates" placeholder="Start Date - End Date (e.g., Jan 2020 - Dec 2023)" class="mb-2">
-                    <textarea name="experience_description" placeholder="Key responsibilities and achievements" rows="3"></textarea>
-                    <button type="button" class="remove-button mt-2" onclick="removeItem(this, true)">Remove</button>
-                `;
-            } else if (listId === 'projects') {
-                newItemDiv = document.createElement('div');
-                // Updated background for complex item add
-                newItemDiv.className = 'p-4 border border-gray-200 rounded-lg bg-gray-50';
-                newItemDiv.innerHTML = `
-                    <input type="text" name="project_name" placeholder="Project Name" class="mb-2">
-                    <input type="text" name="project_technologies" placeholder="Technologies Used (comma-separated)" class="mb-2">
-                    <textarea name="project_description" placeholder="Project description and your role" rows="3"></textarea>
-                    <button type="button" class="remove-button mt-2" onclick="removeItem(this, true)">Remove</button>
-                `;
-            } else {
-                newItemDiv = document.createElement('div');
-                newItemDiv.innerHTML = `
-                    <input type="text" name="${listId}" placeholder="Add a ${listId.slice(0, -1) || listId}" class="flex-grow">
-                    <button type="button" class="remove-button" onclick="removeItem(this)">Remove</button>
-                `;
+            // Get simple text fields
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // Get dynamic list items (skills, tools, certifications)
+            data.skills = getDynamicListItems('skills');
+            data.tools = getDynamicListItems('tools');
+            data.certifications = getDynamicListItems('certifications');
+
+            // Get complex list items (experience, projects)
+            data.experience = getComplexListItems('experience');
+            data.projects = getComplexListItems('projects');
+
+            localStorage.setItem('dataEngineerProfile', JSON.stringify(data));
+            showToast('Profile saved successfully! ✨');
+        }
+
+        // Function to load data from Local Storage
+        function loadProfileData() {
+            const storedData = localStorage.getItem('dataEngineerProfile');
+            if (storedData) {
+                const data = JSON.parse(storedData);
+                const form = document.getElementById('profileForm');
+
+                // Populate simple text fields
+                for (const key in data) {
+                    if (form.elements[key] && typeof form.elements[key] !== 'object') {
+                        form.elements[key].value = data[key];
+                    }
+                }
+
+                // Populate dynamic lists
+                populateDynamicList('skillsList', 'skills', data.skills, false);
+                populateDynamicList('toolsList', 'tools', data.tools, false);
+                populateDynamicList('certificationsList', 'certifications', data.certifications, false);
+                populateDynamicList('experienceList', 'experience', data.experience, true);
+                populateDynamicList('projectsList', 'projects', data.projects, true);
+
+                // Update photo preview
+                updateProfilePhotoPreview();
+            }
+        }
+
+        // Function to get data from dynamic lists
+        function getDynamicListItems(listName) {
+            const list = document.getElementById(listName + 'List');
+            const items = [];
+            list.querySelectorAll('input').forEach(input => {
+                if (input.value.trim() !== '') {
+                    items.push(input.value.trim());
+                }
+            });
+            return items;
+        }
+
+        // Function to get data from complex lists (Experience, Projects)
+        function getComplexListItems(listName) {
+            const list = document.getElementById(listName + 'List');
+            const items = [];
+            list.querySelectorAll('.item-list > div').forEach(itemDiv => {
+                const item = {};
+                if (listName === 'experience') {
+                    item.title = itemDiv.querySelector('input[name="experience_title"]').value;
+                    item.company = itemDiv.querySelector('input[name="experience_company"]').value;
+                    item.dates = itemDiv.querySelector('input[name="experience_dates"]').value;
+                    item.description = itemDiv.querySelector('textarea[name="experience_description"]').value;
+                } else if (listName === 'projects') {
+                    item.name = itemDiv.querySelector('input[name="project_name"]').value;
+                    item.technologies = itemDiv.querySelector('input[name="project_technologies"]').value;
+                    item.description = itemDiv.querySelector('textarea[name="project_description"]').value;
+                }
+                if (Object.values(item).some(val => val.trim() !== '')) {
+                    items.push(item);
+                }
+            });
+            return items;
+        }
+
+        // Function to populate dynamic lists from loaded data
+        function populateDynamicList(listId, name, data, isComplex) {
+            const list = document.getElementById(listId);
+            list.innerHTML = ''; // Clear current list
+
+            if (data && data.length > 0) {
+                data.forEach(item => {
+                    const newItemDiv = document.createElement('div');
+                    if (!isComplex) {
+                        newItemDiv.innerHTML = `<input type="text" name="${name}" placeholder="Add a ${name.slice(0, -1)}" class="flex-grow" value="${item}">
+                                                <button type="button" class="remove-button" onclick="removeItem(this)">Remove</button>`;
+                    } else {
+                        if (name === 'experience') {
+                            newItemDiv.className = "p-4 border border-gray-200 rounded-lg bg-gray-50";
+                            newItemDiv.innerHTML = `<input type="text" name="experience_title" placeholder="Job Title" class="mb-2" value="${item.title || ''}">
+                                                    <input type="text" name="experience_company" placeholder="Company Name" class="mb-2" value="${item.company || ''}">
+                                                    <input type="text" name="experience_dates" placeholder="Start Date - End Date (e.g., Jan 2020 - Dec 2023)" class="mb-2" value="${item.dates || ''}">
+                                                    <textarea name="experience_description" placeholder="Key responsibilities and achievements" rows="3">${item.description || ''}</textarea>
+                                                    <button type="button" class="remove-button mt-2" onclick="removeItem(this, true)">Remove</button>`;
+                        } else if (name === 'projects') {
+                            newItemDiv.className = "p-4 border border-gray-200 rounded-lg bg-gray-50";
+                            newItemDiv.innerHTML = `<input type="text" name="project_name" placeholder="Project Name" class="mb-2" value="${item.name || ''}">
+                                                    <input type="text" name="project_technologies" placeholder="Technologies Used (comma-separated)" class="mb-2" value="${item.technologies || ''}">
+                                                    <textarea name="project_description" placeholder="Project description and your role" rows="3">${item.description || ''}</textarea>
+                                                    <button type="button" class="remove-button mt-2" onclick="removeItem(this, true)">Remove</button>`;
+                        }
+                    }
+                    list.appendChild(newItemDiv);
+                });
+            }
+
+            // Ensure there is always at least one empty input field
+            if (list.children.length === 0) {
+                addItem(name);
+            }
+            updateRemoveButtons(listId);
+        }
+
+        // Function to add a new item to a list (e.g., a new skill, a new experience)
+        function addItem(listName) {
+            const list = document.getElementById(listName + 'List');
+            const newItemDiv = document.createElement('div');
+
+            if (listName === 'skills' || listName === 'tools' || listName === 'certifications') {
+                newItemDiv.innerHTML = `<input type="text" name="${listName}" placeholder="Add a ${listName.slice(0, -1)}" class="flex-grow">
+                                        <button type="button" class="remove-button" onclick="removeItem(this)">Remove</button>`;
+            } else if (listName === 'experience') {
+                newItemDiv.className = "p-4 border border-gray-200 rounded-lg bg-gray-50";
+                newItemDiv.innerHTML = `<input type="text" name="experience_title" placeholder="Job Title" class="mb-2">
+                                        <input type="text" name="experience_company" placeholder="Company Name" class="mb-2">
+                                        <input type="text" name="experience_dates" placeholder="Start Date - End Date (e.g., Jan 2020 - Dec 2023)" class="mb-2">
+                                        <textarea name="experience_description" placeholder="Key responsibilities and achievements" rows="3"></textarea>
+                                        <button type="button" class="remove-button mt-2" onclick="removeItem(this, true)">Remove</button>`;
+            } else if (listName === 'projects') {
+                newItemDiv.className = "p-4 border border-gray-200 rounded-lg bg-gray-50";
+                newItemDiv.innerHTML = `<input type="text" name="project_name" placeholder="Project Name" class="mb-2">
+                                        <input type="text" name="project_technologies" placeholder="Technologies Used (comma-separated)" class="mb-2">
+                                        <textarea name="project_description" placeholder="Project description and your role" rows="3"></textarea>
+                                        <button type="button" class="remove-button mt-2" onclick="removeItem(this, true)">Remove</button>`;
             }
             list.appendChild(newItemDiv);
             updateRemoveButtons(list.id);
         }
 
-        // Function to remove an item from a dynamic list
+        // Function to remove an item from a list
         function removeItem(button, isComplex = false) {
-            const parent = isComplex ? button.closest('.p-4') : button.parentNode;
-            const list = parent.parentNode;
-            list.removeChild(parent);
+            const list = isComplex ? button.closest('.item-list') : button.parentNode.parentNode;
+            const item = isComplex ? button.parentNode : button.parentNode;
+            list.removeChild(item);
+
+            // If the list is now empty, add a new empty item
+            if (list.children.length === 0) {
+                addItem(list.id.replace('List', ''));
+            }
             updateRemoveButtons(list.id);
         }
 
-        // Update visibility of remove buttons based on item count
+        // Function to hide remove buttons if there's only one item
         function updateRemoveButtons(listId) {
             const list = document.getElementById(listId);
-            const items = list.children;
-            if (items.length <= 1) {
-                // Hide all remove buttons if there's only one item
-                Array.from(items).forEach(item => {
-                    const removeBtn = item.querySelector('.remove-button');
-                    if (removeBtn) removeBtn.classList.add('hidden');
-                });
+            const removeButtons = list.querySelectorAll('.remove-button');
+            if (removeButtons.length <= 1) {
+                removeButtons.forEach(btn => btn.classList.add('hidden'));
             } else {
-                // Show all remove buttons if there are multiple items
-                Array.from(items).forEach(item => {
-                    const removeBtn = item.querySelector('.remove-button');
-                    if (removeBtn) removeBtn.classList.remove('hidden');
-                });
+                removeButtons.forEach(btn => btn.classList.remove('hidden'));
             }
         }
 
-        // Reset dynamic list to a single empty input
-        function resetDynamicList(listId, nameAttribute, placeholder, isComplex) {
-            const list = document.getElementById(listId);
-            list.innerHTML = ''; // Clear existing items
-            let newItemDiv;
+        // Function to update the profile photo preview
+        function updateProfilePhotoPreview() {
+            const url = document.getElementById('profilePhotoUrl').value;
+            const preview = document.getElementById('profilePhotoPreview');
+            const noPhotoText = document.getElementById('noPhotoText');
+            if (url) {
+                preview.src = url;
+                preview.classList.remove('hidden');
+                noPhotoText.classList.add('hidden');
+                preview.onload = () => {
+                    preview.classList.remove('hidden');
+                    noPhotoText.classList.add('hidden');
+                };
+                preview.onerror = () => {
+                    preview.classList.add('hidden');
+                    noPhotoText.classList.remove('hidden');
+                };
+            } else {
+                preview.classList.add('hidden');
+                noPhotoText.classList.remove('hidden');
+            }
+        }
 
-            if (isComplex) {
-                newItemDiv = document.createElement('div');
-                // Updated background for complex item reset
-                newItemDiv.className = 'p-4 border border-gray-200 rounded-lg bg-gray-50';
-                if (nameAttribute === 'experience') {
-                     newItemDiv.innerHTML = `
+        // Function to reset a dynamic list to its initial state
+        function resetDynamicList(listId, name, placeholder, isComplex) {
+            const list = document.getElementById(listId);
+            list.innerHTML = '';
+            const newItemDiv = document.createElement('div');
+            if (!isComplex) {
+                newItemDiv.innerHTML = `<input type="text" name="${name}" placeholder="${placeholder}" class="flex-grow">
+                                        <button type="button" class="remove-button hidden" onclick="removeItem(this)">Remove</button>`;
+            } else {
+                newItemDiv.className = "p-4 border border-gray-200 rounded-lg bg-gray-50";
+                const inputFields = {
+                    'experience': `
                         <input type="text" name="experience_title" placeholder="Job Title" class="mb-2">
                         <input type="text" name="experience_company" placeholder="Company Name" class="mb-2">
                         <input type="text" name="experience_dates" placeholder="Start Date - End Date (e.g., Jan 2020 - Dec 2023)" class="mb-2">
                         <textarea name="experience_description" placeholder="Key responsibilities and achievements" rows="3"></textarea>
-                        <button type="button" class="remove-button mt-2 hidden" onclick="removeItem(this, true)">Remove</button>
-                    `;
-                } else if (nameAttribute === 'projects') {
-                     newItemDiv.innerHTML = `
+                    `,
+                    'projects': `
                         <input type="text" name="project_name" placeholder="Project Name" class="mb-2">
                         <input type="text" name="project_technologies" placeholder="Technologies Used (comma-separated)" class="mb-2">
                         <textarea name="project_description" placeholder="Project description and your role" rows="3"></textarea>
-                        <button type="button" class="remove-button mt-2 hidden" onclick="removeItem(this, true)">Remove</button>
-                    `;
-                }
-            } else {
-                newItemDiv = document.createElement('div');
-                newItemDiv.innerHTML = `
-                    <input type="text" name="${nameAttribute}" placeholder="${placeholder}" class="flex-grow">
-                    <button type="button" class="remove-button hidden" onclick="removeItem(this)">Remove</button>
-                `;
+                    `
+                };
+                newItemDiv.innerHTML = `${inputFields[name]}<button type="button" class="remove-button mt-2 hidden" onclick="removeItem(this, true)">Remove</button>`;
             }
             list.appendChild(newItemDiv);
-            updateRemoveButtons(listId); // Ensure remove button is hidden for single item
-        }
-
-
-        // Function to save profile data to localStorage
-        function saveProfileData() {
-            const formData = new FormData(document.getElementById('profileForm'));
-            const profile = {};
-
-            // Personal Details
-            profile.name = formData.get('name');
-            profile.email = formData.get('email');
-            profile.phone = formData.get('phone');
-            profile.linkedin = formData.get('linkedin');
-            profile.github = formData.get('github');
-            profile.resumeUrl = formData.get('resumeUrl'); // New field
-            profile.profilePhotoUrl = formData.get('profilePhotoUrl'); // New field
-
-            // Dynamic Lists (Skills, Tools, Certifications)
-            profile.skills = formData.getAll('skills').filter(item => item.trim() !== '');
-            profile.tools = formData.getAll('tools').filter(item => item.trim() !== '');
-            profile.certifications = formData.getAll('certifications').filter(item => item.trim() !== '');
-
-            // Experience
-            const experienceEntries = [];
-            const experienceTitles = formData.getAll('experience_title');
-            const experienceCompanies = formData.getAll('experience_company');
-            const experienceDates = formData.getAll('experience_dates');
-            const experienceDescriptions = formData.getAll('experience_description');
-
-            for (let i = 0; i < experienceTitles.length; i++) {
-                if (experienceTitles[i].trim() !== '' || experienceCompanies[i].trim() !== '' || experienceDates[i].trim() !== '' || experienceDescriptions[i].trim() !== '') {
-                    experienceEntries.push({
-                        title: experienceTitles[i],
-                        company: experienceCompanies[i],
-                        dates: experienceDates[i],
-                        description: experienceDescriptions[i]
-                    });
-                }
-            }
-            profile.experience = experienceEntries;
-
-            // Projects
-            const projectEntries = [];
-            const projectNames = formData.getAll('project_name');
-            const projectTechnologies = formData.getAll('project_technologies');
-            const projectDescriptions = formData.getAll('project_description');
-
-            for (let i = 0; i < projectNames.length; i++) {
-                if (projectNames[i].trim() !== '' || projectTechnologies[i].trim() !== '' || projectDescriptions[i].trim() !== '') {
-                    projectEntries.push({
-                        name: projectNames[i],
-                        technologies: projectTechnologies[i],
-                        description: projectDescriptions[i]
-                    });
-                }
-            }
-            profile.projects = projectEntries;
-
-            localStorage.setItem('dataEngineerProfile', JSON.stringify(profile));
-            showToast('Profile data saved successfully!');
-            // Update photo preview after saving
-            updateProfilePhotoPreview();
-        }
-
-        // Function to load profile data from localStorage
-        function loadProfileData() {
-            const storedProfile = localStorage.getItem('dataEngineerProfile');
-            if (storedProfile) {
-                const profile = JSON.parse(storedProfile);
-
-                // Personal Details
-                document.getElementById('name').value = profile.name || '';
-                document.getElementById('email').value = profile.email || '';
-                document.getElementById('phone').value = profile.phone || '';
-                document.getElementById('linkedin').value = profile.linkedin || '';
-                document.getElementById('github').value = profile.github || '';
-                document.getElementById('resumeUrl').value = profile.resumeUrl || ''; // New field
-                document.getElementById('profilePhotoUrl').value = profile.profilePhotoUrl || ''; // New field
-
-                // Update photo preview immediately after loading
-                updateProfilePhotoPreview(profile.profilePhotoUrl);
-
-
-                // Dynamic Lists (Skills, Tools, Certifications)
-                loadDynamicList('skillsList', 'skills', profile.skills);
-                loadDynamicList('toolsList', 'tools', profile.tools);
-                loadDynamicList('certificationsList', 'certifications', profile.certifications);
-
-                // Experience
-                loadComplexList('experienceList', profile.experience, 'experience');
-
-                // Projects
-                loadComplexList('projectsList', profile.projects, 'projects');
-
-                showToast('Profile data loaded!');
-            }
-        }
-
-        // Helper function to load simple dynamic lists
-        function loadDynamicList(listId, nameAttribute, items) {
-            const list = document.getElementById(listId);
-            list.innerHTML = ''; // Clear existing inputs
-
-            if (items && items.length > 0) {
-                items.forEach(item => {
-                    const newItemDiv = document.createElement('div');
-                    newItemDiv.innerHTML = `
-                        <input type="text" name="${nameAttribute}" value="${item || ''}" class="flex-grow">
-                        <button type="button" class="remove-button" onclick="removeItem(this)">Remove</button>
-                    `;
-                    list.appendChild(newItemDiv);
-                });
-            } else {
-                // Add a single empty input if no items
-                addItem(nameAttribute);
-            }
-            updateRemoveButtons(listId);
-        }
-
-        // Helper function to load complex dynamic lists (experience, projects)
-        function loadComplexList(listId, items, type) {
-            const list = document.getElementById(listId);
-            list.innerHTML = ''; // Clear existing inputs
-
-            if (items && items.length > 0) {
-                items.forEach(item => {
-                    const newItemDiv = document.createElement('div');
-                    // Ensure the class is applied correctly on load
-                    newItemDiv.className = 'p-4 border border-gray-200 rounded-lg bg-gray-50';
-                    if (type === 'experience') {
-                        newItemDiv.innerHTML = `
-                            <input type="text" name="experience_title" placeholder="Job Title" value="${item.title || ''}" class="mb-2">
-                            <input type="text" name="experience_company" placeholder="Company Name" value="${item.company || ''}" class="mb-2">
-                            <input type="text" name="experience_dates" placeholder="Start Date - End Date (e.g., Jan 2020 - Dec 2023)" class="mb-2">
-                            <textarea name="experience_description" placeholder="Key responsibilities and achievements" rows="3">${item.description || ''}</textarea>
-                            <button type="button" class="remove-button mt-2" onclick="removeItem(this, true)">Remove</button>
-                        `;
-                    } else if (type === 'projects') {
-                        newItemDiv.innerHTML = `
-                            <input type="text" name="project_name" placeholder="Project Name" value="${item.name || ''}" class="mb-2">
-                            <input type="text" name="project_technologies" placeholder="Technologies Used (comma-separated)" value="${item.technologies || ''}" class="mb-2">
-                            <textarea name="project_description" placeholder="Project description and your role" rows="3">${item.description || ''}</textarea>
-                            <button type="button" class="remove-button mt-2" onclick="removeItem(this, true)">Remove</button>
-                        `;
-                    }
-                    list.appendChild(newItemDiv);
-                });
-            } else {
-                // Add a single empty input if no items
-                addItem(type);
-            }
-            updateRemoveButtons(listId);
-        }
-
-        // Function to update the profile photo preview
-        function updateProfilePhotoPreview(urlFromLoad) {
-            const photoInput = document.getElementById('profilePhotoUrl');
-            const photoPreview = document.getElementById('profilePhotoPreview');
-            const noPhotoText = document.getElementById('noPhotoText');
-            const url = urlFromLoad || photoInput.value;
-
-            if (url && url.trim() !== '') {
-                photoPreview.src = url;
-                photoPreview.classList.remove('hidden');
-                noPhotoText.classList.add('hidden');
-                // Handle image loading errors
-                photoPreview.onerror = () => {
-                    photoPreview.classList.add('hidden');
-                    photoPreview.src = ''; // Clear src to prevent broken image icon
-                    noPhotoText.classList.remove('hidden');
-                    noPhotoText.textContent = "Could not load image. Check URL.";
-                };
-                photoPreview.onload = () => {
-                    noPhotoText.classList.add('hidden'); // Hide any error messages if load succeeds
-                };
-            } else {
-                photoPreview.classList.add('hidden');
-                photoPreview.src = '';
-                noPhotoText.classList.remove('hidden');
-                noPhotoText.textContent = "No photo selected";
-            }
         }
     </script>
 </body>
