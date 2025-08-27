@@ -9,10 +9,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            --primary-bg: #000000;
-            --secondary-bg: #1A1A1A;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary-bg: black;
+            --secondary-bg:green;
+            --glass-bg: blue,red;
+            --glass-border: gold;
             --text-white: #FFFFFF;
             --text-light: #F0F0F0;
             --highlight-color: #BDBDBD;
@@ -36,8 +36,6 @@
             overflow-x: hidden;
             color: var(--text-white);
         }
-        
-        /* Image Gallery Styles */
         .image-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -88,8 +86,6 @@
             font-size: 0.9rem;
             opacity: 0.9;
         }
-        
-        /* Job Opportunities Styles */
         .job-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
             border-radius: 15px;
@@ -200,7 +196,6 @@
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
-        
         .glass-container {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
@@ -308,7 +303,6 @@
             font-size: 0.9rem;
             margin-top: 0.5rem;
         }
-        
         .skills-marquee-container {
             width: 100%;
             overflow: hidden;
@@ -364,7 +358,7 @@
             margin: 2rem 0;
         }
         .project-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: white;
             border-radius: 15px;
             padding: 1.5rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -472,7 +466,6 @@
             <i class="fas fa-envelope"></i>
         </button>
     </div>
-    
     <main class="container mx-auto px-4 py-12" id="main-content">
         <section class="glass-container text-center mb-12">
             <div class="profile-avatar mb-6">
@@ -488,10 +481,7 @@
                 <span>AI-Powered Developer</span>
             </div>
         </section>
-        
         <hr class="my-10 border-t-2 border-white/20">
-        
-        <!-- New Image Gallery Section -->
         <section class="glass-container my-8" id="gallery">
             <h2 class="section-title">Project Gallery</h2>
             <div class="image-gallery">
@@ -539,9 +529,7 @@
                 </div>
             </div>
         </section>
-        
         <hr class="my-10 border-t-2 border-white/20">
-        
         <section class="glass-container my-8">
             <h2 class="section-title">About Me</h2>
             <div class="text-center max-w-4xl mx-auto">
@@ -556,10 +544,7 @@
                 </p>
             </div>
         </section>
-        
         <hr class="my-10 border-t-2 border-white/20">
-        
-        <!-- New Job Opportunities Section -->
         <section class="glass-container my-8" id="jobs">
             <h2 class="section-title">Career Opportunities</h2>
             <div class="projects-grid">
@@ -577,22 +562,20 @@
                         Apply Now
                     </a>
                 </div>
-                
                 <div class="job-card">
                     <h3 class="job-title">AI/ML Engineer</h3>
                     <p class="job-company">GJ Tech Pvt. Ltd.</p>
                     <p class="job-location">📍 Remote / Hybrid</p>
                     <div class="job-skills">
                         <span class="job-skill-tag">Python</span>
-                        <span class="job-skill-tag">TensorFlow</span>
-                        <span class="job-skill-tag">PyTorch</span>
+                        <span class="job-skill-tag">JavaScript</span>
+                        <span class="job-skill-tag">Html,css,</span>
                         <span class="job-skill-tag">Data Science</span>
                     </div>
                     <a href="mailto:gajendras0438@gmail.com?subject=Application for AI/ML Engineer Position" class="job-apply-btn">
                         Apply Now
                     </a>
                 </div>
-                
                 <div class="job-card">
                     <h3 class="job-title">Content Creator</h3>
                     <p class="job-company">GJ Tech Pvt. Ltd.</p>
@@ -607,7 +590,6 @@
                         Apply Now
                     </a>
                 </div>
-                
                 <div class="job-card">
                     <h3 class="job-title">Internship Program</h3>
                     <p class="job-company">GJ Tech Pvt. Ltd.</p>
@@ -622,7 +604,6 @@
                         Apply Now
                     </a>
                 </div>
-                
                 <div class="job-card">
                     <h3 class="job-title">Mobile App Developer</h3>
                     <p class="job-company">GJ Tech Pvt. Ltd.</p>
@@ -637,7 +618,6 @@
                         Apply Now
                     </a>
                 </div>
-                
                 <div class="job-card">
                     <h3 class="job-title">Cloud Solutions Architect</h3>
                     <p class="job-company">GJ Tech Pvt. Ltd.</p>
@@ -653,14 +633,11 @@
                     </a>
                 </div>
             </div>
-            
             <div class="text-center mt-8">
                 <p class="text-white mb-4">Don't see a role that fits? Email us your resume at gajendras0438@gmail.com and tell us how you can contribute!</p>
             </div>
         </section>
-        
         <hr class="my-10 border-t-2 border-white/20">
-        
         <section class="glass-container my-8">
             <h2 class="section-title">My Vision</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
@@ -681,9 +658,7 @@
                 </div>
             </div>
         </section>
-        
         <hr class="my-10 border-t-2 border-white/20">
-        
         <section class="glass-container my-8" id="contact">
             <h2 class="section-title">Get in Touch</h2>
             <div class="contact-links">
@@ -693,7 +668,7 @@
                 <a href="mailto:gajendras0438@gmail.com" class="contact-link">
                     <i class="fas fa-envelope"></i> Email
                 </a>
-                <a href="https://github.com/gajendra-singh-2023" target="_blank" class="contact-link">
+                <a href="https://github.com/Gajendra123j" target="_blank" class="contact-link">
                     <i class="fab fa-github"></i> GitHub
                 </a>
                 <a href="https://www.instagram.com/gajendra.singh2023" target="_blank" class="contact-link">
@@ -704,9 +679,7 @@
                 © 2024 GJ Tech. All Rights Reserved.
             </p>
         </section>
-        
     </main>
-    
     <script>
         function scrollToSection(id) {
             const element = document.getElementById(id);
