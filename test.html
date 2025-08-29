@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GJ Tech Company - AI-Powered HTML Test</title>
+    <title>GJ Tech Company -HTML Test</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
@@ -31,11 +31,11 @@
         }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradient background */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             color: var(--text-color);
             line-height: 1.6;
-            overflow-x: hidden; 
+            overflow-x: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -93,7 +93,7 @@
             cursor: pointer;
             transition: var(--transition);
             text-decoration: none;
-            min-height: 44px; 
+            min-height: 44px;
             gap: 8px;
             box-shadow: var(--shadow-sm);
         }
@@ -125,6 +125,7 @@
             opacity: 0.5;
             cursor: not-allowed;
             transform: none !important;
+            box-shadow: none !important;
         }
         .form-group {
             margin-bottom: 1.5rem;
@@ -165,7 +166,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
-            flex-wrap: wrap; 
+            flex-wrap: wrap;
             gap: 1rem;
         }
         .question-counter {
@@ -230,15 +231,15 @@
         }
         .video-container {
             display: flex;
-            flex-direction: column; 
-            align-items: flex-start; 
-            padding: 1rem; 
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 1rem;
             margin-bottom: 2rem;
         }
         .camera-feed {
-            max-width: 160px; 
-            height: 120px; 
-            width: auto; 
+            max-width: 160px;
+            height: 120px;
+            width: auto;
             border: 3px solid var(--primary-color);
             border-radius: var(--border-radius);
             object-fit: cover;
@@ -249,7 +250,7 @@
         .camera-status {
             display: flex;
             align-items: center;
-            justify-content: flex-start; 
+            justify-content: flex-start;
             gap: 8px;
             margin-top: 0;
             padding: 8px 16px;
@@ -259,7 +260,7 @@
             color: var(--success-color);
             font-weight: 500;
             max-width: fit-content;
-            margin-left: 0; 
+            margin-left: 0;
         }
         .status-dot {
             width: 8px;
@@ -371,17 +372,17 @@
             margin: 0 10px;
         }
         .pdf-certificate {
-            position: absolute; 
+            position: absolute;
             left: -9999px;
             opacity: 0;
             font-family: 'Inter', sans-serif;
-            width: 210mm; 
+            width: 210mm;
             height: 297mm;
             padding: 20mm;
             background: white;
             box-sizing: border-box;
             color: #1f2937;
-            display: block !important; /* Force display for html2pdf */
+            display: block !important;
         }
         .pdf-certificate h1 {
             color: #2563eb;
@@ -403,6 +404,37 @@
         }
         .pdf-certificate strong {
             font-weight: 700;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        .quiz-option:hover {
+            border-color: var(--primary-color);
+        }
+        .quiz-option input[type="radio"] {
+            margin-right: 1rem;
+            transform: scale(1.2);
+        }
+        .correct {
+            border-color: var(--success-color);
+            background: rgba(16, 185, 129, 0.1);
+        }
+        .incorrect {
+            border-color: var(--error-color);
+            background: rgba(239, 68, 68, 0.1);
         }
         @media (max-width: 768px) {
             body {
@@ -426,8 +458,8 @@
                 text-align: center;
             }
             .camera-feed {
-                max-width: 100%; 
-                height: 150px; 
+                max-width: 100%;
+                height: 150px;
             }
             .certificate-title {
                 font-size: 2rem;
@@ -440,7 +472,7 @@
     </style>
 </head>
 <body>
-    <h1>🤖 AI-Powered HTML Test</h1>
+    <h1>AI-Powered HTML Test</h1>
     <div class="container">
         <div id="test-info" class="card fade-in">
             <h2>Welcome to the AI-Powered HTML Test</h2>
@@ -448,10 +480,10 @@
                 Experience intelligent assessment with AI-powered answer evaluation
             </p>
             <div style="background: rgba(37, 99, 235, 0.1); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
-                <h3 style="margin-bottom: 1rem;">🤖 AI-Enhanced Test Instructions</h3>
+                <h3 style="margin-bottom: 1rem;">AI-Enhanced Test Instructions</h3>
                 <ul style="padding-left: 1.5rem; color: var(--text-color);">
                     <li>This test consists of <strong id="total-questions-display"></strong> HTML-related questions</li>
-                    <li>Questions are evaluated by AI for comprehensive assessment</li>
+                    <li>Answers are evaluated by AI for comprehensive assessment</li>
                     <li>You have <strong id="test-duration-display"></strong> minutes to complete the test</li>
                     <li>Provide detailed answers - AI rewards thorough explanations</li>
                     <li>Camera monitoring is active throughout the test</li>
@@ -499,16 +531,15 @@
                     <div id="timer" class="timer">⏰ 20:00</div>
                 </div>
                 <div id="question-text" class="question-text"></div>
-                <div class="answer-input">
-                    <textarea id="answer-textarea" class="form-textarea" placeholder="Type your detailed answer here..."></textarea>
-                </div>
+                <div id="quiz-options" class="quiz-options">
+                    </div>
                 <div id="checking-animation" class="checking-animation hidden">
                     <div class="spinner"></div>
                     <span>AI is evaluating your answer...</span>
                 </div>
                 <div id="result-message" class="hidden"></div>
                 <div id="ai-feedback" class="ai-feedback hidden"></div>
-                
+
                 <div style="text-align: center; margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
                     <button id="submit-answer-btn" class="btn btn-primary">Submit Answer</button>
                     <button id="next-btn" class="btn btn-success hidden">Next Question →</button>
@@ -584,509 +615,458 @@
         </div>
     </div>
     <script>
-        // Global variables for quiz state
-        let currentQuestion = 0;
-        let totalScore = 0;
-        let timeRemaining = 600; // 10 minutes in seconds
-        let quizTimer = null;
-        let stream = null; // For camera stream
-        let quizActive = false; // Flag to indicate if quiz is active
-        let userDetails = {}; // Stores user's name, father's name, district, state
-        const PASSING_SCORE_PERCENTAGE = 70; // Passing score for certificate
-        const MAX_SCORE_PER_QUESTION = 10; // Maximum score a user can get for one question
-
-        // Quiz Questions - extended with more options for AI evaluation
-        const questions = [
-            {
-                question: "What does HTML stand for?",
-                topic: "HTML Basics",
-                idealAnswerKeywords: ["HyperText Markup Language", "standard markup language", "web pages", "structure", "content"]
-            },
-            {
-                question: "Which HTML tag is used to define an internal style sheet?",
-                topic: "HTML and CSS",
-                idealAnswerKeywords: ["<style> tag", "internal CSS", "head section", "styling", "document"]
-            },
-            {
-                question: "Which HTML attribute is used to define inline styles?",
-                topic: "HTML and CSS",
-                idealAnswerKeywords: ["style attribute", "inline styling", "single element", "specific element"]
-            },
-            {
-                question: "Which is the correct HTML element for inserting a line break?",
-                topic: "HTML Elements",
-                idealAnswerKeywords: ["<br> tag", "line break", "empty tag", "paragraph break"]
-            },
-            {
-                question: "Which HTML element is used to specify a footer for a document or section?",
-                topic: "HTML5 Semantic Elements",
-                idealAnswerKeywords: ["<footer> tag", "footer section", "bottom of document", "section", "authorship", "copyright"]
-            },
-            {
-                question: "Explain the purpose of the `<!DOCTYPE html>` declaration in HTML.",
-                topic: "HTML Document Structure",
-                idealAnswerKeywords: ["doctype declaration", "HTML5", "browser rendering", "standard mode", "compatibility"]
-            },
-            {
-                question: "Describe the difference between block-level and inline elements in HTML.",
-                topic: "HTML Element Types",
-                idealAnswerKeywords: ["block-level", "inline-level", "new line", "full width", "content width", "<div>", "<span>"]
-            },
-            {
-                question: "How do you include an external JavaScript file in an HTML document?",
-                topic: "HTML and JavaScript",
-                idealAnswerKeywords: ["<script> tag", "src attribute", "external file", "defer", "async"]
-            },
-            {
-                question: "What is the semantic meaning of the `<article>` tag in HTML5?",
-                topic: "HTML5 Semantic Elements",
-                idealAnswerKeywords: ["<article> tag", "independent content", "self-contained", "blog post", "news article", "forum post"]
-            },
-            {
-                question: "Explain the basic structure of an HTML table using relevant tags.",
-                topic: "HTML Tables",
-                idealAnswerKeywords: ["<table>", "<thead>", "<tbody>", "<tr>", "<th>", "<td>", "rows", "columns", "header", "data"]
-            }
-        ];
-        const totalQuestionsCount = questions.length; 
-
-        // AI Answer Evaluator Class
-        class AIAnswerEvaluator {
-            constructor() {
-                this.evaluationCriteria = {
-                    completeness: 0.3,
-                    accuracy: 0.4,
-                    examples: 0.2,
-                    clarity: 0.1
-                };
-            }
-
-            // Utility function for exponential backoff
-            delay(ms) {
-                return new Promise(resolve => setTimeout(resolve, ms));
-            }
-
-            /**
-             * Evaluates the user's answer using the Gemini API.
-             * @param {string} question - The question asked.
-             * @param {string} answer - The user's provided answer.
-             * @param {string} topic - The topic of the question.
-             * @param {Array<string>} idealAnswerKeywords - Keywords that should ideally be in the answer.
-             * @returns {Promise<{score: number, feedback: string, overallFeedback: string, maxScore: number}>} - Evaluation result.
-             */
-            async evaluateAnswer(question, answer, topic, idealAnswerKeywords) {
-                let chatHistory = [];
-                const prompt = `Evaluate the following answer for an HTML test question. 
-                Question: "${question}"
-                User's Answer: "${answer}"
-                Topic: "${topic}"
-                Provide a detailed evaluation based on the following criteria: completeness, accuracy, use of examples, and clarity.
-                Consider these ideal keywords/concepts for the topic: ${idealAnswerKeywords.join(', ')}.
-                Your response should be a JSON object with the following structure:
-                {
-                  "score": a number out of ${MAX_SCORE_PER_QUESTION}, representing the score for the answer.
-                  "feedback": a string providing detailed feedback for the user, including what was good and what could be improved.
-                  "overallFeedback": a concise overall summary feedback string (e.g., 'Outstanding!', 'Good job!', 'Needs improvement.').
-                }`;
-                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                const payload = {
-                    contents: chatHistory,
-                    generationConfig: {
-                        responseMimeType: "application/json",
-                        responseSchema: {
-                            type: "OBJECT",
-                            properties: {
-                                "score": { "type": "NUMBER" },
-                                "feedback": { "type": "STRING" },
-                                "overallFeedback": { "type": "STRING" }
-                            },
-                            "propertyOrdering": ["score", "feedback", "overallFeedback"]
-                        }
-                    }
-                };
-                // API Key for Gemini API (will be provided by Canvas runtime)
-                const apiKey = ""; 
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-                
-                let retries = 0;
-                const maxRetries = 5;
-                const baseDelay = 1000; // 1 second
-
-                while (retries < maxRetries) {
-                    try {
-                        const response = await fetch(apiUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-
-                        if (!response.ok) {
-                            // If it's a 429 (Too Many Requests), retry with exponential backoff
-                            if (response.status === 429) { 
-                                retries++;
-                                const delayTime = baseDelay * Math.pow(2, retries);
-                                await this.delay(delayTime);
-                                continue; // Try the request again
-                            }
-                            throw new Error(`HTTP error! Status: ${response.status}`);
-                        }
-
-                        const result = await response.json();
-
-                        if (result.candidates && result.candidates.length > 0 &&
-                            result.candidates[0].content && result.candidates[0].content.parts &&
-                            result.candidates[0].content.parts.length > 0) {
-                            const jsonString = result.candidates[0].content.parts[0].text;
-                            const evaluation = JSON.parse(jsonString);
-                            // Ensure score is within valid bounds
-                            evaluation.score = Math.max(0, Math.min(MAX_SCORE_PER_QUESTION, evaluation.score));
-                            evaluation.maxScore = MAX_SCORE_PER_QUESTION; 
-                            return evaluation;
-                        } else {
-                            throw new Error("Unexpected API response structure or empty content.");
-                        }
-                    } catch (error) {
-                        console.error("Error evaluating answer (attempt " + (retries + 1) + "):", error);
-                        retries++;
-                        const delayTime = baseDelay * Math.pow(2, retries);
-                        await this.delay(delayTime);
-                    }
-                }
-                console.error("Max retries reached. Failed to evaluate answer after multiple attempts.");
-                // Return a default error evaluation if all retries fail
-                return {
-                    score: 0,
-                    feedback: "Could not evaluate your answer due to a technical issue. Please check your internet connection and try again.",
-                    overallFeedback: "Evaluation failed.",
-                    maxScore: MAX_SCORE_PER_QUESTION
-                };
-            }
-        }
-
-        const aiEvaluator = new AIAnswerEvaluator();
-
-        // DOM Elements
-        const testInfoSection = document.getElementById('test-info');
-        const quizSection = document.getElementById('quiz-section');
-        const resultsSection = document.getElementById('results-section');
-        const certificateSection = document.getElementById('certificate-section');
-        const cheatAlert = document.getElementById('cheat-alert');
-
+        const testInfoEl = document.getElementById('test-info');
+        const quizSectionEl = document.getElementById('quiz-section');
+        const resultsSectionEl = document.getElementById('results-section');
+        const questionCounterEl = document.getElementById('question-counter');
+        const timerEl = document.getElementById('timer');
+        const questionTextEl = document.getElementById('question-text');
+        const quizOptionsEl = document.getElementById('quiz-options');
+        const submitBtn = document.getElementById('submit-answer-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const checkingAnimEl = document.getElementById('checking-animation');
+        const aiFeedbackEl = document.getElementById('ai-feedback');
+        const finalResultEl = document.getElementById('final-result');
+        const certificateSectionEl = document.getElementById('certificate-section');
+        const downloadBtn = document.getElementById('download-btn');
         const nameInput = document.getElementById('name-input');
         const fatherNameInput = document.getElementById('father-name-input');
         const districtInput = document.getElementById('district-input');
         const stateInput = document.getElementById('state-input');
         const startBtn = document.getElementById('start-btn');
-        const acknowledgeBtn = document.getElementById('acknowledge-btn');
-
-        const questionCounter = document.getElementById('question-counter');
-        const timerDisplay = document.getElementById('timer');
-        const questionText = document.getElementById('question-text');
-        const answerTextarea = document.getElementById('answer-textarea');
-        const submitAnswerBtn = document.getElementById('submit-answer-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const checkingAnimation = document.getElementById('checking-animation');
-        const resultMessage = document.getElementById('result-message');
-        const aiFeedbackDiv = document.getElementById('ai-feedback');
         const progressFill = document.getElementById('progress-fill');
-
         const cameraFeed = document.getElementById('camera-feed');
-        const cameraStatus = document.getElementById('camera-status');
+        const totalQuestionsDisplay = document.getElementById('total-questions-display');
+        const testDurationDisplay = document.getElementById('test-duration-display');
+        const cheatAlertEl = document.getElementById('cheat-alert');
+        const acknowledgeBtn = document.getElementById('acknowledge-btn');
+        let currentQuestionIndex = 0;
+        let totalScore = 0;
+        let timeRemaining = 1200; 
+        let quizTimer = null;
+        let stream = null;
+        let quizActive = false;
+        let userDetails = {};
+        const PASSING_SCORE_PERCENTAGE = 70;
+        const MAX_SCORE_PER_QUESTION = 10;
+        const TAB_SWITCH_WARNINGS = 0; 
+        const questions = [
+            {
+                question: "What does HTML stand for?",
+                topic: "HTML Basics",
+                options: [
+                    "A) Hyper Text Markup Language",
+                    "B) Hyperlinks and Text Markup Language",
+                    "C) Home Tool Markup Language",
+                    "D) Hyper Transfer Markup Language"
+                ],
+                correctAnswer: "A) Hyper Text Markup Language",
+                idealAnswerKeywords: ["Hyper Text Markup Language", "standard markup language", "web pages", "structure", "elements", "tags"]
+            },
+            {
+                question: "Which HTML tag is used to define an internal style sheet?",
+                topic: "Styling HTML",
+                options: [
+                    "A) <script>",
+                    "B) <css>",
+                    "C) <style>",
+                    "D) <link>"
+                ],
+                correctAnswer: "C) <style>",
+                idealAnswerKeywords: ["<style>", "internal stylesheet", "within the head section", "inline styles"]
+            },
+            {
+                question: "Which HTML attribute is used to define inline styles?",
+                topic: "HTML Attributes",
+                options: [
+                    "A) font",
+                    "B) class",
+                    "C) styles",
+                    "D) style"
+                ],
+                correctAnswer: "D) style",
+                idealAnswerKeywords: ["style attribute", "inline styles", "single element", "styling"]
+            },
+            {
+                question: "Which is the correct HTML element for inserting a line break?",
+                topic: "HTML Elements",
+                options: [
+                    "A) <lb>",
+                    "B) <break>",
+                    "C) <br>",
+                    "D) <newline>"
+                ],
+                correctAnswer: "C) <br>",
+                idealAnswerKeywords: ["<br>", "line break", "empty tag", "no closing tag"]
+            },
+            {
+                question: "Which HTML element is used to specify a footer for a document or section?",
+                topic: "HTML5 Semantic Elements",
+                options: [
+                    "A) <bottom>",
+                    "B) <footer>",
+                    "C) <end>",
+                    "D) <section>"
+                ],
+                correctAnswer: "B) <footer>",
+                idealAnswerKeywords: ["<footer>", "semantic element", "footer content", "bottom of page", "section"]
+            },
+            {
+                question: "How do you make an ordered list in HTML?",
+                topic: "HTML Lists",
+                options: [
+                    "A) <ol>",
+                    "B) <ul>",
+                    "C) <li>",
+                    "D) <list>"
+                ],
+                correctAnswer: "A) <ol>",
+                idealAnswerKeywords: ["<ol>", "ordered list", "numbered list", "<li>"]
+            },
+            {
+                question: "Which element causes text to be italicized in HTML?",
+                topic: "Text Formatting",
+                options: [
+                    "A) <i>",
+                    "B) <italic>",
+                    "C) <it>",
+                    "D) <pre>"
+                ],
+                correctAnswer: "A) <i>",
+                idealAnswerKeywords: ["<i>", "italic text", "stylistic", "alternative voice"]
+            },
+            {
+                question: "How do you insert an image in HTML?",
+                topic: "Images in HTML",
+                options: [
+                    "A) <img href='image.png' />",
+                    "B) <img url='image.png' />",
+                    "C) <img link='image.png' />",
+                    "D) <img src='image.png' />"
+                ],
+                correctAnswer: "D) <img src='image.png' />",
+                idealAnswerKeywords: ["<img>", "src attribute", "source", "alt attribute", "alternative text"]
+            },
+            {
+                question: "Which tag is used for the largest heading in HTML?",
+                topic: "HTML Headings",
+                options: [
+                    "A) <h6>",
+                    "B) <heading>",
+                    "C) <h1>",
+                    "D) <header>"
+                ],
+                correctAnswer: "C) <h1>",
+                idealAnswerKeywords: ["<h1>", "largest heading", "most important heading", "six heading levels"]
+            },
+            {
+                question: "What is the correct HTML for creating a hyperlink?",
+                topic: "Hyperlinks",
+                options: [
+                    "A) <a url='http://example.com'>Link</a>",
+                    "B) <a href='http://example.com'>Link</a>",
+                    "C) <link>http://example.com</link>",
+                    "D) <a>http://example.com</a>"
+                ],
+                correctAnswer: "B) <a href='http://example.com'>Link</a>",
+                idealAnswerKeywords: ["<a>", "href attribute", "hyperlink", "anchor tag"]
+            },
+            {
+                question: "Which HTML tag is used to create a table?",
+                topic: "HTML Tables",
+                options: [
+                    "A) <table>",
+                    "B) <tab>",
+                    "C) <tr>",
+                    "D) <td>"
+                ],
+                correctAnswer: "A) <table>",
+                idealAnswerKeywords: ["<table>", "table element", "<tr>", "<td>", "<th>"]
+            },
+            {
+                question: "What does the <input> tag represent?",
+                topic: "HTML Forms",
+                options: [
+                    "A) A format tag",
+                    "B) An empty tag",
+                    "C) A container tag",
+                    "D) None of the above"
+                ],
+                correctAnswer: "B) An empty tag",
+                idealAnswerKeywords: ["<input>", "form input", "empty element", "user data"]
+            },
+            {
+                question: "Which tag is used for underlined text?",
+                topic: "Text Formatting",
+                options: [
+                    "A) <u>",
+                    "B) <i>",
+                    "C) <ul>",
+                    "D) <pre>"
+                ],
+                correctAnswer: "A) <u>",
+                idealAnswerKeywords: ["<u>", "underlined text", "Deprecated tag", "CSS text-decoration"]
+            },
+            {
+                question: "What is the HTML code for a checkbox?",
+                topic: "HTML Forms",
+                options: [
+                    "A) <input type='checkbox'>",
+                    "B) <input type='button'>",
+                    "C) <input type='check'>",
+                    "D) <checkbox>"
+                ],
+                correctAnswer: "A) <input type='checkbox'>",
+                idealAnswerKeywords: ["<input>", "type attribute", "checkbox", "form elements"]
+            },
+            {
+                question: "HTML tags are surrounded by which characters?",
+                topic: "HTML Syntax",
+                options: [
+                    "A) < and >",
+                    "B) { and }",
+                    "C) # and #",
+                    "D) ! and ?"
+                ],
+                correctAnswer: "A) < and >",
+                idealAnswerKeywords: ["angle brackets", "tags", "syntax", "elements"]
+            }
+        ];
+        const totalQuestionsCount = questions.length;
+        class AIAnswerEvaluator {
+            async evaluateAnswer(question, userAnswer, topic, idealKeywords) {
+                console.log("Simulating AI evaluation...");
+                let score = 0;
+                let feedback = "";
+                let overallFeedback = "";
+                const isCorrect = userAnswer.includes(questions[currentQuestionIndex].correctAnswer.split(')')[0]);
+                if (isCorrect) {
+                    score = MAX_SCORE_PER_QUESTION;
+                    feedback = `Excellent! Your choice is correct. You have a strong understanding of HTML basics.`;
+                    overallFeedback = "Outstanding!";
+                } else {
+                    score = Math.floor(Math.random() * 4) + 1; 
+                    const correctChoice = questions[currentQuestionIndex].correctAnswer;
+                    feedback = `Your answer was incorrect. The correct answer is **${correctChoice}**. Study the topic of ${topic} to improve.`;
+                    overallFeedback = "Needs improvement.";
+                }
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                return {
+                    score,
+                    feedback,
+                    overallFeedback,
+                    maxScore: MAX_SCORE_PER_QUESTION
+                };
+            }
+        }
+        const aiEvaluator = new AIAnswerEvaluator();
+        startBtn.addEventListener('click', startQuiz);
+        submitBtn.addEventListener('click', submitAnswer);
+        nextBtn.addEventListener('click', nextQuestion);
+        downloadBtn.addEventListener('click', downloadCertificate);
+        acknowledgeBtn.addEventListener('click', () => {
+            cheatAlertEl.classList.add('hidden');
+        });
+        let tabSwitches = 0;
+        document.addEventListener('visibilitychange', () => {
+            if (quizActive && document.visibilityState === 'hidden') {
+                tabSwitches++;
+                if (tabSwitches >= TAB_SWITCH_WARNINGS) {
+                    terminateTest("Suspicious activity detected (switched tabs).");
+                }
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            totalQuestionsDisplay.textContent = totalQuestionsCount;
+            testDurationDisplay.textContent = timeRemaining / 60;
+        });
+        function validateForm() {
+            let isValid = true;
+            const inputs = [
+                { id: 'name-input', error: 'name-error' },
+                { id: 'father-name-input', error: 'father-name-error' },
+                { id: 'district-input', error: 'district-error' },
+                { id: 'state-input', error: 'state-error' }
+            ];
+            inputs.forEach(item => {
+                const inputEl = document.getElementById(item.id);
+                const errorEl = document.getElementById(item.error);
+                if (inputEl.value.trim() === '') {
+                    errorEl.style.display = 'block';
+                    isValid = false;
+                } else {
+                    errorEl.style.display = 'none';
+                }
+            });
 
-        const finalResultDiv = document.getElementById('final-result');
-        const certName = document.getElementById('cert-name');
-        const certScore = document.getElementById('cert-score');
-        const certDate = document.getElementById('cert-date');
-        const downloadBtn = document.getElementById('download-btn');
-
-        // PDF Certificate Elements
-        const pdfCertName = document.getElementById('pdf-cert-name');
-        const pdfCertFather = document.getElementById('pdf-cert-father');
-        const pdfCertDistrict = document.getElementById('pdf-cert-district');
-        const pdfCertState = document.getElementById('pdf-cert-state');
-        const pdfCertScore = document.getElementById('pdf-cert-score');
-        const pdfCertDate = document.getElementById('pdf-cert-date');
-
-        // Initialize instruction values
-        document.getElementById('total-questions-display').textContent = totalQuestionsCount;
-        document.getElementById('test-duration-display').textContent = timeRemaining / 60; // Convert seconds to minutes
-
-        // --- Proctoring Logic ---
-        async function startCamera() {
+            return isValid;
+        }
+        async function startQuiz() {
+            if (!validateForm()) {
+                alert("Please fill in all your details to start the test.");
+                return;
+            }
+            userDetails.name = nameInput.value.trim();
+            userDetails.fatherName = fatherNameInput.value.trim();
+            userDetails.district = districtInput.value.trim();
+            userDetails.state = stateInput.value.trim();
+            testInfoEl.classList.add('hidden');
+            quizSectionEl.classList.remove('hidden');
+            quizSectionEl.classList.add('fade-in');
             try {
                 stream = await navigator.mediaDevices.getUserMedia({ video: true });
                 cameraFeed.srcObject = stream;
-                cameraStatus.classList.remove('hidden');
-                console.log("Camera started successfully.");
             } catch (err) {
-                console.error("Error accessing camera: ", err);
-                cameraStatus.innerHTML = '<div class="status-dot" style="background: var(--error-color);"></div><span>Camera Disabled - Proctoring Unavailable</span>';
-                cameraStatus.style.borderColor = 'var(--error-color)';
-                cameraStatus.style.background = 'rgba(239, 68, 68, 0.1)';
+                console.error("Camera access denied: ", err);
+                const cameraStatusEl = document.getElementById('camera-status');
+                cameraStatusEl.innerHTML = `<span style="color:var(--error-color);">Camera access denied!</span>`;
             }
-        }
-
-        function stopCamera() {
-            if (stream) {
-                stream.getTracks().forEach(track => track.stop());
-                console.log("Camera stopped.");
-            }
-        }
-
-        // --- Test Logic ---
-        function startQuiz() {
-            // Validate user input
-            let isValid = true;
-            if (!nameInput.value.trim()) {
-                document.getElementById('name-error').style.display = 'block';
-                isValid = false;
-            } else {
-                document.getElementById('name-error').style.display = 'none';
-            }
-            if (!fatherNameInput.value.trim()) {
-                document.getElementById('father-name-error').style.display = 'block';
-                isValid = false;
-            } else {
-                document.getElementById('father-name-error').style.display = 'none';
-            }
-            if (!districtInput.value.trim()) {
-                document.getElementById('district-error').style.display = 'block';
-                isValid = false;
-            } else {
-                document.getElementById('district-error').style.display = 'none';
-            }
-            if (!stateInput.value.trim()) {
-                document.getElementById('state-error').style.display = 'block';
-                isValid = false;
-            } else {
-                document.getElementById('state-error').style.display = 'none';
-            }
-
-            if (!isValid) {
-                return;
-            }
-
-            // Store user details
-            userDetails = {
-                name: nameInput.value.trim(),
-                fatherName: fatherNameInput.value.trim(),
-                district: districtInput.value.trim(),
-                state: stateInput.value.trim(),
-                date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-            };
-
-            testInfoSection.classList.add('hidden');
-            quizSection.classList.remove('hidden');
-            quizSection.classList.add('fade-in');
             quizActive = true;
-            startCamera();
             startTimer();
             loadQuestion();
-
-            // Set up proctoring event listeners
-            document.addEventListener('visibilitychange', handleVisibilityChange);
-            window.addEventListener('blur', handleBlur);
         }
-
-        function handleVisibilityChange() {
-            if (document.hidden && quizActive) {
-                terminateTest("User switched tabs/applications.");
-            }
-        }
-
-        function handleBlur() {
-            if (quizActive) {
-                terminateTest("User switched tabs/applications.");
-            }
-        }
-
-        function terminateTest(reason) {
-            if (!quizActive) return; // Prevent multiple terminations
-
-            quizActive = false;
-            clearInterval(quizTimer);
-            stopCamera();
-            document.removeEventListener('visibilitychange', handleVisibilityChange);
-            window.removeEventListener('blur', handleBlur);
-
-            quizSection.classList.add('hidden');
-            resultsSection.classList.add('hidden'); // Ensure results are hidden if termination happens before completion
-            cheatAlert.classList.remove('hidden');
-            cheatAlert.classList.add('fade-in');
-
-            console.warn("Test Terminated: " + reason);
-        }
-
         function startTimer() {
             quizTimer = setInterval(() => {
                 timeRemaining--;
                 const minutes = Math.floor(timeRemaining / 60);
                 const seconds = timeRemaining % 60;
-                timerDisplay.textContent = `⏰ ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
+                timerEl.textContent = `⏰ ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
                 if (timeRemaining <= 0) {
                     clearInterval(quizTimer);
-                    endQuiz();
+                    terminateTest("Time's up!");
                 }
             }, 1000);
         }
-
-        function loadQuestion() {
-            if (currentQuestion < totalQuestionsCount) {
-                const q = questions[currentQuestion];
-                questionText.textContent = q.question;
-                answerTextarea.value = '';
-                answerTextarea.disabled = false;
-                submitAnswerBtn.disabled = false;
-                submitAnswerBtn.classList.remove('hidden');
-                nextBtn.classList.add('hidden');
-                resultMessage.classList.add('hidden');
-                aiFeedbackDiv.classList.add('hidden');
-                questionCounter.textContent = `Question ${currentQuestion + 1} of ${totalQuestionsCount}`;
-                updateProgressBar();
-            } else {
-                endQuiz();
-            }
-        }
-
-        function updateProgressBar() {
-            const progress = (currentQuestion / totalQuestionsCount) * 100;
-            progressFill.style.width = `${progress}%`;
-        }
-
-        async function submitAnswer() {
-            const userAnswer = answerTextarea.value.trim();
-            if (!userAnswer) {
-                // Use a simple message box instead of alert()
-                displayMessage("Please provide an answer before submitting.", "warning");
-                return;
-            }
-
-            answerTextarea.disabled = true;
-            submitAnswerBtn.disabled = true;
-            checkingAnimation.classList.remove('hidden');
-            resultMessage.classList.add('hidden');
-            aiFeedbackDiv.classList.add('hidden');
-
-            const currentQ = questions[currentQuestion];
-            try {
-                const evaluation = await aiEvaluator.evaluateAnswer(
-                    currentQ.question,
-                    userAnswer,
-                    currentQ.topic,
-                    currentQ.idealAnswerKeywords
-                );
-
-                totalScore += evaluation.score;
-
-                // Display AI feedback
-                let messageClass = 'alert-warning';
-                if (evaluation.score >= (MAX_SCORE_PER_QUESTION * 0.7)) { // 70% of max score for the question
-                    messageClass = 'alert-success';
-                } else if (evaluation.score < (MAX_SCORE_PER_QUESTION * 0.3)) { // Less than 30%
-                    messageClass = 'alert-error';
-                }
-
-                resultMessage.className = `alert ${messageClass}`;
-                resultMessage.innerHTML = `<strong>${evaluation.overallFeedback}</strong> You scored <span class="score-display">${evaluation.score}/${evaluation.maxScore}</span> for this question.`;
-                resultMessage.classList.remove('hidden');
-
-                aiFeedbackDiv.innerHTML = `<strong>AI Feedback:</strong> ${evaluation.feedback}`;
-                aiFeedbackDiv.classList.remove('hidden');
-            } catch (error) {
-                console.error("Error during AI evaluation:", error);
-                resultMessage.className = 'alert alert-error';
-                resultMessage.textContent = 'Failed to evaluate answer. Please try again or check your network.';
-                resultMessage.classList.remove('hidden');
-                aiFeedbackDiv.classList.add('hidden');
-            } finally {
-                checkingAnimation.classList.add('hidden');
-                submitAnswerBtn.classList.add('hidden');
-                nextBtn.classList.remove('hidden');
-            }
-        }
-
-        function displayMessage(message, type = "info") {
-            const tempAlert = document.createElement('div');
-            tempAlert.className = `alert alert-${type} fade-in`;
-            tempAlert.innerHTML = message;
-            quizSection.querySelector('.card').insertBefore(tempAlert, quizSection.querySelector('.answer-input').nextSibling);
-            setTimeout(() => {
-                tempAlert.remove();
-            }, 3000); // Remove after 3 seconds
-        }
-
-        function endQuiz() {
+        function terminateTest(reason) {
             quizActive = false;
             clearInterval(quizTimer);
-            stopCamera();
-            document.removeEventListener('visibilitychange', handleVisibilityChange);
-            window.removeEventListener('blur', handleBlur);
-
-            quizSection.classList.add('hidden');
-            resultsSection.classList.remove('hidden');
-            resultsSection.classList.add('fade-in');
-
-            const finalPercentage = (totalScore / (totalQuestionsCount * MAX_SCORE_PER_QUESTION)) * 100;
-            let finalMessage = `<h2>Test Completed!</h2><p style="text-align:center;">Your total score is <span class="score-display">${totalScore} / ${totalQuestionsCount * MAX_SCORE_PER_QUESTION}</span></p><p style="text-align:center;">Final Percentage: <span class="score-display">${finalPercentage.toFixed(2)}%</span></p>`;
-
-            let resultClass = 'alert-warning';
-            if (finalPercentage >= PASSING_SCORE_PERCENTAGE) {
-                resultClass = 'alert-success';
-                finalMessage += `<div class="alert alert-success" style="text-align:center; margin-top:1.5rem;">Congratulations! You passed the test!</div>`;
-                certificateSection.classList.remove('hidden');
-                populateCertificate(finalPercentage.toFixed(2));
-            } else {
-                resultClass = 'alert-error';
-                finalMessage += `<div class="alert alert-error" style="text-align:center; margin-top:1.5rem;">Sorry, you did not pass. Please review the material and try again.</div>`;
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
             }
-
-            finalResultDiv.innerHTML = `<div class="alert ${resultClass}">${finalMessage}</div>`;
+            quizSectionEl.classList.add('hidden');
+            cheatAlertEl.classList.remove('hidden');
+            console.error(reason);
         }
-
-        function populateCertificate(finalPercentage) {
-            certName.textContent = userDetails.name;
-            certScore.textContent = finalPercentage;
-            certDate.textContent = userDetails.date;
-
-            pdfCertName.textContent = userDetails.name;
-            pdfCertFather.textContent = userDetails.fatherName;
-            pdfCertDistrict.textContent = userDetails.district;
-            pdfCertState.textContent = userDetails.state;
-            pdfCertScore.textContent = finalPercentage;
-            pdfCertDate.textContent = userDetails.date;
+        function loadQuestion() {
+            if (currentQuestionIndex >= totalQuestionsCount) {
+                showResults();
+                return;
+            }
+            const questionData = questions[currentQuestionIndex];
+            questionCounterEl.textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestionsCount}`;
+            questionTextEl.textContent = questionData.question;
+            quizOptionsEl.innerHTML = '';
+            aiFeedbackEl.classList.add('hidden');
+            aiFeedbackEl.textContent = '';
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('hidden');
+            nextBtn.classList.add('hidden');
+            questionData.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.classList.add('quiz-option');
+                optionDiv.innerHTML = `
+                    <input type="radio" name="answer" id="option${index}" value="${option}">
+                    <label for="option${index}">${option}</label>
+                `;
+                quizOptionsEl.appendChild(optionDiv);
+            });
+            updateProgressBar();
         }
-
+        async function submitAnswer() {
+            const selectedOptionEl = document.querySelector('input[name="answer"]:checked');
+            if (!selectedOptionEl) {
+                alert("Please select an answer before submitting.");
+                return;
+            }
+            submitBtn.disabled = true;
+            checkingAnimEl.classList.remove('hidden');
+            const userAnswer = selectedOptionEl.value;
+            const currentQuestionData = questions[currentQuestionIndex];
+            const evaluation = await aiEvaluator.evaluateAnswer(
+                currentQuestionData.question,
+                userAnswer,
+                currentQuestionData.topic,
+                currentQuestionData.idealAnswerKeywords
+            );
+            checkingAnimEl.classList.add('hidden');
+            aiFeedbackEl.classList.remove('hidden');
+            totalScore += evaluation.score;
+            aiFeedbackEl.innerHTML = `
+                <strong>AI Feedback:</strong><br>
+                <strong>Score:</strong> <span class="score-display">${evaluation.score}/${evaluation.maxScore}</span><br>
+                ${evaluation.feedback}
+            `;
+            const options = quizOptionsEl.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                const radio = option.querySelector('input');
+                if (radio.value === currentQuestionData.correctAnswer) {
+                    option.classList.add('correct');
+                } else if (radio.checked) {
+                    option.classList.add('incorrect');
+                }
+                radio.disabled = true; 
+            });
+            submitBtn.classList.add('hidden');
+            nextBtn.classList.remove('hidden');
+        }
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+        function updateProgressBar() {
+            const progress = (currentQuestionIndex / totalQuestionsCount) * 100;
+            progressFill.style.width = `${progress}%`;
+        }
+        function showResults() {
+            quizActive = false;
+            clearInterval(quizTimer);
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+            quizSectionEl.classList.add('hidden');
+            resultsSectionEl.classList.remove('hidden');
+            resultsSectionEl.classList.add('fade-in');
+            const finalPercentage = Math.floor((totalScore / (totalQuestionsCount * MAX_SCORE_PER_QUESTION)) * 100);
+            const isPassed = finalPercentage >= PASSING_SCORE_PERCENTAGE;
+            let resultMessage = `<h2>Final Results</h2>`;
+            resultMessage += `<p style="text-align: center; font-size: 1.25rem;">Your final score is: <span class="score-display">${finalPercentage}%</span></p>`;
+            if (isPassed) {
+                resultMessage += `<div class="alert alert-success" style="text-align: center; margin-top: 1.5rem;">🎉 Congratulations! You have passed the test.</div>`;
+                certificateSectionEl.classList.remove('hidden');
+                populateCertificate(finalPercentage);
+            } else {
+                resultMessage += `<div class="alert alert-error" style="text-align: center; margin-top: 1.5rem;">😔 Unfortunately, you did not pass. A score of ${PASSING_SCORE_PERCENTAGE}% is required.</div>`;
+                certificateSectionEl.classList.add('hidden');
+            }
+            finalResultEl.innerHTML = resultMessage;
+        }
+        function populateCertificate(score) {
+            const date = new Date().toLocaleDateString('en-IN', {
+                year: 'numeric', month: 'long', day: 'numeric'
+            });
+            document.getElementById('cert-name').textContent = userDetails.name;
+            document.getElementById('cert-score').textContent = score;
+            document.getElementById('cert-date').textContent = date;
+            document.getElementById('pdf-cert-name').textContent = userDetails.name;
+            document.getElementById('pdf-cert-father').textContent = userDetails.fatherName;
+            document.getElementById('pdf-cert-district').textContent = userDetails.district;
+            document.getElementById('pdf-cert-state').textContent = userDetails.state;
+            document.getElementById('pdf-cert-score').textContent = score;
+            document.getElementById('pdf-cert-date').textContent = date;
+        }
         function downloadCertificate() {
+            populateCertificate(Math.floor((totalScore / (totalQuestionsCount * MAX_SCORE_PER_QUESTION)) * 100));
             const element = document.getElementById('pdf-certificate');
-            const opt = {
-                margin: 0,
-                filename: `Certificate_${userDetails.name.replace(/\s+/g, '_')}.pdf`,
+            const options = {
+                margin: 10,
+                filename: `GJTech_Certificate_${userDetails.name.replace(/\s/g, '_')}.pdf`,
                 image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
+                html2canvas: { scale: 2 },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
-            html2pdf().from(element).set(opt).save();
+
+            html2pdf().set(options).from(element).save();
         }
-
-        // --- Event Listeners ---
-        startBtn.addEventListener('click', startQuiz);
-        submitAnswerBtn.addEventListener('click', submitAnswer);
-        nextBtn.addEventListener('click', () => {
-            currentQuestion++;
-            loadQuestion();
-        });
-        acknowledgeBtn.addEventListener('click', () => {
-            cheatAlert.classList.add('hidden');
-            location.reload(); // Reload the page to reset
-        });
-        downloadBtn.addEventListener('click', downloadCertificate);
-
-        // Initial setup for displays
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('total-questions-display').textContent = totalQuestionsCount;
-            document.getElementById('test-duration-display').textContent = timeRemaining / 60; // In minutes
-        });
     </script>
 </body>
 </html>
