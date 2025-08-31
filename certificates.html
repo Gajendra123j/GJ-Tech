@@ -1,375 +1,1164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>GJ Tech - Certificate Management</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
-    <script src="https://kit.fontawesome.com/a81368914c.js" crossorigin="anonymous"></script>
-    <style>
-        /* Reusing existing styles */
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f0f2f5;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GJ Tech - Certificate Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://kit.fontawesome.com/a81368914c.js" crossorigin="anonymous"></script>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    min-height: 100vh;
+    padding: 20px;
+}
 
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
-        }
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+header {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+header h1 {
+    font-weight: 700;
+    font-size: 3rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    animation: fadeInUp 0.8s ease;
+}
+header p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+main {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeInUp 0.8s ease 0.2s both;
+}
+.search-filter {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.search-container {
+    position: relative;
+    flex: 1;
+    min-width: 300px;
+}
+.search-input {
+    width: 100%;
+    padding: 15px 20px 15px 50px;
+    border: 2px solid rgba(102, 126, 234, 0.2);
+    border-radius: 50px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.8);
+}
+.search-input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+    transform: scale(1.02);
+}
+.search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #667eea;
+    font-size: 18px;
+}
+.filter-select {
+    padding: 15px 20px;
+    border: 2px solid rgba(102, 126, 234, 0.2);
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.8);
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+.filter-select:hover,
+.filter-select:focus {
+    border-color: #667eea;
+    transform: scale(1.05);
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+.stat-card {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    transition: transform 0.3s ease;
+}
+.stat-card:hover {
+    transform: translateY(-10px);
+}
 
-        header h1 {
-            font-weight: 700;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
 
-        main {
-            background: #fff;
-            border-radius: 12px;
-            width: 100%;
-            max-width: 1000px;
-            padding: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
 
-        /* Certificate Management Styles */
-        .certificate-section {
-            margin-bottom: 40px;
-        }
+/* Certificate Section */
+.certificate-section h2 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 2rem;
+    font-weight: 600;
+    position: relative;
+}
 
-        .certificate-section h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-        }
+.certificate-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 2px;
+}
 
-        .certificate-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
+/* Certificate Grid */
+.certificate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
 
-        .certificate-card {
-            background: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
+.certificate-card {
+    background: linear-gradient(145deg, #ffffff, #f8f9ff);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(102, 126, 234, 0.1);
+    position: relative;
+    overflow: hidden;
+}
 
-        .certificate-card:hover {
-            transform: translateY(-5px);
-        }
+.certificate-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
 
-        .certificate-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
+.certificate-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
 
-        .certificate-title {
-            font-size: 1.2rem;
-            color: #2c3e50;
-            margin: 0;
-        }
+.certificate-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
 
-        .certificate-type {
-            background: #3498db;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-        }
+.certificate-title {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
 
-        .certificate-details {
-            margin-bottom: 15px;
-        }
+.certificate-type {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
 
-        .certificate-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
-            color: #666;
-        }
+.certificate-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
 
-        .certificate-info i {
-            color: #3498db;
-        }
+.status-completed {
+    background: linear-gradient(135deg, #11998e, #38ef7d);
+    color: white;
+    box-shadow: 0 4px 15px rgba(17, 153, 142, 0.3);
+}
 
-        .download-options {
-            display: flex;
-            gap: 10px;
-        }
+.status-pending {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    color: white;
+    box-shadow: 0 4px 15px rgba(240, 147, 251, 0.3);
+}
 
-        .download-btn {
-            background-color: #3498db;
-            color: white;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
+.status-expired {
+    background: linear-gradient(135deg, #ff9a9e, #fecfef);
+    color: #333;
+    box-shadow: 0 4px 15px rgba(255, 154, 158, 0.3);
+}
 
-        .download-btn:hover {
-            background-color: #2980b9;
-        }
+.certificate-details {
+    margin-bottom: 20px;
+}
 
-        .download-btn.small {
-            background-color: #2ecc71;
-        }
+.certificate-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 0.95rem;
+}
 
-        .download-btn.small:hover {
-            background-color: #27ae60;
-        }
+.certificate-info i {
+    color: #667eea;
+    font-size: 16px;
+    width: 16px;
+}
 
-        .download-btn.long {
-            background-color: #e74c3c;
-        }
+.download-options {
+    display: flex;
+    gap: 10px;
+}
 
-        .download-btn.long:hover {
-            background-color: #c0392b;
-        }
+.download-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+}
 
-        .certificate-status {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            margin-bottom: 10px;
-        }
+.download-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
 
-        .status-completed {
-            background-color: #2ecc71;
-            color: white;
-        }
+.download-btn:hover::before {
+    left: 100%;
+}
 
-        .status-pending {
-            background-color: #f1c40f;
-            color: white;
-        }
+.download-btn.small {
+    background: linear-gradient(135deg, #11998e, #38ef7d);
+    color: white;
+    box-shadow: 0 6px 20px rgba(17, 153, 142, 0.3);
+}
 
-        .status-expired {
-            background-color: #e74c3c;
-            color: white;
-        }
+.download-btn.small:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(17, 153, 142, 0.4);
+}
 
-        .search-filter {
-            margin-bottom: 20px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+.download-btn.long {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
 
-        .search-input {
-            flex: 1;
-            min-width: 200px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
+.download-btn.long:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
 
-        .filter-select {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            min-width: 150px;
-        }
-    </style>
+.download-btn.start {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+}
+
+.download-btn.start:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+}
+
+.download-btn.disabled {
+    background: #e0e0e0;
+    color: #999;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.download-btn.disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.download-btn.disabled::before {
+    display: none;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.certificate-card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.certificate-card:nth-child(1) { animation-delay: 0.1s; }
+.certificate-card:nth-child(2) { animation-delay: 0.2s; }
+.certificate-card:nth-child(3) { animation-delay: 0.3s; }
+.certificate-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+    display: none;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    main {
+        padding: 25px;
+    }
+
+    .search-filter {
+        flex-direction: column;
+    }
+
+    .search-container {
+        min-width: 100%;
+    }
+
+    .certificate-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Test Modal Styles (Internal) */
+.test-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    animation: modalFadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+.modal-header {
+    padding: 30px 30px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.5rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #999;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.test-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.test-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    background: #f8f9ff;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+}
+
+.test-item i {
+    color: #667eea;
+    font-size: 1.2rem;
+}
+
+.test-instructions {
+    margin-bottom: 30px;
+}
+
+.test-instructions h3 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.test-instructions ul {
+    list-style: none;
+    padding: 0;
+}
+
+.test-instructions li {
+    padding: 8px 0;
+    position: relative;
+    padding-left: 25px;
+}
+
+.test-instructions li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #11998e;
+    font-weight: bold;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+.btn-cancel, .btn-start {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-cancel {
+    background: #e0e0e0;
+    color: #666;
+}
+
+.btn-cancel:hover {
+    background: #d0d0d0;
+}
+
+.btn-start {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+}
+
+.btn-start:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+    from { transform: translateY(50px) scale(0.9); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Notification Styles */
+#notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 5000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notification {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    padding: 15px 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeInOut 4s forwards;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-left: 5px solid;
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.notification.success {
+    border-color: #11998e;
+}
+
+.notification.info {
+    border-color: #667eea;
+}
+
+.notification i {
+    font-size: 1.5rem;
+}
+
+.notification.success i {
+    color: #11998e;
+}
+
+.notification.info i {
+    color: #667eea;
+}
+
+@keyframes fadeInOut {
+    0% { transform: translateX(100%); opacity: 0; }
+    10% { transform: translateX(0); opacity: 1; }
+    90% { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Certificate Management</h1>
-    </header>
+<div class="container">
+<header>
+    <h1>Certificate Management</h1>
+    <p>Manage and download your professional certificates</p>
+</header>
 
-    <main>
-        <div class="search-filter">
-            <input type="text" class="search-input" placeholder="Search certificates..." id="searchInput">
-            <select class="filter-select" id="statusFilter">
-                <option value="all">All Status</option>
-                <option value="completed">Completed</option>
-                <option value="pending">Pending</option>
-                <option value="expired">Expired</option>
-            </select>
-            <select class="filter-select" id="typeFilter">
-                <option value="all">All Types</option>
-                <option value="course">Course</option>
-                <option value="workshop">Workshop</option>
-                <option value="training">Training</option>
-            </select>
+<main>
+    <!-- Stats Section -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number" id="totalCerts">3</div>
+            <div class="stat-label">Total Certificates</div>
         </div>
+        <div class="stat-card">
+            <div class="stat-number" id="completedCerts">1</div>
+            <div class="stat-label">Completed</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="pendingCerts">1</div>
+            <div class="stat-label">Pending</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="expiredCerts">1</div>
+            <div class="stat-label">Expired</div>
+        </div>
+    </div>
 
-        <div class="certificate-section">
-            <h2>My Certificates</h2>
-            <div class="certificate-grid">
-                <!-- Web Development Certificate -->
-                <div class="certificate-card">
-                    <div class="certificate-header">
+    <!-- Search and Filters -->
+    <div class="search-filter">
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search certificates..." id="searchInput">
+        </div>
+        <select class="filter-select" id="statusFilter">
+            <option value="all">All Status</option>
+            <option value="completed">Completed</option>
+            <option value="pending">Pending</option>
+            <option value="expired">Expired</option>
+        </select>
+        <select class="filter-select" id="typeFilter">
+            <option value="all">All Types</option>
+            <option value="course">Course</option>
+            <option value="workshop">Workshop</option>
+            <option value="training">Training</option>
+        </select>
+    </div>
+
+    <div class="certificate-section">
+        <h2>My Certificates</h2>
+        
+        <div class="certificate-grid" id="certificateGrid">
+            <!-- Web Development Certificate -->
+            <div class="certificate-card" data-status="completed" data-type="course">
+                <div class="certificate-header">
+                    <div>
                         <h3 class="certificate-title">Web Development</h3>
                         <span class="certificate-type">Course</span>
                     </div>
-                    <span class="certificate-status status-completed">Completed</span>
-                    <div class="certificate-details">
-                        <div class="certificate-info">
-                            <i class="fas fa-calendar"></i>
-                            <span>Issued: Jan 15, 2024</span>
-                        </div>
-                        <div class="certificate-info">
-                            <i class="fas fa-clock"></i>
-                            <span>Valid until: Jan 15, 2025</span>
-                        </div>
-                        <div class="certificate-info">
-                            <i class="fas fa-user"></i>
-                            <span>Instructor: John Doe</span>
-                        </div>
+                </div>
+                <span class="certificate-status status-completed">
+                    <i class="fas fa-check-circle"></i>
+                    Completed
+                </span>
+                <div class="certificate-details">
+                    <div class="certificate-info">
+                        <i class="fas fa-calendar"></i>
+                        <span>Issued: Jan 15, 2024</span>
                     </div>
-                    <div class="download-options">
-                        <button class="download-btn small" onclick="downloadCertificate('web-dev', 'small')">
-                            <i class="fas fa-download"></i> Small
-                        </button>
-                        <button class="download-btn long" onclick="downloadCertificate('web-dev', 'long')">
-                            <i class="fas fa-download"></i> Long
-                        </button>
+                    <div class="certificate-info">
+                        <i class="fas fa-clock"></i>
+                        <span>Valid until: Jan 15, 2025</span>
+                    </div>
+                    <div class="certificate-info">
+                        <i class="fas fa-user"></i>
+                        <span>Instructor: John Doe</span>
                     </div>
                 </div>
+                <div class="download-options">
+                    <button class="download-btn small" onclick="downloadCertificate('web-dev', 'small')">
+                        <i class="fas fa-download"></i> Small Format
+                    </button>
+                    <button class="download-btn long" onclick="downloadCertificate('web-dev', 'long')">
+                        <i class="fas fa-download"></i> Full Format
+                    </button>
+                </div>
+            </div>
 
-                <!-- Python Programming Certificate -->
-                <div class="certificate-card">
-                    <div class="certificate-header">
+            <!-- Python Programming Certificate -->
+            <div class="certificate-card" data-status="pending" data-type="workshop">
+                <div class="certificate-header">
+                    <div>
                         <h3 class="certificate-title">Python Programming</h3>
                         <span class="certificate-type">Workshop</span>
                     </div>
-                    <span class="certificate-status status-pending">Pending</span>
-                    <div class="certificate-details">
-                        <div class="certificate-info">
-                            <i class="fas fa-calendar"></i>
-                            <span>Issued: Feb 1, 2024</span>
-                        </div>
-                        <div class="certificate-info">
-                            <i class="fas fa-clock"></i>
-                            <span>Valid until: Feb 1, 2025</span>
-                        </div>
-                        <div class="certificate-info">
-                            <i class="fas fa-user"></i>
-                            <span>Instructor: Jane Smith</span>
-                        </div>
+                </div>
+                <span class="certificate-status status-pending">
+                    <i class="fas fa-clock"></i>
+                    Pending
+                </span>
+                <div class="certificate-details">
+                    <div class="certificate-info">
+                        <i class="fas fa-calendar"></i>
+                        <span>Issued: Feb 1, 2024</span>
                     </div>
-                    <div class="download-options">
-                        <button class="download-btn small" onclick="downloadCertificate('python', 'small')">
-                            <i class="fas fa-download"></i> Small
-                        </button>
-                        <button class="download-btn long" onclick="downloadCertificate('python', 'long')">
-                            <i class="fas fa-download"></i> Long
-                        </button>
+                    <div class="certificate-info">
+                        <i class="fas fa-clock"></i>
+                        <span>Valid until: Feb 1, 2025</span>
+                    </div>
+                    <div class="certificate-info">
+                        <i class="fas fa-user"></i>
+                        <span>Instructor: Jane Smith</span>
                     </div>
                 </div>
+                <div class="download-options">
+                    <button class="download-btn start" onclick="startTest('python', 'assessment')">
+                        <i class="fas fa-play"></i> Start Test
+                    </button>
+                    <button class="download-btn small disabled" onclick="downloadCertificate('python', 'small')" disabled>
+                        <i class="fas fa-download"></i> Small Format
+                    </button>
+                    <button class="download-btn long disabled" onclick="downloadCertificate('python', 'long')" disabled>
+                        <i class="fas fa-download"></i> Full Format
+                    </button>
+                </div>
+            </div>
 
-                <!-- Data Science Certificate -->
-                <div class="certificate-card">
-                    <div class="certificate-header">
+            <!-- Data Science Certificate -->
+            <div class="certificate-card" data-status="expired" data-type="training">
+                <div class="certificate-header">
+                    <div>
                         <h3 class="certificate-title">Data Science</h3>
                         <span class="certificate-type">Training</span>
                     </div>
-                    <span class="certificate-status status-expired">Expired</span>
-                    <div class="certificate-details">
-                        <div class="certificate-info">
-                            <i class="fas fa-calendar"></i>
-                            <span>Issued: Dec 1, 2023</span>
-                        </div>
-                        <div class="certificate-info">
-                            <i class="fas fa-clock"></i>
-                            <span>Valid until: Dec 1, 2024</span>
-                        </div>
-                        <div class="certificate-info">
-                            <i class="fas fa-user"></i>
-                            <span>Instructor: Mike Johnson</span>
-                        </div>
+                </div>
+                <span class="certificate-status status-expired">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Expired
+                </span>
+                <div class="certificate-details">
+                    <div class="certificate-info">
+                        <i class="fas fa-calendar"></i>
+                        <span>Issued: Dec 1, 2023</span>
                     </div>
-                    <div class="download-options">
-                        <button class="download-btn small" onclick="downloadCertificate('data-science', 'small')">
-                            <i class="fas fa-download"></i> Small
-                        </button>
-                        <button class="download-btn long" onclick="downloadCertificate('data-science', 'long')">
-                            <i class="fas fa-download"></i> Long
-                        </button>
+                    <div class="certificate-info">
+                        <i class="fas fa-clock"></i>
+                        <span>Valid until: Dec 1, 2024</span>
                     </div>
+                    <div class="certificate-info">
+                        <i class="fas fa-user"></i>
+                        <span>Instructor: Mike Johnson</span>
+                    </div>
+                </div>
+                <div class="download-options">
+                    <button class="download-btn small" onclick="downloadCertificate('data-science', 'small')">
+                        <i class="fas fa-download"></i> Small Format
+                    </button>
+                    <button class="download-btn long" onclick="downloadCertificate('data-science', 'long')">
+                        <i class="fas fa-download"></i> Full Format
+                    </button>
                 </div>
             </div>
         </div>
-    </main>
 
-    <script>
-        // Search and filter functionality
-        const searchInput = document.getElementById('searchInput');
-        const statusFilter = document.getElementById('statusFilter');
-        const typeFilter = document.getElementById('typeFilter');
-        const certificateCards = document.querySelectorAll('.certificate-card');
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState">
+            <i class="fas fa-search"></i>
+            <h3>No certificates found</h3>
+            <p>Try adjusting your search or filter criteria</p>
+        </div>
+    </div>
+</main>
+</div>
 
-        function filterCertificates() {
-            const searchTerm = searchInput.value.toLowerCase();
-            const statusValue = statusFilter.value;
-            const typeValue = typeFilter.value;
+<div id="notification-container"></div>
 
-            certificateCards.forEach(card => {
-                const title = card.querySelector('.certificate-title').textContent.toLowerCase();
-                const status = card.querySelector('.certificate-status').classList[1].replace('status-', '');
-                const type = card.querySelector('.certificate-type').textContent.toLowerCase();
+<script>
+// DOM Elements
+const searchInput = document.getElementById('searchInput');
+const statusFilter = document.getElementById('statusFilter');
+const typeFilter = document.getElementById('typeFilter');
+const certificateCards = document.querySelectorAll('.certificate-card');
+const certificateGrid = document.getElementById('certificateGrid');
+const emptyState = document.getElementById('emptyState');
 
-                const matchesSearch = title.includes(searchTerm);
-                const matchesStatus = statusValue === 'all' || status === statusValue;
-                const matchesType = typeValue === 'all' || type === typeValue;
+// Stats counters
+const totalCerts = document.getElementById('totalCerts');
+const completedCerts = document.getElementById('completedCerts');
+const pendingCerts = document.getElementById('pendingCerts');
+const expiredCerts = document.getElementById('expiredCerts');
 
-                card.style.display = matchesSearch && matchesStatus && matchesType ? 'block' : 'none';
-            });
+// Filter function with animation
+function filterCertificates() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const statusValue = statusFilter.value;
+    const typeValue = typeFilter.value;
+    let visibleCount = 0;
+
+    certificateCards.forEach((card, index) => {
+        const title = card.querySelector('.certificate-title').textContent.toLowerCase();
+        const status = card.dataset.status;
+        const type = card.dataset.type;
+
+        const matchesSearch = title.includes(searchTerm);
+        const matchesStatus = statusValue === 'all' || status === statusValue;
+        const matchesType = typeValue === 'all' || type === typeValue;
+
+        const shouldShow = matchesSearch && matchesStatus && matchesType;
+
+        if (shouldShow) {
+            card.style.display = 'block';
+            card.style.animationDelay = `${index * 0.1}s`;
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    // Show/hide empty state
+    if (visibleCount === 0) {
+        emptyState.style.display = 'block';
+        certificateGrid.style.display = 'none';
+    } else {
+        emptyState.style.display = 'none';
+        certificateGrid.style.display = 'grid';
+    }
+
+    updateStats();
+}
+
+// Update statistics
+function updateStats() {
+    const visibleCards = Array.from(certificateCards).filter(card => 
+        card.style.display !== 'none'
+    );
+
+    let completed = 0, pending = 0, expired = 0;
+
+    visibleCards.forEach(card => {
+        const status = card.dataset.status;
+        switch(status) {
+            case 'completed': completed++; break;
+            case 'pending': pending++; break;
+            case 'expired': expired++; break;
+        }
+    });
+
+    // Animate counter updates
+    animateValue(totalCerts, parseInt(totalCerts.textContent), visibleCards.length, 500);
+    animateValue(completedCerts, parseInt(completedCerts.textContent), completed, 500);
+    animateValue(pendingCerts, parseInt(pendingCerts.textContent), pending, 500);
+    animateValue(expiredCerts, parseInt(expiredCerts.textContent), expired, 500);
+}
+
+// Animate number changes
+function animateValue(element, start, end, duration) {
+    const startTime = performance.now();
+    const animate = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const value = Math.floor(start + (end - start) * progress);
+        element.textContent = value;
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        }
+    };
+    requestAnimationFrame(animate);
+}
+
+// Certificate download with enhanced feedback
+function downloadCertificate(certificateId, type) {
+    const button = event.target.closest('.download-btn');
+    
+    if (button.disabled) return;
+    
+    const originalContent = button.innerHTML;
+    
+    // Show loading state
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
+    button.disabled = true;
+    
+    // Simulate download process
+    setTimeout(() => {
+        const fileName = `${certificateId}-${type}-certificate.pdf`;
+        
+        // Create success feedback
+        button.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
+        button.style.background = 'linear-gradient(135deg, #11998e, #38ef7d)';
+        
+        // Reset button after 2 seconds
+        setTimeout(() => {
+            button.innerHTML = originalContent;
+            button.disabled = false;
+            button.style.background = '';
+        }, 2000);
+        
+        // Show download notification
+        showNotification(`${fileName} downloaded successfully!`, 'success');
+    }, 1500);
+}
+
+// Start test function
+function startTest(certificateId, testType) {
+    const button = event.target.closest('.download-btn');
+    const originalContent = button.innerHTML;
+    
+    // Show loading state
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing Test...';
+    button.disabled = true;
+    
+    // Simulate test preparation
+    setTimeout(() => {
+        // Create test modal or redirect
+        if (certificateId === 'python') {
+            showTestModal();
+        }
+        
+        // Reset button
+        button.innerHTML = originalContent;
+        button.disabled = false;
+    }, 2000);
+}
+
+// Show test modal
+function showTestModal() {
+    const modal = document.createElement('div');
+    modal.className = 'test-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Start Python Assessment</h2>
+                <button class="close-btn" onclick="closeTestModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="test-info">
+                    <div class="test-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Duration: 60 minutes</span>
+                    </div>
+                    <div class="test-item">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Questions: 5 multiple choice</span>
+                    </div>
+                    <div class="test-item">
+                        <i class="fas fa-trophy"></i>
+                        <span>Passing Score: 70%</span>
+                    </div>
+                    <div class="test-item">
+                        <i class="fas fa-redo"></i>
+                        <span>Attempts: 3 remaining</span>
+                    </div>
+                </div>
+                <div class="test-instructions">
+                    <h3>Instructions:</h3>
+                    <ul>
+                        <li>Ensure stable internet connection</li>
+                        <li>Complete the test in one sitting</li>
+                        <li>You cannot go back to previous questions</li>
+                        <li>Results will be available immediately</li>
+                    </ul>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-cancel" onclick="closeTestModal()">Cancel</button>
+                    <button class="btn-start" onclick="proceedToTest()">
+                        <i class="fas fa-play"></i> Start Test Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+}
+function closeTestModal() {
+    const modal = document.querySelector('.test-modal');
+    if (modal) {
+        modal.style.animation = 'modalFadeIn 0.3s ease reverse';
+        setTimeout(() => modal.remove(), 300);
+    }
+}
+function proceedToTest() {
+    closeTestModal();
+    startPythonTest();
+}
+function startPythonTest() {
+    let score = 0;
+    let currentQuestionIndex = 0;
+    const testContainer = document.createElement('div');
+    testContainer.className = 'test-modal';
+    testContainer.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="testTitle">Python Assessment</h2>
+                <button class="close-btn" onclick="closeTest()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="questionContainer"></div>
+                <div class="modal-actions" id="testActions">
+                    <button class="btn-cancel" onclick="closeTest()">Exit</button>
+                    <button class="btn-start" id="nextQuestionBtn" onclick="nextQuestion()">Next Question</button>
+                </div>
+                <div id="testResult" style="display:none;"></div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(testContainer);
+    function displayQuestion() {
+        if (currentQuestionIndex < pythonQuestions.length) {
+            const questionData = pythonQuestions[currentQuestionIndex];
+            const qContainer = document.getElementById('questionContainer');
+            qContainer.innerHTML = `
+                <h3 class="text-xl font-bold mb-4">${currentQuestionIndex + 1}. ${questionData.question}</h3>
+                <div class="options-container flex flex-col gap-2">
+                    ${questionData.options.map((option, index) => `
+                        <label class="p-3 bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-200">
+                            <input type="radio" name="answer" value="${index}" class="mr-2">
+                            ${option}
+                        </label>
+                    `).join('')}
+                </div>
+            `;
+        } else {
+            showResult();
+        }
+    }
+    function checkAnswer() {
+        const selectedOption = document.querySelector('input[name="answer"]:checked');
+        if (!selectedOption) {
+            showNotification('Please select an answer.', 'info');
+            return false;
         }
 
-        searchInput.addEventListener('input', filterCertificates);
-        statusFilter.addEventListener('change', filterCertificates);
-        typeFilter.addEventListener('change', filterCertificates);
-
-        // Certificate download functionality
-        function downloadCertificate(certificateId, type) {
-            // Here you would typically make an API call to your backend
-            // For now, we'll simulate the download
-            const fileName = `${certificateId}-${type}-certificate.pdf`;
-            alert(`Downloading ${fileName}...`);
-            
-            // In a real implementation, you would:
-            // 1. Call your backend API
-            // 2. Generate the certificate with the correct format
-            // 3. Return the file for download
-            // Example:
-            // fetch(`/api/certificates/${certificateId}/download?type=${type}`)
-            //     .then(response => response.blob())
-            //     .then(blob => {
-            //         const url = window.URL.createObjectURL(blob);
-            //         const a = document.createElement('a');
-            //         a.href = url;
-            //         a.download = fileName;
-            //         document.body.appendChild(a);
-            //         a.click();
-            //         window.URL.revokeObjectURL(url);
-            //     });
+        const answerIndex = parseInt(selectedOption.value);
+        if (answerIndex === pythonQuestions[currentQuestionIndex].correct) {
+            score++;
         }
-    </script>
+        return true;
+    }
+
+    window.nextQuestion = () => {
+        if (checkAnswer()) {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < pythonQuestions.length) {
+                displayQuestion();
+            } else {
+                showResult();
+            }
+        }
+    };
+
+    function showResult() {
+        const percentage = (score / pythonQuestions.length) * 100;
+        const resultText = percentage >= 70 ?
+            `Congratulations! You passed with a score of ${percentage.toFixed(0)}%.` :
+            `You scored ${percentage.toFixed(0)}%. Please try again.`;
+
+        const resultContainer = document.getElementById('testResult');
+        resultContainer.style.display = 'block';
+        resultContainer.innerHTML = `
+            <div class="text-center">
+                <h3 class="text-2xl font-bold">${resultText}</h3>
+                <p class="text-gray-600 mt-2">Correct answers: ${score} out of ${pythonQuestions.length}</p>
+                <button class="btn-start mt-4" onclick="closeTest()">Close</button>
+            </div>
+        `;
+        document.getElementById('questionContainer').style.display = 'none';
+        document.getElementById('testActions').style.display = 'none';
+        document.getElementById('testTitle').textContent = 'Assessment Results';
+    }
+
+    window.closeTest = () => {
+        testContainer.remove();
+        showNotification('Test closed.', 'info');
+    };
+
+    displayQuestion();
+}
+const pythonQuestions = [
+    {
+        question: "What is the output of the following Python code?\n\n```python\nx = [1, 2, 3]\ny = x\ny.append(4)\nprint(x)\n```",
+        options: ["[1, 2, 3]", "[1, 2, 3, 4]", "[4]", "Error"],
+        correct: 1
+    },
+    {
+        question: "Which of the following is the correct way to define a function in Python?",
+        options: ["def my_function():", "function my_function()", "define my_function:", "def my_function;"],
+        correct: 0
+    },
+    {
+        question: "What is the purpose of the `__init__` method in Python?",
+        options: ["To initialize the global variables.", "To define the main function.", "A constructor method for a class.", "To import libraries."],
+        correct: 2
+    },
+    {
+        question: "What keyword is used to create a class in Python?",
+        options: ["class", "def", "struct", "new"],
+        correct: 0
+    },
+    {
+        question: "What is a `tuple` in Python?",
+        options: ["A mutable list.", "An immutable list.", "A dictionary.", "A set."],
+        correct: 1
+    },
+];
+function showNotification(message, type) {
+    let container = document.getElementById('notification-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'notification-container';
+        document.body.appendChild(container);
+    }
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    const icon = type === 'success' ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-info-circle"></i>';
+    notification.innerHTML = `${icon}<span>${message}</span>`;
+    container.appendChild(notification);   
+    setTimeout(() => {
+        notification.remove();
+    }, 4000);
+}
+searchInput.addEventListener('input', filterCertificates);
+statusFilter.addEventListener('change', filterCertificates);
+typeFilter.addEventListener('change', filterCertificates);
+window.onload = () => {
+    filterCertificates();
+    showNotification('Certificates loaded successfully!', 'success');
+};
+</script>
 </body>
-</html> 
+</html>

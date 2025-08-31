@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Job Notification System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .notification-icon {
+            position: relative;
+            font-size: 40px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 2s infinite;
+        }
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .title-text h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+        .title-text p {
+            color: #666;
+            font-size: 14px;
+        }
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.4);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.8);
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        .stat-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .job-sources {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .source-btn {
+            padding: 15px 20px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .source-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        .source-btn:hover::before {
+            left: 100%;
+        }
+        .source-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .btn-indeed { background: linear-gradient(45deg, #2557a7, #1e4a8b); }
+        .btn-linkedin { background: linear-gradient(45deg, #0077b5, #005885); }
+        .btn-glassdoor { background: linear-gradient(45deg, #0caa41, #0a8c35); }
+        .btn-monster { background: linear-gradient(45deg, #6b46c1, #553c9a); }
+        .btn-ziprecruiter { background: linear-gradient(45deg, #1e40af, #1e3a8a); }
+        .btn-careerbuilder { background: linear-gradient(45deg, #f97316, #ea580c); }
+        .btn-government { background: linear-gradient(45deg, #dc2626, #b91c1c); }
+        .btn-international { background: linear-gradient(45deg, #059669, #047857); }
+        .filters {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .filter-input {
+            padding: 10px 15px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            transition: all 0.3s ease;
+            min-width: 200px;
+        }
+        .filter-input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        .filter-select {
+            padding: 10px 15px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .filter-select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+        }
+        .notifications-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .job-notification {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 20px;
+            border-left: 5px solid;
+            transition: all 0.3s ease;
+            animation: slideIn 0.5s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        .job-notification::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: right 0.6s;
+        }
+        .job-notification:hover::before {
+            right: 100%;
+        }
+        .job-notification:hover {
+            transform: translateX(5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        .job-notification.urgent {
+            border-left-color: #ef4444;
+            animation: pulse 2s infinite;
+        }
+        .job-notification.normal {
+            border-left-color: #3b82f6;
+        }
+        .job-notification.featured {
+            border-left-color: #10b981;
+        }
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .job-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+
+        .job-company {
+            font-size: 14px;
+            color: #667eea;
+            font-weight: 600;
+        }
+        .job-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #666;
+        }
+        .job-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .job-description {
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .job-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .action-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-apply {
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+        }
+        .btn-save {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border: 1px solid #667eea;
+        }
+        .btn-dismiss {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+        .priority-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .badge-urgent {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+        .badge-featured {
+            background: rgba(16, 185, 129, 0.1);
+            color: greenyellow;
+        }
+        .empty-state {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 60px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .empty-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+        .empty-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 10px;
+        }
+        .empty-message {
+            color: #6b7280;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 0.8;
+                transform: scale(1.02);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 15px; }
+            .header-top { flex-direction: column; gap: 20px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .job-sources { grid-template-columns: 1fr; }
+            .filters { flex-direction: column; align-items: stretch; }
+            .filter-input, .filter-select { min-width: auto; }
+            .job-header { flex-direction: column; gap: 10px; }
+            .job-actions { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-top">
+                <div class="header-title">
+                    <div class="notification-icon">
+                        🔔
+                        <span class="notification-badge" id="jobCount">0</span>
+                    </div>
+                    <div class="title-text">
+                        <h1>GJ Tech Pvt. Ltd.</h1>
+                        <p>Real-time job notifications from worldwide sources</p>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button class="btn btn-primary" id="monitorBtn">
+                        <span id="monitorIcon">⏸️</span>
+                        <span id="monitorText">Stop Monitoring</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="clearAllJobs()">
+                        🗑️ Clear All
+                    </button>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">💼</div>
+                    <div class="stat-value" id="totalJobs">0</div>
+                    <div class="stat-label">Total Jobs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔥</div>
+                    <div class="stat-value" id="urgentJobs">0</div>
+                    <div class="stat-label">Urgent</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-value" id="featuredJobs">0</div>
+                    <div class="stat-label">Featured</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🌍</div>
+                    <div class="stat-value" id="countries">0</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+            </div>
+
+            <div class="job-sources">
+                <button class="source-btn btn-indeed" onclick="fetchJobs('Indeed')">Indeed Jobs</button>
+                <button class="source-btn btn-linkedin" onclick="fetchJobs('LinkedIn')">LinkedIn</button>
+                <button class="source-btn btn-glassdoor" onclick="fetchJobs('Glassdoor')">Glassdoor</button>
+                <button class="source-btn btn-monster" onclick="fetchJobs('Monster')">Monster</button>
+                <button class="source-btn btn-ziprecruiter" onclick="fetchJobs('ZipRecruiter')">ZipRecruiter</button>
+                <button class="source-btn btn-careerbuilder" onclick="fetchJobs('CareerBuilder')">CareerBuilder</button>
+                <button class="source-btn btn-government" onclick="fetchJobs('Government')">Gov Jobs</button>
+                <button class="source-btn btn-international" onclick="fetchJobs('International')">UN/NGO Jobs</button>
+            </div>
+
+            <div class="filters">
+                <input type="text" class="filter-input" id="searchInput" placeholder="🔍 Search jobs, companies, locations...">
+                <select class="filter-select" id="locationFilter">
+                    <option value="">All Locations</option>
+                    <option value="USA">United States</option>
+                    <option value="Canada">Canada</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Australia">Australia</option>
+                    <option value="India">India</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="UAE">UAE</option>
+                </select>
+                <select class="filter-select" id="typeFilter">
+                    <option value="">All Types</option>
+                    <option value="Full-time">Full-time</option>
+                    <option value="Part-time">Part-time</option>
+                    <option value="Contract">Contract</option>
+                    <option value="Remote">Remote</option>
+                    <option value="Hybrid">Hybrid</option>
+                </select>
+                <select class="filter-select" id="priorityFilter">
+                    <option value="">All Priority</option>
+                    <option value="urgent">Urgent</option>
+                    <option value="featured">Featured</option>
+                    <option value="normal">Normal</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="notifications-container" id="jobsContainer"></div>
+    </div>
+
+    <script>
+        let jobs = [];
+        let isMonitoring = true;
+        let monitoringInterval;
+
+        const jobSources = {
+            'Indeed': [
+                {
+                    title: 'Senior Software Engineer',
+                    company: 'TechCorp Inc',
+                    location: 'San Francisco, CA',
+                    salary: '$120,000 - $180,000',
+                    type: 'Full-time',
+                    priority: 'featured',
+                    deadline: '7 days',
+                    description: 'Join our innovative team building next-generation cloud solutions. Required: 5+ years experience with React, Node.js, and AWS.'
+                },
+                {
+                    title: 'Data Scientist',
+                    company: 'Analytics Pro',
+                    location: 'New York, NY',
+                    salary: '$95,000 - $140,000',
+                    type: 'Remote',
+                    priority: 'urgent',
+                    deadline: '3 days',
+                    description: 'Lead data science initiatives using machine learning and AI. PhD in Statistics or Computer Science preferred.'
+                }
+            ],
+            'LinkedIn': [
+                {
+                    title: 'Product Manager',
+                    company: 'StartupXYZ',
+                    location: 'Toronto, Canada',
+                    salary: 'CAD $85,000 - $110,000',
+                    type: 'Hybrid',
+                    priority: 'normal',
+                    deadline: '14 days',
+                    description: 'Drive product strategy and roadmap for our fintech platform. 3+ years product management experience required.'
+                },
+                {
+                    title: 'UX Designer',
+                    company: 'Design Studio',
+                    location: 'London, UK',
+                    salary: '£45,000 - £65,000',
+                    type: 'Full-time',
+                    priority: 'featured',
+                    deadline: '10 days',
+                    description: 'Create exceptional user experiences for mobile and web applications. Portfolio showcasing UX/UI skills required.'
+                }
+            ],
+            'Government': [
+                {
+                    title: 'Civil Engineer',
+                    company: 'Department of Transportation',
+                    location: 'Delhi, India',
+                    salary: '₹8,00,000 - ₹12,00,000',
+                    type: 'Full-time',
+                    priority: 'normal',
+                    deadline: '21 days',
+                    description: 'Plan and oversee infrastructure projects. Bachelor degree in Civil Engineering required.'
+                },
+                {
+                    title: 'Policy Analyst',
+                    company: 'Ministry of Health',
+                    location: 'Ottawa, Canada',
+                    salary: 'CAD $65,000 - $85,000',
+                    type: 'Full-time',
+                    priority: 'urgent',
+                    deadline: '5 days',
+                    description: 'Analyze healthcare policies and provide recommendations. Masters in Public Policy preferred.'
+                }
+            ],
+            'International': [
+                {
+                    title: 'Programme Officer',
+                    company: 'United Nations',
+                    location: 'Geneva, Switzerland',
+                    salary: '$65,000 - $85,000',
+                    type: 'Contract',
+                    priority: 'featured',
+                    deadline: '12 days',
+                    description: 'Coordinate humanitarian programs in conflict zones. International development experience required.'
+                },
+                {
+                    title: 'Research Analyst',
+                    company: 'World Bank',
+                    location: 'Washington, DC',
+                    salary: '$75,000 - $95,000',
+                    type: 'Full-time',
+                    priority: 'normal',
+                    deadline: '18 days',
+                    description: 'Conduct economic research on developing countries. PhD in Economics or related field preferred.'
+                }
+            ],
+            'Glassdoor': [
+                {
+                    title: 'Marketing Manager',
+                    company: 'Global Brand Co',
+                    location: 'Sydney, Australia',
+                    salary: 'AUD $80,000 - $100,000',
+                    type: 'Full-time',
+                    priority: 'normal',
+                    deadline: '15 days',
+                    description: 'Lead digital marketing campaigns across APAC region. 4+ years marketing experience required.'
+                }
+            ],
+            'Monster': [
+                {
+                    title: 'Sales Director',
+                    company: 'Enterprise Solutions',
+                    location: 'Dubai, UAE',
+                    salary: 'AED 20,000 - 30,000/month',
+                    type: 'Full-time',
+                    priority: 'urgent',
+                    deadline: '4 days',
+                    description: 'Drive sales growth in Middle East region. 8+ years B2B sales leadership experience required.'
+                }
+            ],
+            'ZipRecruiter': [
+                {
+                    title: 'DevOps Engineer',
+                    company: 'Cloud Systems Ltd',
+                    location: 'Berlin, Germany',
+                    salary: '€60,000 - €80,000',
+                    type: 'Remote',
+                    priority: 'featured',
+                    deadline: '9 days',
+                    description: 'Maintain CI/CD pipelines and cloud infrastructure. Experience with Kubernetes and Docker required.'
+                }
+            ],
+            'CareerBuilder': [
+                {
+                    title: 'Financial Analyst',
+                    company: 'Banking Corp',
+                    location: 'Singapore',
+                    salary: 'SGD $55,000 - $75,000',
+                    type: 'Full-time',
+                    priority: 'normal',
+                    deadline: '16 days',
+                    description: 'Perform financial modeling and analysis. CFA or MBA in Finance preferred.'
+                }
+            ]
+        };
+
+        function addJob(source, jobData) {
+            const job = {
+                id: Date.now() + Math.random(),
+                source: source,
+                timestamp: new Date(),
+                viewed: false,
+                ...jobData
+            };
+            
+            jobs.unshift(job);
+            
+            if (jobs.length > 50) {
+                jobs = jobs.slice(0, 50);
+            }
+            
+            updateUI();
+            playNotificationSound();
+        }
+
+        function fetchJobs(source) {
+            const sourceJobs = jobSources[source] || [];
+            if (sourceJobs.length > 0) {
+                const randomJob = sourceJobs[Math.floor(Math.random() * sourceJobs.length)];
+                addJob(source, randomJob);
+            }
+        }
+
+        function autoFetchJobs() {
+            const sources = Object.keys(jobSources);
+            const randomSource = sources[Math.floor(Math.random() * sources.length)];
+            fetchJobs(randomSource);
+        }
+
+        function toggleMonitoring() {
+            isMonitoring = !isMonitoring;
+            const icon = document.getElementById('monitorIcon');
+            const text = document.getElementById('monitorText');
+            
+            if (isMonitoring) {
+                startMonitoring();
+                icon.textContent = '⏸️';
+                text.textContent = 'Stop Monitoring';
+            } else {
+                stopMonitoring();
+                icon.textContent = '▶️';
+                text.textContent = 'Start Monitoring';
+            }
+        }
+
+        function startMonitoring() {
+            if (monitoringInterval) clearInterval(monitoringInterval);
+            monitoringInterval = setInterval(autoFetchJobs, 5000);
+        }
+
+        function stopMonitoring() {
+            if (monitoringInterval) {
+                clearInterval(monitoringInterval);
+                monitoringInterval = null;
+            }
+        }
+
+        function clearAllJobs() {
+            jobs = [];
+            updateUI();
+        }
+
+        function applyToJob(id) {
+            const job = jobs.find(j => j.id === id);
+            if (job) {
+                alert(`Opening application for ${job.title} at ${job.company}`);
+            }
+        }
+
+        function saveJob(id) {
+            const job = jobs.find(j => j.id === id);
+            if (job) {
+                job.saved = !job.saved;
+                updateUI();
+            }
+        }
+
+        function dismissJob(id) {
+            jobs = jobs.filter(j => j.id !== id);
+            updateUI();
+        }
+
+        function markAsViewed(id) {
+            const job = jobs.find(j => j.id === id);
+            if (job) {
+                job.viewed = true;
+                updateUI();
+            }
+        }
+
+        function getFilteredJobs() {
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            const locationFilter = document.getElementById('locationFilter').value;
+            const typeFilter = document.getElementById('typeFilter').value;
+            const priorityFilter = document.getElementById('priorityFilter').value;
+
+            return jobs.filter(job => {
+                if (searchQuery && 
+                    !job.title.toLowerCase().includes(searchQuery) && 
+                    !job.company.toLowerCase().includes(searchQuery) &&
+                    !job.location.toLowerCase().includes(searchQuery)) {
+                    return false;
+                }
+                
+                if (locationFilter && !job.location.includes(locationFilter)) {
+                    return false;
+                }
+                
+                if (typeFilter && job.type !== typeFilter) {
+                    return false;
+                }
+                
+                if (priorityFilter && job.priority !== priorityFilter) {
+                    return false;
+                }
+                
+                return true;
+            });
+        }
+
+        function updateUI() {
+            updateStats();
+            renderJobs();
+        }
+
+        function updateStats() {
+            const total = jobs.length;
+            const urgent = jobs.filter(j => j.priority === 'urgent').length;
+            const featured = jobs.filter(j => j.priority === 'featured').length;
+            const countries = new Set(jobs.map(j => j.location.split(', ').pop())).size;
+
+            document.getElementById('jobCount').textContent = total > 99 ? '99+' : total;
+            document.getElementById('totalJobs').textContent = total;
+            document.getElementById('urgentJobs').textContent = urgent;
+            document.getElementById('featuredJobs').textContent = featured;
+            document.getElementById('countries').textContent = countries;
+        }
+
+        function renderJobs() {
+            const container = document.getElementById('jobsContainer');
+            const filteredJobs = getFilteredJobs();
+
+            if (filteredJobs.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">💼</div>
+                        <h3 class="empty-title">No jobs found</h3>
+                        <p class="empty-message">Try adjusting your filters or click on job sources above</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filteredJobs.map(job => `
+                <div class="job-notification ${job.priority}" onclick="markAsViewed(${job.id})">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">${job.title}</h3>
+                            <p class="job-company">${job.company}</p>
+                        </div>
+                        ${job.priority === 'urgent' ? '<span class="priority-badge badge-urgent">Urgent</span>' : ''}
+                        ${job.priority === 'featured' ? '<span class="priority-badge badge-featured">Featured</span>' : ''}
+                    </div>
+                    <div class="job-meta">
+                        <div class="job-meta-item">
+                            <span>📍</span>
+                            <span>${job.location}</span>
+                        </div>
+                        <div class="job-meta-item">
+                            <span>💰</span>
+                            <span>${job.salary}</span>
+                        </div>
+                        <div class="job-meta-item">
+                            <span>⏰</span>
+                            <span>${job.type}</span>
+                        </div>
+                        <div class="job-meta-item">
+                            <span>⏳</span>
+                            <span>Apply within ${job.deadline}</span>
+                        </div>
+                        <div class="job-meta-item">
+                            <span>🔗</span>
+                            <span>${job.source}</span>
+                        </div>
+                    </div>
+                    <p class="job-description">${job.description}</p>
+                    <div class="job-actions">
+                        <button class="action-btn btn-apply" onclick="applyToJob(${job.id})">
+                            Apply Now
+                        </button>
+                        <button class="action-btn btn-save" onclick="saveJob(${job.id})">
+                            ${job.saved ? 'Saved ❤️' : 'Save'}
+                        </button>
+                        <button class="action-btn btn-dismiss" onclick="dismissJob(${job.id})">
+                            Dismiss
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function playNotificationSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.frequency.setValueAtTime(1000, audioContext.currentTime + 0.1);
+                oscillator.frequency.setValueAtTime(600, audioContext.currentTime + 0.2);
+                
+                gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.3);
+            } catch (error) {
+                console.log('Audio not available');
+            }
+        }
+
+        function formatTimeAgo(timestamp) {
+            const now = new Date();
+            const diff = now - timestamp;
+            const minutes = Math.floor(diff / (1000 * 60));
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+            if (days > 0) return `${days}d ago`;
+            if (hours > 0) return `${hours}h ago`;
+            if (minutes > 0) return `${minutes}m ago`;
+            return 'Just now';
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('monitorBtn').addEventListener('click', toggleMonitoring);
+            document.getElementById('searchInput').addEventListener('input', updateUI);
+            document.getElementById('locationFilter').addEventListener('change', updateUI);
+            document.getElementById('typeFilter').addEventListener('change', updateUI);
+            document.getElementById('priorityFilter').addEventListener('change', updateUI);
+            
+            startMonitoring();
+            updateUI();
+            
+            // Initial demo jobs
+            setTimeout(() => fetchJobs('Indeed'), 1000);
+            setTimeout(() => fetchJobs('LinkedIn'), 2000);
+            setTimeout(() => fetchJobs('Government'), 3000);
+        });
+    </script>
+</body>
+</html>

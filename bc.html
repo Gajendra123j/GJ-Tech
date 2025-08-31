@@ -9,33 +9,37 @@
             text-align: center;
             margin: 0;
             padding: 20px;
-            background-color: #f0f4f8;
+            background-color:white;
         }
-
         h1 {
-            color: #333;
+            color: black;
         }
-
-        #greetButton, .topic-btn {
+        #greetButton, .topic-btn, .backend-btn {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
-            background-color: #4CAF50;
+            background-color: greenyellow;
             color: white;
             border: none;
             border-radius: 8px;
             margin: 10px 5px;
             transition: background-color 0.3s ease;
         }
-
-        #greetButton:hover, .topic-btn:hover {
-            background-color: #45a049;
+        #greetButton:hover, .topic-btn:hover, .backend-btn:hover {
+            background-color: green;
         }
-
         #message {
             margin-top: 20px;
             font-size: 18px;
             color: green;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            background:white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow:black;
         }
         .topics {
             margin-top: 30px;
@@ -61,21 +65,27 @@
     <h1>Welcome to the Simulated Frontend</h1>
     <button id="greetButton">Click to Simulate Greeting from Backend</button>
     <div id="message" aria-live="polite"></div>
-
     <div class="topics">
-        <h2>Explore Topics</h2>
+        <h2>Explore Frontend Topics</h2>
         <div class="topic-container">
             <button class="topic-btn" data-topic="HTML">HTML</button>
             <button class="topic-btn" data-topic="CSS">CSS</button>
             <button class="topic-btn" data-topic="JavaScript">JavaScript</button>
             <button class="topic-btn" data-topic="React">React</button>
-            <button class="topic-btn" data-topic="Node.js">Node.js</button>
-            <button class="topic-btn" data-topic="MongoDB">MongoDB</button>
+        </div>
+    </div>
+    <div class="topics">
+        <h2>Explore Backend Courses</h2>
+        <div class="topic-container">
+            <button class="backend-btn" data-backend="Node.js">Node.js</button>
+            <button class="backend-btn" data-backend="Express.js">Express.js</button>
+            <button class="backend-btn" data-backend="MongoDB">MongoDB</button>
+            <button class="backend-btn" data-backend="SQL">SQL</button>
+            <button class="backend-btn" data-backend="API Development">API Development</button>
         </div>
     </div>
     <div class="footer">© 2025 GJ Tech Learning Portal (Simulated)</div>
     <script>
-        // Greeting simulation
         document.getElementById('greetButton').addEventListener('click', function () {
             document.getElementById('message').innerText = "Loading greeting...";
             setTimeout(() => {
@@ -83,16 +93,79 @@
                 document.getElementById('message').innerText = backendResponse;
             }, 1000);
         });
-        // Topic content simulation
         const topicButtons = document.querySelectorAll('.topic-btn');
         topicButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const topic = button.getAttribute('data-topic');
-                document.getElementById('message').innerText = `Loading ${topic} content...`;
-                setTimeout(() => {
-                    const response = `📘 This is a simulated backend response for the topic: ${topic}.`;
-                    document.getElementById('message').innerText = response;
-                }, 1000);
+                document.getElementById('message').innerHTML = `📘 <b>${topic}</b> is a core frontend technology. <br><br> 
+                ✅ <b>What you will learn:</b><br>
+                - Basics of ${topic}<br>
+                - Advanced concepts<br>
+                - Best practices for modern development.`;
+            });
+        });
+        const backendDetails = {
+            "Node.js": `
+                <h3>💻 Node.js Course</h3>
+                <p><b>Overview:</b> Node.js is a JavaScript runtime built on Chrome's V8 engine.</p>
+                <ul>
+                    <li>Introduction to Node.js & NPM</li>
+                    <li>Working with modules</li>
+                    <li>Building server-side applications</li>
+                    <li>File system, Streams & Events</li>
+                    <li>Connecting Node.js with databases</li>
+                </ul>
+            `,
+            "Express.js": `
+                <h3>🚀 Express.js Course</h3>
+                <p><b>Overview:</b> Express is a lightweight web application framework for Node.js.</p>
+                <ul>
+                    <li>Setting up an Express server</li>
+                    <li>Routing & Middleware</li>
+                    <li>Template engines</li>
+                    <li>REST API development</li>
+                    <li>Error handling</li>
+                </ul>
+            `,
+            "MongoDB": `
+                <h3>🗄️ MongoDB Course</h3>
+                <p><b>Overview:</b> MongoDB is a NoSQL document-oriented database.</p>
+                <ul>
+                    <li>Introduction to NoSQL databases</li>
+                    <li>CRUD operations in MongoDB</li>
+                    <li>Schema design & indexing</li>
+                    <li>Aggregation framework</li>
+                    <li>Integrating MongoDB with Node.js</li>
+                </ul>
+            `,
+            "SQL": `
+                <h3>📊 SQL Course</h3>
+                <p><b>Overview:</b> SQL is used to manage relational databases.</p>
+                <ul>
+                    <li>Basics of SQL & RDBMS</li>
+                    <li>CRUD operations with SQL queries</li>
+                    <li>Joins & Subqueries</li>
+                    <li>Stored Procedures & Functions</li>
+                    <li>Database optimization</li>
+                </ul>
+            `,
+            "API Development": `
+                <h3>🌐 API Development Course</h3>
+                <p><b>Overview:</b> Learn how to design and build RESTful APIs.</p>
+                <ul>
+                    <li>Understanding REST architecture</li>
+                    <li>Creating APIs with Node.js & Express</li>
+                    <li>Authentication & Authorization (JWT, OAuth)</li>
+                    <li>Error handling in APIs</li>
+                    <li>Testing APIs (Postman, Jest)</li>
+                </ul>
+            `
+        };
+        const backendButtons = document.querySelectorAll('.backend-btn');
+        backendButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const backend = button.getAttribute('data-backend');
+                document.getElementById('message').innerHTML = backendDetails[backend];
             });
         });
     </script>
