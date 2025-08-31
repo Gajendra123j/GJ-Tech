@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gajendra Singh - AI-Powered Developer Profile | GJ Tech</title>
+    <title>Gajendra Singh - GJ Tech</title>
     <meta name="description" content="Explore Gajendra Singh's AI-powered developer profile featuring cutting-edge projects, skills, and tech innovations">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -455,16 +455,35 @@
     </style>
 </head>
 <body>
+    <div id="main-content"></div>
+<div class="ai-chat-widget fixed bottom-5 right-5 bg-gray-500 p-3 rounded-2xl shadow-lg w-70" id="aiChatWidget">
+    <i class="fas fa-robot text-white text-xl cursor-pointer" onclick="toggleAIChat()"></i>
+    <div class="ai-chat-content hidden">
+        <div class="p-4 border-b border-gray-600 rounded-t-lg">
+            <h3 class="text-lg font-bold text-white">AI Assistant</h3>
+            <p class="text-sm text-gray-300">Powered by GJ Tech AI</p>
+        </div>
+        <div id="chatMessages" class="p-4 space-y-3 max-h-[300px] overflow-y-auto">
+            <div class="bg-blue-600 p-3 rounded-lg text-white text-sm">
+                Hello! I'm your AI assistant. How can I help you explore GJ Tech?
+            </div>
+        </div>
+        <div class="p-4 border-t border-gray-600 rounded-b-lg flex space-x-2">
+            <input id="userInput" type="text" placeholder="Ask me anything..." 
+                class="flex-1 bg-transparent border border-gray-600 rounded-lg p-2 text-white placeholder-gray-400">
+            <button onclick="sendMessage()" class="bg-blue-600 px-3 py-2 rounded-lg text-white">Send</button>
+        </div>
+    </div>
+</div>
     <div class="floating-announcements">
-        <button class="floating-btn" title="Latest Updates" onclick="scrollToSection('announcements')">
-            <i class="fas fa-bell"></i>
-        </button>
-        <button class="floating-btn" title="Job Opportunities" onclick="scrollToSection('jobs')">
+        <!-- Job Opportunities Button -->
+        <a href="notification.html" class="floating-btn" title="Job Opportunities">
             <i class="fas fa-briefcase"></i>
-        </button>
-        <button class="floating-btn" title="Quick Contact" onclick="scrollToSection('contact')">
+        </a>
+        <!-- Quick Contact Button -->
+        <a href="mailto:gajendras0438@gmail.com" class="floating-btn" title="Quick Contact">
             <i class="fas fa-envelope"></i>
-        </button>
+        </a>
     </div>
     <main class="container mx-auto px-4 py-12" id="main-content">
         <section class="glass-container text-center mb-12">
@@ -683,9 +702,6 @@
                 </a>
                 <a href="https://github.com/Gajendra123j" target="_blank" class="contact-link">
                     <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="https://www.instagram.com/gajendra.singh2023" target="_blank" class="contact-link">
-                    <i class="fab fa-instagram"></i> Instagram
                 </a>
             </div>
             <p class="text-center text-white text-sm mt-4">

@@ -759,40 +759,18 @@
     </style>
 </head>
 <body> 
-    
-<div id="main-content"></div>
-<div class="ai-chat-widget fixed bottom-5 right-5 bg-gray-500 p-3 rounded-2xl shadow-lg w-70" id="aiChatWidget">
-    <i class="fas fa-robot text-white text-xl cursor-pointer" onclick="toggleAIChat()"></i>
-    <div class="ai-chat-content hidden">
-        <div class="p-4 border-b border-gray-600 rounded-t-lg">
-            <h3 class="text-lg font-bold text-white">AI Assistant</h3>
-            <p class="text-sm text-gray-300">Powered by GJ Tech AI</p>
+<header class="header">
+    <nav class="nav container" aria-label="Main">
+        <div class="logo">GJ Tech</div>
+        <div class="nav-icons">
+            <a href="notification.html" class="icon-btn" aria-label="Notifications">🔔</a>
+            <a href="settings.html" class="icon-btn" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </a>
+            <a href="profile.html" class="icon-btn" aria-label="Profile">👤</a>
         </div>
-        <div id="chatMessages" class="p-4 space-y-3 max-h-[300px] overflow-y-auto">
-            <div class="bg-blue-600 p-3 rounded-lg text-white text-sm">
-                Hello! I'm your AI assistant. How can I help you explore GJ Tech?
-            </div>
-        </div>
-        <div class="p-4 border-t border-gray-600 rounded-b-lg flex space-x-2">
-            <input id="userInput" type="text" placeholder="Ask me anything..." 
-                class="flex-1 bg-transparent border border-gray-600 rounded-lg p-2 text-white placeholder-gray-400">
-            <button onclick="sendMessage()" class="bg-blue-600 px-3 py-2 rounded-lg text-white">Send</button>
-        </div>
-    </div>
-</div>
-    <header class="header">
-        <nav class="nav container" aria-label="Main">
-            <div class="logo">GJ Tech</div>
-            <div class="nav-icons">
-                <a href="notification.html" class="profile-btn" aria-label="Profile">🔔</a>
-                </button>
-              <a href="settings.html"  <button class="icon-btn" aria-label="Menu" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i></a>
-                </button>
-                <a href="profile.html" class="profile-btn" aria-label="Profile">👤</a>
-            </div>
-        </nav>
-    </header>
+    </nav>
+</header>
     <section class="hero" id="unstop" aria-label="Hero">
         <div class="container">
             <h1>Hi, <span id="userName">Gajendra </span></h1>

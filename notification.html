@@ -401,7 +401,6 @@
                 transform: translateY(0);
             }
         }
-
         @keyframes pulse {
             0%, 100% { 
                 opacity: 1;
@@ -412,7 +411,6 @@
                 transform: scale(1.02);
             }
         }
-
         @media (max-width: 768px) {
             .container { padding: 15px; }
             .header-top { flex-direction: column; gap: 20px; }
@@ -472,7 +470,6 @@
                     <div class="stat-label">Countries</div>
                 </div>
             </div>
-
             <div class="job-sources">
                 <button class="source-btn btn-indeed" onclick="fetchJobs('Indeed')">Indeed Jobs</button>
                 <button class="source-btn btn-linkedin" onclick="fetchJobs('LinkedIn')">LinkedIn</button>
@@ -513,15 +510,12 @@
                 </select>
             </div>
         </div>
-
         <div class="notifications-container" id="jobsContainer"></div>
     </div>
-
     <script>
         let jobs = [];
         let isMonitoring = true;
         let monitoringInterval;
-
         const jobSources = {
             'Indeed': [
                 {
